@@ -9,11 +9,18 @@ using UnityEditor;
 /// </summary>
 public class EditerMeshCreater : MonoBehaviour
 {
-    private void Start()
+    private void Reset()
+    {
+        SeveMesh();
+    }
+    /// <summary>
+    /// オブジェクトのメッシュを保存する
+    /// </summary>
+    private void SeveMesh()
     {
         if (TryGetComponent(out MeshFilter mesh))
         {
-            MeshControl.CreateMesh(gameObject.name, mesh);
+            MyGame.MeshControl.CreateMesh(gameObject.name, mesh);
             Debug.Log("Create");
         }
     }
