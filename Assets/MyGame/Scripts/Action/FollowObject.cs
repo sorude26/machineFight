@@ -12,28 +12,26 @@ public class FollowObject : MonoBehaviour
     protected float _followSpeed = 1f;
     [SerializeField]
     protected float _rotationSpeed = 1f;
-    private void Start()
-    {
-        if (_followTarget == null) 
-        { 
-            _followTarget = transform;
-        }
-        if (_rotationTarget == null) 
-        {
-            _rotationTarget = transform;
-        }
-    }
+
     private void FixedUpdate()
     {
-        RotationControl();
-        MoveControl();
+        TurnTargetDirection();
+        GetCloserToTarget();
     }
-    protected void RotationControl()
+    /// <summary>
+    /// 目標に回転方向を合わせる
+    /// </summary>
+    protected void TurnTargetDirection()
     {
+        if (!_followTarget) { return; }
         transform.forward = Vector3.Lerp(transform.forward, _rotationTarget.forward, _rotationSpeed * Time.fixedDeltaTime);
     }
-    protected void MoveControl()
+    /// <summary>
+    /// 目標に近づく
+    /// </summary>
+    protected void GetCloserToTarget()
     {
+        if (!_rotationTarget) { return; }
         transform.position = Vector3.Lerp(transform.position, _followTarget.position, _followSpeed * Time.fixedDeltaTime);
     }
 }
