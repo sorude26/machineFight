@@ -9,7 +9,7 @@ namespace MyGame.MachineFrame
         /// <summary>
         /// Machineのステート
         /// </summary>
-        public interface IMachineState
+        protected interface IMachineState
         {
             /// <summary>
             /// ステート開始時
