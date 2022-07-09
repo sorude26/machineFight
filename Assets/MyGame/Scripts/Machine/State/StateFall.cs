@@ -10,11 +10,13 @@ namespace MyGame.MachineFrame
         {
             public void OnEnter(StateController control)
             {
+                control._currentStateType = StateType.Fall;
                 control.ChangeAnimation(StateType.Fall);
             }
 
             public void OnFixedUpdate(StateController control)
             {
+                control.ChackGround();
             }
 
             public void OnUpdate(StateController control)
