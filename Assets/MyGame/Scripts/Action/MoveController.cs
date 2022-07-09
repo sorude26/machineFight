@@ -9,6 +9,7 @@ namespace MyGame
     /// </summary>
     public class MoveController
     {
+        private const float DEFAULT_DECELERATE = 0.99f;
         private const float BRAKE_DECELERATE = 0.3f;
         private Rigidbody _rb = default;
         public MoveController(Rigidbody rigidbody)
@@ -32,6 +33,14 @@ namespace MyGame
             var velocity = _rb.velocity;
             float y = velocity.y;
             velocity *= breakPower;
+            velocity.y = y;
+            _rb.velocity = velocity;
+        }
+        public void MoveDecelerate(float decelerate = DEFAULT_DECELERATE)
+        {
+            var velocity = _rb.velocity;
+            float y = velocity.y;
+            velocity *= decelerate;
             velocity.y = y;
             _rb.velocity = velocity;
         }
