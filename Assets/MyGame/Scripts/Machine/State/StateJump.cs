@@ -10,8 +10,7 @@ namespace MyGame.MachineFrame
         {
             public void OnEnter(StateController control)
             {
-                control._currentStateType = StateType.Jump;
-                control.ChangeAnimation(StateType.Jump);
+                control.SetState(StateType.Jump);
             }
 
             public void OnFixedUpdate(StateController control)

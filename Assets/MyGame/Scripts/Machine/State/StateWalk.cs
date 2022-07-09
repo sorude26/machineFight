@@ -10,8 +10,7 @@ namespace MyGame.MachineFrame
         {
             public void OnEnter(StateController control)
             {
-                control._currentStateType = StateType.Walk;
-                control.ChangeAnimation(StateType.Walk);
+                control.SetState(StateType.Walk);
             }
 
             public void OnFixedUpdate(StateController control)

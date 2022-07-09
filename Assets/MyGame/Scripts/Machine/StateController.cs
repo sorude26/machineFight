@@ -7,6 +7,7 @@ namespace MyGame.MachineFrame
 {
     public partial class StateController
     {
+        protected WallChecker _groundChecker = default;
         protected MoveController _moveController = default;
         protected AnimatorController _animatorController = default;
         protected IMachineState _currentState = default;
@@ -20,10 +21,11 @@ namespace MyGame.MachineFrame
         protected Dictionary<StateType, string> _stateAnimationNames = new Dictionary<StateType, string>();
 
         public event Func<bool> OnChackGround = default;
-        public StateController(MoveController moveController, AnimatorController animatorController)
+        public StateController(MoveController moveController, AnimatorController animatorController,WallChecker checker)
         {
             _moveController = moveController;
             _animatorController = animatorController;
+            _groundChecker = checker;
             _currentState = _stateIdle;
         }
         protected void ChangeAnimation(StateType type)
@@ -59,17 +61,22 @@ namespace MyGame.MachineFrame
             }
             _currentState.OnEnter(this);
         }
+        protected void SetState(StateType type)
+        {
+            _currentStateType = type;
+            ChangeAnimation(type);
+        }
         protected void ChackFallOnGround()
         {
-            _moveController.MoveBreak();
-            if (!(bool)OnChackGround?.Invoke())
+            _moveController.MoveDecelerate();
+            if (!_groundChecker.IsWalled())
             {
                 ChangeState(StateType.Fall);
             }
         }
         protected void ChackGround()
         {
-            if ((bool)OnChackGround?.Invoke())
+            if (_groundChecker.IsWalled())
             {
                 ChangeState(StateType.Landing);
             }

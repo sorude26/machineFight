@@ -10,8 +10,7 @@ namespace MyGame.MachineFrame
         {
             public void OnEnter(StateController control)
             {
-                control._currentStateType = StateType.Float;
-                control.ChangeAnimation(StateType.Float);
+                control.SetState(StateType.Float);
             }
 
             public void OnFixedUpdate(StateController control)

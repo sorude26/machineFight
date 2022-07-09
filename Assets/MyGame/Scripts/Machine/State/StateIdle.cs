@@ -10,8 +10,7 @@ namespace MyGame.MachineFrame
         {
             public void OnEnter(StateController control)
             {
-                control._currentStateType = StateType.Idle;
-                control.ChangeAnimation(StateType.Idle);
+                control.SetState(StateType.Idle);
             }
 
             public void OnFixedUpdate(StateController control)
