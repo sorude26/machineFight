@@ -28,4 +28,14 @@ namespace MyGame.MachineFrame
             void OnFixedUpdate(StateController control);
         }
     }
+    public enum StateType
+    {
+        Idle,
+        Fall,
+        Walk,
+        Ran,
+        Jump,
+        Float,
+        Landing
+    }
 }
