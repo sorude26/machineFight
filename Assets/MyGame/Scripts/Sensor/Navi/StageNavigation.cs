@@ -8,6 +8,7 @@ public class StageNavigation
     private int _maxHorizontalIndex = default;
     private List<NaviStagePoint> _naviMap = default;
     private SearchMap<NaviStagePoint> _searchMap = default;
+    private NaviStagePoint _currentTarget = default;
     public StageNavigation(List<NaviStagePoint> naviMap,int maxH)
     {
         _maxHorizontalIndex = maxH;
@@ -17,14 +18,32 @@ public class StageNavigation
     {
         _searchMap = new SearchMap<NaviStagePoint>(_maxHorizontalIndex);
     }
-    public Vector3 GetMoveDir(Transform User, Transform Target)
+    public void MakeFootprints(Transform target,int power)
     {
-        var tPoint = _naviMap.OrderBy(point => Vector3.Distance(point.Pos, Target.position)).FirstOrDefault();
-        var uPoint = _naviMap.OrderBy(point => Vector3.Distance(point.Pos, User.position)).FirstOrDefault();
+        var tPoint = _naviMap.OrderBy(point => Vector3.Distance(point.Pos, target.position)).FirstOrDefault();
+        if (tPoint == null) { return; }
+        _currentTarget = tPoint;
+        _searchMap.DataClear();
+        _searchMap.MakeFootprints(_currentTarget, power);
+    }
+    public Vector3 GetMoveDir(Transform user)
+    {
+        var uPoint = _naviMap.OrderBy(point => Vector3.Distance(point.Pos, user.position)).FirstOrDefault();
+        if (uPoint == null) { return Vector3.zero; }
+        var target = uPoint.ConnectPoint.Where(point => uPoint.Footprints + 1 == point.Footprints).OrderBy(point => Vector3.Distance(point.Pos, user.position)).FirstOrDefault();
+        if (target == null) { return Vector3.zero; }
+        var dir = target.Pos - user.transform.position;
+        dir.y = 0;
+        return dir.normalized;
+    }
+    public Vector3 GetMoveDir(Transform user, Transform targetT)
+    {
+        var tPoint = _naviMap.OrderBy(point => Vector3.Distance(point.Pos, targetT.position)).FirstOrDefault();
+        var uPoint = _naviMap.OrderBy(point => Vector3.Distance(point.Pos, user.position)).FirstOrDefault();
         if (tPoint == null || uPoint == null) { return Vector3.zero; }
         var target = _searchMap.GetMoveTarget(tPoint, uPoint);
         if (target == null) { return Vector3.zero; }
-        var dir = target.Pos - User.transform.position;
+        var dir = target.Pos - user.transform.position;
         dir.y = 0;
         return dir.normalized;
     }
