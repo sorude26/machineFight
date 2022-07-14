@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class NavigationMover : MonoBehaviour
 {
-    [SerializeField]
+    // [SerializeField]
     public Transform _target = default;
     [SerializeField]
     private float _naviInterval = 1f;
@@ -27,11 +27,11 @@ public class NavigationMover : MonoBehaviour
     private void Update()
     {
         _timer += Time.deltaTime;
-        if (_timer > _naviInterval && !_push)
+        if (_timer > _naviInterval)
         {
-            _push = true;
             _timer = 0;
-            NavigationManager.Instance.NavigationStack.Push(SetDir());
+            _currentDir = NavigationManager.Instance.Navigation.GetMoveDir(transform);
+            //NavigationManager.Instance.NavigationStack.Push(SetDir());
         }
     }
     private void FixedUpdate()
