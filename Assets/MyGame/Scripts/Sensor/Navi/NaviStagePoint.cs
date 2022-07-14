@@ -11,26 +11,11 @@ public class NaviStagePoint:IMapPoint<NaviStagePoint>
     public int Cost { get; set; }
     public int DistanceCost { get; set; }
     public int TotalCost { get; set; }
+    public int Footprints { get; set; }
     public NaviStagePoint Parent { get; set; }
     public NaviStagePoint(Vector3 pos, int id)
     {
         Pos = pos;
         IndexID = id;
     }
-}
-public interface IMapPoint<TMapPoint> where TMapPoint : IMapPoint<TMapPoint>
-{
-    public int IndexID { get; }
-    public int Cost { get; set; }
-    public int DistanceCost { get; set; }
-    public int TotalCost { get; set; }
-    public SearchStateType State { get; set; }
-    public List<TMapPoint> ConnectPoint { get; set; }
-    public TMapPoint Parent { get; set; }
-}
-public enum SearchStateType
-{
-    Idle,
-    Open,
-    Close,
 }
