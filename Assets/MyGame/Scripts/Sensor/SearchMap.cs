@@ -28,6 +28,18 @@ public class SearchMap<TPoint> where TPoint: IMapPoint<TPoint>
         start.State = SearchStateType.Close;
         CheckNeighor(next);
     }
+    public void MakeFootprints(TPoint start,int power)
+    {
+        if (start.Footprints == 0) { _openPoints.Add(start);}
+        start.Footprints = power;
+        foreach (var neigher in start.ConnectPoint)
+        {
+            if (neigher.Footprints < power - 1)
+            {
+                MakeFootprints(neigher, power - 1);
+            }
+        }
+    }
     private bool CheckPoint(TPoint point,TPoint parent)
     {
         //–Ú•W‚Å‚ ‚ê‚ÎI—¹‚·‚é
@@ -110,6 +122,14 @@ public class SearchMap<TPoint> where TPoint: IMapPoint<TPoint>
         CheckNeighor(start);
         return _goal;
     }
+    public void DataClear()
+    {
+        foreach (var point in _openPoints)
+        {
+            point.Footprints = 0;
+        }
+        _openPoints.Clear();
+    }
     public void DataClear(List<TPoint> map)
     {
         foreach (var point in map)
@@ -119,4 +139,22 @@ public class SearchMap<TPoint> where TPoint: IMapPoint<TPoint>
         }
         _openPoints.Clear();
     }
+}
+
+public interface IMapPoint<TMapPoint> where TMapPoint : IMapPoint<TMapPoint>
+{
+    public int IndexID { get; }
+    public int Cost { get; set; }
+    public int DistanceCost { get; set; }
+    public int TotalCost { get; set; }
+    public int Footprints { get; set; }
+    public SearchStateType State { get; set; }
+    public List<TMapPoint> ConnectPoint { get; set; }
+    public TMapPoint Parent { get; set; }
+}
+public enum SearchStateType
+{
+    Idle,
+    Open,
+    Close,
 }
