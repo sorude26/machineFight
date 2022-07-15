@@ -32,12 +32,15 @@ public class SquaresIndex
             }
         }
         //中段
-        foreach (int neighor in GetLeftMiddleRight(index))
+        if (index % _maxHorizontal > 0)
         {
-            //指定点は省く
-            if (neighor == index) { continue; }
-            yield return neighor;
+            yield return index - 1;  //左
         }
+        if (index % _maxHorizontal < _maxHorizontal - 1)
+        {
+            yield return index + 1;  //右
+        }
+        yield return index;
         //後段
         if (index + _maxHorizontal < _maxIndex)
         {
@@ -45,6 +48,33 @@ public class SquaresIndex
             {
                 yield return neighor;
             }
+        }
+    }
+    /// <summary>
+    /// 周囲四方向のIndexを返す
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
+    public IEnumerable<int> GetNeighorCross(int index)
+    {
+        //前段
+        if (index >= _maxHorizontal)
+        {
+            yield return index - _maxHorizontal;
+        }
+        //中段
+        if (index % _maxHorizontal > 0)
+        {
+            yield return index - 1;  //左
+        }
+        if (index % _maxHorizontal < _maxHorizontal - 1)
+        {
+            yield return index + 1;  //右
+        }
+        //後段
+        if (index + _maxHorizontal < _maxIndex)
+        {
+            yield return index + _maxHorizontal;
         }
     }
     /// <summary>
