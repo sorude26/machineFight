@@ -15,7 +15,6 @@ public class NavigationMover : MonoBehaviour
     private Rigidbody _rb = default;
     private MyGame.MoveController _moveController = null;
     private float _timer = 0f;
-    private bool _push = false;
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -30,8 +29,7 @@ public class NavigationMover : MonoBehaviour
         if (_timer > _naviInterval)
         {
             _timer = 0;
-            _currentDir = NavigationManager.Instance.Navigation.GetMoveDir(transform);
-            //NavigationManager.Instance.NavigationStack.Push(SetDir());
+            _currentDir = NavigationManager.Instance.GetMoveDir(transform);
         }
     }
     private void FixedUpdate()
@@ -41,12 +39,5 @@ public class NavigationMover : MonoBehaviour
             transform.forward = _currentDir;
         }
         _moveController.VelocityMove(_currentDir * _moveSpeed);
-    }
-    private IEnumerator SetDir()
-    {
-        NavigationManager.Instance.Navigation.DataClear();
-        yield return null;
-        _currentDir = NavigationManager.Instance.Navigation.GetMoveDir(transform, _target);
-        _push = false;
     }
 }
