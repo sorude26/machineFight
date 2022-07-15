@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class StageNavigation
+public class NavigationMap
 {
     private int _maxHorizontalIndex = default;
     private List<NaviStagePoint> _naviMap = default;
@@ -12,7 +12,7 @@ public class StageNavigation
     private NaviStagePoint _currentTarget = default;
     private Thread _therad = default;
     private int _power = default;
-    public StageNavigation(List<NaviStagePoint> naviMap,int maxH)
+    public NavigationMap(List<NaviStagePoint> naviMap,int maxH)
     {
         _maxHorizontalIndex = maxH;
         _naviMap = naviMap;
@@ -44,20 +44,5 @@ public class StageNavigation
         var dir = target.Pos - user.transform.position;
         dir.y = 0;
         return dir.normalized;
-    }
-    public Vector3 GetMoveDir(Transform user, Transform targetT)
-    {
-        var tPoint = _naviMap.OrderBy(point => Vector3.Distance(point.Pos, targetT.position)).FirstOrDefault();
-        var uPoint = _naviMap.OrderBy(point => Vector3.Distance(point.Pos, user.position)).FirstOrDefault();
-        if (tPoint == null || uPoint == null) { return Vector3.zero; }
-        var target = _searchMap.GetMoveTarget(tPoint, uPoint);
-        if (target == null) { return Vector3.zero; }
-        var dir = target.Pos - user.transform.position;
-        dir.y = 0;
-        return dir.normalized;
-    }
-    public void DataClear()
-    {
-        _searchMap.DataClear(_naviMap);
     }
 }
