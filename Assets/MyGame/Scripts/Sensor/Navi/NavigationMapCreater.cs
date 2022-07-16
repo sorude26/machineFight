@@ -18,9 +18,9 @@ public class NavigationMapCreater : MonoBehaviour
     private int _indexCount = default;
     private int _maxHorizontalIndex = 1;
     private SquaresIndex _mapIndex = default;
-    private List<NaviStagePoint> _naviMap = new List<NaviStagePoint>();
+    private List<NaviPoint> _naviMap = new List<NaviPoint>();
     
-    public StageNavigation CreateMap()
+    public NavigationMap CreateMap()
     {
         Vector3 start = _startPoint.position;
         Vector3 end = _endPoint.position;
@@ -47,20 +47,21 @@ public class NavigationMapCreater : MonoBehaviour
         {
             SetNeighorPoint(point);
         }
-        Debug.Log($"ConnectEnd TotalIndex:{_indexCount}");
-        return new StageNavigation(_naviMap, _maxHorizontalIndex);
+        Debug.Log($"ConnectEnd TotalIndex:{_indexCount},TotalCount:{_naviMap.Count}");
+        return new NavigationMap(_naviMap, _maxHorizontalIndex);
     }
     private void SetNaviPoint(Vector3 start)
     {
         if(Physics.Raycast(start, Vector3.down, out RaycastHit hit, _rayRange, _navigationLayer))
         {
-            _naviMap.Add(new NaviStagePoint(hit.point, _indexCount));
+            _naviMap.Add(new NaviPoint(hit.point, _indexCount));
         }
         _indexCount++;
     }
-    private void SetNeighorPoint(NaviStagePoint point)
+    private void SetNeighorPoint(NaviPoint point)
     {
         foreach (var neighor in _mapIndex.GetNeighor(point.IndexID))
+        //foreach (var neighor in _mapIndex.GetNeighorCross(point.IndexID))
         {
             //マップに含まれている座標か確認する
             var check = _naviMap.Where(map => map.IndexID == neighor).FirstOrDefault();

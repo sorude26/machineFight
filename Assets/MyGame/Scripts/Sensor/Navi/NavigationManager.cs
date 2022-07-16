@@ -12,38 +12,53 @@ public class NavigationManager : MonoBehaviour
     [SerializeField]
     private Transform _target = default;
     [SerializeField]
-    private int _power = 20;
+    private int _range = 100;
+    [SerializeField]
+    private LayerMask _obstacleLayer = default;
+    private float _rayRange = 5f;
     private WaitForSeconds _updateInterval = default;
-    public StageNavigation Navigation { get; private set; }
-    public Stack<IEnumerator> NavigationStack { get; private set; } = new Stack<IEnumerator>();
+    private NavigationMap _navMap = default;
     private void Awake()
     {
         Instance = this;
-        Navigation = _mapCreater.CreateMap();
-        Navigation.Initialization();
         _updateInterval = new WaitForSeconds(_updateIntervalTime);
     }
     private void Start()
     {
+        StartNavigation();
+    }
+    private void StartNavigation()
+    {
+        _navMap = _mapCreater.CreateMap();
+        _navMap.Initialization();
         StartCoroutine(NavigationUpdate());
     }
     private IEnumerator NavigationUpdate()
     {
         while (true)
         {
-            Navigation.MakeFootprints(_target, _power);
+            PointUpDate();
+            _navMap.MakeFootprints(_target, _range);
             yield return _updateInterval;
         }
     }
-    //private IEnumerator NavigationUpdate()
-    //{
-    //    while (true)
-    //    {
-    //        while (NavigationStack.Count > 0)
-    //        {
-    //            yield return NavigationStack.Pop();
-    //        }
-    //        yield return null;
-    //    }
-    //}
+    private void PointUpDate()
+    {
+        if (_navMap is null)
+        {
+            return;
+        }
+        foreach (var navMap in _navMap.NaviMap)
+        {
+            navMap.IsNoEntry = Physics.Raycast(navMap.Pos, Vector3.up, _rayRange, _obstacleLayer);
+        }
+    }
+    public Vector3 GetMoveDir(Transform user)
+    {
+        if (_navMap == null)
+        {
+            return Vector3.zero;
+        }
+        return _navMap.GetMoveDir(user);
+    }
 }
