@@ -18,6 +18,7 @@ public class SearchMap<TPoint> where TPoint: IMapPoint<TPoint>
     {
         foreach (var neigher in start.ConnectPoint)
         {
+            if (neigher.IsNoEntry) { continue; }
             //–Ú•WÀ•W‚ª‚ ‚ê‚ÎI—¹
             if (CheckPoint(neigher, start)) { return; }
         }
@@ -34,7 +35,7 @@ public class SearchMap<TPoint> where TPoint: IMapPoint<TPoint>
         start.Footprints = power;
         foreach (var neigher in start.ConnectPoint)
         {
-            if (neigher.Footprints < power - 1)
+            if (!neigher.IsNoEntry && neigher.Footprints < power - 1)
             {
                 MakeFootprints(neigher, power - 1);
             }
@@ -148,6 +149,7 @@ public interface IMapPoint<TMapPoint> where TMapPoint : IMapPoint<TMapPoint>
     public int DistanceCost { get; set; }
     public int TotalCost { get; set; }
     public int Footprints { get; set; }
+    public bool IsNoEntry { get; set; }
     public SearchStateType State { get; set; }
     public List<TMapPoint> ConnectPoint { get; set; }
     public TMapPoint Parent { get; set; }
