@@ -15,6 +15,8 @@ public class NavigationManager : MonoBehaviour
     private int _range = 100;
     [SerializeField]
     private LayerMask _obstacleLayer = default;
+    [SerializeField]
+    private int _maxRayCount = 500;
     private float _rayRange = 5f;
     private WaitForSeconds _updateInterval = default;
     private NavigationMap _navMap = default;
@@ -37,20 +39,27 @@ public class NavigationManager : MonoBehaviour
     {
         while (true)
         {
-            PointUpDate();
+            yield return PointUpDate();
             _navMap.MakeFootprints(_target, _range);
             yield return _updateInterval;
         }
     }
-    private void PointUpDate()
+    private IEnumerator PointUpDate()
     {
         if (_navMap is null)
         {
-            return;
+            yield break;
         }
+        int count = _maxRayCount;
         foreach (var navMap in _navMap.NaviMap)
         {
             navMap.IsNoEntry = Physics.Raycast(navMap.Pos, Vector3.up, _rayRange, _obstacleLayer);
+            count--;
+            if (count < 0)
+            {
+                count = _maxRayCount;
+                yield return null;
+            }
         }
     }
     public Vector3 GetMoveDir(Transform user)
