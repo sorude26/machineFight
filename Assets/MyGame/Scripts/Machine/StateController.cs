@@ -12,26 +12,25 @@ namespace MyGame.MachineFrame
         protected AnimatorController _animatorController = default;
         protected IMachineState _currentState = default;
         protected StateType _currentStateType = default;
+        protected Vector2 _moveDir = default;
         protected StateIdle _stateIdle = new StateIdle();
         protected StateWalk _stateWalk = new StateWalk();
         protected StateFall _stateFall = new StateFall();
         protected StateJump _stateJump = new StateJump();
         protected StateFloat _stateFloat = new StateFloat();
         protected StateLanding _stateLanding = new StateLanding();
-        protected Dictionary<StateType, string> _stateAnimationNames = new Dictionary<StateType, string>();
-
-        public event Func<bool> OnChackGround = default;
         public StateController(MoveController moveController, AnimatorController animatorController,WallChecker checker)
         {
             _moveController = moveController;
             _animatorController = animatorController;
             _groundChecker = checker;
             _currentState = _stateIdle;
+            _animatorController.OnJumpEnd += JumpEnd;
+            _animatorController.OnLandingEnd += LandingEnd;
         }
-        protected void ChangeAnimation(StateType type)
+        protected void ChangeAnimation(StateType type,float speed = AnimatorController.DEFAULT_CHSNGE_SPEED)
         {
-            if (!_stateAnimationNames.ContainsKey(type)) { return; }
-            _animatorController.ChangeAnimation(_stateAnimationNames[type]);
+            _animatorController.ChangeAnimation(type, speed);
         }
         protected void ChangeState(StateType type)
         {
@@ -59,11 +58,11 @@ namespace MyGame.MachineFrame
                 default:
                     break;
             }
+            _currentStateType = type;
             _currentState.OnEnter(this);
         }
         protected void SetState(StateType type)
         {
-            _currentStateType = type;
             ChangeAnimation(type);
         }
         protected void ChackFallOnGround()
@@ -81,13 +80,26 @@ namespace MyGame.MachineFrame
                 ChangeState(StateType.Landing);
             }
         }
+        protected void JumpEnd()
+        {
+            ChangeState(StateType.Fall);
+        }
+        protected void LandingEnd()
+        {
+            ChangeState(StateType.Idle);
+        }
         public void Update()
         {
             _currentState.OnUpdate(this);
         }
-        public void FixedUpdate()
+        public void FixedUpdate(Vector2 dir)
         {
+            _moveDir = dir;
             _currentState.OnFixedUpdate(this);
+        }
+        public void InputJump()
+        {
+            ChangeState(StateType.Jump);
         }
     }
 }
