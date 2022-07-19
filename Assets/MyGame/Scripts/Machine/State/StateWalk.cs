@@ -16,6 +16,11 @@ namespace MyGame.MachineFrame
             public void OnFixedUpdate(StateController control)
             {
                 control.ChackFallOnGround();
+                if (control._moveDir.y == 0)
+                {
+                    control.ChangeState(StateType.Idle);
+                    control._moveController.MoveBreak();
+                }
             }
 
             public void OnUpdate(StateController control)
