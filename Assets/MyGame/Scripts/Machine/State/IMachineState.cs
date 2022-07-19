@@ -33,7 +33,7 @@ namespace MyGame.MachineFrame
         Idle,
         Fall,
         Walk,
-        Ran,
+        Run,
         Jump,
         Float,
         Landing
