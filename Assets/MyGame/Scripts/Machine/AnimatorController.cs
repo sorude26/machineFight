@@ -11,11 +11,14 @@ namespace MyGame.MachineFrame
     [RequireComponent(typeof(Animator))]
     public class AnimatorController : MonoBehaviour
     {
-        private const float DEFAULT_CHSNGE_SPEED = 0.2f;
+        public const float DEFAULT_CHSNGE_SPEED = 0.5f;
         private Animator _animator = default;
+        public string[] StateAnimations = default;
         public event Action OnMove = default;
         public event Action OnJump = default;
         public event Action OnStop = default;
+        public event Action OnJumpEnd = default;
+        public event Action OnLandingEnd = default;
         private void Awake()
         {
             _animator = GetComponent<Animator>();
@@ -32,8 +35,29 @@ namespace MyGame.MachineFrame
         {
             OnStop?.Invoke();
         }
+        private void AnimationEventJumpEnd()
+        {
+            OnJumpEnd?.Invoke();
+        }
+        private void AnimationEventLandingEnd()
+        {
+            OnLandingEnd?.Invoke();
+        }
+        public void ChangeAnimation(StateType state, float changeSpeed = DEFAULT_CHSNGE_SPEED)
+        {
+            if (StateAnimations.Length <= (int)state)
+            {
+                return;
+            }
+            _animator.CrossFadeInFixedTime(StateAnimations[(int)state], changeSpeed);
+        }
         public void ChangeAnimation(string taragetAnimation, float changeSpeed = DEFAULT_CHSNGE_SPEED)
         {
+            if (changeSpeed == 0)
+            {
+                _animator.Play(taragetAnimation);
+                return;
+            }
             _animator.CrossFadeInFixedTime(taragetAnimation, changeSpeed);
         }
     }
