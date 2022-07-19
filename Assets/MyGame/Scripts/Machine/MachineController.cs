@@ -9,6 +9,12 @@ namespace MyGame.MachineFrame
         [SerializeField]
         float _moveSpeed = 10f;
         [SerializeField]
+        float _turnSpeed = 5f;
+        [SerializeField]
+        float _turnPower = 5f;
+        [SerializeField]
+        float _jumpPower = 10f;
+        [SerializeField]
         private WallChecker _groundChecker = default;
         [SerializeField]
         private Rigidbody _rigidbody = default;
@@ -16,33 +22,42 @@ namespace MyGame.MachineFrame
         private AnimatorController _animatorController = default;
         private MoveController _moveController = default;
         private StateController _stateController = default;
+        private Quaternion _baseRotation = Quaternion.identity;
+        public Transform BaseTransform = null;
+        public Vector2 MoveDir { get; set; }
         private void Start()
         {
             _moveController = new MoveController(_rigidbody);
             _animatorController.OnMove += WalkMove;
+            _animatorController.OnMove += MachineTurn;
             _animatorController.OnJump += JumpMove;
             _animatorController.OnStop += MoveBreak;
             _stateController = new StateController(_moveController, _animatorController, _groundChecker);
         }
         private void FixedUpdate()
         {
-            _stateController.FixedUpdate();
+            _stateController.FixedUpdate(MoveDir);
+            BaseTransform.localRotation = Quaternion.Lerp(BaseTransform.localRotation, _baseRotation, _turnSpeed * Time.fixedDeltaTime);
         }
         private void WalkMove()
         {
-            _moveController.AddMove(transform.forward * _moveSpeed);
+            _moveController.VelocityMove(BaseTransform.forward * _moveSpeed + BaseTransform.right * MoveDir.x);
         }
         private void JumpMove()
         {
-            _moveController.AddImpulse(transform.forward + Vector3.up * _moveSpeed);
+            _moveController.AddImpulse((BaseTransform.forward * MoveDir.y + BaseTransform.right * MoveDir.x + Vector3.up).normalized * _jumpPower);
         }
         private void MoveBreak()
         {
             _moveController.MoveBreak();
-        }
-        private bool IsGround()
+        }       
+        private void MachineTurn()
         {
-            return _groundChecker.IsWalled();
+            _baseRotation = Quaternion.Euler(Vector3.up * MoveDir.x * _turnPower) * _baseRotation;
+        }
+        public void InputJump()
+        {
+            _stateController.InputJump();
         }
     }
 }
