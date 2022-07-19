@@ -5,9 +5,10 @@ using UnityEngine;
 namespace MyGame.MachineFrame
 {
     public partial class StateController
-    {
+    {       
         protected class StateIdle : IMachineState
         {
+            private readonly float CHANGE_WALK = 0.5f;
             public void OnEnter(StateController control)
             {
                 control.SetState(StateType.Idle);
@@ -15,7 +16,12 @@ namespace MyGame.MachineFrame
 
             public void OnFixedUpdate(StateController control)
             {
+                control._moveController.MoveBreak();
                 control.ChackFallOnGround();
+                if (control._moveDir.y > CHANGE_WALK)
+                {
+                    control.ChangeState(StateType.Walk);
+                }
             }
 
             public void OnUpdate(StateController control)
