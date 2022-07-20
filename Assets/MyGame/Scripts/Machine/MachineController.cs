@@ -41,7 +41,8 @@ namespace MyGame.MachineFrame
         }
         private void WalkMove()
         {
-            _moveController.VelocityMove(BaseTransform.forward * _moveSpeed + BaseTransform.right * MoveDir.x);
+            //_moveController.VelocityMove(BaseTransform.forward * _moveSpeed * MoveDir.y + BaseTransform.right * MoveDir.x);
+            _moveController.AddImpulse(BaseTransform.forward * _moveSpeed * MoveDir.y + BaseTransform.right * MoveDir.x);
         }
         private void JumpMove()
         {
