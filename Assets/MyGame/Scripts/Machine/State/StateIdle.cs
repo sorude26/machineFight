@@ -18,7 +18,7 @@ namespace MyGame.MachineFrame
             {
                 control._moveController.MoveBreak();
                 control.ChackFallOnGround();
-                if (control._moveDir.y > CHANGE_WALK)
+                if (control._moveDir.magnitude > CHANGE_WALK)
                 {
                     control.ChangeState(StateType.Walk);
                 }
