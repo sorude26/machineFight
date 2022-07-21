@@ -29,7 +29,7 @@ namespace MyGame.MachineFrame
         {
             _moveController = new MoveController(_rigidbody);
             _animatorController.OnMove += WalkMove;
-            _animatorController.OnMove += MachineTurn;
+            _animatorController.OnTurn += MachineTurn;
             _animatorController.OnJump += JumpMove;
             _animatorController.OnStop += MoveBreak;
             _stateController = new StateController(_moveController, _animatorController, _groundChecker);
@@ -42,7 +42,7 @@ namespace MyGame.MachineFrame
         private void WalkMove()
         {
             //_moveController.VelocityMove(BaseTransform.forward * _moveSpeed * MoveDir.y + BaseTransform.right * MoveDir.x);
-            _moveController.AddImpulse(BaseTransform.forward * _moveSpeed * MoveDir.y + BaseTransform.right * MoveDir.x);
+            _moveController.AddImpulse(BaseTransform.forward * MoveDir.y * _moveSpeed + BaseTransform.right * MoveDir.x);
         }
         private void JumpMove()
         {
