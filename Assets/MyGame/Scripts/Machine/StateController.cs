@@ -19,7 +19,7 @@ namespace MyGame.MachineFrame
         protected StateJump _stateJump = new StateJump();
         protected StateFloat _stateFloat = new StateFloat();
         protected StateLanding _stateLanding = new StateLanding();
-        public StateController(MoveController moveController, AnimatorController animatorController,WallChecker checker)
+        public StateController(MoveController moveController, AnimatorController animatorController, WallChecker checker)
         {
             _moveController = moveController;
             _animatorController = animatorController;
@@ -28,7 +28,11 @@ namespace MyGame.MachineFrame
             _animatorController.OnJumpEnd += JumpEnd;
             _animatorController.OnLandingEnd += LandingEnd;
         }
-        protected void ChangeAnimation(StateType type,float speed = AnimatorController.DEFAULT_CHSNGE_SPEED)
+        protected void ChangeAnimation(StateType type, float speed = AnimatorController.DEFAULT_CHSNGE_SPEED)
+        {
+            _animatorController.ChangeAnimation(type, speed);
+        }
+        protected void ChangeAnimation(string type, float speed = AnimatorController.DEFAULT_CHSNGE_SPEED)
         {
             _animatorController.ChangeAnimation(type, speed);
         }
@@ -75,10 +79,8 @@ namespace MyGame.MachineFrame
         }
         protected void ChackGround()
         {
-            if (_groundChecker.IsWalled())
-            {
-                ChangeState(StateType.Landing);
-            }
+            if (!_groundChecker.IsWalled()) { return; }
+            ChangeState(StateType.Landing);
         }
         protected void JumpEnd()
         {
@@ -99,6 +101,7 @@ namespace MyGame.MachineFrame
         }
         public void InputJump()
         {
+            if (!_groundChecker.IsWalled()){ return; }
             ChangeState(StateType.Jump);
         }
     }
