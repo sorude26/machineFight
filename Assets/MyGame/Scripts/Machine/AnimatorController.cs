@@ -17,6 +17,7 @@ namespace MyGame.MachineFrame
         public event Action OnMove = default;
         public event Action OnJump = default;
         public event Action OnStop = default;
+        public event Action OnTurn = default;
         public event Action OnJumpEnd = default;
         public event Action OnLandingEnd = default;
         private void Awake()
@@ -34,6 +35,10 @@ namespace MyGame.MachineFrame
         private void AnimationEventStop()
         {
             OnStop?.Invoke();
+        }
+        private void AnimationEventTurn()
+        {
+            OnTurn?.Invoke();
         }
         private void AnimationEventJumpEnd()
         {
