@@ -11,6 +11,7 @@ namespace MyGame
         private void Start()
         {
             PlayerInput.SetEnterInput(InputType.Jump, _machineController.InputJump);
+            PlayerInput.SetEnterInput(InputType.ChangeMode, _machineController.InputChangeMode);
         }
         private void FixedUpdate()
         {

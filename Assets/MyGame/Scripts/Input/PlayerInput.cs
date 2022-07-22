@@ -48,16 +48,17 @@ namespace MyGame
             instance.InitializationInput();
             instance._controls.InputMap.Move.performed += context => { instance._moveDir = context.ReadValue<Vector2>(); };
             instance._controls.InputMap.Move.canceled += context => { instance._moveDir = Vector2.zero; }; 
-            instance._controls.InputMap.Jump.started += context => { instance._onEnterInputDic[InputType.Jump]!.Invoke(); };
-            instance._controls.InputMap.Jump.canceled += context => { instance._onExitInputDic[InputType.Jump]!.Invoke(); };
+            instance._controls.InputMap.Jump.started += context => { instance._onEnterInputDic[InputType.Jump]?.Invoke(); };
+            instance._controls.InputMap.Jump.canceled += context => { instance._onExitInputDic[InputType.Jump]?.Invoke(); };
+            instance._controls.InputMap.ChangeMode.started += context => { instance._onEnterInputDic[InputType.ChangeMode]?.Invoke(); };
         }
         private void InitializationInput()
         {
             for (int i = 0; i < Enum.GetValues(typeof(InputType)).Length; i++)
             {
-                _onEnterInputDic.Add((InputType)i, () => { });
-                _onStayInputDic.Add((InputType)i, () => { });
-                _onExitInputDic.Add((InputType)i, () => { });
+                _onEnterInputDic.Add((InputType)i, null);
+                _onStayInputDic.Add((InputType)i, null);
+                _onExitInputDic.Add((InputType)i, null);
             }
         }
         public static void SetEnterInput(InputType type, Action action)
@@ -77,6 +78,8 @@ namespace MyGame
         Cancel,
         /// <summary> ジャンプ入力 </summary>
         Jump,
+        /// <summary> モードチェンジ入力 </summary>
+        ChangeMode,
         /// <summary> 攻撃入力１ </summary>
         Fire1,
         /// <summary> 攻撃入力２ </summary>
