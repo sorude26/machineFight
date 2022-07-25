@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class TargetObjectPool<TObject> : MonoBehaviour where TObject : MonoBehaviour
 {
+    /// <summary> 指定無しの際にプールする数 </summary>
     protected const int DEFAULT_POOL_COUNT = 15;
     protected static TargetObjectPool<TObject> instance = default;
     protected static readonly Vector3 INVISIBLE_POS = new Vector3(0, -1000, 0);
-    protected Dictionary<string, int> _keysDic = default;
-    protected Dictionary<int, List<TObject>> _objectDic = default;
+    protected Dictionary<string, List<TObject>> _poolDic = new Dictionary<string, List<TObject>>();
     public static TargetObjectPool<TObject> Instance
     {
         get
@@ -17,16 +17,36 @@ public abstract class TargetObjectPool<TObject> : MonoBehaviour where TObject : 
             {
                 var obj = new GameObject($"{typeof(TObject)}Pool");
                 instance = obj.AddComponent<TargetObjectPool<TObject>>();
-                instance._keysDic = new Dictionary<string, int>();
-                instance._objectDic = new Dictionary<int, List<TObject>>();
             }
             return instance;
         }
     }
+    /// <summary>
+    /// 指定数までオブジェクトをプールに追加する
+    /// </summary>
+    /// <param name="poolObject"></param>
+    /// <param name="key"></param>
+    /// <param name="count"></param>
+    private void AddObject(TObject poolObject,string key,int count)
+    {
+        for (int i = this._poolDic[key].Count; i < count; i++)
+        {
+            var obj = Instantiate(poolObject, this.transform);
+            obj.transform.position = INVISIBLE_POS;
+            obj.gameObject.SetActive(false);
+            this._poolDic[key].Add(obj);
+        }
+    }
+    /// <summary>
+    /// プールを作成する
+    /// </summary>
+    /// <param name="poolObject"></param>
+    /// <param name="createCount"></param>
     public static void CreatePool(TObject poolObject, int createCount = DEFAULT_POOL_COUNT)
     {
-        if (Instance._keysDic.ContainsKey(poolObject.name))
-        {
+        if (Instance._poolDic.ContainsKey(poolObject.name))//既にプールが存在する場合
+        {            
+            instance.AddObject(poolObject, poolObject.name, createCount);
             return;
         }
         var pool = new List<TObject>();
@@ -37,8 +57,7 @@ public abstract class TargetObjectPool<TObject> : MonoBehaviour where TObject : 
             obj.gameObject.SetActive(false);
             pool.Add(obj);
         }
-        instance._keysDic.Add(poolObject.name, instance._objectDic.Count);
-        instance._objectDic.Add(instance._keysDic[poolObject.name], pool);
+        instance._poolDic.Add(poolObject.name, pool);
     }
     /// <summary>
     /// プールしたオブジェクトを返す
@@ -47,11 +66,11 @@ public abstract class TargetObjectPool<TObject> : MonoBehaviour where TObject : 
     /// <returns></returns>
     public static TObject GetObject(TObject useObject)
     {
-        if (!Instance._keysDic.ContainsKey(useObject.name)) //プールが生成されていないオブジェクトの場合、プールを生成する
+        if (!Instance._poolDic.ContainsKey(useObject.name)) //プールが生成されていないオブジェクトの場合、プールを生成する
         {
             CreatePool(useObject);
         }
-        foreach (var poolObject in instance._objectDic[instance._keysDic[useObject.name]])
+        foreach (var poolObject in instance._poolDic[useObject.name])
         {
             if (poolObject is null || poolObject.gameObject.activeInHierarchy)
             {
@@ -63,7 +82,7 @@ public abstract class TargetObjectPool<TObject> : MonoBehaviour where TObject : 
         }
         var obj = Instantiate(useObject, instance.transform);
         obj.transform.position = INVISIBLE_POS;
-        instance._objectDic[instance._keysDic[useObject.name]].Add(obj);
+        instance._poolDic[useObject.name].Add(obj);
         return obj;
     }
 }
