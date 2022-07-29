@@ -19,6 +19,7 @@ namespace MyGame.MachineFrame
         protected StateJump _stateJump = new StateJump();
         protected StateFloat _stateFloat = new StateFloat();
         protected StateLanding _stateLanding = new StateLanding();
+        public event Action OnFloatMove = default;
         public StateController(MoveController moveController, AnimatorController animatorController, WallChecker checker)
         {
             _moveController = moveController;
@@ -103,6 +104,17 @@ namespace MyGame.MachineFrame
         {
             if (!_groundChecker.IsWalled()){ return; }
             ChangeState(StateType.Jump);
+        }
+        public void InputFloat()
+        {
+            if (_currentStateType == StateType.Float)
+            {
+                ChangeState(StateType.Fall);
+            }
+            else
+            {
+                ChangeState(StateType.Float);
+            }
         }
     }
 }

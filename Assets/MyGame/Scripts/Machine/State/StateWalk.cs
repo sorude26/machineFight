@@ -46,21 +46,25 @@ namespace MyGame.MachineFrame
                 control.ChackFallOnGround();               
                 if (control._moveDir.y > 0 && _currentAngle != WalkAngle.Front)
                 {
+                    control._moveController.MoveBreak();
                     _currentAngle = WalkAngle.Front;
                     control.ChangeAnimation(_stateAnimations[(int)_currentAngle]);
                 }
                 else if (control._moveDir.y < 0 && _currentAngle != WalkAngle.Back)
                 {
+                    control._moveController.MoveBreak();
                     _currentAngle = WalkAngle.Back;
                     control.ChangeAnimation(_stateAnimations[(int)_currentAngle]);
                 }
                 else if (control._moveDir.x < 0 && control._moveDir.y == 0 && _currentAngle != WalkAngle.Left)
                 {
+                    control._moveController.MoveBreak();
                     _currentAngle = WalkAngle.Left;
                     control.ChangeAnimation(_stateAnimations[(int)_currentAngle]);
                 }
                 else if (control._moveDir.x > 0 && control._moveDir.y == 0 && _currentAngle != WalkAngle.Right)
                 {
+                    control._moveController.MoveBreak();
                     _currentAngle = WalkAngle.Right;
                     control.ChangeAnimation(_stateAnimations[(int)_currentAngle]);
                 }

@@ -15,6 +15,8 @@ namespace MyGame.MachineFrame
         [SerializeField]
         float _jumpPower = 10f;
         [SerializeField]
+        float _froatSpeed = 10f;
+        [SerializeField]
         private WallChecker _groundChecker = default;
         [SerializeField]
         private Rigidbody _rigidbody = default;
@@ -33,6 +35,7 @@ namespace MyGame.MachineFrame
             _animatorController.OnJump += JumpMove;
             _animatorController.OnStop += MoveBreak;
             _stateController = new StateController(_moveController, _animatorController, _groundChecker);
+            _stateController.OnFloatMove += FroatMove;
         }
         private void FixedUpdate()
         {
@@ -41,8 +44,12 @@ namespace MyGame.MachineFrame
         }
         private void WalkMove()
         {
-            //_moveController.VelocityMove(BaseTransform.forward * _moveSpeed * MoveDir.y + BaseTransform.right * MoveDir.x);
-            _moveController.AddImpulse(BaseTransform.forward * MoveDir.y * _moveSpeed + BaseTransform.right * MoveDir.x);
+            _moveController.VelocityMove(BaseTransform.forward * _moveSpeed * MoveDir.y);
+           // _moveController.AddImpulse((BaseTransform.forward * MoveDir.y + BaseTransform.right * MoveDir.x).normalized * _moveSpeed);
+        }
+        private void FroatMove()
+        {
+            _moveController.VelocityMove((BaseTransform.forward * MoveDir.y + BaseTransform.right * MoveDir.x).normalized * _froatSpeed);
         }
         private void JumpMove()
         {
@@ -59,6 +66,10 @@ namespace MyGame.MachineFrame
         public void InputJump()
         {
             _stateController.InputJump();
+        }
+        public void InputChangeMode()
+        {
+            _stateController.InputFloat();
         }
     }
 }

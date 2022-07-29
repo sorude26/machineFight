@@ -15,6 +15,11 @@ namespace MyGame.MachineFrame
 
             public void OnFixedUpdate(StateController control)
             {
+                control._moveController.MoveDecelerate();
+                if (control._moveDir != Vector2.zero)
+                {
+                    control.OnFloatMove?.Invoke();
+                }
             }
 
             public void OnUpdate(StateController control)
