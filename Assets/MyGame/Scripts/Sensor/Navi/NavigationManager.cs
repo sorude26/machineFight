@@ -22,8 +22,12 @@ public class NavigationManager : MonoBehaviour
     private NavigationMap _navMap = default;
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
-        _updateInterval = new WaitForSeconds(_updateIntervalTime);
     }
     private void Start()
     {
@@ -31,6 +35,7 @@ public class NavigationManager : MonoBehaviour
     }
     private void StartNavigation()
     {
+        _updateInterval = new WaitForSeconds(_updateIntervalTime);
         _navMap = _mapCreater.CreateMap();
         _navMap.Initialization();
         StartCoroutine(NavigationUpdate());
@@ -64,7 +69,7 @@ public class NavigationManager : MonoBehaviour
     }
     public Vector3 GetMoveDir(Transform user)
     {
-        if (_navMap == null)
+        if (_navMap is null)
         {
             return Vector3.zero;
         }
