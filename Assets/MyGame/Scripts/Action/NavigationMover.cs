@@ -11,6 +11,8 @@ public class NavigationMover : MonoBehaviour
     private float _naviInterval = 1f;
     [SerializeField]
     private float _moveSpeed = 1f;
+    [SerializeField]
+    private Transform _body = default;
     private Vector3 _currentDir = Vector3.zero;
     private Rigidbody _rb = default;
     private MyGame.MoveController _moveController = null;
@@ -21,6 +23,10 @@ public class NavigationMover : MonoBehaviour
         _rb.useGravity = false;
         _moveController = new MyGame.MoveController(_rb);
         _timer = _naviInterval;
+        if (_body == null)
+        {
+            _body = transform;
+        }
     }
 
     private void Update()
@@ -29,7 +35,7 @@ public class NavigationMover : MonoBehaviour
         if (_timer > _naviInterval)
         {
             _timer = 0;
-            _currentDir = NavigationManager.Instance.GetMoveDir(transform);
+            _currentDir = NavigationManager.Instance.GetMoveDir(_body);
         }
     }
     private void FixedUpdate()
