@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace MyGame.MachineFrame
 {
-    public class BulletPool : TargetObjectPool<Bullet>
-    {        
+    public class BulletPool : TargetObjectPool<Bullet, BulletPool>
+    {
     }
 }

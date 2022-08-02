@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class TargetObjectPool<TObject> : MonoBehaviour where TObject : MonoBehaviour
+public abstract class TargetObjectPool<TObject,TPool> : MonoBehaviour where TObject : MonoBehaviour where TPool :TargetObjectPool<TObject, TPool>
 {
     /// <summary> éwíËñ≥ÇµÇÃç€Ç…ÉvÅ[ÉãÇ∑ÇÈêî </summary>
     protected const int DEFAULT_POOL_COUNT = 15;
-    protected static TargetObjectPool<TObject> instance = default;
+    protected static TPool instance = default;
     protected static readonly Vector3 INVISIBLE_POS = new Vector3(0, -1000, 0);
     protected Dictionary<string, List<TObject>> _poolDic = new Dictionary<string, List<TObject>>();
-    public static TargetObjectPool<TObject> Instance
+    public static TPool Instance
     {
         get
         {
             if (instance == null)
             {
                 var obj = new GameObject($"{typeof(TObject)}Pool");
-                instance = obj.AddComponent<TargetObjectPool<TObject>>();
+                instance = obj.AddComponent<TPool>();
             }
             return instance;
         }
