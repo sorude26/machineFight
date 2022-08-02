@@ -53,6 +53,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack1"",
+                    ""type"": ""Button"",
+                    ""id"": ""93289af8-8618-4b11-aa6e-2bd7cb6e2d2e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -187,6 +196,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""action"": ""ChangeMode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e495f14-c7fb-4795-ad9e-93738326934f"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -198,6 +218,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_InputMap_Move = m_InputMap.FindAction("Move", throwIfNotFound: true);
         m_InputMap_Jump = m_InputMap.FindAction("Jump", throwIfNotFound: true);
         m_InputMap_ChangeMode = m_InputMap.FindAction("ChangeMode", throwIfNotFound: true);
+        m_InputMap_Attack1 = m_InputMap.FindAction("Attack1", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -260,6 +281,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InputMap_Move;
     private readonly InputAction m_InputMap_Jump;
     private readonly InputAction m_InputMap_ChangeMode;
+    private readonly InputAction m_InputMap_Attack1;
     public struct InputMapActions
     {
         private @InputControls m_Wrapper;
@@ -267,6 +289,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_InputMap_Move;
         public InputAction @Jump => m_Wrapper.m_InputMap_Jump;
         public InputAction @ChangeMode => m_Wrapper.m_InputMap_ChangeMode;
+        public InputAction @Attack1 => m_Wrapper.m_InputMap_Attack1;
         public InputActionMap Get() { return m_Wrapper.m_InputMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -285,6 +308,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @ChangeMode.started -= m_Wrapper.m_InputMapActionsCallbackInterface.OnChangeMode;
                 @ChangeMode.performed -= m_Wrapper.m_InputMapActionsCallbackInterface.OnChangeMode;
                 @ChangeMode.canceled -= m_Wrapper.m_InputMapActionsCallbackInterface.OnChangeMode;
+                @Attack1.started -= m_Wrapper.m_InputMapActionsCallbackInterface.OnAttack1;
+                @Attack1.performed -= m_Wrapper.m_InputMapActionsCallbackInterface.OnAttack1;
+                @Attack1.canceled -= m_Wrapper.m_InputMapActionsCallbackInterface.OnAttack1;
             }
             m_Wrapper.m_InputMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -298,6 +324,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @ChangeMode.started += instance.OnChangeMode;
                 @ChangeMode.performed += instance.OnChangeMode;
                 @ChangeMode.canceled += instance.OnChangeMode;
+                @Attack1.started += instance.OnAttack1;
+                @Attack1.performed += instance.OnAttack1;
+                @Attack1.canceled += instance.OnAttack1;
             }
         }
     }
@@ -307,5 +336,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnChangeMode(InputAction.CallbackContext context);
+        void OnAttack1(InputAction.CallbackContext context);
     }
 }

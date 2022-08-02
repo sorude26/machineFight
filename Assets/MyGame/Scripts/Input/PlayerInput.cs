@@ -51,6 +51,7 @@ namespace MyGame
             instance._controls.InputMap.Jump.started += context => { instance._onEnterInputDic[InputType.Jump]?.Invoke(); };
             instance._controls.InputMap.Jump.canceled += context => { instance._onExitInputDic[InputType.Jump]?.Invoke(); };
             instance._controls.InputMap.ChangeMode.started += context => { instance._onEnterInputDic[InputType.ChangeMode]?.Invoke(); };
+            instance._controls.InputMap.Attack1.started += context => { instance._onEnterInputDic[InputType.Fire1]?.Invoke(); };
         }
         private void InitializationInput()
         {
