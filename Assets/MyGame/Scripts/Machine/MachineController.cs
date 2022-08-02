@@ -22,6 +22,8 @@ namespace MyGame.MachineFrame
         private Rigidbody _rigidbody = default;
         [SerializeField]
         private AnimatorController _animatorController = default;
+        [SerializeField]
+        private AttackController _attackController = default;
         private MoveController _moveController = default;
         private StateController _stateController = default;
         private Quaternion _baseRotation = Quaternion.identity;
@@ -70,6 +72,10 @@ namespace MyGame.MachineFrame
         public void InputChangeMode()
         {
             _stateController.InputFloat();
+        }
+        public void InputAttack1()
+        {
+            _attackController.Attack1();
         }
     }
 }
