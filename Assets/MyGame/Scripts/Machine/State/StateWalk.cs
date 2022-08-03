@@ -16,7 +16,7 @@ namespace MyGame.MachineFrame
                 Right,
             }
             private WalkAngle _currentAngle = WalkAngle.Front;
-            private string[] _stateAnimations = { "Walk", "WalkBack","SideWalkLeft","SideWalkRight" };
+            private string[] _stateAnimations = { "Walk", "WalkBack","WalkTurnLeft","WalkTurnRight" };
             public void OnEnter(StateController control)
             {
                 control.SetState(StateType.Walk);
