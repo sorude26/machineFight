@@ -7,6 +7,7 @@ namespace MyGame.MachineFrame
 {
     public class AttackController : MonoBehaviour
     {
+        private const float ATTACK_ANGLE = 0.999f;
         [SerializeField]
         private Transform _target = default;
         [SerializeField]
@@ -45,8 +46,8 @@ namespace MyGame.MachineFrame
                 return;
             }
             Attack();
-            _leftHand.Attack(_target);
-            _rightHand.Attack(_target);
+            //_leftHand.Attack(_target);
+            //_rightHand.Attack(_target);
         }
         private void Update()
         {
@@ -97,6 +98,11 @@ namespace MyGame.MachineFrame
             targetDir.y = 0.0f;
             return BodyTurnRange > 0 && Vector3.Dot(targetDir.normalized, _body.forward) < BodyTurnRange;
         }
+        private bool ChackAttackAngle()
+        {
+            var angle = Quaternion.Dot(_bodyRotaion, _body.localRotation);
+            return angle > ATTACK_ANGLE || angle < -ATTACK_ANGLE;
+        }
         public void Attack()
         {
             if (_waitAttack is null)
@@ -115,7 +121,11 @@ namespace MyGame.MachineFrame
         {
             while (_isAttack)
             {
-                LockOn(_target.position);                
+                LockOn(_target.position);
+                if (ChackAttackAngle())
+                {
+                    _leftHand.Attack(_target);
+                }
                 yield return _waitFixed;
             }
         }
