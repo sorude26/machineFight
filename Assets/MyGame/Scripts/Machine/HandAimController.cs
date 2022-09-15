@@ -25,7 +25,7 @@ namespace MyGame.MachineFrame
         [SerializeField]
         private float _attackWaitTime = 1f;
         private float _rigWeight = 1;
-        private float _resetSpeed = 2f;
+        private float _resetSpeed = 4f;
         private Quaternion _topRotaion = Quaternion.identity;
         private Quaternion _handRotaion = Quaternion.identity;
         private Transform _targetTrans = default;
