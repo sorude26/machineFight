@@ -5,11 +5,10 @@ using UnityEngine;
 public class BodyController : MonoBehaviour
 {
     public Transform BodyJoint = null;
+    public Transform LockRoute = null;
     private void FixedUpdate()
     {
-        if (BodyJoint != null)
-        {
-            transform.position = BodyJoint.position;
-        }
+        transform.position = BodyJoint.position;
+        //transform.localRotation = LockRoute.localRotation;
     }
 }
