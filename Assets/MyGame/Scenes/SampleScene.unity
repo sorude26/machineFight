@@ -959,6 +959,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117892885}
   m_Mesh: {fileID: 4300000, guid: 8ce1d5ac086a14c4589de7f12c13358c, type: 2}
+--- !u!1 &118481625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 118481626}
+  m_Layer: 0
+  m_Name: Lock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &118481626
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118481625}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 354453841}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &123057722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1130,11 +1160,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shakeParam:
     Pos: {x: 0, y: 0, z: 0}
-    Power: 1
+    Power: 2
     Time: 0.2
   _strongParam:
     Pos: {x: 0, y: 0, z: 0}
-    Power: 2
+    Power: 4
     Time: 1
 --- !u!1001 &134919282
 PrefabInstance:
@@ -2533,6 +2563,7 @@ Transform:
   - {fileID: 635507504}
   - {fileID: 1850792265}
   - {fileID: 177527626}
+  - {fileID: 118481626}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4536,8 +4567,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2874aa80efb575746a292a779c8c3827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rotationSpeed: 1
   BodyJoint: {fileID: 1324239766}
-  LockRoute: {fileID: 0}
+  LockRoute: {fileID: 2026479427}
+  LegBase: {fileID: 1173720551}
+  LegTrans: {fileID: 134773693}
 --- !u!1 &663621769
 GameObject:
   m_ObjectHideFlags: 0
@@ -5766,8 +5800,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2d6326b1fb19db4082c03be3d555a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followTarget: {fileID: 354453841}
-  _rotationTarget: {fileID: 354453841}
+  _followTarget: {fileID: 2026479427}
+  _rotationTarget: {fileID: 2026479427}
   _followSpeed: 5
   _rotationSpeed: 5
 --- !u!4 &864417390
@@ -7368,18 +7402,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveRb: {fileID: 354453839}
   _legAnimator: {fileID: 134773695}
-  _speed: 2
-  _rotationSpeed: 1
-  _dotSub: 0.8
-  _animeChangeSpeed: 0.2
-  _moveAnimeName:
-  - Idle
-  - Walk
-  - Back
-  - TurnLeft
-  - TurnRight
-  LegBase: {fileID: 1173720551}
-  LockTrans: {fileID: 0}
+  _animeName:
+    Idle: Idle
+    Walk: Walk
+    Back: Back
+    TurnLeft: TurnLeft
+    TurnRight: TurnRight
+    Jump: Jump
+    Landing: Landing
+  _actionParam:
+    WalkSpeed: 2
+    WalkTurnSpeed: 1
+    JumpPower: 10
+    DotSub: 0.5
+    AnimeChangeSpeed: 0.2
+  LegBase: {fileID: 134773693}
+  LockTrans: {fileID: 635507504}
 --- !u!1 &1200631484
 GameObject:
   m_ObjectHideFlags: 0
@@ -8465,7 +8503,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483894331}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.9, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 963194228}
@@ -8485,7 +8523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shakeAxis: {x: 1, y: 1, z: 1}
-  _shakeRange: 0.05
+  _shakeRange: 0.2
   _maxRange: 0.4
 --- !u!1 &1523883437
 GameObject:
