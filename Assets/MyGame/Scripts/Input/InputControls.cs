@@ -62,6 +62,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Camera"",
+                    ""type"": ""Value"",
+                    ""id"": ""5ab0c8a4-810e-4e68-a8f6-cdf29a08e289"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -207,6 +216,61 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""action"": ""Attack1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""6e1fff15-dd01-4c0b-8ed8-58adc7b1a759"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""416a80fd-f003-4553-bcf5-9bc950a7e402"",
+                    ""path"": ""<Keyboard>/numpad8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""0a189133-f233-4d4c-9187-ec71fe8a73b6"",
+                    ""path"": ""<Keyboard>/numpad2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""aa5efcb6-31e1-4dbf-972a-6a9fccd7b17d"",
+                    ""path"": ""<Keyboard>/numpad4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""1c8b90d1-830b-4ab0-ab93-e446aee45333"",
+                    ""path"": ""<Keyboard>/numpad6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -219,6 +283,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_InputMap_Jump = m_InputMap.FindAction("Jump", throwIfNotFound: true);
         m_InputMap_ChangeMode = m_InputMap.FindAction("ChangeMode", throwIfNotFound: true);
         m_InputMap_Attack1 = m_InputMap.FindAction("Attack1", throwIfNotFound: true);
+        m_InputMap_Camera = m_InputMap.FindAction("Camera", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -282,6 +347,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InputMap_Jump;
     private readonly InputAction m_InputMap_ChangeMode;
     private readonly InputAction m_InputMap_Attack1;
+    private readonly InputAction m_InputMap_Camera;
     public struct InputMapActions
     {
         private @InputControls m_Wrapper;
@@ -290,6 +356,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_InputMap_Jump;
         public InputAction @ChangeMode => m_Wrapper.m_InputMap_ChangeMode;
         public InputAction @Attack1 => m_Wrapper.m_InputMap_Attack1;
+        public InputAction @Camera => m_Wrapper.m_InputMap_Camera;
         public InputActionMap Get() { return m_Wrapper.m_InputMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -311,6 +378,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Attack1.started -= m_Wrapper.m_InputMapActionsCallbackInterface.OnAttack1;
                 @Attack1.performed -= m_Wrapper.m_InputMapActionsCallbackInterface.OnAttack1;
                 @Attack1.canceled -= m_Wrapper.m_InputMapActionsCallbackInterface.OnAttack1;
+                @Camera.started -= m_Wrapper.m_InputMapActionsCallbackInterface.OnCamera;
+                @Camera.performed -= m_Wrapper.m_InputMapActionsCallbackInterface.OnCamera;
+                @Camera.canceled -= m_Wrapper.m_InputMapActionsCallbackInterface.OnCamera;
             }
             m_Wrapper.m_InputMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -327,6 +397,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Attack1.started += instance.OnAttack1;
                 @Attack1.performed += instance.OnAttack1;
                 @Attack1.canceled += instance.OnAttack1;
+                @Camera.started += instance.OnCamera;
+                @Camera.performed += instance.OnCamera;
+                @Camera.canceled += instance.OnCamera;
             }
         }
     }
@@ -337,5 +410,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnChangeMode(InputAction.CallbackContext context);
         void OnAttack1(InputAction.CallbackContext context);
+        void OnCamera(InputAction.CallbackContext context);
     }
 }
