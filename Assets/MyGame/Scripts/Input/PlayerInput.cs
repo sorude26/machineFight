@@ -10,6 +10,7 @@ namespace MyGame
     {
         private static PlayerInput instance;
         private Vector2 _moveDir = default;
+        private Vector2 _cameraDir = default;
         private InputControls _controls = default;
         /// <summary> “ü—Í’¼Œã </summary>
         private Dictionary<InputType, Action> _onEnterInputDic = new Dictionary<InputType, Action>();
@@ -26,6 +27,17 @@ namespace MyGame
                     Initialization();
                 }
                 return instance._moveDir;
+            }
+        }
+        public static Vector2 CameraDir
+        {
+            get
+            {
+                if (instance is null)
+                {
+                    Initialization();
+                }
+                return instance._cameraDir;
             }
         }
         public static PlayerInput Instance
@@ -48,6 +60,8 @@ namespace MyGame
             instance.InitializationInput();
             instance._controls.InputMap.Move.performed += context => { instance._moveDir = context.ReadValue<Vector2>(); };
             instance._controls.InputMap.Move.canceled += context => { instance._moveDir = Vector2.zero; }; 
+            instance._controls.InputMap.Camera.performed += context => { instance._cameraDir = context.ReadValue<Vector2>(); };
+            instance._controls.InputMap.Camera.canceled += context => { instance._cameraDir = Vector2.zero; };
             instance._controls.InputMap.Jump.started += context => { instance._onEnterInputDic[InputType.Jump]?.Invoke(); };
             instance._controls.InputMap.Jump.canceled += context => { instance._onExitInputDic[InputType.Jump]?.Invoke(); };
             instance._controls.InputMap.ChangeMode.started += context => { instance._onEnterInputDic[InputType.ChangeMode]?.Invoke(); };
