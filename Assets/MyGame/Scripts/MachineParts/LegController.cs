@@ -24,8 +24,8 @@ namespace MyGame
             _stateContext = new LegStateContext(_legAnimator, _moveController);
             _stateContext._actionParam = _actionParam;
             _stateContext._animeName = _animeName;
-            _stateContext.LegTransform = LegBase;
-            _stateContext.BodyTransform = LockTrans;
+            _stateContext.LegTrans = LegBase;
+            _stateContext.BodyTrans = LockTrans;
         }
         private void FixedUpdate()
         {
