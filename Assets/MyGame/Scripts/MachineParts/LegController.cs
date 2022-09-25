@@ -25,15 +25,16 @@ namespace MyGame
             PlayerInput.SetEnterInput(InputType.Jump, Jump);
             _moveController = new MoveController(_moveRb);
             _stateContext = new LegStateContext(_legAnimator, _moveController);
-            _stateContext._actionParam = _actionParam;
-            _stateContext._animeName = _animeName;
+            _stateContext.ActionParam = _actionParam;
+            _stateContext.AnimeName = _animeName;
             _stateContext.LegTrans = LegBase;
             _stateContext.BodyTrans = LockTrans;
+            _stateContext.InitializeState();
         }
         private void FixedUpdate()
         {
             Vector3 dir = new Vector3(PlayerInput.MoveDir.x, 0, PlayerInput.MoveDir.y);
-            _stateContext.ExecuteUpdate(dir, _isJump, _groundChecker.IsWalled());
+            _stateContext.ExecuteFixedUpdate(dir, _isJump, _groundChecker.IsWalled());
             _isJump = false;
         }
         private void Jump()
