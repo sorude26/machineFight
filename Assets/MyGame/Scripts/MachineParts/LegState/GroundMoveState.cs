@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public partial class LegStateContext
 {
-    protected class GroundMoveState : ILegState
+    private class GroundMoveState : ILegState
     {
         private enum LegAngle
         {
@@ -14,8 +14,9 @@ public partial class LegStateContext
             Left,
             Right,
         }
-        private LegAngle _currentAngle;
-        private Quaternion _legR = Quaternion.identity;        
+        private LegAngle _currentAngle = default;
+        private float _turnSpeed = default;
+        private float _walkSpeed = default;
         private void LegMove(LegStateContext context)
         {
             if (context._moveDir == Vector3.zero)
@@ -23,7 +24,7 @@ public partial class LegStateContext
                 if (_currentAngle != LegAngle.Stop)
                 {
                     _currentAngle = LegAngle.Stop;
-                    context.ChangeAnimetion(context._animeName.Idle);
+                    context.ChangeAnimation(context.AnimeName.Idle);
                 }
                 context._moveController.MoveBreak();
                 return;
@@ -37,55 +38,50 @@ public partial class LegStateContext
                 if (_currentAngle != LegAngle.Back)
                 {
                     _currentAngle = LegAngle.Back;
-                    context.ChangeAnimetion(context._animeName.Back);
+                    context.ChangeAnimation(context.AnimeName.Back);
                 }
                 moveDir = -moveDir;
             }
-            if (lockQ == Quaternion.Euler(0, -_legR.x, 0))
-            {
-                lockQ = Quaternion.identity;
-            }
             float local = Mathf.Abs(context.LegTrans.localRotation.y);
             float target = Mathf.Abs(lockQ.y);
-            context.LegTrans.localRotation = Quaternion.Lerp(context.LegTrans.localRotation, lockQ, context._actionParam.WalkTurnSpeed * Time.fixedDeltaTime);
-            if (Mathf.Max(local, target) - Mathf.Min(local, target) > context._actionParam.DotSub)
+            context.LegTrans.localRotation = Quaternion.Lerp(context.LegTrans.localRotation, lockQ, _turnSpeed * Time.fixedDeltaTime);
+            if (_currentAngle != LegAngle.Back && Mathf.Max(local, target) - Mathf.Min(local, target) > context.ActionParam.DotSub)
             {
-                if (_currentAngle != LegAngle.Back)
+                float angleY = context.LegTrans.localRotation.y - lockQ.y;
+                if (angleY > 0)
                 {
-                    float angleY = context.LegTrans.localRotation.y - lockQ.y;
-                    if (angleY > 0)
+                    if (_currentAngle != LegAngle.Left)
                     {
-                        if (_currentAngle != LegAngle.Left)
-                        {
-                            _currentAngle = LegAngle.Left;
-                            context.ChangeAnimetion(context._animeName.TurnLeft);
-                        }
+                        _currentAngle = LegAngle.Left;
+                        context.ChangeAnimation(context.AnimeName.TurnLeft);
                     }
-                    else if (angleY < 0)
-                    {
-                        if (_currentAngle != LegAngle.Right)
-                        {
-                            _currentAngle = LegAngle.Right;
-                            context.ChangeAnimetion(context._animeName.TurnRight);
-                        }
-                    }
-                    context._moveController.VelocityMove(Vector3.zero);
-                    return;
                 }
+                else if (angleY < 0)
+                {
+                    if (_currentAngle != LegAngle.Right)
+                    {
+                        _currentAngle = LegAngle.Right;
+                        context.ChangeAnimation(context.AnimeName.TurnRight);
+                    }
+                }
+                context._moveController.VelocityMove(Vector3.zero);
+                return;
             }
             else if (_currentAngle != LegAngle.Front && dir.z >= 0)
             {
                 _currentAngle = LegAngle.Front;
-                context.ChangeAnimetion(context._animeName.Walk);
+                context.ChangeAnimation(context.AnimeName.Walk);
             }
-            context._moveController.VelocityMove(moveDir * context._actionParam.WalkSpeed);
+            context._moveController.VelocityMove(moveDir * _walkSpeed);
         }
         public void ExecuteEnter(LegStateContext context)
         {
             _currentAngle = LegAngle.Idle;
+            _turnSpeed = context.ActionParam.WalkTurnSpeed;
+            _walkSpeed = context.ActionParam.WalkSpeed;
         }
 
-        public void ExecuteUpdate(LegStateContext context)
+        public void ExecuteFixedUpdate(LegStateContext context)
         {            
             if (context._groundCheck == false)
             {
