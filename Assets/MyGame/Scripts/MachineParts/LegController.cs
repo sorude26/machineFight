@@ -8,7 +8,9 @@ namespace MyGame
         [SerializeField]
         private Rigidbody _moveRb = default;
         [SerializeField]
-        private Animator _legAnimator = default;       
+        private Animator _legAnimator = default;
+        [SerializeField]
+        private WallChecker _groundChecker = default;
         [SerializeField]
         private LegAnimation _animeName = default;
         [SerializeField]
@@ -17,6 +19,7 @@ namespace MyGame
         public Transform LockTrans = default;
         private MoveController _moveController = default;
         private LegStateContext _stateContext = default;
+        private bool _isJump = false;
         private void Start()
         {
             PlayerInput.SetEnterInput(InputType.Jump, Jump);
@@ -30,11 +33,12 @@ namespace MyGame
         private void FixedUpdate()
         {
             Vector3 dir = new Vector3(PlayerInput.MoveDir.x, 0, PlayerInput.MoveDir.y);
-            _stateContext.ExecuteUpdate(dir, false, false);
+            _stateContext.ExecuteUpdate(dir, _isJump, _groundChecker.IsWalled());
+            _isJump = false;
         }
         private void Jump()
         {
-
+            _isJump = true;
         }
     }
 }
