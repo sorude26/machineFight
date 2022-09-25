@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 public partial class LegStateContext
 {
-    public class FallState : ILegState
+    private class FallState : ILegState
     {
         public void ExecuteEnter(LegStateContext context)
         {
-            context.ChangeAnimetion(context._animeName.Fall);
+            context.ChangeAnimation(context.AnimeName.Fall);
         }
 
-        public void ExecuteUpdate(LegStateContext context)
+        public void ExecuteFixedUpdate(LegStateContext context)
         {
             if(context._groundCheck == true)
             {

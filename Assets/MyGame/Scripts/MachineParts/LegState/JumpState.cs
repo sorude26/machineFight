@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public partial class LegStateContext
 {
-    protected class JumpState : ILegState
+    private class JumpState : ILegState
     {
         private readonly float jumpTime = 0.6f;
         private readonly float stateChangeTime = 0.5f;
@@ -11,12 +11,12 @@ public partial class LegStateContext
         private bool _isJump = false;
         public void ExecuteEnter(LegStateContext context)
         {
-            context.ChangeAnimetion(context._animeName.Jump);
+            context.ChangeAnimation(context.AnimeName.Jump);
             _timer = 0f;
             _isJump = false;
         }
 
-        public void ExecuteUpdate(LegStateContext context)
+        public void ExecuteFixedUpdate(LegStateContext context)
         {
             if (_timer < jumpTime && _isJump == false)
             {
@@ -25,7 +25,7 @@ public partial class LegStateContext
                 {
                     _isJump = true;
                     _timer = 0f;
-                    context._moveController.AddImpulse(((context._moveDir + Vector3.up).normalized + Vector3.up) * context._actionParam.JumpPower);
+                    context._moveController.AddImpulse(((context._moveDir + Vector3.up).normalized + Vector3.up) * context.ActionParam.JumpPower);
                 }
             }
             else if (_timer < stateChangeTime && _isJump == true)

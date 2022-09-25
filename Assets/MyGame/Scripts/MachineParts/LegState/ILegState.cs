@@ -1,10 +1,10 @@
 using System;
 public partial class LegStateContext
 {
-    public interface ILegState
+    protected interface ILegState
     {
         void ExecuteEnter(LegStateContext context);
-        void ExecuteUpdate(LegStateContext context);
+        void ExecuteFixedUpdate(LegStateContext context);
     }
 }
 [Serializable]
