@@ -85,18 +85,17 @@ public partial class LegStateContext
             _currentAngle = LegAngle.Idle;
         }
 
-        public void ExecuteExit(LegStateContext context) { }
-
         public void ExecuteUpdate(LegStateContext context)
-        {
+        {            
+            if (context._groundCheck == false)
+            {
+                context.ChangeState(context._fallState);
+                return;
+            }
             if (context._jumpInput == true)
             {
                 context.ChangeState(context._jumpState);
                 return;
-            }
-            if (context._groundCheck == false)
-            {
-
             }
             LegMove(context);
         }
