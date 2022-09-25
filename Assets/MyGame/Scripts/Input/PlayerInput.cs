@@ -9,6 +9,7 @@ namespace MyGame
     public class PlayerInput : MonoBehaviour
     {
         private static PlayerInput instance;
+
         private Vector2 _moveDir = default;
         private Vector2 _cameraDir = default;
         private InputControls _controls = default;
@@ -24,7 +25,7 @@ namespace MyGame
             {
                 if (instance is null)
                 {
-                    Initialization();
+                    Initialize();
                 }
                 return instance._moveDir;
             }
@@ -35,7 +36,7 @@ namespace MyGame
             {
                 if (instance is null)
                 {
-                    Initialization();
+                    Initialize();
                 }
                 return instance._cameraDir;
             }
@@ -46,18 +47,18 @@ namespace MyGame
             {
                 if (instance is null)
                 {
-                    Initialization();
+                    Initialize();
                 }
                 return instance; 
             }
         }
-        private static void Initialization()
+        private static void Initialize()
         {
             var obj = new GameObject("PlayerInput");
             instance = obj.AddComponent<PlayerInput>();
             instance._controls = new InputControls();
             instance._controls.Enable();
-            instance.InitializationInput();
+            instance.InitializeInput();
             instance._controls.InputMap.Move.performed += context => { instance._moveDir = context.ReadValue<Vector2>(); };
             instance._controls.InputMap.Move.canceled += context => { instance._moveDir = Vector2.zero; }; 
             instance._controls.InputMap.Camera.performed += context => { instance._cameraDir = context.ReadValue<Vector2>(); };
@@ -67,7 +68,7 @@ namespace MyGame
             instance._controls.InputMap.ChangeMode.started += context => { instance._onEnterInputDic[InputType.ChangeMode]?.Invoke(); };
             instance._controls.InputMap.Attack1.started += context => { instance._onEnterInputDic[InputType.Fire1]?.Invoke(); };
         }
-        private void InitializationInput()
+        private void InitializeInput()
         {
             for (int i = 0; i < Enum.GetValues(typeof(InputType)).Length; i++)
             {
