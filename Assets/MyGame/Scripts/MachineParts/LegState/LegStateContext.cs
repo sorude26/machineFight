@@ -14,6 +14,8 @@ public partial class LegStateContext
 
     private GroundMoveState _groundState = new GroundMoveState();
     private JumpState _jumpState = new JumpState();
+    private FallState _fallState = new FallState();
+    private LandingState _landingState = new LandingState();
 
     public LegAnimation _animeName = default;
     public LegActionParam _actionParam = default;
@@ -36,7 +38,6 @@ public partial class LegStateContext
     }
     public void ChangeState(ILegState legState)
     {
-        _currentState.ExecuteExit(this);
         _currentState = legState;
         _currentState.ExecuteEnter(this);
     }

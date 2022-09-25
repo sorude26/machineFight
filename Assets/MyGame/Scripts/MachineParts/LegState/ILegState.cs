@@ -5,7 +5,6 @@ public partial class LegStateContext
     {
         void ExecuteEnter(LegStateContext context);
         void ExecuteUpdate(LegStateContext context);
-        void ExecuteExit(LegStateContext context);
     }
 }
 [Serializable]
@@ -18,6 +17,7 @@ public struct LegAnimation
     public string TurnRight;
     public string Jump;
     public string Landing;
+    public string Fall;
 }
 [Serializable]
 public struct LegActionParam
