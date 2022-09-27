@@ -14,27 +14,33 @@ public partial class LegStateContext
             Left,
             Right,
         }
+        private readonly float decelerate = 0.8f;
         private LegAngle _currentAngle = default;
         private float _turnSpeed = default;
         private float _walkSpeed = default;
+        /// <summary>
+        /// 歩行移動を行う
+        /// </summary>
+        /// <param name="context"></param>
         private void LegMove(LegStateContext context)
         {
-            if (context._moveDir == Vector3.zero)
+            context._moveController.MoveDecelerate(decelerate);//速度減衰を行う
+            if (context._moveDir == Vector3.zero)//入力がない場合は待機アニメーションに変更
             {
                 if (_currentAngle != LegAngle.Stop)
                 {
                     _currentAngle = LegAngle.Stop;
                     context.ChangeAnimation(context.AnimeName.Idle);
                 }
-                context._moveController.MoveBreak();
                 return;
             }
-            Vector3 dir = context._moveDir.normalized;
-            Quaternion lockQ = Quaternion.Euler(0, (90f - Mathf.Abs(dir.z) * 45f) * dir.x, 0);
+            //入力回転目標
+            Quaternion lockQ = Quaternion.Euler(0, (90f - Mathf.Abs(context._moveDir.z) * 45f) * context._moveDir.x, 0);
+            //進行方向
             Vector3 moveDir = context.LegTrans.forward;
-            if (dir.z < 0)
+            if (context._moveDir.z < 0)//後退入力であれば後退アニメーションに変更
             {
-                lockQ = Quaternion.Euler(0, (90f - Mathf.Abs(dir.z) * 45f) * -dir.x, 0);
+                lockQ = Quaternion.Euler(0, (90f - Mathf.Abs(context._moveDir.z) * 45f) * -context._moveDir.x, 0);
                 if (_currentAngle != LegAngle.Back)
                 {
                     _currentAngle = LegAngle.Back;
@@ -42,36 +48,31 @@ public partial class LegStateContext
                 }
                 moveDir = -moveDir;
             }
+            //脚部を旋回する
+            context.LegTrans.localRotation = Quaternion.Lerp(context.LegTrans.localRotation, lockQ, _turnSpeed * Time.fixedDeltaTime);
+            //後退時以外で旋回角度が一定以上の場合、旋回アニメーションに変更
             float local = Mathf.Abs(context.LegTrans.localRotation.y);
             float target = Mathf.Abs(lockQ.y);
-            context.LegTrans.localRotation = Quaternion.Lerp(context.LegTrans.localRotation, lockQ, _turnSpeed * Time.fixedDeltaTime);
             if (_currentAngle != LegAngle.Back && Mathf.Max(local, target) - Mathf.Min(local, target) > context.ActionParam.DotSub)
             {
-                float angleY = context.LegTrans.localRotation.y - lockQ.y;
-                if (angleY > 0)
+                if (_currentAngle != LegAngle.Left && context.LegTrans.localRotation.y - lockQ.y > 0)//左旋回
                 {
-                    if (_currentAngle != LegAngle.Left)
-                    {
-                        _currentAngle = LegAngle.Left;
-                        context.ChangeAnimation(context.AnimeName.TurnLeft);
-                    }
+                    _currentAngle = LegAngle.Left;
+                    context.ChangeAnimation(context.AnimeName.TurnLeft);
                 }
-                else if (angleY < 0)
+                else if (_currentAngle != LegAngle.Right && context.LegTrans.localRotation.y - lockQ.y < 0)//右旋回
                 {
-                    if (_currentAngle != LegAngle.Right)
-                    {
-                        _currentAngle = LegAngle.Right;
-                        context.ChangeAnimation(context.AnimeName.TurnRight);
-                    }
+                    _currentAngle = LegAngle.Right;
+                    context.ChangeAnimation(context.AnimeName.TurnRight);
                 }
-                context._moveController.VelocityMove(Vector3.zero);
                 return;
             }
-            else if (_currentAngle != LegAngle.Front && dir.z >= 0)
+            else if (_currentAngle != LegAngle.Front && context._moveDir.z >= 0)//一定以内であれば正面移動アニメーションに変更
             {
                 _currentAngle = LegAngle.Front;
                 context.ChangeAnimation(context.AnimeName.Walk);
             }
+            //移動処理
             context._moveController.VelocityMove(moveDir * _walkSpeed);
         }
         public void ExecuteEnter(LegStateContext context)

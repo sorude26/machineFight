@@ -25,7 +25,7 @@ public partial class LegStateContext
                 {
                     _isJump = true;
                     _timer = 0f;
-                    context._moveController.AddImpulse(((context._moveDir + Vector3.up).normalized + Vector3.up) * context.ActionParam.JumpPower);
+                    context._moveController.AddImpulse((context._moveDir + Vector3.up).normalized * context.ActionParam.JumpPower);
                 }
             }
             else if (_timer < stateChangeTime && _isJump == true)
