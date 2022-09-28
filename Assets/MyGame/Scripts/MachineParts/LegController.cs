@@ -22,7 +22,6 @@ namespace MyGame
         private bool _isJump = false;
         private void Start()
         {
-            PlayerInput.SetEnterInput(InputType.Jump, Jump);
             _moveController = new MoveController(_moveRb);
             _stateContext = new LegStateContext(_legAnimator, _moveController);
             _stateContext.ActionParam = _actionParam;
@@ -31,13 +30,12 @@ namespace MyGame
             _stateContext.BodyTrans = LockTrans;
             _stateContext.InitializeState();
         }
-        private void FixedUpdate()
+        public void ExecuteFixedUpdate(Vector3 dir)
         {
-            Vector3 dir = new Vector3(PlayerInput.MoveDir.x, 0, PlayerInput.MoveDir.y);
             _stateContext.ExecuteFixedUpdate(dir, _isJump, _groundChecker.IsWalled());
             _isJump = false;
         }
-        private void Jump()
+        public void Jump()
         {
             _isJump = true;
         }
