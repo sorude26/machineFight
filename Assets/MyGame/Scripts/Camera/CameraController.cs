@@ -7,60 +7,45 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private Transform _cameraTarget = default;
     [SerializeField]
+    private Transform _forwardTarget = default;
+    [SerializeField]
     private float _followSpeed = 5f;
     [SerializeField]
     private float _lockSpeed = 20f;
     [SerializeField]
     private float _upSpeed = 1f;
     private Quaternion _cameraRot = default;
-    private float _minY = -70f;
-    private float _maxY = 70f;
-    private float _angleY = 0;
-    private float _minX = -2f;
-    private float _maxX = 2f;
-    private Vector2 _minInputLimit = new Vector2(0.1f, 0.5f);
-    private Vector3 _startCameraPos = default;
-    public Quaternion CameraRot { get => _cameraRot; }
-    void Start()
-    {
-        _cameraRot = transform.localRotation;
-        _startCameraPos = transform.localPosition;
-    }
+    private Quaternion _forwardRot = default;
+    [SerializeField]
+    private float _minDownAngle = -30f;
+    [SerializeField]
+    private float _maxUpAngle = 40f;
     private void FixedUpdate()
     {
-        _cameraRot.x = _angleY;
-        transform.localRotation = Quaternion.Lerp(transform.localRotation, _cameraRot, _followSpeed * Time.fixedDeltaTime);
+        _cameraTarget.localRotation = Quaternion.Lerp(_cameraTarget.localRotation, _cameraRot, _followSpeed * Time.fixedDeltaTime);
+        _forwardTarget.localRotation = Quaternion.Lerp(_forwardTarget.localRotation, _forwardRot, _followSpeed * Time.fixedDeltaTime);
     }
     public void FreeLock(Vector2 dir)
     {
         _cameraRot = _cameraTarget.localRotation;
-        if (Mathf.Abs(dir.x) > _minInputLimit.x)
-        {
-            _cameraRot *= Quaternion.Euler(0, dir.x * _lockSpeed, 0);
-        }
-        if (Mathf.Abs(dir.y) > _minInputLimit.y)
-        {
-            _cameraRot *= Quaternion.Euler(dir.y * _upSpeed, 0, 0);
-        }
-        _cameraRot = ClampRotation(_cameraRot, _minY, _maxY);
-        _angleY = _cameraRot.x;
+        _forwardRot = _forwardTarget.localRotation;
+        _cameraRot *= Quaternion.Euler(0, dir.x * _lockSpeed, 0);
+        _forwardRot *= Quaternion.Euler(dir.y * _upSpeed, 0, 0);
+        _forwardRot = ClampRotationX(_forwardRot);
     }
     public void ResetLock()
     {
-        _angleY = 0;
-        _cameraRot = _cameraTarget.localRotation;
+        _cameraRot = Quaternion.identity;
+        _forwardRot = Quaternion.identity;
     }
-    private Quaternion ClampRotation(Quaternion angle, float minY, float maxY)
+    private Quaternion ClampRotationX(Quaternion angle)
     {
         angle.x /= angle.w;
         angle.y /= angle.w;
         angle.z /= angle.w;
         angle.w = 1f;
-        float angleY = Mathf.Atan(angle.y) * Mathf.Rad2Deg * 2f;
-        angleY = Mathf.Clamp(angleY, minY, maxY);
-        angle.y = Mathf.Tan(angleY * Mathf.Deg2Rad * 0.5f);
         float angleX = Mathf.Atan(angle.x) * Mathf.Rad2Deg * 2f;
-        angleX = Mathf.Clamp(angleX, _minY, _maxY);
+        angleX = Mathf.Clamp(angleX, _minDownAngle, _maxUpAngle);
         angle.x = Mathf.Tan(angleX * Mathf.Deg2Rad * 0.5f);
         return angle;
     }
