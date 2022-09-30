@@ -18,6 +18,10 @@ public partial class LegStateContext
         private LegAngle _currentAngle = default;
         private float _turnSpeed = default;
         private float _walkSpeed = default;
+        private float _range = 0.1f;
+        private float _rRange = 0.5f;
+        private float _turnRange = 0.01f;
+
         /// <summary>
         /// 歩行移動を行う
         /// </summary>
@@ -25,6 +29,24 @@ public partial class LegStateContext
         private void LegMove(LegStateContext context)
         {
             context._moveController.MoveDecelerate(decelerate);//速度減衰を行う
+            var range = Vector3.Dot(context.LegBaseTrans.forward, context.BodyTrans.forward);
+            if (Mathf.Abs(context._moveDir.z) <= _range && range <= _turnRange && range >= -_turnRange)
+            {
+                _turnRange = _rRange;
+                context.LegBaseTrans.localRotation = Quaternion.Lerp(context.LegBaseTrans.localRotation, context.BodyTrans.localRotation, _turnSpeed * Time.fixedDeltaTime);
+                if (_currentAngle != LegAngle.Left && context.LegBaseTrans.localRotation.y - context.BodyTrans.localRotation.y < 0)//左旋回
+                {
+                    _currentAngle = LegAngle.Left;
+                    context.ChangeAnimation(context.AnimeName.TurnLeft);
+                }
+                else if (_currentAngle != LegAngle.Right && context.LegBaseTrans.localRotation.y - context.BodyTrans.localRotation.y > 0)//右旋回
+                {
+                    _currentAngle = LegAngle.Right;
+                    context.ChangeAnimation(context.AnimeName.TurnRight);
+                }
+                return;
+            }
+            _turnRange = _range;
             if (context._moveDir == Vector3.zero)//入力がない場合は待機アニメーションに変更
             {
                 if (_currentAngle != LegAngle.Stop)
@@ -34,13 +56,14 @@ public partial class LegStateContext
                 }
                 return;
             }
+
             //入力回転目標
-            Quaternion lockQ = Quaternion.Euler(0, (90f - Mathf.Abs(context._moveDir.z) * 45f) * context._moveDir.x, 0);
+            Quaternion lockQ = Quaternion.Euler(0, (90f - Mathf.Abs(context._moveDir.z) * 45f) * context._moveDir.x, 0) * context.BodyTrans.localRotation;
             //進行方向
             Vector3 moveDir = context.LegTrans.forward;
             if (context._moveDir.z < 0)//後退入力であれば後退アニメーションに変更
             {
-                lockQ = Quaternion.Euler(0, (90f - Mathf.Abs(context._moveDir.z) * 45f) * -context._moveDir.x, 0);
+                lockQ = Quaternion.Euler(0, (90f - Mathf.Abs(context._moveDir.z) * 45f) * -context._moveDir.x, 0) * context.BodyTrans.localRotation;
                 if (_currentAngle != LegAngle.Back)
                 {
                     _currentAngle = LegAngle.Back;
