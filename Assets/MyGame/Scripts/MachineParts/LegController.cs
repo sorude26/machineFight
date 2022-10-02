@@ -17,6 +17,7 @@ namespace MyGame
         private LegActionParam _actionParam = default;
         public Transform LegBase = default;
         public Transform LockTrans = default;
+        public Transform BaseTrans = default;
         private MoveController _moveController = default;
         private LegStateContext _stateContext = default;
         private bool _isJump = false;
@@ -28,6 +29,7 @@ namespace MyGame
             _stateContext.AnimeName = _animeName;
             _stateContext.LegTrans = LegBase;
             _stateContext.BodyTrans = LockTrans;
+            _stateContext.LegBaseTrans = BaseTrans;
             _stateContext.InitializeState();
         }
         public void ExecuteFixedUpdate(Vector3 dir)

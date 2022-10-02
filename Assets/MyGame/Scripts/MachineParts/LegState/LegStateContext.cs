@@ -24,6 +24,7 @@ public partial class LegStateContext
     public LegAnimation AnimeName = default;
     public LegActionParam ActionParam = default;
     public Transform LegTrans = default;
+    public Transform LegBaseTrans = default;
     public Transform BodyTrans = default;
     public LegStateContext(Animator animator, MyGame.MoveController moveController)
     {
