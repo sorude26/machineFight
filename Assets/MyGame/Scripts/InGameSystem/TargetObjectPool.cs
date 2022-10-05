@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class TargetObjectPool<TObject,TPool> : MonoBehaviour where TObject : MonoBehaviour where TPool :TargetObjectPool<TObject, TPool>
+public abstract class TargetObjectPool<TObject,TPool> : MonoBehaviour 
+    where TObject : MonoBehaviour where TPool :TargetObjectPool<TObject, TPool>
 {
     /// <summary> éwíËñ≥ÇµÇÃç€Ç…ÉvÅ[ÉãÇ∑ÇÈêî </summary>
     protected const int DEFAULT_POOL_COUNT = 15;
