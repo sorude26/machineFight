@@ -25,11 +25,13 @@ public partial class LegStateContext
                 {
                     _isJump = true;
                     _timer = 0f;
-                    context._moveController.AddImpulse((context._moveDir + Vector3.up).normalized * context.ActionParam.JumpPower);
+                    Vector3 dir = context.BodyTrans.forward * context._moveDir.z + context.BodyTrans.right * context._moveDir.x;
+                    context._moveController.AddImpulse((dir + Vector3.up).normalized * context.ActionParam.JumpPower);
                 }
             }
             else if (_timer < stateChangeTime && _isJump == true)
             {
+                context.LegTrans.localRotation = Quaternion.Lerp(context.LegTrans.localRotation, Quaternion.identity, Time.fixedDeltaTime);
                 _timer += Time.fixedDeltaTime;
                 if (_timer >= stateChangeTime)
                 {

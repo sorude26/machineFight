@@ -12,7 +12,8 @@ public partial class LegStateContext
 
         public void ExecuteFixedUpdate(LegStateContext context)
         {
-            if(context._groundCheck == true)
+            context.LegTrans.localRotation = Quaternion.Lerp(context.LegTrans.localRotation, Quaternion.identity, Time.fixedDeltaTime);
+            if (context._groundCheck == true)
             {
                 context.ChangeState(context._landingState);
             }
