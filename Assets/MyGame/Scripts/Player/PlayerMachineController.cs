@@ -18,7 +18,7 @@ public class PlayerMachineController : MonoBehaviour
     private void FixedUpdate()
     {
         _playerCamera.FreeLock(PlayerInput.CameraDir);
-        var dir = _lockTrans.right * PlayerInput.MoveDir.x + _lockTrans.forward * PlayerInput.MoveDir.y;
+        var dir = new Vector3(PlayerInput.MoveDir.x, 0, PlayerInput.MoveDir.y);
         _machineController.ExecuteFixedUpdate(dir);
     }
 }
