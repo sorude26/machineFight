@@ -10,6 +10,8 @@ public class ShotBullet : MonoBehaviour
     private int _rayFrame = 5;
     [SerializeField]
     private LayerMask _hitLayer = default;
+    [SerializeField]
+    private GameObject _hitEffect = default;
     private float _timer = 0f;
     private float _speed = 5f;
     private int _power = 1;
@@ -24,8 +26,12 @@ public class ShotBullet : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-    protected virtual void HitBullet()
+    protected virtual void HitBullet(Vector3 hitPos)
     {
+        var effect = ObjectPoolManager.Instance.Use(_hitEffect);
+        effect.transform.position = hitPos;
+        effect.transform.forward = transform.forward;
+        effect.gameObject.SetActive(true);
         ActiveEnd();
     }
     private void MoveBullet()
@@ -51,7 +57,7 @@ public class ShotBullet : MonoBehaviour
             {
                 target.AddlyDamage(_power);
             }
-            HitBullet();
+            HitBullet(hit.point);
         }
         _beforePos = transform.position;
     }
@@ -67,6 +73,7 @@ public class ShotBullet : MonoBehaviour
         _timer = _lifeTime;
         _frameCount = 0;
         _beforePos = transform.position;
+        gameObject.SetActive(true);
     }
 }
 public struct BulletParam
