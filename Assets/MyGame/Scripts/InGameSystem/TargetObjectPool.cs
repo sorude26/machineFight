@@ -78,12 +78,12 @@ public abstract class TargetObjectPool<TObject,TPool> : MonoBehaviour
                 continue;
             }
             poolObject.transform.position = INVISIBLE_POS;
-            poolObject.gameObject.SetActive(true);
             return poolObject;
         }
         var obj = Instantiate(useObject, instance.transform);
         obj.transform.position = INVISIBLE_POS;
         instance._poolDic[useObject.name].Add(obj);
+        obj.gameObject.SetActive(false);
         return obj;
     }
 }
