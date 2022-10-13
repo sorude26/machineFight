@@ -17,12 +17,14 @@ public class HandController : MonoBehaviour
     [SerializeField]
     private TestWeapon _weapon;
     private bool _firstShot = false;
+    private bool _isShooting = false;
     private Vector3 _targetCurrent = default;
     private Vector3 _targetBefore = default;
     private Vector3 _targetTwoBefore = default;
     private Quaternion _topRotaion = Quaternion.identity;
     private Quaternion _handRotaion = Quaternion.identity;
     public float PartsRotaionSpeed = 3.0f;
+    public bool IsAttack;
 
     public Transform TargetTrans = default;
     private void LockOn(Vector3 targetPos)
@@ -30,6 +32,10 @@ public class HandController : MonoBehaviour
         _targetCurrent = ShotPrediction.Circle(_arm.position, targetPos, _targetBefore, _targetTwoBefore, _weapon.Speed);
         _aimShoulder.LookAt(_targetCurrent);
         _aimArm.LookAt(_targetCurrent);
+        Quaternion topR = _aimShoulder.localRotation;
+        topR.y = 0;
+        _topRotaion = topR;
+        _handRotaion = _aimArm.localRotation;
         _targetTwoBefore = _targetBefore;
         _targetBefore = targetPos;
     }
@@ -55,7 +61,11 @@ public class HandController : MonoBehaviour
     }
     public void StartShot()
     {
-        
+        if (_isShooting == true)
+        {
+            return;
+        }
+        StartCoroutine(AttackImpl());
     }
     public void EndShot()
     {
@@ -69,16 +79,16 @@ public class HandController : MonoBehaviour
     }
     private IEnumerator AttackImpl()
     {
-        bool isAttack = true;
-        while (isAttack == true || _weapon.IsShooting == true)
+        while (IsAttack == true || _weapon.IsShooting == true)
         {
-            if (ChackAngle())
+            if (IsAttack == true && ChackAngle())
             {
                 _weapon.Fire();
-                isAttack = false;
-                yield return null;
+                IsAttack = false;
             }
             yield return null;
         }
+        _isShooting = false;
+        EndShot();
     }
 }
