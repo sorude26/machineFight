@@ -26,10 +26,7 @@ public class TestWeapon : MonoBehaviour
     private int _count = 0;
     public float Speed { get => _speed; }
     public bool IsShooting;
-    private void Start()
-    {
-        PlayerInput.SetEnterInput(InputType.Fire1, Fire);
-    }
+    
     protected void Shot()
     {
         var bullet = ShotBulletPool.GetObject(_bullet);
