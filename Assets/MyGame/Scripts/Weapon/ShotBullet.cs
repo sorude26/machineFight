@@ -12,11 +12,16 @@ public class ShotBullet : MonoBehaviour
     private LayerMask _hitLayer = default;
     [SerializeField]
     private GameObject _hitEffect = default;
+    [SerializeField]
+    private bool _penetrate = default;
+    [SerializeField]
+    private float _radius = 0f;
     private float _timer = 0f;
     private float _speed = 5f;
     private int _power = 1;
     private int _frameCount = default;
     private Vector3 _beforePos = default;
+   
     private void FixedUpdate()
     {
         MoveBullet();
@@ -28,11 +33,16 @@ public class ShotBullet : MonoBehaviour
     }
     protected virtual void HitBullet(Vector3 hitPos)
     {
+        PlayHitEffect(hitPos);
+        if (_penetrate == true) { return; }
+        ActiveEnd();
+    }
+    private void PlayHitEffect(Vector3 hitPos)
+    {
         var effect = ObjectPoolManager.Instance.Use(_hitEffect);
         effect.transform.position = hitPos;
         effect.transform.forward = transform.forward;
         effect.gameObject.SetActive(true);
-        ActiveEnd();
     }
     private void MoveBullet()
     {
@@ -51,6 +61,18 @@ public class ShotBullet : MonoBehaviour
             return;
         }
         _frameCount = 0;
+        if (_radius > 0)
+        {
+            CheckSphere();
+        }
+        else
+        {
+            CheckRay();
+        }
+        _beforePos = transform.position;
+    }
+    private void CheckRay()
+    {
         if (Physics.Raycast(_beforePos, transform.forward, out RaycastHit hit, Vector3.Distance(_beforePos, transform.position), _hitLayer))
         {
             if (hit.collider.TryGetComponent(out IDamageApplicable target))
@@ -59,7 +81,17 @@ public class ShotBullet : MonoBehaviour
             }
             HitBullet(hit.point);
         }
-        _beforePos = transform.position;
+    }
+    private void CheckSphere()
+    {
+        if (Physics.SphereCast(_beforePos, _radius, transform.forward, out RaycastHit hit, Vector3.Distance(_beforePos, transform.position), _hitLayer))
+        {
+            if (hit.collider.TryGetComponent(out IDamageApplicable target))
+            {
+                target.AddlyDamage(_power);
+            }
+            HitBullet(hit.point);
+        }
     }
     public void Shot(Vector3 dir,float speed,int power)
     {
