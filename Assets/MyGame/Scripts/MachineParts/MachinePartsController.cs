@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
+
 namespace MyGame
 {
     public class MachinePartsController : MonoBehaviour
@@ -16,6 +18,14 @@ namespace MyGame
         public void ExecuteJump()
         {
             _legController.Jump();
+        }
+        public void ShotLeft()
+        {
+            _bodyController.ShotLeft();
+        }
+        public void ShotRight()
+        {
+            _bodyController.ShotRight();
         }
     }
 }
