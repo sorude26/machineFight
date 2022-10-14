@@ -71,6 +71,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Attack2"",
+                    ""type"": ""Button"",
+                    ""id"": ""6ceace3f-0abd-43f6-b5e0-fccd7ff2c51c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -271,6 +280,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""action"": ""Camera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71928ce6-1239-4975-8673-70d03119bd88"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -284,6 +304,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_InputMap_ChangeMode = m_InputMap.FindAction("ChangeMode", throwIfNotFound: true);
         m_InputMap_Attack1 = m_InputMap.FindAction("Attack1", throwIfNotFound: true);
         m_InputMap_Camera = m_InputMap.FindAction("Camera", throwIfNotFound: true);
+        m_InputMap_Attack2 = m_InputMap.FindAction("Attack2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -348,6 +369,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InputMap_ChangeMode;
     private readonly InputAction m_InputMap_Attack1;
     private readonly InputAction m_InputMap_Camera;
+    private readonly InputAction m_InputMap_Attack2;
     public struct InputMapActions
     {
         private @InputControls m_Wrapper;
@@ -357,6 +379,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @ChangeMode => m_Wrapper.m_InputMap_ChangeMode;
         public InputAction @Attack1 => m_Wrapper.m_InputMap_Attack1;
         public InputAction @Camera => m_Wrapper.m_InputMap_Camera;
+        public InputAction @Attack2 => m_Wrapper.m_InputMap_Attack2;
         public InputActionMap Get() { return m_Wrapper.m_InputMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -381,6 +404,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Camera.started -= m_Wrapper.m_InputMapActionsCallbackInterface.OnCamera;
                 @Camera.performed -= m_Wrapper.m_InputMapActionsCallbackInterface.OnCamera;
                 @Camera.canceled -= m_Wrapper.m_InputMapActionsCallbackInterface.OnCamera;
+                @Attack2.started -= m_Wrapper.m_InputMapActionsCallbackInterface.OnAttack2;
+                @Attack2.performed -= m_Wrapper.m_InputMapActionsCallbackInterface.OnAttack2;
+                @Attack2.canceled -= m_Wrapper.m_InputMapActionsCallbackInterface.OnAttack2;
             }
             m_Wrapper.m_InputMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -400,6 +426,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Camera.started += instance.OnCamera;
                 @Camera.performed += instance.OnCamera;
                 @Camera.canceled += instance.OnCamera;
+                @Attack2.started += instance.OnAttack2;
+                @Attack2.performed += instance.OnAttack2;
+                @Attack2.canceled += instance.OnAttack2;
             }
         }
     }
@@ -411,5 +440,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnChangeMode(InputAction.CallbackContext context);
         void OnAttack1(InputAction.CallbackContext context);
         void OnCamera(InputAction.CallbackContext context);
+        void OnAttack2(InputAction.CallbackContext context);
     }
 }
