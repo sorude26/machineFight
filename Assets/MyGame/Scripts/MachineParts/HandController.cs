@@ -7,6 +7,8 @@ public class HandController : MonoBehaviour
 {
     private const float ATTACK_ANGLE = 0.999f;
     [SerializeField]
+    private Transform _joint = default;
+    [SerializeField]
     private Transform _shoulder = default;
     [SerializeField]
     private Transform _arm = default;
@@ -15,7 +17,7 @@ public class HandController : MonoBehaviour
     [SerializeField]
     private Transform _aimArm = default;
     [SerializeField]
-    private TestWeapon _weapon;
+    private TestWeapon _weapon = default;
     private bool _firstShot = false;
     private bool _isShooting = false;
     private Vector3 _targetCurrent = default;
@@ -27,6 +29,11 @@ public class HandController : MonoBehaviour
     public bool IsAttack;
 
     public Transform TargetTrans = default;
+    private void FixedUpdate()
+    {
+        transform.position = _joint.position;
+        transform.rotation = _joint.rotation;
+    }
     private void LockOn(Vector3 targetPos)
     {
         _targetCurrent = ShotPrediction.Circle(_arm.position, targetPos, _targetBefore, _targetTwoBefore, _weapon.Speed);
@@ -39,7 +46,7 @@ public class HandController : MonoBehaviour
         _targetTwoBefore = _targetBefore;
         _targetBefore = targetPos;
     }
-    private void ResetAngle()
+    public void ResetAngle()
     {
         _topRotaion = Quaternion.identity;
         _handRotaion = Quaternion.identity;
@@ -61,10 +68,12 @@ public class HandController : MonoBehaviour
     }
     public void StartShot()
     {
+        IsAttack = true;
         if (_isShooting == true)
         {
             return;
         }
+        _isShooting = true;
         StartCoroutine(AttackImpl());
     }
     public void EndShot()
@@ -81,7 +90,7 @@ public class HandController : MonoBehaviour
     {
         while (IsAttack == true || _weapon.IsShooting == true)
         {
-            if (IsAttack == true && ChackAngle())
+            if (IsAttack == true && _weapon.IsShooting == false && ChackAngle())
             {
                 _weapon.Fire();
                 IsAttack = false;
