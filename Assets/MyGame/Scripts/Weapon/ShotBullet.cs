@@ -56,43 +56,33 @@ public class ShotBullet : MonoBehaviour
     private void HitCheck()
     {
         _frameCount++;
-        if (_frameCount < _rayFrame)
-        {
-            return;
-        }
+        if (_frameCount < _rayFrame) { return; }
         _frameCount = 0;
         if (_radius > 0)
         {
-            CheckSphere();
+            if (Physics.SphereCast(_beforePos, _radius, transform.forward, out RaycastHit hit, Vector3.Distance(_beforePos, transform.position), _hitLayer))
+            {
+                HitAction(hit);
+            }
         }
         else
         {
-            CheckRay();
+            if (Physics.Raycast(_beforePos, transform.forward, out RaycastHit hit, Vector3.Distance(_beforePos, transform.position), _hitLayer))
+            {
+                HitAction(hit);
+            }
         }
         _beforePos = transform.position;
     }
-    private void CheckRay()
+    private void HitAction(RaycastHit hit)
     {
-        if (Physics.Raycast(_beforePos, transform.forward, out RaycastHit hit, Vector3.Distance(_beforePos, transform.position), _hitLayer))
+        if (hit.collider.TryGetComponent(out IDamageApplicable target))
         {
-            if (hit.collider.TryGetComponent(out IDamageApplicable target))
-            {
-                target.AddlyDamage(_power);
-            }
-            HitBullet(hit.point);
+            target.AddlyDamage(_power);
         }
+        HitBullet(hit.point);
     }
-    private void CheckSphere()
-    {
-        if (Physics.SphereCast(_beforePos, _radius, transform.forward, out RaycastHit hit, Vector3.Distance(_beforePos, transform.position), _hitLayer))
-        {
-            if (hit.collider.TryGetComponent(out IDamageApplicable target))
-            {
-                target.AddlyDamage(_power);
-            }
-            HitBullet(hit.point);
-        }
-    }
+    
     public void Shot(Vector3 dir,float speed,int power)
     {
         Shot(new BulletParam(dir, speed, power));
