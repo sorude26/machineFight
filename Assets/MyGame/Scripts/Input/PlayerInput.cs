@@ -68,6 +68,7 @@ namespace MyGame
             instance._controls.InputMap.ChangeMode.started += context => { instance._onEnterInputDic[InputType.ChangeMode]?.Invoke(); };
             instance._controls.InputMap.Attack1.started += context => { instance._onEnterInputDic[InputType.Fire1]?.Invoke(); };
             instance._controls.InputMap.Attack2.started += context => { instance._onEnterInputDic[InputType.Fire2]?.Invoke(); };
+            instance._controls.InputMap.JetBoost.started += context => { instance._onEnterInputDic[InputType.Booster]?.Invoke(); };
         }
         private void InitializeInput()
         {
@@ -103,5 +104,7 @@ namespace MyGame
         Fire2,
         /// <summary> 攻撃入力３ </summary>
         Fire3,
+        /// <summary> ブースター入力 </summary>
+        Booster,
     }
 }
