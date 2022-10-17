@@ -41,7 +41,7 @@ public class ShakeObject : MonoBehaviour
         if (_isPlaying)
         {
             float shakeDistance = Vector3.Distance(transform.position, shakePos) / power;
-            if (_startPower > power)
+            if (_startPower > shakeDistance)
             {
                 _startPower = shakeDistance;
                 _shakeDistance = shakeDistance;
@@ -57,7 +57,7 @@ public class ShakeObject : MonoBehaviour
         float shakeDistance = Vector3.Distance(transform.position, shakeInstancePos) / power;
         if (shakeDistance <= 0) { shakeDistance = 1f; }
         _shakeDistance = shakeDistance;
-        _startPower = power;
+        _startPower = shakeDistance;
         _shakeTimer = shakeTime;
         _shakePos = _startPos;
         while (_shakeTimer > 0)
