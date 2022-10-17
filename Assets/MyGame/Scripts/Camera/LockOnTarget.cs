@@ -11,9 +11,9 @@ public class LockOnTarget : MonoBehaviour
     private float _timer = 0;
     /// <summary> ロックオン中フラグ </summary>
     public bool IsLockOn { get; private set; }
-    private void OnEnable()
+    
+    private void Start()
     {
-        if (LockOnController.Instance == null) { return; }
         LockOnController.Instance.LockOnTargets.Add(this);
     }
     private void OnDisable()

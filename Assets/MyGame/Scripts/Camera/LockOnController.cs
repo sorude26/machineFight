@@ -18,7 +18,7 @@ public class LockOnController : MonoBehaviour
     /// <summary> ロックオン速度 </summary>
     public float LockOnSpeed { get; set; } = 2;
     /// <summary> ロックオン距離 </summary>
-    public float LockOnRange { get; set; } = 100;
+    public float LockOnRange { get; set; } = 300;
     /// <summary> ロックオン対象 </summary>
     public List<LockOnTarget> LockOnTargets = new List<LockOnTarget>();
     private int _targetNum = 0;
