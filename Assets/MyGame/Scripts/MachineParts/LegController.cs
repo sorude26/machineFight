@@ -21,6 +21,7 @@ namespace MyGame
         private MoveController _moveController = default;
         private LegStateContext _stateContext = default;
         private bool _isJump = false;
+        public bool IsFall { get; private set; }
         private void Start()
         {
             _moveController = new MoveController(_moveRb);
@@ -36,6 +37,7 @@ namespace MyGame
         {
             _stateContext.ExecuteFixedUpdate(dir, _isJump, _groundChecker.IsWalled());
             _isJump = false;
+            IsFall = _stateContext.IsFall;
         }
         public void Jump()
         {

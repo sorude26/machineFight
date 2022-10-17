@@ -16,19 +16,31 @@ public class PlayerMachineController : MonoBehaviour
         PlayerInput.SetEnterInput(InputType.Jump, _machineController.ExecuteJump);
         PlayerInput.SetEnterInput(InputType.Fire2, ShotRight);
         PlayerInput.SetEnterInput(InputType.Fire1, ShotLeft);
+        PlayerInput.SetEnterInput(InputType.Booster, JetBoost);
     }
     private void FixedUpdate()
     {
         _playerCamera.FreeLock(PlayerInput.CameraDir);
         var dir = new Vector3(PlayerInput.MoveDir.x, 0, PlayerInput.MoveDir.y);
+        _machineController.SetLockOn(LockOnController.Instance.GetTarget());
         _machineController.ExecuteFixedUpdate(dir);
     }
     public void ShotLeft()
     {
         _machineController.ShotLeft();
+        _machineController.ShotRight();
     }
     public void ShotRight()
     {
-        _machineController.ShotRight();
+        //_machineController.ShotRight();
+        ChangeTarget();
+    }
+    public void JetBoost()
+    {
+        _machineController.ExecuteJet(new Vector3(PlayerInput.MoveDir.x, 0, PlayerInput.MoveDir.y));
+    }
+    public void ChangeTarget()
+    {
+        LockOnController.Instance.ChangeTargetNum();
     }
 }
