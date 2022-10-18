@@ -11,24 +11,40 @@ public class PlayerMachineController : MonoBehaviour
     private MachinePartsController _machineController = default;
     [SerializeField]
     private Transform _lockTrans = default;
+    [SerializeField]
+    private TargetMark _targetMark = default;
     private void Start()
     {
         PlayerInput.SetEnterInput(InputType.Jump, _machineController.ExecuteJump);
         PlayerInput.SetEnterInput(InputType.Fire2, ShotRight);
         PlayerInput.SetEnterInput(InputType.Fire1, ShotLeft);
+        PlayerInput.SetEnterInput(InputType.Booster, JetBoost);
     }
     private void FixedUpdate()
     {
         _playerCamera.FreeLock(PlayerInput.CameraDir);
         var dir = new Vector3(PlayerInput.MoveDir.x, 0, PlayerInput.MoveDir.y);
+        var locktarget = LockOnController.Instance.GetTarget();
+        _targetMark.Target = locktarget;
+        _machineController.SetLockOn(locktarget);
         _machineController.ExecuteFixedUpdate(dir);
     }
     public void ShotLeft()
     {
         _machineController.ShotLeft();
+        _machineController.ShotRight();
     }
     public void ShotRight()
     {
-        _machineController.ShotRight();
+        //_machineController.ShotRight();
+        ChangeTarget();
+    }
+    public void JetBoost()
+    {
+        _machineController.ExecuteJet(new Vector3(PlayerInput.MoveDir.x, 0, PlayerInput.MoveDir.y));
+    }
+    public void ChangeTarget()
+    {
+        LockOnController.Instance.ChangeTargetNum();
     }
 }

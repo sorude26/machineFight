@@ -80,6 +80,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""JetBoost"",
+                    ""type"": ""Button"",
+                    ""id"": ""ec2dfced-8714-47fe-b2af-85630ccce409"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -195,8 +204,41 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""07e663d0-c196-4d27-a518-5c6479d47d30"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""86dd8a81-c854-4310-b079-bcafa81e89cd"",
                     ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50be9c2b-fe0c-446d-9358-4b5b23f9ec15"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dfdae6ad-e804-4732-85f1-ec197d65a944"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -219,6 +261,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""6e495f14-c7fb-4795-ad9e-93738326934f"",
                     ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b5c084d-9ece-4333-a291-e54df66d5773"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -283,12 +336,56 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""214204ce-0ff2-4f30-932b-94480dd732f2"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""71928ce6-1239-4975-8673-70d03119bd88"",
                     ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Attack2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b4b1b7e-7440-4f00-b91f-a2fcf1b806f5"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b37a2176-f7b5-4f8e-ab01-52ec252b8e63"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JetBoost"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27674dea-84a6-45d0-86a9-47371018b29a"",
+                    ""path"": ""<Keyboard>/rightShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JetBoost"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -305,6 +402,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_InputMap_Attack1 = m_InputMap.FindAction("Attack1", throwIfNotFound: true);
         m_InputMap_Camera = m_InputMap.FindAction("Camera", throwIfNotFound: true);
         m_InputMap_Attack2 = m_InputMap.FindAction("Attack2", throwIfNotFound: true);
+        m_InputMap_JetBoost = m_InputMap.FindAction("JetBoost", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -370,6 +468,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InputMap_Attack1;
     private readonly InputAction m_InputMap_Camera;
     private readonly InputAction m_InputMap_Attack2;
+    private readonly InputAction m_InputMap_JetBoost;
     public struct InputMapActions
     {
         private @InputControls m_Wrapper;
@@ -380,6 +479,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @Attack1 => m_Wrapper.m_InputMap_Attack1;
         public InputAction @Camera => m_Wrapper.m_InputMap_Camera;
         public InputAction @Attack2 => m_Wrapper.m_InputMap_Attack2;
+        public InputAction @JetBoost => m_Wrapper.m_InputMap_JetBoost;
         public InputActionMap Get() { return m_Wrapper.m_InputMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -407,6 +507,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Attack2.started -= m_Wrapper.m_InputMapActionsCallbackInterface.OnAttack2;
                 @Attack2.performed -= m_Wrapper.m_InputMapActionsCallbackInterface.OnAttack2;
                 @Attack2.canceled -= m_Wrapper.m_InputMapActionsCallbackInterface.OnAttack2;
+                @JetBoost.started -= m_Wrapper.m_InputMapActionsCallbackInterface.OnJetBoost;
+                @JetBoost.performed -= m_Wrapper.m_InputMapActionsCallbackInterface.OnJetBoost;
+                @JetBoost.canceled -= m_Wrapper.m_InputMapActionsCallbackInterface.OnJetBoost;
             }
             m_Wrapper.m_InputMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -429,6 +532,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Attack2.started += instance.OnAttack2;
                 @Attack2.performed += instance.OnAttack2;
                 @Attack2.canceled += instance.OnAttack2;
+                @JetBoost.started += instance.OnJetBoost;
+                @JetBoost.performed += instance.OnJetBoost;
+                @JetBoost.canceled += instance.OnJetBoost;
             }
         }
     }
@@ -441,5 +547,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnAttack1(InputAction.CallbackContext context);
         void OnCamera(InputAction.CallbackContext context);
         void OnAttack2(InputAction.CallbackContext context);
+        void OnJetBoost(InputAction.CallbackContext context);
     }
 }

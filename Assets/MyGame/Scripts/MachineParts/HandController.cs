@@ -17,6 +17,8 @@ public class HandController : MonoBehaviour
     [SerializeField]
     private Transform _aimArm = default;
     [SerializeField]
+    private Transform _lockAim = default;
+    [SerializeField]
     private TestWeapon _weapon = default;
     private bool _firstShot = false;
     private bool _isShooting = false;
@@ -33,6 +35,10 @@ public class HandController : MonoBehaviour
     {
         transform.position = _joint.position;
         transform.rotation = _joint.rotation;
+    }
+    public void ExecuteFixedUpdate()
+    {
+        _topRotaion = _lockAim.localRotation;
     }
     private void LockOn(Vector3 targetPos)
     {

@@ -26,6 +26,7 @@ public partial class LegStateContext
     public Transform LegTrans = default;
     public Transform LegBaseTrans = default;
     public Transform BodyTrans = default;
+    public bool IsFall = false;
     public LegStateContext(Animator animator, MyGame.MoveController moveController)
     {
         _legAnimator = animator;
