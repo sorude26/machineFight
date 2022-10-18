@@ -7,7 +7,7 @@ using UnityEngine.XR;
 
 public class BodyController : MonoBehaviour
 {
-    private const float ATTACK_ANGLE = 0.95f;
+    private const float ATTACK_ANGLE = 0.91f;
     [SerializeField]
     private BodyParam _param = default;
     [SerializeField]
@@ -121,8 +121,12 @@ public class BodyController : MonoBehaviour
         }
         _moveController.VelocityMove(Vector3.up * _param.UpPower);
     }
-    public void AngleBoost(Vector3 dir)
+    public void AngleBoost(Vector3 dir, bool isFall)
     {
+        if (isFall == false)
+        {
+            return;
+        }
         _jetTimer = _param.JetTime;
         if (_boster != null && _boster.IsBoost == false)
         {

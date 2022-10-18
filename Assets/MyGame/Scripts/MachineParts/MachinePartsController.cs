@@ -40,7 +40,7 @@ namespace MyGame
         }
         public void ExecuteJet(Vector3 dir)
         {
-            _bodyController.AngleBoost(dir);
+            _bodyController.AngleBoost(dir, _legController.IsFall);
         }
         public void ShotLeft()
         {
