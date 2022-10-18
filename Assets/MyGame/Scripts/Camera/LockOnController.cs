@@ -8,7 +8,7 @@ public class LockOnController : MonoBehaviour
 {
     public static LockOnController Instance { get; private set; }
     /// <summary> ロックオン範囲 </summary>
-    public const float LOCK_ON_ANGLE = 0.95f;
+    public const float LOCK_ON_ANGLE = 0.9f;
     [Tooltip("カメラ位置")]
     [SerializeField]
     private Transform _cameraTrans = default;
@@ -79,7 +79,8 @@ public class LockOnController : MonoBehaviour
             return;
         }
         Vector3 targetDir = target.transform.position - _cameraTrans.position;
-        if (ChackAngle(targetDir) && !Physics.Raycast(_cameraTrans.position,target.transform.position, _wallLayer))
+        float range = Vector3.Distance(_cameraTrans.position, target.transform.position);
+        if (ChackAngle(targetDir) && !Physics.Raycast(_cameraTrans.position, targetDir, range, _wallLayer))
         {
             target.SetLockOn(LockOnSpeed);
         }

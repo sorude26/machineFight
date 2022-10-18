@@ -11,6 +11,7 @@ public class LockOnTarget : MonoBehaviour
     private float _timer = 0;
     /// <summary> ロックオン中フラグ </summary>
     public bool IsLockOn { get; private set; }
+    private bool _isActive = true;
     
     private void Start()
     {
@@ -19,6 +20,7 @@ public class LockOnTarget : MonoBehaviour
     private void OnDisable()
     {
         IsLockOn = false;
+        _isActive = false;
     }
     /// <summary>
     /// 設定時間を超えるとロックオン
@@ -26,7 +28,7 @@ public class LockOnTarget : MonoBehaviour
     /// <param name="lockSpeed"></param>
     public void SetLockOn(float lockSpeed = 1)
     {
-        if (IsLockOn == true)
+        if (IsLockOn == true || _isActive == false)
         {
             return;
         }
