@@ -36,9 +36,10 @@ public class HandController : MonoBehaviour
         transform.position = _joint.position;
         transform.rotation = _joint.rotation;
     }
-    public void ExecuteFixedUpdate()
+    public void SetCameraAim()
     {
         _topRotaion = _lockAim.localRotation;
+        _handRotaion = Quaternion.identity;
     }
     private void LockOn(Vector3 targetPos)
     {

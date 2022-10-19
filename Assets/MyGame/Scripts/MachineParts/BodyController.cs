@@ -60,14 +60,14 @@ public class BodyController : MonoBehaviour
             }
             else
             {
-                _lHand?.ExecuteFixedUpdate();
-                _rHand?.ExecuteFixedUpdate();
+                _lHand?.SetCameraAim();
+                _rHand?.SetCameraAim();
             }
         }
         else
         {
-            _lHand?.ExecuteFixedUpdate();
-            _rHand?.ExecuteFixedUpdate();
+            _lHand?.SetCameraAim();
+            _rHand?.SetCameraAim();
         }
         if (_boster != null && _boster.IsBoost == true && isFall == false)
         {
