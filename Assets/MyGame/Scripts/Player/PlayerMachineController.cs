@@ -19,9 +19,11 @@ public class PlayerMachineController : MonoBehaviour
         PlayerInput.SetEnterInput(InputType.Fire2, ShotRight);
         PlayerInput.SetEnterInput(InputType.Fire1, ShotLeft);
         PlayerInput.SetEnterInput(InputType.Booster, JetBoost);
+        _machineController.Initialize();
     }
     private void FixedUpdate()
     {
+        if (_machineController.IsInitalized == false) { return; }
         _playerCamera.FreeLock(PlayerInput.CameraDir);
         var dir = new Vector3(PlayerInput.MoveDir.x, 0, PlayerInput.MoveDir.y);
         var locktarget = LockOnController.Instance.GetTarget();

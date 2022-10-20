@@ -18,8 +18,16 @@ namespace MyGame
         private float _naviInterval = 1f;
         private float _timer = 0f;
         private Vector3 _currentDir = Vector3.zero;
+        private void Start()
+        {
+            _machineController.Initialize();
+        }
         private void FixedUpdate()
         {
+            if (_machineController.IsInitalized == false)
+            {
+                return;
+            }
             _timer += Time.fixedDeltaTime;
             if (_timer > _naviInterval)
             {
