@@ -20,6 +20,7 @@ public class NavigationManager : MonoBehaviour
     private float _rayRange = 5f;
     private WaitForSeconds _updateInterval = default;
     private NavigationMap _navMap = default;
+    public Transform Target { get => _target; }
     private void Awake()
     {
         if (Instance != null)
