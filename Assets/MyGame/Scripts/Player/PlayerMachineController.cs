@@ -19,6 +19,7 @@ public class PlayerMachineController : MonoBehaviour
         PlayerInput.SetEnterInput(InputType.Fire2, ShotRight);
         PlayerInput.SetEnterInput(InputType.Fire1, ShotLeft);
         PlayerInput.SetEnterInput(InputType.Booster, JetBoost);
+        PlayerInput.SetEnterInput(InputType.ChangeTarget, ChangeTarget);
         _machineController.Initialize();
     }
     private void FixedUpdate()
@@ -34,12 +35,10 @@ public class PlayerMachineController : MonoBehaviour
     public void ShotLeft()
     {
         _machineController.ShotLeft();
-        _machineController.ShotRight();
     }
     public void ShotRight()
     {
-        //_machineController.ShotRight();
-        ChangeTarget();
+        _machineController.ShotRight();
     }
     public void JetBoost()
     {
