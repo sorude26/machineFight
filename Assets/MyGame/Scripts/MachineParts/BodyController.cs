@@ -19,12 +19,12 @@ public class BodyController : MonoBehaviour
     [SerializeField]
     private Rigidbody _moveRb = default;
     private MoveController _moveController = default;
-    public Transform BodyBase = null;
-    public Transform Lock = null;
-
-    public Transform TestTarget = null;
     private bool _isShoot = false;
     private float _jetTimer = 0;
+
+    public Transform BodyBase = null;
+    public Transform Lock = null;
+    public Transform AttackTarget = null;
     public bool IsDown = false; 
     public void Initialize()
     {
@@ -48,14 +48,14 @@ public class BodyController : MonoBehaviour
         _lHand?.PartsMotion();
         _rHand?.PartsMotion();
 
-        if (TestTarget != null && IsDown == false)
+        if (AttackTarget != null && IsDown == false)
         {
-            Vector3 targetDir = TestTarget.position - transform.position;
+            Vector3 targetDir = AttackTarget.position - transform.position;
             targetDir.y = 0.0f;
             if (ChackAngle(targetDir))
             {
-                _lHand.SetLockOn(TestTarget.position);
-                _rHand.SetLockOn(TestTarget.position);
+                _lHand.SetLockOn(AttackTarget.position);
+                _rHand.SetLockOn(AttackTarget.position);
                 _isShoot = true;
             }
             else if (_isShoot == true)

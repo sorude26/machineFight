@@ -33,7 +33,7 @@ namespace MyGame
         }
         public void SetLockOn(Transform target)
         {
-            _bodyController.TestTarget = target;
+            _bodyController.AttackTarget = target;
         }
         public void ExecuteJump()
         {
