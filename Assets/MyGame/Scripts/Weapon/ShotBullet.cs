@@ -16,6 +16,8 @@ public class ShotBullet : MonoBehaviour
     private bool _penetrate = default;
     [SerializeField]
     private float _radius = 0f;
+    [SerializeField]
+    private ShakeParam _hitShakeParam = default;
     private float _timer = 0f;
     private float _speed = 5f;
     private int _power = 1;
@@ -37,12 +39,17 @@ public class ShotBullet : MonoBehaviour
         if (_penetrate == true) { return; }
         ActiveEnd();
     }
+    protected void PlayShake()
+    {
+        StageShakeController.PlayShake(transform.position + _hitShakeParam.Pos, _hitShakeParam.Power, _hitShakeParam.Time);
+    }
     private void PlayHitEffect(Vector3 hitPos)
     {
         var effect = ObjectPoolManager.Instance.Use(_hitEffect);
         effect.transform.position = hitPos;
         effect.transform.forward = transform.forward;
         effect.gameObject.SetActive(true);
+        PlayShake();
     }
     private void MoveBullet()
     {

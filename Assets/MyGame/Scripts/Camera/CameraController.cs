@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour
         _cameraRot = _cameraTarget.localRotation;
         _forwardRot = _forwardTarget.localRotation;
         _cameraRot *= Quaternion.Euler(0, dir.x * _lockSpeed, 0);
-        _forwardRot *= Quaternion.Euler(dir.y * _upSpeed, 0, 0);
+        _forwardRot *= Quaternion.Euler(-dir.y * _upSpeed, 0, 0);
         _forwardRot = ClampRotationX(_forwardRot);
     }
     public void ResetLock()

@@ -19,6 +19,7 @@ public partial class LegStateContext
     private JumpState _jumpState = new JumpState();
     private FallState _fallState = new FallState();
     private LandingState _landingState = new LandingState();
+    private DownState _downState = new DownState();
     //-----------------------------------------------------------
     #endregion
     public LegAnimation AnimeName = default;
@@ -49,6 +50,10 @@ public partial class LegStateContext
         _jumpInput = jumpInput;
         _groundCheck = groundCheck;
         _currentState.ExecuteFixedUpdate(this);
+    }
+    public void ChangeToDown()
+    {
+        ChangeState(_downState);
     }
     private void ChangeState(ILegState legState)
     {

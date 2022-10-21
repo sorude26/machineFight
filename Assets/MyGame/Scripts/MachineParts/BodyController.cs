@@ -7,7 +7,7 @@ using UnityEngine.XR;
 
 public class BodyController : MonoBehaviour
 {
-    private const float ATTACK_ANGLE = 0.91f;
+    private const float ATTACK_ANGLE = 0.6f;
     [SerializeField]
     private BodyParam _param = default;
     [SerializeField]
@@ -19,14 +19,14 @@ public class BodyController : MonoBehaviour
     [SerializeField]
     private Rigidbody _moveRb = default;
     private MoveController _moveController = default;
-    public Transform BodyBase = null;
-    public Transform Lock = null;
-
-    public Transform TestTarget = null;
-    public bool Check = false;
     private bool _isShoot = false;
     private float _jetTimer = 0;
-    private void Start()
+
+    public Transform BodyBase = null;
+    public Transform Lock = null;
+    public Transform AttackTarget = null;
+    public bool IsDown = false; 
+    public void Initialize()
     {
         if (_moveRb != null)
         {
@@ -36,6 +36,11 @@ public class BodyController : MonoBehaviour
     private void FixedUpdate()
     {
         transform.position = BodyBase.position;
+        if (IsDown == true)
+        {
+            transform.forward = Vector3.Lerp(transform.forward, BodyBase.forward, Time.fixedDeltaTime);
+            return;            
+        }
         transform.forward = Lock.forward;
     }
     public void ExecuteFixedUpdate(bool isFall)
@@ -43,14 +48,14 @@ public class BodyController : MonoBehaviour
         _lHand?.PartsMotion();
         _rHand?.PartsMotion();
 
-        if (TestTarget != null)
+        if (AttackTarget != null && IsDown == false)
         {
-            Vector3 targetDir = TestTarget.position - transform.position;
+            Vector3 targetDir = AttackTarget.position - transform.position;
             targetDir.y = 0.0f;
             if (ChackAngle(targetDir))
             {
-                _lHand.SetLockOn(TestTarget.position);
-                _rHand.SetLockOn(TestTarget.position);
+                _lHand.SetLockOn(AttackTarget.position);
+                _rHand.SetLockOn(AttackTarget.position);
                 _isShoot = true;
             }
             else if (_isShoot == true)
@@ -60,18 +65,21 @@ public class BodyController : MonoBehaviour
             }
             else
             {
-                _lHand?.ExecuteFixedUpdate();
-                _rHand?.ExecuteFixedUpdate();
+                _lHand?.SetCameraAim();
+                _rHand?.SetCameraAim();
             }
         }
-        else
+        else if(IsDown == false)
         {
-            _lHand?.ExecuteFixedUpdate();
-            _rHand?.ExecuteFixedUpdate();
+            _lHand?.SetCameraAim();
+            _rHand?.SetCameraAim();
         }
-        if (_boster != null && _boster.IsBoost == true && isFall == false)
+        if (_boster != null && _boster.IsBoost == true)
         {
-            _boster.StopBooster();
+            if (isFall == false || IsDown == true)
+            {
+                _boster.StopBooster();
+            }
         }
         if (_jetTimer > 0)
         {
@@ -81,14 +89,14 @@ public class BodyController : MonoBehaviour
     private bool ChackAngle(Vector3 targetDir)
     {
         var angle = Vector3.Dot(targetDir.normalized, transform.forward);
-        if (Check)
-        {
-            Debug.Log(angle);
-        }
         return angle > ATTACK_ANGLE;
     }
     public void BoostMove(Vector3 dir)
     {
+        if (IsDown == true)
+        {
+            return;
+        }
         if (_boster != null && _boster.IsBoost == false)
         {
             _boster.StartBooster();
@@ -111,6 +119,10 @@ public class BodyController : MonoBehaviour
     }
     public void UpBoost()
     {
+        if (IsDown == true)
+        {
+            return;
+        }
         if (_boster != null)
         {
             if (_boster.IsBoost == false)
@@ -123,7 +135,7 @@ public class BodyController : MonoBehaviour
     }
     public void AngleBoost(Vector3 dir, bool isFall)
     {
-        if (isFall == false)
+        if (isFall == false || IsDown == true)
         {
             return;
         }

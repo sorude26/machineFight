@@ -22,7 +22,7 @@ namespace MyGame
         private LegStateContext _stateContext = default;
         private bool _isJump = false;
         public bool IsFall { get; private set; }
-        private void Start()
+        public void Initialize()
         {
             _moveController = new MoveController(_moveRb);
             _stateContext = new LegStateContext(_legAnimator, _moveController);
@@ -42,6 +42,10 @@ namespace MyGame
         public void Jump()
         {
             _isJump = true;
+        }
+        public void PowerDown()
+        {
+            _stateContext.ChangeToDown();
         }
     }
 }

@@ -11,6 +11,14 @@ namespace MyGame
         private BodyController _bodyController = default;
         [SerializeField]
         private LegController _legController = default;
+        private bool _isDown = false;
+        public bool IsInitalized { get; private set; }
+        public void Initialize()
+        {
+            _bodyController.Initialize();
+            _legController.Initialize();
+            IsInitalized = true;
+        }
         public void ExecuteFixedUpdate(Vector3 dir)
         {
             if (_legController != null)
@@ -25,7 +33,7 @@ namespace MyGame
         }
         public void SetLockOn(Transform target)
         {
-            _bodyController.TestTarget = target;
+            _bodyController.AttackTarget = target;
         }
         public void ExecuteJump()
         {
@@ -49,6 +57,16 @@ namespace MyGame
         public void ShotRight()
         {
             _bodyController.ShotRight();
+        }
+        public void PowerDownMachine()
+        {
+            if (_isDown == true)
+            {
+                return;
+            }
+            _isDown = true;
+            _bodyController.IsDown = true;
+            _legController.PowerDown();
         }
     }
 }

@@ -23,6 +23,8 @@ public class TestWeapon : MonoBehaviour
     protected float _shotInterval = 0.2f;
     [SerializeField]
     protected float _diffusivity = 0.01f;
+    [SerializeField]
+    private ShakeParam _shotShakeParam = default;
     private int _count = 0;
     public float Speed { get => _speed; }
     public bool IsShooting;
@@ -32,6 +34,7 @@ public class TestWeapon : MonoBehaviour
         var bullet = ShotBulletPool.GetObject(_bullet);
         bullet.transform.position = _muzzle.position;
         bullet.Shot(new BulletParam(Diffusivity(_muzzle.forward), _speed, _power));
+        PlayShake();
     }
     protected Vector3 Diffusivity(Vector3 target)
     {
@@ -42,6 +45,10 @@ public class TestWeapon : MonoBehaviour
             target.z += Random.Range(-_diffusivity, _diffusivity);
         }
         return target;
+    }
+    protected void PlayShake()
+    {
+        StageShakeController.PlayShake(transform.position + _shotShakeParam.Pos, _shotShakeParam.Power, _shotShakeParam.Time);
     }
     public virtual void Fire()
     {
