@@ -15,11 +15,11 @@ public class PlayerMachineController : MonoBehaviour
     private TargetMark _targetMark = default;
     private void Start()
     {
-        PlayerInput.SetEnterInput(InputType.Jump, _machineController.ExecuteJump);
-        PlayerInput.SetEnterInput(InputType.Fire2, ShotRight);
-        PlayerInput.SetEnterInput(InputType.Fire1, ShotLeft);
-        PlayerInput.SetEnterInput(InputType.Booster, JetBoost);
-        PlayerInput.SetEnterInput(InputType.ChangeTarget, ChangeTarget);
+        PlayerInput.SetEnterInput(InputMode.InGame,InputType.Jump, _machineController.ExecuteJump);
+        PlayerInput.SetEnterInput(InputMode.InGame, InputType.Fire2, ShotRight);
+        PlayerInput.SetEnterInput(InputMode.InGame, InputType.Fire1, ShotLeft);
+        PlayerInput.SetEnterInput(InputMode.InGame, InputType.Booster, JetBoost);
+        PlayerInput.SetEnterInput(InputMode.InGame, InputType.ChangeTarget, ChangeTarget);
         _machineController.Initialize();
     }
     private void FixedUpdate()

@@ -97,6 +97,7 @@ public class BodyController : MonoBehaviour
         {
             return;
         }
+        _moveController.MoveDecelerate();
         if (_boster != null && _boster.IsBoost == false)
         {
             _boster.StartBooster();
@@ -109,13 +110,14 @@ public class BodyController : MonoBehaviour
         {
             dir = dir.x * Lock.right + dir.z * Lock.forward;
             dir = dir.normalized * _param.BoostMoveSpeed;
-            dir.y = _moveRb.velocity.y;
+            //dir.y = _moveRb.velocity.y;
         }
         else
         {
-            dir.y = _moveRb.velocity.y * _param.BoostUpPower;
+            //dir.y = _moveRb.velocity.y * _param.BoostUpPower;
+            dir = Vector3.up * _param.BoostUpPower;
         }
-        _moveController.VelocityMove(dir);
+        _moveController.AddMove(dir);
     }
     public void UpBoost()
     {
@@ -131,7 +133,7 @@ public class BodyController : MonoBehaviour
             }
             _boster.MainBoost();
         }
-        _moveController.VelocityMove(Vector3.up * _param.UpPower);
+        _moveController.AddImpulse(Vector3.up * _param.UpPower);
     }
     public void AngleBoost(Vector3 dir, bool isFall)
     {
