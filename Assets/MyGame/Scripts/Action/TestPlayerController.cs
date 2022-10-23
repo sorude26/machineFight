@@ -19,7 +19,7 @@ namespace MyGame
         private MoveController _moveController = default;
         private void Start()
         {
-            PlayerInput.SetEnterInput(InputType.Jump,Jump);
+            //PlayerInput.SetEnterInput(InputType.Jump,Jump);
             _moveController = new MoveController(_rb);
         }
         private void Jump()

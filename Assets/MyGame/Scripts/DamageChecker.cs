@@ -13,6 +13,8 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     private UnityEvent _onDamageEvent = default;
     [SerializeField]
     private GameObject _deadEffect = default;
+    [SerializeField]
+    private bool _addCount = true;
     private int _hp = 1;
     public int CurrentHp { get { return _hp; } }
     private void Start()
@@ -28,6 +30,10 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
         {
             _hp = 0;
             _onDeadEvent?.Invoke();
+            if (_addCount == true)
+            {
+                StageManager.Instance.AddCount();
+            }
         }
     }
     public void PlayEffect()

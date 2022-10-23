@@ -13,18 +13,14 @@ namespace MyGame
         [SerializeField]
         private Transform _body = default;
         [SerializeField]
-        private Transform _playerLock = default;
-        [SerializeField]
         private float _transSpeed = 5f;
         [SerializeField]
         private float _naviInterval = 1f;
         private float _timer = 0f;
         private Vector3 _currentDir = Vector3.zero;
-        private Transform _player = default;
         private void Start()
         {
             _machineController.Initialize();
-            _player = NavigationManager.Instance.Target;
         }
         private void FixedUpdate()
         {
@@ -45,7 +41,6 @@ namespace MyGame
                 dir = Vector3.forward;
             }
             _machineController.ExecuteFixedUpdate(dir);
-            _playerLock.LookAt(_player);
         }
     }
 }
