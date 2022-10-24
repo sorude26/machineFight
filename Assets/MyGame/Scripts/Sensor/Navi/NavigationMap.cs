@@ -36,10 +36,14 @@ public class NavigationMap
         _therad = new Thread(new ThreadStart(MakeFootprints));
         _therad.Start();
     }
-    public Vector3 GetMoveDir(Transform user)
+    public Vector3 GetMoveDir(Transform user,int power)
     {
         var uPoint = _naviMap.Where(point => !point.IsNoEntry).OrderBy(point => Vector3.Distance(point.Pos, user.position)).FirstOrDefault();
         if (uPoint == null) { return Vector3.zero; }
+        if (uPoint.Footprints <= power)
+        {
+            return Vector3.zero;
+        }
         var target = uPoint.ConnectPoint.Where(point => uPoint.Footprints + 1 == point.Footprints).OrderBy(point => Vector3.Distance(point.Pos, user.position)).FirstOrDefault();
         if (target == null) { return Vector3.zero; }
         var dir = target.Pos - user.transform.position;
