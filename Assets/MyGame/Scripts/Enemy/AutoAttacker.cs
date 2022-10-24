@@ -13,9 +13,13 @@ public class AutoAttacker : MonoBehaviour
     [SerializeField]
     private LayerMask _wallLayer = default;
     [SerializeField]
+    private float _rayWide = 1f;
+    [SerializeField]
     private float LockOnRange = 500;
     [SerializeField]
-    private float _attackInterval = 3f;
+    private float _attackMaxInterval = 3f;
+    [SerializeField]
+    private float _attackIntervalDiffusivity = 0f;
     [SerializeField]
     private UnityEvent _onAttackEvent = default;
     [SerializeField]
@@ -49,7 +53,7 @@ public class AutoAttacker : MonoBehaviour
         }
         Vector3 targetDir = _player.position - _bodyTrans.position;
         float range = Vector3.Distance(_bodyTrans.position, _player.position);
-        if (ChackAngle(targetDir) && !Physics.Raycast(_bodyTrans.position, targetDir, range, _wallLayer))
+        if (ChackAngle(targetDir) && !Physics.SphereCast(_bodyTrans.position, _rayWide, targetDir, out RaycastHit hit, range, _wallLayer))
         {
             _playerLock.LookAt(_player);
             if (_attackTimer <= 0)
@@ -65,7 +69,7 @@ public class AutoAttacker : MonoBehaviour
     private void ExecuteAttack()
     {
         _onAttackEvent?.Invoke();
-        _attackTimer = _attackInterval;
+        _attackTimer = Random.Range(_attackMaxInterval - _attackIntervalDiffusivity, _attackMaxInterval);
     }
     /// <summary>
     /// îÕàÕì‡îªíËÇçsÇ§
