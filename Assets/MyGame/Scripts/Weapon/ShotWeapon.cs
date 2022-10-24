@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestWeapon : MonoBehaviour
+public class ShotWeapon : MonoBehaviour
 {
     [SerializeField]
     private ShotBullet _bullet = default;
