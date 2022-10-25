@@ -10,8 +10,6 @@ public class PlayerMachineController : MonoBehaviour
     [SerializeField]
     private MachinePartsController _machineController = default;
     [SerializeField]
-    private Transform _lockTrans = default;
-    [SerializeField]
     private TargetMark _targetMark = default;
     private void Start()
     {

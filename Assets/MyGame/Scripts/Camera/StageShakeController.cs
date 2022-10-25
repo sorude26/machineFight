@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 /// <summary>
 /// 登録された振動イベントを操作するクラス
 /// </summary>
