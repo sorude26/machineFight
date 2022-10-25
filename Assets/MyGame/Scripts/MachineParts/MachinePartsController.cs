@@ -8,15 +8,22 @@ namespace MyGame
     public class MachinePartsController : MonoBehaviour
     {
         [SerializeField]
-        private BodyController _bodyController = default;
+        private Rigidbody _moveRb = default;
         [SerializeField]
+        private MachineBuilder _builder = default;
+        private BodyController _bodyController = default;
         private LegController _legController = default;
+        private MoveController _moveController = default;
         private bool _isDown = false;
         public bool IsInitalized { get; private set; }
         public void Initialize()
         {
-            _bodyController.Initialize();
-            _legController.Initialize();
+            _builder.Build();
+            _bodyController = _builder.Body;
+            _legController = _builder.Leg;
+            _moveController = new MoveController(_moveRb);
+            _bodyController.Initialize(_moveController);
+            _legController.Initialize(_moveController);
             IsInitalized = true;
         }
         public void ExecuteFixedUpdate(Vector3 dir)

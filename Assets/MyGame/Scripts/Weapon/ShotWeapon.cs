@@ -1,9 +1,8 @@
-using MyGame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestWeapon : MonoBehaviour
+public class ShotWeapon : WeaponBase
 {
     [SerializeField]
     private ShotBullet _bullet = default;
@@ -11,11 +10,7 @@ public class TestWeapon : MonoBehaviour
     private ParticleSystem _muzzleFlashEffect = default;
     [SerializeField]
     private Transform _muzzle = default;
-    [SerializeField]
-    private float _speed = 200f;
-    [SerializeField]
-    private int _power = 10;
-    [SerializeField,Range(1,50)]
+    [SerializeField,Range(1,100)]
     private int _shotCount = 1;
     [SerializeField, Range(0, 30)]
     private int _subCount = 0;
@@ -23,11 +18,7 @@ public class TestWeapon : MonoBehaviour
     protected float _shotInterval = 0.2f;
     [SerializeField]
     protected float _diffusivity = 0.01f;
-    [SerializeField]
-    private ShakeParam _shotShakeParam = default;
     private int _count = 0;
-    public float Speed { get => _speed; }
-    public bool IsShooting;
     
     protected void Shot()
     {
@@ -46,13 +37,10 @@ public class TestWeapon : MonoBehaviour
         }
         return target;
     }
-    protected void PlayShake()
+    
+    public override void Fire()
     {
-        StageShakeController.PlayShake(transform.position + _shotShakeParam.Pos, _shotShakeParam.Power, _shotShakeParam.Time);
-    }
-    public virtual void Fire()
-    {
-        if (IsShooting == true)
+        if (IsFire == true)
         {
             return;
         }
@@ -60,7 +48,7 @@ public class TestWeapon : MonoBehaviour
     }
     protected IEnumerator FireImpl()
     {
-        IsShooting = true;
+        IsFire = true;
         _count = 0;
         while (_count < _shotCount)
         {
@@ -76,7 +64,7 @@ public class TestWeapon : MonoBehaviour
             _count++;
             yield return WaitShot();
         }
-        IsShooting = false;
+        IsFire = false;
     }
     private IEnumerator WaitShot()
     {

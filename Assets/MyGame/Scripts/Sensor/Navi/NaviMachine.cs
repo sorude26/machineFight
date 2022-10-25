@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace MyGame
 {
@@ -12,6 +13,8 @@ namespace MyGame
         private Transform _lockTrans = default;
         [SerializeField]
         private Transform _body = default;
+        [SerializeField]
+        private int _naviPower = 0;
         [SerializeField]
         private float _transSpeed = 5f;
         [SerializeField]
@@ -32,7 +35,7 @@ namespace MyGame
             if (_timer > _naviInterval)
             {
                 _timer = 0;
-                _currentDir = NavigationManager.Instance.GetMoveDir(_body);
+                _currentDir = NavigationManager.Instance.GetMoveDir(_body, _naviPower);
             }
             Vector3 dir = Vector3.zero;
             if (_currentDir != Vector3.zero)

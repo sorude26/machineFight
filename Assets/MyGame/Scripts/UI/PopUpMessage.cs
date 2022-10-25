@@ -44,7 +44,7 @@ public class PopUpMessage : MonoBehaviour
         }
         if (submitAction != null)
         {
-            _cancelText.text = data.Submit;
+            _submitText.text = data.Submit;
             _submitButton.onClick.AddListener(() => { submitAction?.Invoke(); });
             _submitButton.gameObject.SetActive(true);
         }

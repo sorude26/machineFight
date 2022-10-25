@@ -12,6 +12,7 @@ public class StageManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        PartsManager.Instance.LoadData();
     }
     public void AddCount(int count = 1)
     {

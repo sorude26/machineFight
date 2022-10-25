@@ -68,12 +68,12 @@ public class NavigationManager : MonoBehaviour
             }
         }
     }
-    public Vector3 GetMoveDir(Transform user)
+    public Vector3 GetMoveDir(Transform user,int power = 0)
     {
         if (_navMap is null)
         {
             return Vector3.zero;
         }
-        return _navMap.GetMoveDir(user);
+        return _navMap.GetMoveDir(user,power);
     }
 }

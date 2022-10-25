@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandController : MonoBehaviour
+public class HandController : MonoBehaviour, IPartsModel
 {
     private const float ATTACK_ANGLE = 0.999f;
     [SerializeField]
-    private Transform _joint = default;
+    private int _id = default;
     [SerializeField]
     private Transform _shoulder = default;
     [SerializeField]
@@ -18,7 +18,9 @@ public class HandController : MonoBehaviour
     [SerializeField]
     private Transform _lockAim = default;
     [SerializeField]
-    private TestWeapon _weapon = default;
+    private Transform _grip = default;
+    [SerializeField]
+    private WeaponBase _weapon = default;
     private bool _firstShot = false;
     private bool _isShooting = false;
     private Vector3 _targetCurrent = default;
@@ -30,11 +32,9 @@ public class HandController : MonoBehaviour
     public bool IsAttack;
 
     public Transform TargetTrans = default;
-    private void FixedUpdate()
-    {
-        transform.position = _joint.position;
-        transform.rotation = _joint.rotation;
-    }
+
+    public int ID { get => _id; }
+
     public void SetCameraAim()
     {
         _topRotaion = _lockAim.localRotation;
@@ -72,6 +72,17 @@ public class HandController : MonoBehaviour
         }
         LockOn(targetPos);
     }
+    public void SetWeapon(WeaponBase weapon)
+    {
+        weapon.transform.SetParent(_grip);
+        weapon.transform.localPosition = Vector3.zero;
+        weapon.transform.localRotation = Quaternion.identity;
+        _weapon = weapon;
+    }
+    public void SetLockAim(Transform target)
+    {
+        _lockAim = target;
+    }
     public void StartShot()
     {
         IsAttack = true;
@@ -94,9 +105,9 @@ public class HandController : MonoBehaviour
     }
     private IEnumerator AttackImpl()
     {
-        while (IsAttack == true || _weapon.IsShooting == true)
+        while (IsAttack == true || _weapon.IsFire == true)
         {
-            if (IsAttack == true && _weapon.IsShooting == false && ChackAngle())
+            if (IsAttack == true && _weapon.IsFire == false && ChackAngle())
             {
                 _weapon.Fire();
                 IsAttack = false;

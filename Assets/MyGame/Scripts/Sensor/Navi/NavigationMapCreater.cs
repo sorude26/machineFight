@@ -41,13 +41,13 @@ public class NavigationMapCreater : MonoBehaviour
                 _maxHorizontalIndex = 0;
             }
         }
-        Debug.Log($"CreateEnd Horizontal:{_maxHorizontalIndex},Vertical:{_indexCount / _maxHorizontalIndex}");
+        //Debug.Log($"CreateEnd Horizontal:{_maxHorizontalIndex},Vertical:{_indexCount / _maxHorizontalIndex}");
         _mapIndex = new SquaresIndex(_maxHorizontalIndex, _indexCount / _maxHorizontalIndex);
         foreach (var point in _naviMap)
         {
             SetNeighorPoint(point);
         }
-        Debug.Log($"ConnectEnd TotalIndex:{_indexCount},TotalCount:{_naviMap.Count}");
+        //Debug.Log($"ConnectEnd TotalIndex:{_indexCount},TotalCount:{_naviMap.Count}");
         return new NavigationMap(_naviMap, _maxHorizontalIndex);
     }
     private void SetNaviPoint(Vector3 start)
