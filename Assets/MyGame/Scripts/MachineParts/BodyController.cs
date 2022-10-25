@@ -3,35 +3,62 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 
-public class BodyController : MonoBehaviour
+public class BodyController : MonoBehaviour, IPartsModel
 {
     private const float ATTACK_ANGLE = 0.6f;
     [SerializeField]
-    private BodyParam _param = default;
+    private int _id = default;
     [SerializeField]
-    private HandController _rHand = default;
+    private BodyParam _param = default;
     [SerializeField]
     private HandController _lHand = default;
     [SerializeField]
+    private HandController _rHand = default;
+    [SerializeField]
     private BoosterController _boster = null;
     [SerializeField]
-    private Rigidbody _moveRb = default;
+    private Transform _headJoint = default;
+    [SerializeField]
+    private Transform _backPackJoint = default;
+    [SerializeField]
+    private Transform _lHandJoint = default;
+    [SerializeField]
+    private Transform _rHandJoint = default;
     private MoveController _moveController = default;
     private bool _isShoot = false;
     private float _jetTimer = 0;
+    private List<BoosterController> _boosters = new List<BoosterController>();
 
     public Transform BodyBase = null;
     public Transform Lock = null;
     public Transform AttackTarget = null;
-    public bool IsDown = false; 
-    public void Initialize()
+    public bool IsDown = false;
+    public int ID { get => _id; }
+    public Transform HeadJoint { get => _headJoint; } 
+    public void Initialize(MoveController moveController)
     {
-        if (_moveRb != null)
-        {
-            _moveController = new MoveController(_moveRb);
-        }
+        _moveController = moveController;
+        _boosters.Add(_boster);
+    }
+    public void SetHands(HandController lhand,HandController rhand)
+    {
+        _lHand = lhand;
+        _lHand.transform.SetParent(_lHandJoint);
+        _lHand.transform.localPosition = Vector3.zero;
+        _lHand.transform.localRotation = Quaternion.identity;
+        _lHand.transform.localScale = new Vector3(-1, 1, 1);
+        _rHand = rhand;
+        _rHand.transform.SetParent(_rHandJoint);
+        _rHand.transform.localPosition = Vector3.zero;
+        _rHand.transform.localRotation = Quaternion.identity;
+    }
+    public void SetBooster(BoosterController booster)
+    {
+        booster.transform.SetParent(_backPackJoint);
+        booster.transform.localPosition = Vector3.zero;
+        booster.transform.localRotation = Quaternion.identity;
+        _boosters.Add(booster);
     }
     private void FixedUpdate()
     {
@@ -78,7 +105,10 @@ public class BodyController : MonoBehaviour
         {
             if (isFall == false || IsDown == true)
             {
-                _boster.StopBooster();
+                foreach (var booster in _boosters)
+                {
+                    booster.StopBooster();
+                }
             }
         }
         if (_jetTimer > 0)
@@ -100,7 +130,10 @@ public class BodyController : MonoBehaviour
         _moveController.MoveDecelerate();
         if (_boster != null && _boster.IsBoost == false)
         {
-            _boster.StartBooster();
+            foreach (var booster in _boosters)
+            {
+                booster.StartBooster();
+            }
         }
         if (_jetTimer > 0)
         {
@@ -110,11 +143,9 @@ public class BodyController : MonoBehaviour
         {
             dir = dir.x * Lock.right + dir.z * Lock.forward;
             dir = dir.normalized * _param.BoostMoveSpeed;
-            //dir.y = _moveRb.velocity.y;
         }
         else
         {
-            //dir.y = _moveRb.velocity.y * _param.BoostUpPower;
             dir = Vector3.up * _param.BoostUpPower;
         }
         _moveController.AddMove(dir);
@@ -129,9 +160,15 @@ public class BodyController : MonoBehaviour
         {
             if (_boster.IsBoost == false)
             {
-                _boster.StartBooster();
+                foreach (var booster in _boosters)
+                {
+                    booster.StartBooster();
+                }
             }
-            _boster.MainBoost();
+            foreach (var booster in _boosters)
+            {
+                booster.MainBoost();
+            }
         }
         _moveController.AddImpulse(Vector3.up * _param.UpPower);
     }
