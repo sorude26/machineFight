@@ -21,6 +21,8 @@ public class HandController : MonoBehaviour, IPartsModel
     private Transform _grip = default;
     [SerializeField]
     private WeaponBase _weapon = default;
+    [SerializeField]
+    private BoosterController _shoulderBoosters = default;
     private bool _firstShot = false;
     private bool _isShooting = false;
     private Vector3 _targetCurrent = default;
@@ -32,7 +34,7 @@ public class HandController : MonoBehaviour, IPartsModel
     public bool IsAttack;
 
     public Transform TargetTrans = default;
-
+    public BoosterController ShoulderBoost { get => _shoulderBoosters; }
     public int ID { get => _id; }
 
     public void SetCameraAim()
