@@ -42,8 +42,6 @@ public class BoosterController : MonoBehaviour, IPartsModel
         {
             booster.Play();
         }
-        LeftBoost();
-        RightBoost();
     }
     public void BackBoost()
     {
@@ -51,8 +49,6 @@ public class BoosterController : MonoBehaviour, IPartsModel
         {
             booster.Play();
         }
-        LeftBoost();
-        RightBoost();
     }
     public void LeftBoost()
     {

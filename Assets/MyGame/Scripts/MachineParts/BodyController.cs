@@ -7,6 +7,7 @@ using UnityEngine;
 public class BodyController : MonoBehaviour, IPartsModel
 {
     private const float ATTACK_ANGLE = 0.6f;
+    private const float FRONT_ANGLE = 0.6f;
     [SerializeField]
     private int _id = default;
     [SerializeField]
@@ -29,7 +30,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     private bool _isShoot = false;
     private float _jetTimer = 0;
     private List<BoosterController> _boosters = new List<BoosterController>();
-
+    public event Action OnBodyDestroy = default;
     public Transform BodyBase = null;
     public Transform Lock = null;
     public Transform AttackTarget = null;
@@ -60,12 +61,16 @@ public class BodyController : MonoBehaviour, IPartsModel
         booster.transform.localRotation = Quaternion.identity;
         _boosters.Add(booster);
     }
+    public void AddBooster(BoosterController booster)
+    {
+        _boosters.Add(booster);
+    }
     private void FixedUpdate()
     {
         transform.position = BodyBase.position;
         if (IsDown == true)
         {
-            transform.forward = Vector3.Lerp(transform.forward, BodyBase.forward, Time.fixedDeltaTime);
+            transform.forward = Vector3.Lerp(transform.forward, BodyBase.forward, Time.deltaTime);
             return;            
         }
         transform.forward = Lock.forward;
@@ -109,6 +114,8 @@ public class BodyController : MonoBehaviour, IPartsModel
                 {
                     booster.StopBooster();
                 }
+                _lHand.ShoulderBoost.StopBooster();
+                _rHand.ShoulderBoost.StopBooster();
             }
         }
         if (_jetTimer > 0)
@@ -134,6 +141,8 @@ public class BodyController : MonoBehaviour, IPartsModel
             {
                 booster.StartBooster();
             }
+            _lHand.ShoulderBoost.StartBooster();
+            _rHand.ShoulderBoost.StartBooster();
         }
         if (_jetTimer > 0)
         {
@@ -164,11 +173,15 @@ public class BodyController : MonoBehaviour, IPartsModel
                 {
                     booster.StartBooster();
                 }
+                _lHand.ShoulderBoost.StartBooster();
+                _rHand.ShoulderBoost.StartBooster();
             }
             foreach (var booster in _boosters)
             {
                 booster.MainBoost();
             }
+            _lHand.ShoulderBoost.MainBoost();
+            _rHand.ShoulderBoost.MainBoost();
         }
         _moveController.AddImpulse(Vector3.up * _param.UpPower);
     }
@@ -181,23 +194,50 @@ public class BodyController : MonoBehaviour, IPartsModel
         _jetTimer = _param.JetTime;
         if (_boster != null && _boster.IsBoost == false)
         {
-            _boster.StartBooster();
+            foreach (var booster in _boosters)
+            {
+                booster.StartBooster();
+            }
+            _lHand.ShoulderBoost.StartBooster();
+            _rHand.ShoulderBoost.StartBooster();
         }
-        if (dir.x > 0 && Mathf.Abs(dir.z) <= 0.6f)
+        if (dir.x > 0 && Mathf.Abs(dir.z) <= FRONT_ANGLE)
         {
-            _boster.LeftBoost();
+            foreach (var booster in _boosters)
+            {
+                booster.LeftBoost();
+            }
+            _lHand.ShoulderBoost.LeftBoost();
         }
-        else if (dir.x < 0 && Mathf.Abs(dir.z) <= 0.6f)
+        else if (dir.x < 0 && Mathf.Abs(dir.z) <= FRONT_ANGLE)
         {
-            _boster.RightBoost();
+            foreach (var booster in _boosters)
+            {
+                booster.RightBoost();
+            }
+            _rHand.ShoulderBoost.RightBoost();
         }
         else if (dir.z > 0)
         {
-            _boster.MainBoost();
+            foreach (var booster in _boosters)
+            {
+                booster.MainBoost();
+                booster.LeftBoost();
+                booster.RightBoost();
+            }
+            _lHand.ShoulderBoost.MainBoost();
+            _rHand.ShoulderBoost.MainBoost();
+            _lHand.ShoulderBoost.LeftBoost();
+            _rHand.ShoulderBoost.RightBoost();
         }
         else
         {
-            _boster.BackBoost();
+            foreach (var booster in _boosters)
+            {
+                booster.BackBoost();
+            }
+            _lHand.ShoulderBoost.BackBoost();
+            _rHand.ShoulderBoost.BackBoost();
         }
         if (dir != Vector3.zero)
         {
@@ -217,6 +257,10 @@ public class BodyController : MonoBehaviour, IPartsModel
     public void ShotRight()
     {
         _rHand.StartShot();
+    }
+    public void DestroyBody()
+    {
+        OnBodyDestroy?.Invoke();
     }
 }
 

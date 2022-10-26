@@ -20,6 +20,8 @@ public class LegController : MonoBehaviour, IPartsModel
     private Transform _leftIk = default;
     [SerializeField]
     private Transform _rightIk = default;
+    [SerializeField]
+    private BoosterController _legBooster = default;
     public Transform LegBase = default;
     public Transform LockTrans = default;
     public Transform BaseTrans = default;
@@ -29,6 +31,7 @@ public class LegController : MonoBehaviour, IPartsModel
     public bool IsFall { get; private set; }
     public int ID { get => _id; }
     public Transform BodyJoint { get => _bodyJoint; }
+    public BoosterController LegBoost { get => _legBooster; }
     public void Initialize(MoveController moveController)
     {
         _moveController = moveController;

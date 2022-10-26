@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
+using UnityEngine.Events;
 
 namespace MyGame
 {
@@ -11,6 +11,8 @@ namespace MyGame
         private Rigidbody _moveRb = default;
         [SerializeField]
         private MachineBuilder _builder = default;
+        [SerializeField]
+        public UnityEvent _onDeadEvent = default;
         private BodyController _bodyController = default;
         private LegController _legController = default;
         private MoveController _moveController = default;
@@ -24,7 +26,13 @@ namespace MyGame
             _moveController = new MoveController(_moveRb);
             _bodyController.Initialize(_moveController);
             _legController.Initialize(_moveController);
+            _bodyController.OnBodyDestroy += PlayDeadEvent;
             IsInitalized = true;
+        }
+        private void PlayDeadEvent()
+        {
+            PowerDownMachine();
+            _onDeadEvent.Invoke();
         }
         public void ExecuteFixedUpdate(Vector3 dir)
         {

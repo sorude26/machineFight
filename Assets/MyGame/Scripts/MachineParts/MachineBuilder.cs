@@ -44,6 +44,7 @@ public class MachineBuilder : MonoBehaviour
         body.SetHands(larm, rarm);
         var booster = Instantiate(PartsManager.Instance.AllData.GetBooster(_buildData.Booster));
         body.SetBooster(booster);
+        body.AddBooster(leg.LegBoost);
         Body = body;
         Leg = leg;
     }
