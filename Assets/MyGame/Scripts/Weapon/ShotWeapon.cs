@@ -18,14 +18,30 @@ public class ShotWeapon : WeaponBase
     protected float _shotInterval = 0.2f;
     [SerializeField]
     protected float _diffusivity = 0.01f;
+    [SerializeField]
+    protected int _maxAmmunitionCapacity = -1;
+    [SerializeField]
+    protected int _magazineCount = -1;
+    private int _currentAmmunition = default;
+    private int _currentMagazine = default;
     private int _count = 0;
-    
+    public override void Initialize()
+    {
+        if (_maxAmmunitionCapacity > 0)
+        {
+            _currentAmmunition = _maxAmmunitionCapacity;
+        }
+        if (_magazineCount > 0)
+        {
+            _currentMagazine = _magazineCount;
+        }
+    }
     protected void Shot()
     {
         var bullet = ShotBulletPool.GetObject(_bullet);
         bullet.transform.position = _muzzle.position;
         bullet.Shot(new BulletParam(Diffusivity(_muzzle.forward), _speed, _power));
-        PlayShake();
+        PlayShake();        
     }
     protected Vector3 Diffusivity(Vector3 target)
     {
@@ -40,7 +56,7 @@ public class ShotWeapon : WeaponBase
     
     public override void Fire()
     {
-        if (IsFire == true)
+        if (IsFire == true || IsWait == true)
         {
             return;
         }
@@ -50,13 +66,21 @@ public class ShotWeapon : WeaponBase
     {
         IsFire = true;
         _count = 0;
-        while (_count < _shotCount)
+        while (_count < _shotCount && _currentAmmunition >= 0 && _currentMagazine >= 0)
         {
             if (_muzzleFlashEffect != null)
             {
                 _muzzleFlashEffect.Play();
             }
             Shot();
+            if (_magazineCount >= 0)
+            {
+                _currentMagazine--;
+            }
+            if (_maxAmmunitionCapacity >= 0)
+            {
+                _currentAmmunition--;
+            }
             for (int i = 0; i < _subCount; i++)
             {
                 Shot();
@@ -73,6 +97,18 @@ public class ShotWeapon : WeaponBase
         {
             timer += Time.deltaTime;
             yield return null;
+        }
+        if (_magazineCount >= 0 && _currentMagazine <= 0)
+        {
+            IsWait = true;
+        }
+    }
+    public override void Reload()
+    {
+        IsWait = false;
+        if (_magazineCount > 0)
+        {
+            _currentMagazine = _magazineCount;
         }
     }
 }
