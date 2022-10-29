@@ -639,7 +639,7 @@ GameObject:
   - component: {fileID: 4870021205371790580}
   - component: {fileID: 4870021205371790583}
   m_Layer: 0
-  m_Name: HandBase
+  m_Name: HandBase 1
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -681,6 +681,7 @@ MonoBehaviour:
   _lockAim: {fileID: 0}
   _grip: {fileID: 4870021205482334915}
   _weapon: {fileID: 0}
+  _handAnime: {fileID: 4870021205946339209}
   _shoulderBoosters: {fileID: 4557457684506568681}
   PartsRotaionSpeed: 3
   IsAttack: 0
@@ -953,6 +954,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4870021205946339206}
   - component: {fileID: 4870021205946339209}
+  - component: {fileID: 928071719094084038}
   m_Layer: 0
   m_Name: ArmBase
   m_TagString: Untagged
@@ -994,6 +996,41 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &928071719094084038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4870021205946339207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d252fb91c16ee004b965bf9583b6fefe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4870021205371790583}
+        m_TargetAssemblyTypeName: HandController, Assembly-CSharp
+        m_MethodName: ReloadWeapon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _shakeParam:
+    Pos: {x: 0, y: 0, z: 0}
+    Power: 0
+    Time: 0
+  _strongParam:
+    Pos: {x: 0, y: 0, z: 0}
+    Power: 0
+    Time: 0
 --- !u!1001 &3244156768816839821
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1063,14 +1100,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b74cbfe8a65cb3d49911d8e10ee42b38, type: 3}
---- !u!4 &2725392553376450582 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 636983863515427995, guid: b74cbfe8a65cb3d49911d8e10ee42b38, type: 3}
-  m_PrefabInstance: {fileID: 3244156768816839821}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &2725392553376450583 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 636983863515427994, guid: b74cbfe8a65cb3d49911d8e10ee42b38, type: 3}
+  m_PrefabInstance: {fileID: 3244156768816839821}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2725392553376450582 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 636983863515427995, guid: b74cbfe8a65cb3d49911d8e10ee42b38, type: 3}
   m_PrefabInstance: {fileID: 3244156768816839821}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4291749795742895442

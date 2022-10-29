@@ -5,7 +5,7 @@ public partial class LegStateContext
 {
     private class LandingState : ILegState
     {
-        private readonly float landingEndTime = 1f;
+        private readonly float landingEndTime = 0.5f;
         private float _timer = 0f;
         public void ExecuteEnter(LegStateContext context)
         {

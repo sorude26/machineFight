@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 5096686314405564671}
   - component: {fileID: 5096686314405564656}
   m_Layer: 0
-  m_Name: LegBase
+  m_Name: LegBase 1
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -603,10 +603,14 @@ MonoBehaviour:
     Landing: Landing
     Fall: Fall
     Down: Down
+    StepFront: StepFront
+    StepBack: StepBack
+    StepLeft: StepLeft
+    StepRight: StepRight
   _actionParam:
     WalkSpeed: 6
     WalkTurnSpeed: 3
-    JumpPower: 10
+    JumpPower: 25
     DotSub: 0.6
     AnimeChangeSpeed: 0.3
   _bodyJoint: {fileID: 5096686314720330600}
@@ -1961,9 +1965,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d252fb91c16ee004b965bf9583b6fefe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _shakeParam:
     Pos: {x: 0, y: 0, z: 0}
-    Power: 6
+    Power: 15
     Time: 0.2
   _strongParam:
     Pos: {x: 0, y: 0, z: 0}

@@ -22,7 +22,10 @@ public class HandController : MonoBehaviour, IPartsModel
     [SerializeField]
     private WeaponBase _weapon = default;
     [SerializeField]
+    private Animator _handAnime = default;
+    [SerializeField]
     private BoosterController _shoulderBoosters = default;
+    private string ReloadName = "Reload";
     private bool _firstShot = false;
     private bool _isShooting = false;
     private Vector3 _targetCurrent = default;
@@ -30,6 +33,7 @@ public class HandController : MonoBehaviour, IPartsModel
     private Vector3 _targetTwoBefore = default;
     private Quaternion _topRotaion = Quaternion.identity;
     private Quaternion _handRotaion = Quaternion.identity;
+    private bool _isReload = false;
     public float PartsRotaionSpeed = 3.0f;
     public bool IsAttack;
 
@@ -87,6 +91,15 @@ public class HandController : MonoBehaviour, IPartsModel
     }
     public void StartShot()
     {
+        if (_weapon.IsWait == true)
+        {
+            if (_isReload == false)
+            {
+                _handAnime.Play(ReloadName);
+                _isReload = true;
+            }
+            return;
+        }
         IsAttack = true;
         if (_isShooting == true)
         {
@@ -94,6 +107,11 @@ public class HandController : MonoBehaviour, IPartsModel
         }
         _isShooting = true;
         StartCoroutine(AttackImpl());
+    }
+    public void ReloadWeapon()
+    {
+        _weapon.Reload();
+        _isReload = false;
     }
     public void EndShot()
     {

@@ -11,6 +11,7 @@ public partial class LegStateContext
     private Animator _legAnimator = default;
     private Vector3 _moveDir = default;
     private bool _jumpInput = false;
+    private bool _stepInput = false;
     private bool _groundCheck = false;
     private MyGame.MoveController _moveController = default;
 
@@ -20,6 +21,7 @@ public partial class LegStateContext
     private FallState _fallState = new FallState();
     private LandingState _landingState = new LandingState();
     private DownState _downState = new DownState();
+    private GroundStepState _stepState = new GroundStepState();
     //-----------------------------------------------------------
     #endregion
     public LegAnimation AnimeName = default;
@@ -44,11 +46,12 @@ public partial class LegStateContext
     /// <param name="moveDir"></param>
     /// <param name="jumpInput"></param>
     /// <param name="groundCheck"></param>
-    public void ExecuteFixedUpdate(Vector3 moveDir, bool jumpInput, bool groundCheck)
+    public void ExecuteFixedUpdate(Vector3 moveDir, bool jumpInput, bool stepInput, bool groundCheck)
     {
         _moveDir = moveDir;
         _jumpInput = jumpInput;
         _groundCheck = groundCheck;
+        _stepInput = stepInput;
         _currentState.ExecuteFixedUpdate(this);
     }
     public void ChangeToDown()
