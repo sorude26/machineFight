@@ -5,17 +5,18 @@ using UnityEngine.SocialPlatforms;
 
 public partial class LegStateContext
 {
+    private enum LegAngle
+    {
+        Idle,
+        Stop,
+        Front,
+        Back,
+        Left,
+        Right,
+    }
     private class GroundMoveState : ILegState
     {
-        private enum LegAngle
-        {
-            Idle,
-            Stop,
-            Front,
-            Back,
-            Left,
-            Right,
-        }
+        
         private readonly float decelerate = 0.8f;
         private LegAngle _currentAngle = default;
         private float _turnSpeed = default;
@@ -164,6 +165,10 @@ public partial class LegStateContext
             {
                 context.ChangeState(context._jumpState);
                 return;
+            }
+            if (context._stepInput == true)
+            {
+                context.ChangeState(context._stepState);
             }
             LegMove(context);
         }

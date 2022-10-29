@@ -28,6 +28,7 @@ public class LegController : MonoBehaviour, IPartsModel
     private MoveController _moveController = default;
     private LegStateContext _stateContext = default;
     private bool _isJump = false;
+    private bool _isStep = false;
     public bool IsFall { get; private set; }
     public int ID { get => _id; }
     public Transform BodyJoint { get => _bodyJoint; }
@@ -45,8 +46,9 @@ public class LegController : MonoBehaviour, IPartsModel
     }
     public void ExecuteFixedUpdate(Vector3 dir)
     {
-        _stateContext.ExecuteFixedUpdate(dir, _isJump, _groundChecker.IsWalled());
+        _stateContext.ExecuteFixedUpdate(dir, _isJump,_isStep, _groundChecker.IsWalled());
         _isJump = false;
+        _isStep = false;
         IsFall = _stateContext.IsFall;
     }
     public void SetLegParam(LegActionParam param)
@@ -61,6 +63,10 @@ public class LegController : MonoBehaviour, IPartsModel
     public void Jump()
     {
         _isJump = true;
+    }
+    public void Step()
+    {
+        _isStep = true;
     }
     public void PowerDown()
     {

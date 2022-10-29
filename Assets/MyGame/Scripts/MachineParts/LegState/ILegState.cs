@@ -19,6 +19,10 @@ public struct LegAnimation
     public string Landing;
     public string Fall;
     public string Down;
+    public string StepFront;
+    public string StepBack;
+    public string StepLeft;
+    public string StepRight;
 }
 [Serializable]
 public struct LegActionParam

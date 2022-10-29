@@ -63,7 +63,14 @@ namespace MyGame
         }
         public void ExecuteJet(Vector3 dir)
         {
-            _bodyController.AngleBoost(dir, _legController.IsFall);
+            if (_legController != null && _legController.IsFall == false)
+            {
+                _legController.Step();
+            }
+            else
+            {
+                _bodyController.AngleBoost(dir, _legController.IsFall);
+            }
         }
         public void ShotLeft()
         {
