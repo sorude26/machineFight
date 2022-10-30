@@ -21,9 +21,13 @@ public class ShotBullet : MonoBehaviour
     private float _timer = 0f;
     private float _speed = 5f;
     private int _power = 1;
+    private int _exPower = 0;
+    private int _exCount = 0;
+    private float _exRadius = 0;
     private int _frameCount = default;
     private Vector3 _beforePos = default;
-   
+    private ExplosionBullet _explosion = new ExplosionBullet();
+
     private void FixedUpdate()
     {
         MoveBullet();
@@ -37,11 +41,16 @@ public class ShotBullet : MonoBehaviour
     {
         PlayHitEffect(hitPos);
         if (_penetrate == true) { return; }
-        ActiveEnd();
+        StartCoroutine(HitActionImpl());
     }
     protected void PlayShake()
     {
         StageShakeController.PlayShake(transform.position + _hitShakeParam.Pos, _hitShakeParam.Power, _hitShakeParam.Time);
+    }
+    private IEnumerator HitActionImpl()
+    {
+        yield return _explosion.ExplosionImpl(transform.position, _exPower, _exCount, _exRadius, _hitLayer);
+        ActiveEnd();
     }
     private void PlayHitEffect(Vector3 hitPos)
     {
@@ -62,6 +71,7 @@ public class ShotBullet : MonoBehaviour
     }
     private void HitCheck()
     {
+        if (gameObject.activeInHierarchy == false) { return; }
         _frameCount++;
         if (_frameCount < _rayFrame) { return; }
         _frameCount = 0;
@@ -99,21 +109,40 @@ public class ShotBullet : MonoBehaviour
         transform.forward = param.Dir;
         _speed = param.Speed;
         _power = param.Power;
+        _exPower = param.ExplosionPower;
+        _exCount = param.ExplosionCount;
+        _exRadius = param.Radius;
         _timer = _lifeTime;
         _frameCount = 0;
         _beforePos = transform.position;
         gameObject.SetActive(true);
     }
 }
+[System.Serializable]
 public struct BulletParam
 {
     public float Speed;
     public int Power;
+    public int ExplosionPower;
+    public int ExplosionCount;
+    public float Radius;
     public Vector3 Dir;
     public BulletParam(Vector3 dir, float speed, int power)
     {
         Dir = dir;
         Speed = speed;
         Power = power;
+        ExplosionPower = 0;
+        ExplosionCount = 0;
+        Radius = 0;
+    }
+    public BulletParam(Vector3 dir,float speed,int power,int exPower,int count,float radius)
+    {
+        Dir = dir;
+        Speed = speed;
+        Power = power;
+        ExplosionPower = exPower;
+        ExplosionCount = count;
+        Radius = radius;
     }
 }
