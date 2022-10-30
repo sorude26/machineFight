@@ -84,6 +84,7 @@ public class HandController : MonoBehaviour, IPartsModel
         weapon.transform.localPosition = Vector3.zero;
         weapon.transform.localRotation = Quaternion.identity;
         _weapon = weapon;
+        _weapon.Initialize();
     }
     public void SetLockAim(Transform target)
     {

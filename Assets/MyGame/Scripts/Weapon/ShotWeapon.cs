@@ -19,6 +19,12 @@ public class ShotWeapon : WeaponBase
     [SerializeField]
     protected float _diffusivity = 0.01f;
     [SerializeField]
+    protected int _exPower = 0;
+    [SerializeField]
+    protected int _exCount = 0;
+    [SerializeField]
+    protected int _exRadius = 0;
+    [SerializeField]
     protected int _maxAmmunitionCapacity = -1;
     [SerializeField]
     protected int _magazineCount = -1;
@@ -40,7 +46,7 @@ public class ShotWeapon : WeaponBase
     {
         var bullet = ShotBulletPool.GetObject(_bullet);
         bullet.transform.position = _muzzle.position;
-        bullet.Shot(new BulletParam(Diffusivity(_muzzle.forward), _speed, _power));
+        bullet.Shot(new BulletParam(Diffusivity(_muzzle.forward), _speed, _power,_exPower,_exCount,_exRadius));
         PlayShake();        
     }
     protected Vector3 Diffusivity(Vector3 target)

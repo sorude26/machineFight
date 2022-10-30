@@ -115,7 +115,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -222,7 +222,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.34805262, b: 0, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -284,7 +284,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.02
+      scalar: 0.05
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4816,7 +4816,7 @@ GameObject:
   - component: {fileID: 8661921769014990194}
   - component: {fileID: 8661921769014990206}
   m_Layer: 4
-  m_Name: ClusterBullet
+  m_Name: NormalShortBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4849,14 +4849,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 265e7706c6f8f3248b98a7bfdf189bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lifeTime: 0.6
-  _rayFrame: 1
+  _lifeTime: 1
+  _rayFrame: 3
   _hitLayer:
     serializedVersion: 2
     m_Bits: 769
   _hitEffect: {fileID: 2973265136740629150, guid: 71cf720c9f8edce42a1e49924ad1bbd4, type: 3}
   _penetrate: 0
-  _radius: 1
+  _radius: 0
   _hitShakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 3

@@ -4941,19 +4941,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _power: 5
-  _speed: 350
+  _speed: 550
   _fireShakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 10
     Time: 0.05
   IsFire: 0
+  IsWait: 0
   _bullet: {fileID: 8661921769014990206, guid: 0862e289ee8c9524db087c08c9ae4b6b, type: 3}
   _muzzleFlashEffect: {fileID: 4052949859152166964}
   _muzzle: {fileID: 7986155857372268401}
-  _shotCount: 5
+  _shotCount: 10
   _subCount: 0
   _shotInterval: 0.05
-  _diffusivity: 0.01
+  _diffusivity: 0.03
+  _maxAmmunitionCapacity: -1
+  _magazineCount: 60
 --- !u!1 &7986155858764926498
 GameObject:
   m_ObjectHideFlags: 0
