@@ -18,6 +18,8 @@ public class ShotBullet : MonoBehaviour
     private float _radius = 0f;
     [SerializeField]
     private ShakeParam _hitShakeParam = default;
+    [SerializeField]
+    private float _gravity = 0f;
     private float _timer = 0f;
     private float _speed = 5f;
     private int _power = 1;
@@ -40,7 +42,7 @@ public class ShotBullet : MonoBehaviour
     protected virtual void HitBullet(Vector3 hitPos)
     {
         PlayHitEffect(hitPos);
-        if (_penetrate == true) { return; }
+        if (_penetrate == true || gameObject.activeInHierarchy == false) { return; }
         StartCoroutine(HitActionImpl());
     }
     protected void PlayShake()
@@ -49,6 +51,7 @@ public class ShotBullet : MonoBehaviour
     }
     private IEnumerator HitActionImpl()
     {
+        _speed = 0f;
         yield return _explosion.ExplosionImpl(transform.position, _exPower, _exCount, _exRadius, _hitLayer);
         ActiveEnd();
     }
@@ -62,6 +65,8 @@ public class ShotBullet : MonoBehaviour
     }
     private void MoveBullet()
     {
+        if(_speed <= 0) { return; }
+        transform.forward = Vector3.Lerp(transform.forward, transform.forward + Vector3.down * _gravity, Time.fixedDeltaTime);
         transform.position += transform.forward * _speed * Time.fixedDeltaTime;
         _timer -= Time.fixedDeltaTime;
         if (_timer <= 0)
@@ -71,7 +76,7 @@ public class ShotBullet : MonoBehaviour
     }
     private void HitCheck()
     {
-        if (gameObject.activeInHierarchy == false) { return; }
+        if (gameObject.activeInHierarchy == false || _speed <= 0) { return; }
         _frameCount++;
         if (_frameCount < _rayFrame) { return; }
         _frameCount = 0;

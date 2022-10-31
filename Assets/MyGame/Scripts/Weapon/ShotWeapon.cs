@@ -15,6 +15,8 @@ public class ShotWeapon : WeaponBase
     [SerializeField, Range(0, 30)]
     private int _subCount = 0;
     [SerializeField]
+    protected float _triggerInterval = 0.2f;
+    [SerializeField]
     protected float _shotInterval = 0.2f;
     [SerializeField]
     protected float _diffusivity = 0.01f;
@@ -31,6 +33,7 @@ public class ShotWeapon : WeaponBase
     private int _currentAmmunition = default;
     private int _currentMagazine = default;
     private int _count = 0;
+    private bool _isTrigerOn = false;
     public override void Initialize()
     {
         if (_maxAmmunitionCapacity > 0)
@@ -62,10 +65,12 @@ public class ShotWeapon : WeaponBase
     
     public override void Fire()
     {
-        if (IsFire == true || IsWait == true)
+        if (IsFire == true || IsWait == true || _isTrigerOn == true)
         {
             return;
         }
+        _isTrigerOn = true;
+        StartCoroutine(TriggerWait());
         StartCoroutine(FireImpl());
     }
     protected IEnumerator FireImpl()
@@ -95,6 +100,16 @@ public class ShotWeapon : WeaponBase
             yield return WaitShot();
         }
         IsFire = false;
+    }
+    private IEnumerator TriggerWait()
+    {
+        float timer = 0;
+        while (timer < _triggerInterval)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        _isTrigerOn = false;
     }
     private IEnumerator WaitShot()
     {
