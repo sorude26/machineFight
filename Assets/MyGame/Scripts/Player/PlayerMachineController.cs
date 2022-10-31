@@ -16,6 +16,7 @@ public class PlayerMachineController : MonoBehaviour
         PlayerInput.SetEnterInput(InputMode.InGame,InputType.Jump, _machineController.ExecuteJump);
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.Fire2, ShotRight);
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.Fire1, ShotLeft);
+        PlayerInput.SetEnterInput(InputMode.InGame, InputType.Fire3, _machineController.ExecuteBurst);
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.Booster, JetBoost);
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.ChangeTarget, ChangeTarget);
         _machineController.Initialize();

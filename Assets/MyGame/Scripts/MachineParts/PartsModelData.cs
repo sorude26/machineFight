@@ -15,7 +15,7 @@ public class PartsModelData : ScriptableObject
     [SerializeField]
     private LegController[] _allLegParts = default;
     [SerializeField]
-    private BoosterController[] _allBooster = default;
+    private BackPackController[] _allBackPack = default;
     [SerializeField]
     private WeaponBase[] _allWeaponParts = default;
     public HeadController GetPartsHead(int id) 
@@ -34,9 +34,9 @@ public class PartsModelData : ScriptableObject
     {
         return _allLegParts.Where(parts => parts.ID == id).FirstOrDefault();
     }
-    public BoosterController GetBooster(int id)
+    public BackPackController GetBackPack(int id)
     {
-        return _allBooster.Where(parts => parts.ID == id).FirstOrDefault();
+        return _allBackPack.Where(parts => parts.ID == id).FirstOrDefault();
     }
     public WeaponBase GetWeapon(int id)
     {
