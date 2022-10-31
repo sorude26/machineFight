@@ -100,6 +100,8 @@ namespace MyGame
             instance._controls.InputMap.Attack1.canceled += context => { ExecuteInput(InputType.Fire1, ExecuteType.Exit); };
             instance._controls.InputMap.Attack2.started += context => { ExecuteInput(InputType.Fire2, ExecuteType.Enter); };
             instance._controls.InputMap.Attack2.canceled += context => { ExecuteInput(InputType.Fire2, ExecuteType.Exit); };
+            instance._controls.InputMap.Attack3.started += context => { ExecuteInput(InputType.Fire3, ExecuteType.Enter); };
+            instance._controls.InputMap.Attack3.canceled += context => { ExecuteInput(InputType.Fire3, ExecuteType.Exit); };
             instance._controls.InputMap.JetBoost.started += context => { ExecuteInput(InputType.Booster, ExecuteType.Enter); };
             instance._controls.InputMap.JetBoost.canceled += context => { ExecuteInput(InputType.Booster, ExecuteType.Exit); };
             instance._controls.InputMap.ChangeTarget.started += context => { ExecuteInput(InputType.ChangeTarget, ExecuteType.Enter); };

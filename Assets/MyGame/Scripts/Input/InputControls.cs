@@ -98,6 +98,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack3"",
+                    ""type"": ""Button"",
+                    ""id"": ""cc8ce55a-233f-45f0-91a7-6bb1a8aa2470"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -419,6 +428,28 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""action"": ""ChangeTarget"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec3d8d51-f551-45b5-b3f7-4d4756750f3d"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""41d43e35-12e2-497e-adde-81dce7093e46"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -435,6 +466,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_InputMap_Attack2 = m_InputMap.FindAction("Attack2", throwIfNotFound: true);
         m_InputMap_JetBoost = m_InputMap.FindAction("JetBoost", throwIfNotFound: true);
         m_InputMap_ChangeTarget = m_InputMap.FindAction("ChangeTarget", throwIfNotFound: true);
+        m_InputMap_Attack3 = m_InputMap.FindAction("Attack3", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -502,6 +534,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InputMap_Attack2;
     private readonly InputAction m_InputMap_JetBoost;
     private readonly InputAction m_InputMap_ChangeTarget;
+    private readonly InputAction m_InputMap_Attack3;
     public struct InputMapActions
     {
         private @InputControls m_Wrapper;
@@ -514,6 +547,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @Attack2 => m_Wrapper.m_InputMap_Attack2;
         public InputAction @JetBoost => m_Wrapper.m_InputMap_JetBoost;
         public InputAction @ChangeTarget => m_Wrapper.m_InputMap_ChangeTarget;
+        public InputAction @Attack3 => m_Wrapper.m_InputMap_Attack3;
         public InputActionMap Get() { return m_Wrapper.m_InputMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -547,6 +581,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @ChangeTarget.started -= m_Wrapper.m_InputMapActionsCallbackInterface.OnChangeTarget;
                 @ChangeTarget.performed -= m_Wrapper.m_InputMapActionsCallbackInterface.OnChangeTarget;
                 @ChangeTarget.canceled -= m_Wrapper.m_InputMapActionsCallbackInterface.OnChangeTarget;
+                @Attack3.started -= m_Wrapper.m_InputMapActionsCallbackInterface.OnAttack3;
+                @Attack3.performed -= m_Wrapper.m_InputMapActionsCallbackInterface.OnAttack3;
+                @Attack3.canceled -= m_Wrapper.m_InputMapActionsCallbackInterface.OnAttack3;
             }
             m_Wrapper.m_InputMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -575,6 +612,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @ChangeTarget.started += instance.OnChangeTarget;
                 @ChangeTarget.performed += instance.OnChangeTarget;
                 @ChangeTarget.canceled += instance.OnChangeTarget;
+                @Attack3.started += instance.OnAttack3;
+                @Attack3.performed += instance.OnAttack3;
+                @Attack3.canceled += instance.OnAttack3;
             }
         }
     }
@@ -589,5 +629,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnAttack2(InputAction.CallbackContext context);
         void OnJetBoost(InputAction.CallbackContext context);
         void OnChangeTarget(InputAction.CallbackContext context);
+        void OnAttack3(InputAction.CallbackContext context);
     }
 }
