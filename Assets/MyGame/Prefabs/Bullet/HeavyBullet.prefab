@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1233709711767816150}
   - component: {fileID: 1233709711767816154}
   m_Layer: 4
-  m_Name: BazzBullet
+  m_Name: HeavyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,14 +49,14 @@ MonoBehaviour:
   _hitLayer:
     serializedVersion: 2
     m_Bits: 769
-  _hitEffect: {fileID: 6068882791912315188, guid: 0a45a63bea573c54bba398129f6b5c7d, type: 3}
+  _hitEffect: {fileID: 305568019755204397, guid: 1fb6977599568a54b88227de8671b68f, type: 3}
   _penetrate: 0
-  _radius: 3
+  _radius: 4
   _hitShakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 10
     Time: 1
-  _gravity: 0.01
+  _gravity: 0.3
 --- !u!1 &2349358843761005029
 GameObject:
   m_ObjectHideFlags: 0
@@ -5084,7 +5084,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 0.7961548, b: 0.63584906, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

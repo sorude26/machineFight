@@ -72,6 +72,10 @@ namespace MyGame
                 _bodyController.AngleBoost(dir, _legController.IsFall);
             }
         }
+        public void ExecuteBurst()
+        {
+            _bodyController.BackPackBurst();
+        }
         public void ShotLeft()
         {
             _bodyController.ShotLeft();

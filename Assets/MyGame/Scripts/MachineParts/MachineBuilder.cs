@@ -42,8 +42,9 @@ public class MachineBuilder : MonoBehaviour
         rarm.SetWeapon(rweapon);
         rarm.SetLockAim(_aimTrans);
         body.SetHands(larm, rarm);
-        var booster = Instantiate(PartsManager.Instance.AllData.GetBooster(_buildData.Booster));
-        body.SetBooster(booster);
+        var backPack = Instantiate(PartsManager.Instance.AllData.GetBackPack(_buildData.Booster));
+        backPack.CameraLock = _aimTrans;
+        body.SetBackPack(backPack);
         body.AddBooster(leg.LegBoost);
         Body = body;
         Leg = leg;

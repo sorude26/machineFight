@@ -27,6 +27,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     [SerializeField]
     private Transform _rHandJoint = default;
     private MoveController _moveController = default;
+    private BackPackController _backPack = default;
     private bool _isShoot = false;
     private float _jetTimer = 0;
     private List<BoosterController> _boosters = new List<BoosterController>();
@@ -54,16 +55,21 @@ public class BodyController : MonoBehaviour, IPartsModel
         _rHand.transform.localPosition = Vector3.zero;
         _rHand.transform.localRotation = Quaternion.identity;
     }
-    public void SetBooster(BoosterController booster)
+    public void SetBackPack(BackPackController backPack)
     {
-        booster.transform.SetParent(_backPackJoint);
-        booster.transform.localPosition = Vector3.zero;
-        booster.transform.localRotation = Quaternion.identity;
-        _boosters.Add(booster);
+        backPack.transform.SetParent(_backPackJoint);
+        backPack.transform.localPosition = Vector3.zero;
+        backPack.transform.localRotation = Quaternion.identity;
+        _boosters.Add(backPack.Booster);
+        _backPack = backPack;
     }
     public void AddBooster(BoosterController booster)
     {
         _boosters.Add(booster);
+    }
+    public void BackPackBurst()
+    {
+        _backPack?.ExecuteBackPackBurst();
     }
     private void FixedUpdate()
     {
@@ -79,7 +85,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     {
         _lHand?.PartsMotion();
         _rHand?.PartsMotion();
-
+        _backPack.ExecuteFixedUpdate(AttackTarget);
         if (AttackTarget != null && IsDown == false)
         {
             Vector3 targetDir = AttackTarget.position - transform.position;
