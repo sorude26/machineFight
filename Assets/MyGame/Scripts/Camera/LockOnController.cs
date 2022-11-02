@@ -37,18 +37,18 @@ public class LockOnController : MonoBehaviour
     /// ターゲットを返す
     /// </summary>
     /// <returns></returns>
-    public Transform GetTarget()
+    public LockOnTarget GetTarget()
     {
         if (LockOnTargets[_targetNum].IsLockOn)
         {
-            return LockOnTargets[_targetNum].transform;
+            return LockOnTargets[_targetNum];
         }
         for (int i = 0; i < LockOnTargets.Count; i++)
         {
             ChangeTargetNum();
             if (LockOnTargets[_targetNum].IsLockOn)
             {
-                return LockOnTargets[_targetNum].transform;
+                return LockOnTargets[_targetNum];
             }
         }
         return null;

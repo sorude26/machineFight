@@ -8,9 +8,12 @@ public class LockOnTarget : MonoBehaviour
     [Tooltip("ロックオンされるまでの時間")]
     [SerializeField]
     private float _lockOnTime = 1;
+    [SerializeField]
+    private DamageChecker _damageChecker = default;
     private float _timer = 0;
     /// <summary> ロックオン中フラグ </summary>
     public bool IsLockOn { get; private set; }
+    public DamageChecker DamageChecker { get => _damageChecker; }
     private bool _isActive = true;
     
     private void Start()

@@ -23,7 +23,8 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     private bool _addCount = true;
     private int _hp = 1;
     private bool _isSeverelyDamaged = false;
-    public int CurrentHp { get { return _hp; } }
+    public int MaxHp { get => _maxHp; }
+    public int CurrentHp { get => _hp; }
     private void Start()
     {
         _hp = _maxHp;

@@ -6,8 +6,14 @@ using UnityEngine.UI;
 public class TargetMark : MonoBehaviour
 {
     [SerializeField]
-    RectTransform _rect = default;
-    public Transform Target = default;
+    private RectTransform _rect = default;
+    [SerializeField]
+    private Text _rangeText = default;
+    [SerializeField]
+    private Text _hpText = default;
+    [SerializeField]
+    private Image _hpGauge = default;
+    public LockOnTarget Target;
     private bool _isActive = false;
     private void FixedUpdate()
     {
@@ -26,6 +32,9 @@ public class TargetMark : MonoBehaviour
             _isActive = true;
             _rect.gameObject.SetActive(_isActive);
         }
-        _rect.position = RectTransformUtility.WorldToScreenPoint(Camera.main, Target.position);
+        _rangeText.text = Vector3.Distance(Camera.main.transform.position,Target.transform.position).ToString("F2");
+        _hpText.text = Target.DamageChecker.CurrentHp.ToString();
+        _hpGauge.fillAmount = (float)Target.DamageChecker.CurrentHp / Target.DamageChecker.MaxHp;
+        _rect.position = RectTransformUtility.WorldToScreenPoint(Camera.main, Target.transform.position);
     }
 }
