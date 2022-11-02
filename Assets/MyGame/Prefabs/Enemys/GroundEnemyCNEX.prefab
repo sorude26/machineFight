@@ -9860,13 +9860,20 @@ MonoBehaviour:
     Power: 0
     Time: 0
   IsFire: 0
+  IsWait: 0
   _bullet: {fileID: 4864901343781380692, guid: cb503772fb257df4fb734580139af4d4, type: 3}
   _muzzleFlashEffect: {fileID: 5653359014003452598}
   _muzzle: {fileID: 1774059876713360883}
   _shotCount: 100
   _subCount: 0
+  _triggerInterval: 0.2
   _shotInterval: 0.01
   _diffusivity: 0
+  _exPower: 0
+  _exCount: 0
+  _exRadius: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
 --- !u!1 &1774059876713360882
 GameObject:
   m_ObjectHideFlags: 0
@@ -10414,6 +10421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lockOnTime: 1
+  _damageChecker: {fileID: 3237878470891248833}
 --- !u!136 &3237878469756177021
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10960,6 +10968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lockOnTime: 1
+  _damageChecker: {fileID: 3237878469338392888}
 --- !u!136 &3237878470199787396
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11609,13 +11618,20 @@ MonoBehaviour:
     Power: 0
     Time: 0
   IsFire: 0
+  IsWait: 0
   _bullet: {fileID: 8661921769014990206, guid: 39db53a3d59e45145977d37637cfba41, type: 3}
   _muzzleFlashEffect: {fileID: 1500183820329726556}
   _muzzle: {fileID: 4772627172733154585}
   _shotCount: 40
   _subCount: 0
+  _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.03
+  _exPower: 0
+  _exCount: 0
+  _exRadius: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
 --- !u!1 &4772627173686533296
 GameObject:
   m_ObjectHideFlags: 0
@@ -11669,13 +11685,20 @@ MonoBehaviour:
     Power: 0
     Time: 0
   IsFire: 0
+  IsWait: 0
   _bullet: {fileID: 1233709711767816154, guid: e6e67469e48f0e04ba2720aa3bacb866, type: 3}
   _muzzleFlashEffect: {fileID: 1500183818661644197}
   _muzzle: {fileID: 4772627174303039712}
   _shotCount: 3
   _subCount: 7
+  _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.2
+  _exPower: 0
+  _exCount: 0
+  _exRadius: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
 --- !u!1 &4772627174303039713
 GameObject:
   m_ObjectHideFlags: 0
@@ -11841,13 +11864,20 @@ MonoBehaviour:
     Power: 0
     Time: 0
   IsFire: 0
+  IsWait: 0
   _bullet: {fileID: 1233709711767816154, guid: e6e67469e48f0e04ba2720aa3bacb866, type: 3}
   _muzzleFlashEffect: {fileID: 5587128410690990536}
   _muzzle: {fileID: 5587128411302133538}
   _shotCount: 16
   _subCount: 0
+  _triggerInterval: 0.2
   _shotInterval: 0.2
   _diffusivity: 0.01
+  _exPower: 0
+  _exCount: 0
+  _exRadius: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
 --- !u!1 &5587128410657555735
 GameObject:
   m_ObjectHideFlags: 0
@@ -21778,8 +21808,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5587128410753691314}
-  - component: {fileID: 5587128410753691308}
-  - component: {fileID: 5587128410753691309}
   m_Layer: 0
   m_Name: TargetBalloon
   m_TagString: Untagged
@@ -21803,73 +21831,6 @@ Transform:
   m_Father: {fileID: 5587128411408480571}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5587128410753691308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5587128410753691315}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3abf21d29c7fb4c4a95117430a7de956, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHp: 500
-  _severelyDamage: 500
-  _onDeadEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5587128410753691308}
-        m_TargetAssemblyTypeName: DamageChecker, Assembly-CSharp
-        m_MethodName: PlayEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5587128411408480568}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onSeverelyDamagedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  _onDamageEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  _deadEffect: {fileID: 6068882791912315188, guid: 0a45a63bea573c54bba398129f6b5c7d, type: 3}
-  _deadShakeParam:
-    Pos: {x: 0, y: 0, z: 0}
-    Power: 70
-    Time: 1
-  _addCount: 1
---- !u!136 &5587128410753691309
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5587128410753691315}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  m_Radius: 0.6
-  m_Height: 2
-  m_Direction: 0
-  m_Center: {x: -0.45, y: 0.2, z: 0}
 --- !u!1 &5587128410815718036
 GameObject:
   m_ObjectHideFlags: 0
@@ -22004,13 +21965,20 @@ MonoBehaviour:
     Power: 0
     Time: 0
   IsFire: 0
+  IsWait: 0
   _bullet: {fileID: 1233709711767816154, guid: e6e67469e48f0e04ba2720aa3bacb866, type: 3}
   _muzzleFlashEffect: {fileID: 5587128411984804987}
   _muzzle: {fileID: 5587128412257459717}
   _shotCount: 16
   _subCount: 0
+  _triggerInterval: 0.2
   _shotInterval: 0.2
   _diffusivity: 0.05
+  _exPower: 0
+  _exCount: 0
+  _exRadius: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
 --- !u!1 &5587128410949737563
 GameObject:
   m_ObjectHideFlags: 0
@@ -22020,8 +21988,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5587128410949737562}
-  - component: {fileID: 5587128410949737556}
-  - component: {fileID: 5587128410949737557}
   m_Layer: 0
   m_Name: TargetBalloon
   m_TagString: Untagged
@@ -22045,73 +22011,6 @@ Transform:
   m_Father: {fileID: 5587128411171276199}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5587128410949737556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5587128410949737563}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3abf21d29c7fb4c4a95117430a7de956, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHp: 500
-  _severelyDamage: 500
-  _onDeadEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5587128410949737556}
-        m_TargetAssemblyTypeName: DamageChecker, Assembly-CSharp
-        m_MethodName: PlayEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5587128411171276196}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onSeverelyDamagedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  _onDamageEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  _deadEffect: {fileID: 6068882791912315188, guid: 0a45a63bea573c54bba398129f6b5c7d, type: 3}
-  _deadShakeParam:
-    Pos: {x: 0, y: 0, z: 0}
-    Power: 70
-    Time: 1
-  _addCount: 1
---- !u!136 &5587128410949737557
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5587128410949737563}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  m_Radius: 0.6
-  m_Height: 2
-  m_Direction: 0
-  m_Center: {x: -0.45, y: 0.2, z: 0}
 --- !u!1 &5587128410968513728
 GameObject:
   m_ObjectHideFlags: 0
@@ -22151,7 +22050,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5587128410989862257}
-  - component: {fileID: 5587128410989862259}
   - component: {fileID: 5587128410989862256}
   m_Layer: 0
   m_Name: TargetBalloon
@@ -22176,59 +22074,6 @@ Transform:
   m_Father: {fileID: 5587128411808954874}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5587128410989862259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5587128410989862262}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3abf21d29c7fb4c4a95117430a7de956, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHp: 500
-  _severelyDamage: 500
-  _onDeadEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5587128410989862259}
-        m_TargetAssemblyTypeName: DamageChecker, Assembly-CSharp
-        m_MethodName: PlayEffect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5587128411808954875}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onSeverelyDamagedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  _onDamageEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  _deadEffect: {fileID: 6068882791912315188, guid: 0a45a63bea573c54bba398129f6b5c7d, type: 3}
-  _deadShakeParam:
-    Pos: {x: 0, y: 0, z: 0}
-    Power: 70
-    Time: 1
-  _addCount: 1
 --- !u!136 &5587128410989862256
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -28006,13 +27851,20 @@ MonoBehaviour:
     Power: 0
     Time: 0
   IsFire: 0
+  IsWait: 0
   _bullet: {fileID: 1233709711767816154, guid: e6e67469e48f0e04ba2720aa3bacb866, type: 3}
   _muzzleFlashEffect: {fileID: 5587128410666515431}
   _muzzle: {fileID: 5587128411659701193}
   _shotCount: 16
   _subCount: 0
+  _triggerInterval: 0.2
   _shotInterval: 0.2
   _diffusivity: 0.05
+  _exPower: 0
+  _exCount: 0
+  _exRadius: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
 --- !u!1 &5587128411795133708
 GameObject:
   m_ObjectHideFlags: 0
@@ -28265,8 +28117,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5587128411920410415}
-  - component: {fileID: 5587128411920410409}
-  - component: {fileID: 5587128411920410414}
   m_Layer: 11
   m_Name: Target
   m_TagString: Untagged
@@ -28289,33 +28139,6 @@ Transform:
   m_Father: {fileID: 5587128410753691314}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5587128411920410409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5587128411920410412}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d04d3c09e6200e846bccc6bf6902132e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _lockOnTime: 1
---- !u!136 &5587128411920410414
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5587128411920410412}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  m_Radius: 1
-  m_Height: 2
-  m_Direction: 0
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5587128411964689100
 GameObject:
   m_ObjectHideFlags: 0
@@ -33309,8 +33132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5587128412122222238}
-  - component: {fileID: 5587128412122222232}
-  - component: {fileID: 5587128412122222233}
   m_Layer: 11
   m_Name: Target
   m_TagString: Untagged
@@ -33333,33 +33154,6 @@ Transform:
   m_Father: {fileID: 5587128410989862257}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5587128412122222232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5587128412122222239}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d04d3c09e6200e846bccc6bf6902132e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _lockOnTime: 1
---- !u!136 &5587128412122222233
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5587128412122222239}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  m_Radius: 1
-  m_Height: 2
-  m_Direction: 0
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5587128412136017058
 GameObject:
   m_ObjectHideFlags: 0
@@ -53222,8 +53016,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5587128412522887949}
-  - component: {fileID: 5587128412522887951}
-  - component: {fileID: 5587128412522887948}
   m_Layer: 11
   m_Name: Target
   m_TagString: Untagged
@@ -53246,33 +53038,6 @@ Transform:
   m_Father: {fileID: 5587128410949737562}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5587128412522887951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5587128412522887954}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d04d3c09e6200e846bccc6bf6902132e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _lockOnTime: 1
---- !u!136 &5587128412522887948
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5587128412522887954}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  m_Radius: 1
-  m_Height: 2
-  m_Direction: 0
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5587128412534816499
 GameObject:
   m_ObjectHideFlags: 0
@@ -58728,13 +58493,20 @@ MonoBehaviour:
     Power: 0
     Time: 0
   IsFire: 0
+  IsWait: 0
   _bullet: {fileID: 4864901343781380692, guid: cb503772fb257df4fb734580139af4d4, type: 3}
   _muzzleFlashEffect: {fileID: 6738788053060604158}
   _muzzle: {fileID: 6738788051840884139}
   _shotCount: 100
   _subCount: 0
+  _triggerInterval: 0.2
   _shotInterval: 0.01
   _diffusivity: 0
+  _exPower: 0
+  _exCount: 0
+  _exRadius: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
 --- !u!1 &6738788053060603905
 GameObject:
   m_ObjectHideFlags: 0
@@ -64019,6 +63791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lockOnTime: 1
+  _damageChecker: {fileID: 8523691758279455186}
 --- !u!136 &8523691757685417838
 CapsuleCollider:
   m_ObjectHideFlags: 0
