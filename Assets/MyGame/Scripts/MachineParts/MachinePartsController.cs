@@ -18,6 +18,7 @@ namespace MyGame
         private MoveController _moveController = default;
         private bool _isDown = false;
         public bool IsInitalized { get; private set; }
+        public DamageChecker DamageChecker { get => _bodyController.DamageChecker; }
         public void Initialize()
         {
             _builder.Build();

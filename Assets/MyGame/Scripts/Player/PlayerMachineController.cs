@@ -2,6 +2,8 @@ using MyGame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMachineController : MonoBehaviour
 {
@@ -11,6 +13,10 @@ public class PlayerMachineController : MonoBehaviour
     private MachinePartsController _machineController = default;
     [SerializeField]
     private TargetMark _targetMark = default;
+    [SerializeField]
+    private Text _hpText = default;
+    [SerializeField]
+    private Image _hpGauge = default;
     private void Start()
     {
         PlayerInput.SetEnterInput(InputMode.InGame,InputType.Jump, _machineController.ExecuteJump);
@@ -28,8 +34,17 @@ public class PlayerMachineController : MonoBehaviour
         var dir = new Vector3(PlayerInput.MoveDir.x, 0, PlayerInput.MoveDir.y);
         var locktarget = LockOnController.Instance.GetTarget();
         _targetMark.Target = locktarget;
-        _machineController.SetLockOn(locktarget);
+        if (locktarget == null)
+        {
+            _machineController.SetLockOn(null);
+        }
+        else
+        {
+            _machineController.SetLockOn(locktarget.transform);
+        }
         _machineController.ExecuteFixedUpdate(dir);
+        _hpText.text = _machineController.DamageChecker.CurrentHp.ToString();
+        _hpGauge.fillAmount = 1f - (float)_machineController.DamageChecker.CurrentHp / _machineController.DamageChecker.MaxHp;
     }
     public void ShotLeft()
     {

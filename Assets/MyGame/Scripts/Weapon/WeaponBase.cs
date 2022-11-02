@@ -12,6 +12,15 @@ public abstract class WeaponBase : MonoBehaviour, IPartsModel
     protected float _speed = 200f;
     [SerializeField]
     protected ShakeParam _fireShakeParam = default;
+    [SerializeField]
+    protected int _maxAmmunitionCapacity = -1;
+    [SerializeField]
+    protected int _magazineCount = -1;
+    public int MaxAmmunitionCapacity => _maxAmmunitionCapacity;
+    public int MagazineCount => _magazineCount;
+    public int _currentAmmunition = default;
+    public int _currentMagazine = default;
+    public int _count = 0;
     public bool IsFire;
     public bool IsWait;
     public int ID { get => _id; }

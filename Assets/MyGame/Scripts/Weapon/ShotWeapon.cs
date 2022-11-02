@@ -26,13 +26,7 @@ public class ShotWeapon : WeaponBase
     protected int _exCount = 0;
     [SerializeField]
     protected int _exRadius = 0;
-    [SerializeField]
-    protected int _maxAmmunitionCapacity = -1;
-    [SerializeField]
-    protected int _magazineCount = -1;
-    private int _currentAmmunition = default;
-    private int _currentMagazine = default;
-    private int _count = 0;
+   
     private bool _isTrigerOn = false;
     public override void Initialize()
     {
