@@ -71,7 +71,7 @@ public class ShotWeapon : WeaponBase
     {
         IsFire = true;
         _count = 0;
-        while (_count < _shotCount && _currentAmmunition >= 0 && _currentMagazine >= 0)
+        while (_count < _shotCount && IsFire)
         {
             if (_muzzleFlashEffect != null)
             {
@@ -81,16 +81,27 @@ public class ShotWeapon : WeaponBase
             if (_magazineCount >= 0)
             {
                 _currentMagazine--;
+                if (_currentMagazine <= 0)
+                {
+                    IsFire = false;
+                    IsWait = true;
+                }
             }
             if (_maxAmmunitionCapacity >= 0)
             {
                 _currentAmmunition--;
+                if (_currentAmmunition <= 0)
+                {
+                    IsFire = false;
+                    IsWait = true;
+                }
             }
             for (int i = 0; i < _subCount; i++)
             {
                 Shot();
             }
             _count++;
+            _onCount?.Invoke();
             yield return WaitShot();
         }
         IsFire = false;
@@ -113,17 +124,22 @@ public class ShotWeapon : WeaponBase
             timer += Time.deltaTime;
             yield return null;
         }
-        if (_magazineCount >= 0 && _currentMagazine <= 0)
-        {
-            IsWait = true;
-        }
     }
     public override void Reload()
     {
+        if (_currentAmmunition == 0)
+        {
+            return;
+        }
         IsWait = false;
         if (_magazineCount > 0)
         {
             _currentMagazine = _magazineCount;
+            if (_currentMagazine > _currentAmmunition)
+            {
+                _currentMagazine = _currentAmmunition;
+            }
         }
+        _onCount?.Invoke();
     }
 }

@@ -6,19 +6,18 @@ public class MultipleWeapon : WeaponBase
 {
     [SerializeField]
     private WeaponBase[] _weapons = default;
-    [SerializeField]
-    private int _maxShotCount = -1;
-    private int _shotCount = 0;
+   
     public override void Initialize()
     {
         foreach (var weapon in _weapons)
         {
             weapon?.Initialize();
         }
+        _currentAmmunition = _maxAmmunitionCapacity;
     }
     public override void Fire()
     {
-        if (_maxShotCount > 0 && _shotCount >= _maxShotCount)
+        if (_maxAmmunitionCapacity > 0 && _currentAmmunition <= 0)
         {
             return;
         }
@@ -27,9 +26,10 @@ public class MultipleWeapon : WeaponBase
         { 
             weapon?.Fire();
         }
-        if (_maxShotCount > 0)
+        if (_currentAmmunition > 0)
         {
-            _shotCount++;
+            _currentAmmunition--;
         }
+        _onCount?.Invoke();
     }
 }

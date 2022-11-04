@@ -164,6 +164,11 @@ MonoBehaviour:
     Pos: {x: 0, y: 0, z: 0}
     Power: 10
     Time: 0.05
+  _maxAmmunitionCapacity: 6000
+  _magazineCount: -1
+  _currentAmmunition: 0
+  _currentMagazine: 0
+  _count: 0
   IsFire: 0
   IsWait: 0
   _bullet: {fileID: 8661921769014990206, guid: 0862e289ee8c9524db087c08c9ae4b6b, type: 3}
@@ -171,13 +176,12 @@ MonoBehaviour:
   _muzzle: {fileID: 4491090342611173470}
   _shotCount: 30
   _subCount: 0
+  _triggerInterval: 0.2
   _shotInterval: 0.03
   _diffusivity: 0.03
   _exPower: 0
   _exCount: 0
   _exRadius: 0
-  _maxAmmunitionCapacity: -1
-  _magazineCount: 6000
 --- !u!1 &4491090342611173471
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,6 +506,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _backPackWeapon: {fileID: 4491090341860285453}
   CameraLock: {fileID: 0}
 --- !u!114 &1963577440719883629
 MonoBehaviour:
