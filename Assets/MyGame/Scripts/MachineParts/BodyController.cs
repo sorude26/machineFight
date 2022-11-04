@@ -41,10 +41,18 @@ public class BodyController : MonoBehaviour, IPartsModel
     public int ID { get => _id; }
     public Transform HeadJoint { get => _headJoint; } 
     public DamageChecker DamageChecker { get => _damageChecker; }
+    public BackPackController BackPack { get => _backPack; }
+    public HandController LeftHand { get => _lHand; }
+    public HandController RightHand { get => _rHand; }
     public void Initialize(MoveController moveController)
     {
         _moveController = moveController;
         _boosters.Add(_boster);
+    }
+    public void SetParam(BodyParam param)
+    {
+        _param = param;
+        _damageChecker.SetHp(_param.Hp);
     }
     public void SetHands(HandController lhand,HandController rhand)
     {
@@ -276,6 +284,7 @@ public class BodyController : MonoBehaviour, IPartsModel
 [Serializable]
 public struct BodyParam
 {
+    public int Hp;
     public float BoostMoveSpeed;
     public float BoostUpPower;
     public float UseGeneratorPower;

@@ -25,8 +25,6 @@ public partial class LegStateContext
         private float _range = 0.95f;
         private float _rRange = 0.999f;
         private float _turnRange = 0.01f;
-        private Quaternion _targetAngle = default;
-        private readonly float SideAngle = 91;
 
         /// <summary>
         /// 歩行移動を行う
@@ -111,41 +109,6 @@ public partial class LegStateContext
                 _currentAngle = LegAngle.Right;
                 context.ChangeAnimation(context.AnimeName.TurnRight);
             }
-        }
-        private void SetLegAngle(LegStateContext context)
-        {
-            context.LegTrans.localRotation = Quaternion.Lerp(context.LegTrans.localRotation, _targetAngle, _turnSpeed * Time.fixedDeltaTime);
-        }
-        private Vector3 SetTargetAngle(LegStateContext context)
-        {
-            Vector3 moveDir = context.LegTrans.forward;
-            float forward = 0;
-            float side = 0;
-            if (context._moveDir.z != 0)
-            {
-                forward = 1;
-            }
-            if (context._moveDir.x > 0)
-            {
-                side = 1;
-            }
-            else if (context._moveDir.x < 0)
-            {
-                side = -1;
-            }
-            float angle = (SideAngle - SideAngle / 2 * forward) * side;
-            if (context._moveDir.z < 0)//後退入力であれば後退アニメーションに変更
-            {
-                angle = -angle;
-                if (_currentAngle != LegAngle.Back)
-                {
-                    _currentAngle = LegAngle.Back;
-                    context.ChangeAnimation(context.AnimeName.Back);
-                }
-                moveDir = -moveDir;
-            }
-            _targetAngle = Quaternion.Euler(0, angle, 0);
-            return moveDir;
         }
         public void ExecuteEnter(LegStateContext context)
         {

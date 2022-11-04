@@ -9804,12 +9804,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 2
-  _power: 30
+  _power: 20
   _speed: 220
   _fireShakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 35
     Time: 0.05
+  _maxAmmunitionCapacity: 90
+  _magazineCount: 3
+  _currentAmmunition: 0
+  _currentMagazine: 0
+  _count: 0
   IsFire: 0
   IsWait: 0
   _bullet: {fileID: 1233709711767816154, guid: 21422f45a42a25b48be65d96690eb91c, type: 3}
@@ -9817,13 +9822,12 @@ MonoBehaviour:
   _muzzle: {fileID: 7986155857372268401}
   _shotCount: 1
   _subCount: 0
-  _shotInterval: 1.5
+  _triggerInterval: 0.5
+  _shotInterval: 0.5
   _diffusivity: 0.02
-  _exPower: 50
-  _exCount: 1
+  _exPower: 40
+  _exCount: 2
   _exRadius: 15
-  _maxAmmunitionCapacity: -1
-  _magazineCount: 1
 --- !u!1 &7986155858764926498
 GameObject:
   m_ObjectHideFlags: 0

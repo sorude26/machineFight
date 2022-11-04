@@ -52,6 +52,11 @@ MonoBehaviour:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
     Time: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
+  _currentAmmunition: 0
+  _currentMagazine: 0
+  _count: 0
   IsFire: 0
   IsWait: 0
   _bullet: {fileID: 1233709711767816154, guid: 21422f45a42a25b48be65d96690eb91c, type: 3}
@@ -59,13 +64,12 @@ MonoBehaviour:
   _muzzle: {fileID: 1138164262016588842}
   _shotCount: 1
   _subCount: 0
+  _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.01
   _exPower: 80
   _exCount: 1
   _exRadius: 15
-  _maxAmmunitionCapacity: -1
-  _magazineCount: -1
 --- !u!1 &1934429956360558908
 GameObject:
   m_ObjectHideFlags: 0
@@ -5553,6 +5557,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _backPackWeapon: {fileID: 2506497750336498661}
   CameraLock: {fileID: 0}
 --- !u!114 &1963577440719883629
 MonoBehaviour:
@@ -5798,6 +5803,11 @@ MonoBehaviour:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
     Time: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
+  _currentAmmunition: 0
+  _currentMagazine: 0
+  _count: 0
   IsFire: 0
   IsWait: 0
   _bullet: {fileID: 1233709711767816154, guid: 21422f45a42a25b48be65d96690eb91c, type: 3}
@@ -5805,13 +5815,12 @@ MonoBehaviour:
   _muzzle: {fileID: 2080111560418121597}
   _shotCount: 1
   _subCount: 0
+  _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.01
   _exPower: 80
   _exCount: 1
   _exRadius: 15
-  _maxAmmunitionCapacity: -1
-  _magazineCount: -1
 --- !u!1 &8699515386479341357
 GameObject:
   m_ObjectHideFlags: 0

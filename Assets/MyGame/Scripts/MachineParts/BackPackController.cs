@@ -26,9 +26,12 @@ public class BackPackController : MonoBehaviour, IPartsModel
     private UnityEvent _initializeEvent = default;
     [SerializeField]
     private UnityEvent _backPackBurstEvent = default;
+    [SerializeField]
+    private WeaponBase _backPackWeapon = default;
     public Transform CameraLock = default;
     public int ID { get => _id; }
     public BoosterController Booster { get => _booster; }
+    public WeaponBase BackPackWeapon { get => _backPackWeapon; }
     public event Action OnBackPackBurst = default;
     private void Start()
     {

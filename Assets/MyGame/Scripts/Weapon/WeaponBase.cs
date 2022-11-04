@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ public abstract class WeaponBase : MonoBehaviour, IPartsModel
     protected int _maxAmmunitionCapacity = -1;
     [SerializeField]
     protected int _magazineCount = -1;
+    protected Action _onCount = default;
     public int MaxAmmunitionCapacity => _maxAmmunitionCapacity;
     public int MagazineCount => _magazineCount;
     public int _currentAmmunition = default;
@@ -23,6 +25,17 @@ public abstract class WeaponBase : MonoBehaviour, IPartsModel
     public int _count = 0;
     public bool IsFire;
     public bool IsWait;
+    public event Action OnCount 
+    { 
+        remove 
+        { 
+            _onCount -= value;
+        }
+        add 
+        { 
+            _onCount += value; 
+        } 
+    }
     public int ID { get => _id; }
     public float Speed { get => _speed; }
     protected void PlayShake()
