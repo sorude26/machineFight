@@ -14,8 +14,6 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     [SerializeField]
     private UnityEvent _onSeverelyDamagedEvent = default;
     [SerializeField]
-    private UnityEvent _onDamageEvent = default;
-    [SerializeField]
     private GameObject _deadEffect = default;
     [SerializeField]
     private ShakeParam _deadShakeParam = default;
@@ -25,15 +23,21 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     private bool _isSeverelyDamaged = false;
     public int MaxHp { get => _maxHp; }
     public int CurrentHp { get => _hp; }
+    public UnityEvent OnDamageEvent;
     private void Start()
     {
         _hp = _maxHp;
+    }
+    public void SetHp(int hp,float severely = 0.8f)
+    {
+        _maxHp = hp;
+        _hp = hp;
+        _severelyDamage = (int)(_maxHp * severely);
     }
     public void AddlyDamage(int damage)
     {
         if (_hp <= 0) { return; }
         _hp -= damage;
-        _onDamageEvent?.Invoke();
         if (_isSeverelyDamaged == false &&_hp <= _maxHp - _severelyDamage) 
         {
             _onSeverelyDamagedEvent?.Invoke();
@@ -48,13 +52,17 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
                 StageManager.Instance.AddCount();
             }
         }
+        OnDamageEvent?.Invoke();
     }
     public void PlayEffect()
     {
         var effect = ObjectPoolManager.Instance.LimitUse(_deadEffect);
-        effect.transform.position = transform.position;
-        effect.transform.rotation = transform.rotation;
-        effect.SetActive(true);
+        if (effect != null)
+        {
+            effect.transform.position = transform.position;
+            effect.transform.rotation = transform.rotation;
+            effect.SetActive(true);
+        }
         StageShakeController.PlayShake(_deadShakeParam.Pos + transform.position,_deadShakeParam.Power,_deadShakeParam.Time);
     }
 }
