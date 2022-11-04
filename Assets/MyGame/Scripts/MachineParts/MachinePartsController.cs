@@ -19,9 +19,10 @@ namespace MyGame
         private bool _isDown = false;
         public bool IsInitalized { get; private set; }
         public DamageChecker DamageChecker { get => _bodyController.DamageChecker; }
-        public void Initialize()
+        public BodyController BodyController { get => _bodyController; }
+        public void Initialize(PartsBuildParam buildParam)
         {
-            _builder.Build();
+            _builder.Build(buildParam);
             _bodyController = _builder.Body;
             _legController = _builder.Leg;
             _moveController = new MoveController(_moveRb);

@@ -21,9 +21,11 @@ namespace MyGame
         private float _naviInterval = 1f;
         private float _timer = 0f;
         private Vector3 _currentDir = Vector3.zero;
+        [SerializeField]
+        private PartsBuildParam _buildParam;
         private void Start()
         {
-            _machineController.Initialize();
+            _machineController.Initialize(_buildParam);
         }
         private void FixedUpdate()
         {
