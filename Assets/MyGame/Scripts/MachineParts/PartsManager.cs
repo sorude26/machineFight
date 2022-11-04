@@ -17,15 +17,19 @@ public class PartsManager
         }
     }
     private PartsModelData _modelData = default;
+    private PartsParamData _paramData = default;
     private bool _isLoaded = false;
-    public PartsModelData AllData { get { return _modelData; } }
+    public PartsModelData AllModelData { get { return _modelData; } }
+    public PartsParamData AllParamData { get { return _paramData; } }
     public void LoadData()
     {
         if (_isLoaded == true) { return; }
         var modelData = Resources.Load<PartsModelData>("ScriptableObjects/PartsModelData");
-        if (modelData != null)
+        var paramData = Resources.Load<PartsParamData>("ScriptableObjects/PartsParamData");
+        if (modelData != null && paramData != null)
         {
             instance._modelData = modelData;
+            instance._paramData = paramData;
             _isLoaded = true;
         }
     }

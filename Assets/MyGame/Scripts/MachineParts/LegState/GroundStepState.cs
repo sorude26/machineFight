@@ -5,16 +5,17 @@ public partial class LegStateContext
 {
     public class GroundStepState : ILegState
     {
+        private readonly float SIDE_RANGE = 0.5f;
         public void ExecuteEnter(LegStateContext context)
         {
             var moveDir = context._moveDir;
             if (moveDir.z > 0)
             {
-                if (moveDir.x < -0.5f)
+                if (moveDir.x < -SIDE_RANGE)
                 {
                     context.ChangeAnimation(context.AnimeName.StepLeft);
                 }
-                else if (moveDir.x > 0.5f)
+                else if (moveDir.x > SIDE_RANGE)
                 {
                     context.ChangeAnimation(context.AnimeName.StepRight);
                 }
