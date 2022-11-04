@@ -40,7 +40,7 @@ public class HandController : MonoBehaviour, IPartsModel
     public Transform TargetTrans = default;
     public BoosterController ShoulderBoost { get => _shoulderBoosters; }
     public int ID { get => _id; }
-
+    public WeaponBase WeaponBase { get => _weapon; }
     public void SetCameraAim()
     {
         _topRotaion = _lockAim.localRotation;

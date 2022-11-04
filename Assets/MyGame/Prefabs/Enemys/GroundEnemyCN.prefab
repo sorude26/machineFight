@@ -10215,13 +10215,20 @@ MonoBehaviour:
     Power: 0
     Time: 0
   IsFire: 0
+  IsWait: 0
   _bullet: {fileID: 1233709711767816154, guid: e6e67469e48f0e04ba2720aa3bacb866, type: 3}
   _muzzleFlashEffect: {fileID: 1156734301173493863}
   _muzzle: {fileID: 1156734300506897714}
   _shotCount: 3
   _subCount: 0
+  _triggerInterval: 0.2
   _shotInterval: 0.6
   _diffusivity: 0.01
+  _exPower: 0
+  _exCount: 0
+  _exRadius: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
 --- !u!1 &1156734301336813997
 GameObject:
   m_ObjectHideFlags: 0
@@ -10672,6 +10679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lockOnTime: 1
+  _damageChecker: {fileID: 4306369018250236235}
 --- !u!136 &4306369016972560375
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11298,13 +11306,20 @@ MonoBehaviour:
     Power: 0
     Time: 0
   IsFire: 0
+  IsWait: 0
   _bullet: {fileID: 1233709711767816154, guid: e6e67469e48f0e04ba2720aa3bacb866, type: 3}
   _muzzleFlashEffect: {fileID: 287583460641196591}
   _muzzle: {fileID: 6131595637078330730}
   _shotCount: 3
   _subCount: 0
+  _triggerInterval: 0.2
   _shotInterval: 0.6
   _diffusivity: 0.01
+  _exPower: 0
+  _exCount: 0
+  _exRadius: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
 --- !u!1001 &1156734299782559885
 PrefabInstance:
   m_ObjectHideFlags: 0

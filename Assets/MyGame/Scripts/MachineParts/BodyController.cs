@@ -26,6 +26,8 @@ public class BodyController : MonoBehaviour, IPartsModel
     private Transform _lHandJoint = default;
     [SerializeField]
     private Transform _rHandJoint = default;
+    [SerializeField]
+    private DamageChecker _damageChecker = default;
     private MoveController _moveController = default;
     private BackPackController _backPack = default;
     private bool _isShoot = false;
@@ -38,6 +40,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     public bool IsDown = false;
     public int ID { get => _id; }
     public Transform HeadJoint { get => _headJoint; } 
+    public DamageChecker DamageChecker { get => _damageChecker; }
     public void Initialize(MoveController moveController)
     {
         _moveController = moveController;
@@ -275,6 +278,8 @@ public struct BodyParam
 {
     public float BoostMoveSpeed;
     public float BoostUpPower;
+    public float UseGeneratorPower;
+    public float EnergyConsumption;
     public float UpPower;
     public float JetPower;
     public float JetTime;

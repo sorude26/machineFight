@@ -134,13 +134,20 @@ MonoBehaviour:
     Power: 0
     Time: 0
   IsFire: 0
+  IsWait: 0
   _bullet: {fileID: 1233709711767816154, guid: e6e67469e48f0e04ba2720aa3bacb866, type: 3}
   _muzzleFlashEffect: {fileID: 6438122768468511159}
   _muzzle: {fileID: 1131160592875507442}
   _shotCount: 3
   _subCount: 0
+  _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.04
+  _exPower: 0
+  _exCount: 0
+  _exRadius: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
 --- !u!1 &1131160592875507443
 GameObject:
   m_ObjectHideFlags: 0
@@ -5290,6 +5297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lockOnTime: 1
+  _damageChecker: {fileID: 7018357406894510803}
 --- !u!136 &7018357405746824303
 CapsuleCollider:
   m_ObjectHideFlags: 0
