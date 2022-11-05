@@ -23,9 +23,18 @@ namespace MyGame
         private Vector3 _currentDir = Vector3.zero;
         [SerializeField]
         private PartsBuildParam _buildParam;
+        [SerializeField]
+        private LockOnTarget _bodyTarget = default;
         private void Start()
         {
             _machineController.Initialize(_buildParam);
+            _bodyTarget.SetChecker(_machineController.DamageChecker);
+            _machineController.BodyController.LeftHand.WeaponBase.AnLimitAmmunition();
+            _machineController.BodyController.RightHand.WeaponBase.AnLimitAmmunition();
+            if (_machineController.BodyController.BackPack.BackPackWeapon != null)
+            {
+                _machineController.BodyController.BackPack.BackPackWeapon.AnLimitAmmunition();
+            }
         }
         private void FixedUpdate()
         {
