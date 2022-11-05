@@ -45,4 +45,9 @@ public abstract class WeaponBase : MonoBehaviour, IPartsModel
     public abstract void Initialize();
     public abstract void Fire();
     public virtual void Reload() { }
+    public virtual void RefillAmmunition(float percent) { }
+    public void AnLimitAmmunition()
+    {
+        _maxAmmunitionCapacity = -1;
+    }
 }
