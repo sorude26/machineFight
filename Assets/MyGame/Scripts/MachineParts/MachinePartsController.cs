@@ -20,6 +20,7 @@ namespace MyGame
         public bool IsInitalized { get; private set; }
         public DamageChecker DamageChecker { get => _bodyController.DamageChecker; }
         public BodyController BodyController { get => _bodyController; }
+        public MachineBuilder Builder { get => _builder; }
         public void Initialize(PartsBuildParam buildParam)
         {
             _builder.Build(buildParam);
