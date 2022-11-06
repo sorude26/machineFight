@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ExplosionBullet
 {
-    private const float INTERVAL_TIME = 0.5f;
+    private const float INTERVAL_TIME = 0.1f;
     private readonly WaitForSeconds WAIT_SECONDS = new WaitForSeconds(INTERVAL_TIME);
     public IEnumerator ExplosionImpl(Vector3 center, int damage,int count,float radius,LayerMask layer)
     {

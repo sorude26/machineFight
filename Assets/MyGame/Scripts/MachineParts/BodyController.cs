@@ -38,6 +38,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     public Transform Lock = null;
     public Transform AttackTarget = null;
     public bool IsDown = false;
+    public event Action UseBooster = default;
     public int ID { get => _id; }
     public Transform HeadJoint { get => _headJoint; } 
     public DamageChecker DamageChecker { get => _damageChecker; }
@@ -182,6 +183,7 @@ public class BodyController : MonoBehaviour, IPartsModel
         {
             return;
         }
+        UseBooster?.Invoke();
         if (_boster != null)
         {
             if (_boster.IsBoost == false)
@@ -201,13 +203,16 @@ public class BodyController : MonoBehaviour, IPartsModel
             _rHand.ShoulderBoost.MainBoost();
         }
         _moveController.AddImpulse(Vector3.up * _param.UpPower);
+
     }
     public void AngleBoost(Vector3 dir, bool isFall)
     {
         if (isFall == false || IsDown == true)
         {
+           
             return;
         }
+        UseBooster?.Invoke();
         _jetTimer = _param.JetTime;
         if (_boster != null && _boster.IsBoost == false)
         {
@@ -278,6 +283,12 @@ public class BodyController : MonoBehaviour, IPartsModel
     public void DestroyBody()
     {
         OnBodyDestroy?.Invoke();
+        foreach (var booster in _boosters)
+        {
+            booster.StopBooster();
+        }
+        _lHand.ShoulderBoost.StopBooster();
+        _rHand.ShoulderBoost.StopBooster();
     }
 }
 

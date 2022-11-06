@@ -49,4 +49,8 @@ public class LockOnTarget : MonoBehaviour
         IsLockOn = false;
         _timer = 0;
     }
+    public void SetChecker(DamageChecker checker)
+    {
+        _damageChecker = checker;
+    }
 }
