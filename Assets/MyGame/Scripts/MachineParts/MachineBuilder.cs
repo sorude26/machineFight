@@ -14,6 +14,12 @@ public class MachineBuilder : MonoBehaviour
     private Transform _aimTrans = default;
     public BodyController Body { get; private set; }
     public LegController Leg { get; private set; }
+
+    public float MaxBooster { get; private set; }
+    public float BoosterRecoverySpeed { get; private set; }
+    public float MaxEnergy { get; private set; }
+    public float EnergyConsumption { get; private set; }
+    public float BoosterConsumption { get; private set; }
     public void Build(PartsBuildParam buildPattern)
     {
         var modelID = new PartsBuildParam();
@@ -62,9 +68,28 @@ public class MachineBuilder : MonoBehaviour
         body.AddBooster(leg.LegBoost);
         Body = body;
         Leg = leg;
-        var bodyParam = PartsManager.Instance.AllParamData.GetPartsBack(_buildData.Booster).Param;
-        bodyParam.Hp = PartsManager.Instance.AllParamData.GetPartsBody(_buildData.Body).Hp;
+        SetParam();
+    }
+    private void SetParam()
+    {
+        var boosterData = PartsManager.Instance.AllParamData.GetPartsBack(_buildData.Booster);
+        var bodyData = PartsManager.Instance.AllParamData.GetPartsBody(_buildData.Body);
+        var headData = PartsManager.Instance.AllParamData.GetPartsHead(_buildData.Head);
+        var handDataL = PartsManager.Instance.AllParamData.GetPartsHead(_buildData.LHand);
+        var handDataR = PartsManager.Instance.AllParamData.GetPartsHead(_buildData.RHand);
+        var legData = PartsManager.Instance.AllParamData.GetPartsLeg(_buildData.Leg);
+        var bodyParam = boosterData.Param;
+        BoosterConsumption = boosterData.UseGeneratorPower;
+        EnergyConsumption += boosterData.EnergyConsumption;
+        EnergyConsumption += headData.EnergyConsumption;
+        EnergyConsumption += handDataL.EnergyConsumption;
+        EnergyConsumption += handDataR.EnergyConsumption;
+        EnergyConsumption += legData.EnergyConsumption;
+        MaxBooster = bodyData.Generator;
+        MaxEnergy = bodyData.Energy;
+        BoosterRecoverySpeed = bodyData.GeneratorRecoverySpeed;
+        bodyParam.Hp = bodyData.Hp;
         Body.SetParam(bodyParam);
-        Leg.SetLegParam(PartsManager.Instance.AllParamData.GetPartsLeg(_buildData.Leg).Param);
+        Leg.SetLegParam(legData.Param);
     }
 }
