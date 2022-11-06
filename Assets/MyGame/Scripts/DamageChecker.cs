@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.VersionControl.Message;
 
 public class DamageChecker : MonoBehaviour, IDamageApplicable
 {
@@ -24,6 +25,7 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     public int MaxHp { get => _maxHp; }
     public int CurrentHp { get => _hp; }
     public UnityEvent OnDamageEvent;
+    public UnityEvent OnRecoveryEvent;
     private void Start()
     {
         _hp = _maxHp;
@@ -33,6 +35,16 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
         _maxHp = hp;
         _hp = hp;
         _severelyDamage = (int)(_maxHp * severely);
+    }
+    public void RecoveryHp(int point)
+    {
+        if (_hp <= 0) { return; }
+        _hp += point;
+        if (_hp > _maxHp)
+        {
+            _hp = _maxHp;
+        }
+        OnRecoveryEvent?.Invoke();
     }
     public void AddlyDamage(int damage)
     {
