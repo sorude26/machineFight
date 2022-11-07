@@ -146,7 +146,7 @@ public class BodyController : MonoBehaviour, IPartsModel
         var angle = Vector3.Dot(targetDir.normalized, transform.forward);
         return angle > ATTACK_ANGLE;
     }
-    public void BoostMove(Vector3 dir)
+    public void BoostMove(Vector3 dir,bool floatMode)
     {
         if (IsDown == true)
         {
@@ -175,7 +175,15 @@ public class BodyController : MonoBehaviour, IPartsModel
         {
             dir = Vector3.up * _param.BoostUpPower;
         }
-        _moveController.AddMove(dir);
+        if (floatMode == true && dir.x != 0 && dir.z != 0)
+        {
+            dir *= 2f;
+            _moveController.VelocityMove(dir);
+        }
+        else
+        {
+            _moveController.AddMove(dir);
+        }
     }
     public void UpBoost()
     {
@@ -205,7 +213,7 @@ public class BodyController : MonoBehaviour, IPartsModel
         _moveController.AddImpulse(Vector3.up * _param.UpPower);
 
     }
-    public void AngleBoost(Vector3 dir, bool isFall)
+    public void AngleBoost(Vector3 dir, bool isFall,bool isFloat)
     {
         if (isFall == false || IsDown == true)
         {
@@ -269,6 +277,10 @@ public class BodyController : MonoBehaviour, IPartsModel
         else
         {
             dir.y = -_param.JetPower;
+        }
+        if (isFloat == true)
+        {
+            dir *= 2f;
         }
         _moveController.VelocityMove(dir);
     }
