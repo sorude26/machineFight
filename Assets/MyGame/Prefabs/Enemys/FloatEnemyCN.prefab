@@ -5650,6 +5650,7 @@ GameObject:
   - component: {fileID: 7018357406306533421}
   - component: {fileID: 7018357406306533423}
   - component: {fileID: 7018357406306533422}
+  - component: {fileID: -3338703610236240453}
   m_Layer: 0
   m_Name: FloatEnemyCN
   m_TagString: Untagged
@@ -5735,6 +5736,22 @@ MonoBehaviour:
   _transSpeed: 5
   _moveSpeed: 2
   _naviInterval: 1
+--- !u!114 &-3338703610236240453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7018357406306533420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be8f8331b6b2ed4c916dd7601642fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageCheckers:
+  - {fileID: 7018357406894510803}
+  _targets:
+  - {fileID: 7018357405746824296}
 --- !u!1 &7018357406413398478
 GameObject:
   m_ObjectHideFlags: 0
@@ -5912,7 +5929,7 @@ MonoBehaviour:
     Pos: {x: 0, y: 0, z: 0}
     Power: 70
     Time: 1
-  _addCount: 1
+  _addCount: 0
   OnDamageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -5947,7 +5964,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _items:
   - {fileID: 1351174841993859409, guid: b15ec99a961eb2d4599e2898ae001aac, type: 3}
-  - {fileID: 1234321730564965865, guid: b72018ba32c20f64eb6dd9eee453fd91, type: 3}
+  - {fileID: 1351174841993859409, guid: b15ec99a961eb2d4599e2898ae001aac, type: 3}
+  - {fileID: 1351174841993859409, guid: ab908356eec1a4e438d305a8e2d27020, type: 3}
 --- !u!1 &7018357406923311752
 GameObject:
   m_ObjectHideFlags: 0
