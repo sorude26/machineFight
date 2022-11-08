@@ -29,7 +29,8 @@ public class LegController : MonoBehaviour, IPartsModel
     private LegStateContext _stateContext = default;
     private bool _isJump = false;
     private bool _isStep = false;
-    public bool IsFall { get; private set; }
+    public bool IsFall { get => _stateContext.IsFall; }
+    public bool IsFloat { get => _stateContext.IsFloat; }
     public int ID { get => _id; }
     public Transform BodyJoint { get => _bodyJoint; }
     public BoosterController LegBoost { get => _legBooster; }
@@ -49,7 +50,6 @@ public class LegController : MonoBehaviour, IPartsModel
         _stateContext.ExecuteFixedUpdate(dir, _isJump,_isStep, _groundChecker.IsWalled());
         _isJump = false;
         _isStep = false;
-        IsFall = _stateContext.IsFall;
     }
     public void SetLegParam(LegActionParam param)
     {
@@ -71,5 +71,9 @@ public class LegController : MonoBehaviour, IPartsModel
     public void PowerDown()
     {
         _stateContext.ChangeToDown();
+    }
+    public void ChangeFloat()
+    {
+        _stateContext.ChangeFloatMode();
     }
 }

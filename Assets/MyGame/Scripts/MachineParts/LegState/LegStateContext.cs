@@ -22,6 +22,7 @@ public partial class LegStateContext
     private LandingState _landingState = new LandingState();
     private DownState _downState = new DownState();
     private GroundStepState _stepState = new GroundStepState();
+    private FloatState _floatState = new FloatState();
     //-----------------------------------------------------------
     #endregion
     public LegAnimation AnimeName = default;
@@ -30,6 +31,7 @@ public partial class LegStateContext
     public Transform LegBaseTrans = default;
     public Transform BodyTrans = default;
     public bool IsFall = false;
+    public bool IsFloat = false;
     public LegStateContext(Animator animator, MyGame.MoveController moveController)
     {
         _legAnimator = animator;
@@ -57,6 +59,17 @@ public partial class LegStateContext
     public void ChangeToDown()
     {
         ChangeState(_downState);
+    }
+    public void ChangeFloatMode()
+    {
+        if (IsFloat == false)
+        {
+            ChangeState(_floatState);
+        }
+        else
+        {
+            ChangeState(_fallState);
+        }
     }
     private void ChangeState(ILegState legState)
     {

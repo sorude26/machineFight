@@ -28,6 +28,10 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     public UnityEvent OnRecoveryEvent;
     private void Start()
     {
+        StartSet();
+    }
+    public void StartSet()
+    {
         _hp = _maxHp;
     }
     public void SetHp(int hp,float severely = 0.8f)

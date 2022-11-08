@@ -15,10 +15,20 @@ public class LockOnTarget : MonoBehaviour
     public bool IsLockOn { get; private set; }
     public DamageChecker DamageChecker { get => _damageChecker; }
     private bool _isActive = true;
-    
+    private bool _isInitialized = false;
+
     private void Start()
     {
-        LockOnController.Instance.LockOnTargets.Add(this);
+        Initialize();
+    }
+    public void Initialize()
+    {
+        if (_isInitialized == false)
+        {
+            LockOnController.Instance.LockOnTargets.Add(this);
+            _isInitialized = true;
+        }
+        _isActive = true;
     }
     private void OnDisable()
     {

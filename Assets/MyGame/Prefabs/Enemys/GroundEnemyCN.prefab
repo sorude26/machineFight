@@ -10908,7 +10908,7 @@ MonoBehaviour:
     Pos: {x: 0, y: 0, z: 0}
     Power: 250
     Time: 1
-  _addCount: 1
+  _addCount: 0
   OnDamageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -10942,8 +10942,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _items:
-  - {fileID: 1351174841993859409, guid: b15ec99a961eb2d4599e2898ae001aac, type: 3}
   - {fileID: 1234321730564965865, guid: b72018ba32c20f64eb6dd9eee453fd91, type: 3}
+  - {fileID: 1234321730564965865, guid: b72018ba32c20f64eb6dd9eee453fd91, type: 3}
+  - {fileID: 1234321730564965865, guid: 6215920cd43c3334b967b1bc5f017da6, type: 3}
 --- !u!1 &4306369018484222822
 GameObject:
   m_ObjectHideFlags: 0
@@ -11038,6 +11039,7 @@ GameObject:
   - component: {fileID: 4306369018601817008}
   - component: {fileID: 4306369018601817011}
   - component: {fileID: 4306369018601817010}
+  - component: {fileID: 6523338354323658597}
   m_Layer: 10
   m_Name: GroundEnemyCN
   m_TagString: Untagged
@@ -11175,6 +11177,22 @@ CapsuleCollider:
   m_Height: 11
   m_Direction: 2
   m_Center: {x: 0, y: 3, z: 1}
+--- !u!114 &6523338354323658597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4306369018601817012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be8f8331b6b2ed4c916dd7601642fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageCheckers:
+  - {fileID: 4306369018250236235}
+  _targets:
+  - {fileID: 4306369016972560368}
 --- !u!1 &6131595636625196089
 GameObject:
   m_ObjectHideFlags: 0
