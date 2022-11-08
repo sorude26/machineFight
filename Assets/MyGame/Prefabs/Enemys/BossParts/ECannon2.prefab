@@ -5243,7 +5243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 370c006a94b7a6143bf3bd5777789ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lockOnWide: -2
+  _lockOnWide: 0.1
   _bodyTrans: {fileID: 8274603081268379429}
   _wallLayer:
     serializedVersion: 2
@@ -5282,7 +5282,7 @@ MonoBehaviour:
   _attackerMoveBody: {fileID: 8274603079834872994}
   _playerLock: {fileID: 8274603079797060530}
   _lockBody: {fileID: 8274603081268379429}
-  _lockSpeed: 2.5
+  _lockSpeed: 1
 --- !u!1 &8274603079891379265
 GameObject:
   m_ObjectHideFlags: 0
@@ -10317,7 +10317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _power: 10
-  _speed: 500
+  _speed: 1500
   _fireShakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
@@ -10329,7 +10329,7 @@ MonoBehaviour:
   _count: 0
   IsFire: 0
   IsWait: 0
-  _bullet: {fileID: 4864901343781380692, guid: cb503772fb257df4fb734580139af4d4, type: 3}
+  _bullet: {fileID: 4864901343781380692, guid: 0cac8b74d585fbd4ca90cdcb1c3ee6bf, type: 3}
   _muzzleFlashEffect: {fileID: 8274603079997786363}
   _muzzle: {fileID: 8274603081693861179}
   _shotCount: 100
@@ -20478,7 +20478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _power: 10
-  _speed: 500
+  _speed: 1500
   _fireShakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
@@ -20490,7 +20490,7 @@ MonoBehaviour:
   _count: 0
   IsFire: 0
   IsWait: 0
-  _bullet: {fileID: 4864901343781380692, guid: cb503772fb257df4fb734580139af4d4, type: 3}
+  _bullet: {fileID: 4864901343781380692, guid: 0cac8b74d585fbd4ca90cdcb1c3ee6bf, type: 3}
   _muzzleFlashEffect: {fileID: 8274603080928584956}
   _muzzle: {fileID: 8274603080154381007}
   _shotCount: 100
@@ -35759,8 +35759,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3abf21d29c7fb4c4a95117430a7de956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 5200
-  _severelyDamage: 3500
+  _maxHp: 7000
+  _severelyDamage: 5500
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls:
