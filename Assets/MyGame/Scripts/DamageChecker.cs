@@ -24,6 +24,7 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     private bool _isSeverelyDamaged = false;
     public int MaxHp { get => _maxHp; }
     public int CurrentHp { get => _hp; }
+    public bool AddTarget { get => _addCount; }
     public UnityEvent OnDamageEvent;
     public UnityEvent OnRecoveryEvent;
     private void Start()
