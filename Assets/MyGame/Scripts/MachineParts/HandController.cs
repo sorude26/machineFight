@@ -34,7 +34,9 @@ public class HandController : MonoBehaviour, IPartsModel
     private Quaternion _topRotaion = Quaternion.identity;
     private Quaternion _handRotaion = Quaternion.identity;
     private bool _isReload = false;
-    public float PartsRotaionSpeed = 3.0f;
+    private WaitForSeconds _reRoadWait = default;
+    public float PartsRotaionSpeed = 6.0f;
+    public float ReRoadTime = 0.5f;
     public bool IsAttack;
 
     public Transform TargetTrans = default;
@@ -85,6 +87,7 @@ public class HandController : MonoBehaviour, IPartsModel
         weapon.transform.localRotation = Quaternion.identity;
         _weapon = weapon;
         _weapon.Initialize();
+        _reRoadWait = new WaitForSeconds(ReRoadTime);
     }
     public void SetLockAim(Transform target)
     {
@@ -98,6 +101,7 @@ public class HandController : MonoBehaviour, IPartsModel
             {
                 _handAnime.Play(ReloadName);
                 _isReload = true;
+                StartCoroutine(ReRoadWait());
             }
             return;
         }
@@ -109,7 +113,7 @@ public class HandController : MonoBehaviour, IPartsModel
         _isShooting = true;
         StartCoroutine(AttackImpl());
     }
-    public void ReloadWeapon()
+    private void ReloadWeapon()
     {
         _weapon.Reload();
         _isReload = false;
@@ -137,5 +141,10 @@ public class HandController : MonoBehaviour, IPartsModel
         }
         _isShooting = false;
         EndShot();
+    }
+    private IEnumerator ReRoadWait()
+    {
+        yield return _reRoadWait;
+        ReloadWeapon();
     }
 }
