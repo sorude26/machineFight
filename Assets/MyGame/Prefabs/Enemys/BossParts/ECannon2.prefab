@@ -5243,7 +5243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 370c006a94b7a6143bf3bd5777789ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lockOnWide: -2
+  _lockOnWide: 0.1
   _bodyTrans: {fileID: 8274603081268379429}
   _wallLayer:
     serializedVersion: 2
@@ -5282,7 +5282,7 @@ MonoBehaviour:
   _attackerMoveBody: {fileID: 8274603079834872994}
   _playerLock: {fileID: 8274603079797060530}
   _lockBody: {fileID: 8274603081268379429}
-  _lockSpeed: 2.5
+  _lockSpeed: 1
 --- !u!1 &8274603079891379265
 GameObject:
   m_ObjectHideFlags: 0
@@ -10317,7 +10317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _power: 10
-  _speed: 500
+  _speed: 1500
   _fireShakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
@@ -10329,7 +10329,7 @@ MonoBehaviour:
   _count: 0
   IsFire: 0
   IsWait: 0
-  _bullet: {fileID: 4864901343781380692, guid: cb503772fb257df4fb734580139af4d4, type: 3}
+  _bullet: {fileID: 4864901343781380692, guid: 0cac8b74d585fbd4ca90cdcb1c3ee6bf, type: 3}
   _muzzleFlashEffect: {fileID: 8274603079997786363}
   _muzzle: {fileID: 8274603081693861179}
   _shotCount: 100
@@ -20366,7 +20366,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8274603080612271704}
-  m_Layer: 0
+  - component: {fileID: 5910467507140225318}
+  - component: {fileID: 1949158812376476620}
+  m_Layer: 10
   m_Name: Weapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20391,6 +20393,33 @@ Transform:
   m_Father: {fileID: 8274603081268379429}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5910467507140225318
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8274603080612271705}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 4}
+  m_Center: {x: 0, y: 0, z: 1}
+--- !u!136 &1949158812376476620
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8274603080612271705}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2
+  m_Height: 3
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: -2.17}
 --- !u!1 &8274603080612501483
 GameObject:
   m_ObjectHideFlags: 0
@@ -20478,7 +20507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _power: 10
-  _speed: 500
+  _speed: 1500
   _fireShakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
@@ -20490,7 +20519,7 @@ MonoBehaviour:
   _count: 0
   IsFire: 0
   IsWait: 0
-  _bullet: {fileID: 4864901343781380692, guid: cb503772fb257df4fb734580139af4d4, type: 3}
+  _bullet: {fileID: 4864901343781380692, guid: 0cac8b74d585fbd4ca90cdcb1c3ee6bf, type: 3}
   _muzzleFlashEffect: {fileID: 8274603080928584956}
   _muzzle: {fileID: 8274603080154381007}
   _shotCount: 100
@@ -30328,8 +30357,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 4.5
+  m_Radius: 2
+  m_Height: 6
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8274603080979211325
@@ -35723,6 +35752,7 @@ GameObject:
   - component: {fileID: 8274603081268379429}
   - component: {fileID: 8274603081268379428}
   - component: {fileID: 8274603081268379427}
+  - component: {fileID: 4657878202214312216}
   m_Layer: 0
   m_Name: TargetBalloon
   m_TagString: Untagged
@@ -35759,8 +35789,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3abf21d29c7fb4c4a95117430a7de956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHp: 5200
-  _severelyDamage: 3500
+  _maxHp: 7000
+  _severelyDamage: 5500
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls:
@@ -35789,6 +35819,18 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 8274603080612271705}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8274603080963956124}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -35838,9 +35880,23 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.7
-  m_Height: 5
+  m_Height: 4
   m_Direction: 2
-  m_Center: {x: 0, y: 0.2, z: 0}
+  m_Center: {x: 0.5, y: 0.2, z: -0.7}
+--- !u!136 &4657878202214312216
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8274603081268379430}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.7
+  m_Height: 4
+  m_Direction: 2
+  m_Center: {x: -0.5, y: 0.2, z: -0.7}
 --- !u!1 &8274603081294366502
 GameObject:
   m_ObjectHideFlags: 0

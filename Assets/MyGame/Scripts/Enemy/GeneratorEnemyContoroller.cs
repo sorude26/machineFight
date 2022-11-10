@@ -25,7 +25,6 @@ public class GeneratorEnemyContoroller : MonoBehaviour
     public void InitializeEnemy(Transform pos)
     {
         transform.position = pos.position;
-        transform.forward = pos.forward;
         gameObject.SetActive(true);
         foreach (DamageChecker checker in damageCheckers)
         {

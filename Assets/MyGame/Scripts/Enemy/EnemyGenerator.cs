@@ -18,6 +18,8 @@ public class EnemyGenerator : MonoBehaviour
     private int _enemySpwanCount = 5;
     [SerializeField]
     private int _enemySpwanTargetCount = 5;
+    [SerializeField]
+    private bool _isAutoSpwan = true;
     private int _enemyIndex = 0;
     private int _pointIndex = 0;
     private int _count = 0;
@@ -32,18 +34,25 @@ public class EnemyGenerator : MonoBehaviour
             for (int k = 0; k < _defaultCount; k++)
             {
                 _allEnemys[i * _defaultCount + k] = Instantiate(_enemys[i],transform);
-                _allEnemys[i * _defaultCount + k].OnDeadEvent += AddCount;
+                if (_isAutoSpwan == true)
+                {
+                    _allEnemys[i * _defaultCount + k].OnDeadEvent += AddCount;
+                }
                 _allEnemys[i * _defaultCount + k].gameObject.SetActive(false);
             }
         }
         yield return null;
-        ShufflePoints();
-        ShuffleEnemys();
+        Spwan();
         for (int i = 0; i < _startSpwanCount; i++)
         {
             SpwanEnemys();
         }
         _isStart = true;
+    }
+    public void Spwan()
+    {
+        ShufflePoints();
+        SpwanEnemys();
     }
     private void AddCount()
     {

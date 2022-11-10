@@ -222,7 +222,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 0.17100723, b: 0.4528302, a: 1}
+      maxColor: {r: 0, g: 1, b: 0.31856632, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -284,7 +284,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 8
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5098,7 +5098,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -9581,8 +9581,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0b917f0295411b14fa4e8edcf1ba9b25, type: 2}
-  - {fileID: 2100000, guid: 0b917f0295411b14fa4e8edcf1ba9b25, type: 2}
+  - {fileID: 2100000, guid: 48fbb19e300c2b248abfb470aadc787d, type: 2}
+  - {fileID: 2100000, guid: 48fbb19e300c2b248abfb470aadc787d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9639,7 +9639,7 @@ GameObject:
   - component: {fileID: 4864901343781380696}
   - component: {fileID: 4864901343781380692}
   m_Layer: 4
-  m_Name: EnergyBullet
+  m_Name: GEnergyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9674,15 +9674,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifeTime: 1
-  _rayFrame: 1
+  _rayFrame: 2
   _hitLayer:
     serializedVersion: 2
     m_Bits: 769
   _hitEffect: {fileID: 7455627374553219118, guid: c08d9cdf209a37049815dd146e368a48, type: 3}
   _penetrate: 0
-  _radius: 3
+  _radius: 8
   _hitShakeParam:
     Pos: {x: 0, y: 0, z: 0}
-    Power: 6
+    Power: 20
     Time: 1
   _gravity: 0
