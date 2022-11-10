@@ -10459,7 +10459,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8274603080157511734}
   m_LocalRotation: {x: 0, y: 0.2588191, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 1.3, y: 0.15000129, z: -1.9400026}
+  m_LocalPosition: {x: 1.2, y: 0.145, z: -1.0200025}
   m_LocalScale: {x: 0.20000002, y: 0.20000002, z: 0.20000002}
   m_Children:
   - {fileID: 8274603079891379264}
@@ -35752,7 +35752,6 @@ GameObject:
   - component: {fileID: 8274603081268379429}
   - component: {fileID: 8274603081268379428}
   - component: {fileID: 8274603081268379427}
-  - component: {fileID: 4657878202214312216}
   m_Layer: 0
   m_Name: TargetBalloon
   m_TagString: Untagged
@@ -35857,12 +35856,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _deadEffect: {fileID: 6068882791912315188, guid: 0a45a63bea573c54bba398129f6b5c7d, type: 3}
+  _deadEffect: {fileID: 6068882791912315188, guid: 8ad55b0afa66f7e46a7e7ffe2930721d, type: 3}
   _deadShakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 250
     Time: 1
   _addCount: 0
+  _isMarkTarget: 1
   OnDamageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -35882,21 +35882,7 @@ CapsuleCollider:
   m_Radius: 0.7
   m_Height: 4
   m_Direction: 2
-  m_Center: {x: 0.5, y: 0.2, z: -0.7}
---- !u!136 &4657878202214312216
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8274603081268379430}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.7
-  m_Height: 4
-  m_Direction: 2
-  m_Center: {x: -0.5, y: 0.2, z: -0.7}
+  m_Center: {x: 0, y: 0.2, z: -0.7}
 --- !u!1 &8274603081294366502
 GameObject:
   m_ObjectHideFlags: 0
@@ -45993,7 +45979,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8274603081582485091}
   m_LocalRotation: {x: 0, y: -0.258819, z: 0, w: 0.9659259}
-  m_LocalPosition: {x: -1.3, y: 0.15000129, z: -1.94}
+  m_LocalPosition: {x: -1.2, y: 0.145, z: -1.02}
   m_LocalScale: {x: 0.20000002, y: 0.20000002, z: 0.20000002}
   m_Children:
   - {fileID: 8274603080036185248}
