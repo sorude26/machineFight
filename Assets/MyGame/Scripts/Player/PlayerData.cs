@@ -19,18 +19,15 @@ public class PlayerData : MonoBehaviour
         }
     }
     private PartsBuildParam buildPreset = default;
-    public PartsBuildParam BuildPreset { get { return buildPreset; } }
-                                                                                   
-    public enum PartsCategory
-    {
-        Head,
-        Body,
-        LHand,
-        RHand,
-        Leg,
-        Booster,
-        LWeapon,
-        Rweapon
+    public PartsBuildParam BuildPreset { 
+        get 
+        { 
+            return buildPreset; 
+        }
+        set
+        {
+            buildPreset = value;
+        }
     }
 
     //Jsonに書き込み
@@ -45,39 +42,5 @@ public class PlayerData : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// 機体のパーツを変更する
-    /// </summary>
-    /// <param name="partsId">パーツのID</param>
-    /// <param name="category">パーツの部位</param>
-    public void Customize(int partsId, PartsCategory category)
-    {
-        switch (category)
-        {
-            case PartsCategory.Head:
-                buildPreset.Head = partsId;
-                break;
-            case PartsCategory.Body:
-                buildPreset.Body = partsId;
-                break;
-            case PartsCategory.LHand:
-                buildPreset.LHand = partsId;
-                break;
-            case PartsCategory.RHand:
-                buildPreset.RHand = partsId;
-                break;
-            case PartsCategory.Leg:
-                buildPreset.Leg = partsId;
-                break;
-            case PartsCategory.Booster:
-                buildPreset.Booster = partsId;
-                break;
-            case PartsCategory.LWeapon:
-                buildPreset.LWeapon = partsId;
-                break;
-            case PartsCategory.Rweapon:
-                buildPreset.RWeapon = partsId;
-                break;
-        }
-    }
+    
 }
