@@ -20,11 +20,13 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     private ShakeParam _deadShakeParam = default;
     [SerializeField]
     private bool _addCount = true;
+    [SerializeField]
+    private bool _isMarkTarget = false;
     private int _hp = 1;
     private bool _isSeverelyDamaged = false;
     public int MaxHp { get => _maxHp; }
     public int CurrentHp { get => _hp; }
-    public bool AddTarget { get => _addCount; }
+    public bool AddTarget { get => _addCount || _isMarkTarget; }
     public UnityEvent OnDamageEvent;
     public UnityEvent OnRecoveryEvent;
     private void Start()

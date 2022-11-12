@@ -8525,7 +8525,7 @@ MonoBehaviour:
     LHand: 1
     RHand: 1
     Leg: 2
-    Booster: 5
+    Booster: 4
     LWeapon: 2
     RWeapon: 0
   _leftWeapon: {fileID: 1102960719}
@@ -9020,7 +9020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &768258645
 Transform:
   m_ObjectHideFlags: 0
@@ -16428,7 +16428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8523691758195057453, guid: 414e0d92f280d0c45ad19233332c6679, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 414e0d92f280d0c45ad19233332c6679, type: 3}
@@ -20696,7 +20696,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1865010902
 Transform:
   m_ObjectHideFlags: 0
@@ -20797,6 +20797,7 @@ MonoBehaviour:
   _minSpwanRange: 200
   _enemySpwanCount: 5
   _enemySpwanTargetCount: 3
+  _isAutoSpwan: 1
 --- !u!4 &1865487123
 Transform:
   m_ObjectHideFlags: 0
@@ -22191,6 +22192,18 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7883787904474943468, guid: 8f440c311fbda5e468d777cf4ef8d5f0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883787904474943468, guid: 8f440c311fbda5e468d777cf4ef8d5f0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883787904474943468, guid: 8f440c311fbda5e468d777cf4ef8d5f0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883787904474943468, guid: 8f440c311fbda5e468d777cf4ef8d5f0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 168
       objectReference: {fileID: 0}
@@ -22233,6 +22246,10 @@ PrefabInstance:
     - target: {fileID: 7883787904474943469, guid: 8f440c311fbda5e468d777cf4ef8d5f0, type: 3}
       propertyPath: m_Name
       value: FloatEnemyCNEX
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883787904474943469, guid: 8f440c311fbda5e468d777cf4ef8d5f0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f440c311fbda5e468d777cf4ef8d5f0, type: 3}

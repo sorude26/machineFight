@@ -25,7 +25,8 @@ public class HandController : MonoBehaviour, IPartsModel
     private Animator _handAnime = default;
     [SerializeField]
     private BoosterController _shoulderBoosters = default;
-    private string ReloadName = "Reload";
+    private string _reloadName = "Reload";
+    private bool _isReload = false;
     private bool _firstShot = false;
     private bool _isShooting = false;
     private Vector3 _targetCurrent = default;
@@ -33,14 +34,15 @@ public class HandController : MonoBehaviour, IPartsModel
     private Vector3 _targetTwoBefore = default;
     private Quaternion _topRotaion = Quaternion.identity;
     private Quaternion _handRotaion = Quaternion.identity;
-    private bool _isReload = false;
-    public float PartsRotaionSpeed = 3.0f;
-    public bool IsAttack;
+    private WaitForSeconds _reloadWait = default;
 
+    public float PartsRotaionSpeed = 6.0f;
+    public float ReloadTime = 1f;
     public Transform TargetTrans = default;
-    public BoosterController ShoulderBoost { get => _shoulderBoosters; }
     public int ID { get => _id; }
+    public bool IsAttack { get; private set; }
     public WeaponBase WeaponBase { get => _weapon; }
+    public BoosterController ShoulderBoost { get => _shoulderBoosters; }
     public void SetCameraAim()
     {
         _topRotaion = _lockAim.localRotation;
@@ -85,6 +87,7 @@ public class HandController : MonoBehaviour, IPartsModel
         weapon.transform.localRotation = Quaternion.identity;
         _weapon = weapon;
         _weapon.Initialize();
+        _reloadWait = new WaitForSeconds(ReloadTime);
     }
     public void SetLockAim(Transform target)
     {
@@ -96,8 +99,9 @@ public class HandController : MonoBehaviour, IPartsModel
         {
             if (_isReload == false)
             {
-                _handAnime.Play(ReloadName);
+                _handAnime.Play(_reloadName);
                 _isReload = true;
+                StartCoroutine(ReloadWait());
             }
             return;
         }
@@ -109,7 +113,7 @@ public class HandController : MonoBehaviour, IPartsModel
         _isShooting = true;
         StartCoroutine(AttackImpl());
     }
-    public void ReloadWeapon()
+    private void ReloadWeapon()
     {
         _weapon.Reload();
         _isReload = false;
@@ -137,5 +141,10 @@ public class HandController : MonoBehaviour, IPartsModel
         }
         _isShooting = false;
         EndShot();
+    }
+    private IEnumerator ReloadWait()
+    {
+        yield return _reloadWait;
+        ReloadWeapon();
     }
 }
