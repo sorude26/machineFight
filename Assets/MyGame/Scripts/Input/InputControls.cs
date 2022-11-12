@@ -109,7 +109,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Sumbit"",
+                    ""name"": ""Submit"",
                     ""type"": ""Button"",
                     ""id"": ""e55601be-e23b-4af4-b37f-039e391247a7"",
                     ""expectedControlType"": ""Button"",
@@ -467,7 +467,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Sumbit"",
+                    ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -478,7 +478,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Sumbit"",
+                    ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -498,7 +498,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_InputMap_JetBoost = m_InputMap.FindAction("JetBoost", throwIfNotFound: true);
         m_InputMap_ChangeTarget = m_InputMap.FindAction("ChangeTarget", throwIfNotFound: true);
         m_InputMap_Attack3 = m_InputMap.FindAction("Attack3", throwIfNotFound: true);
-        m_InputMap_Sumbit = m_InputMap.FindAction("Sumbit", throwIfNotFound: true);
+        m_InputMap_Submit = m_InputMap.FindAction("Submit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -567,7 +567,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InputMap_JetBoost;
     private readonly InputAction m_InputMap_ChangeTarget;
     private readonly InputAction m_InputMap_Attack3;
-    private readonly InputAction m_InputMap_Sumbit;
+    private readonly InputAction m_InputMap_Submit;
     public struct InputMapActions
     {
         private @InputControls m_Wrapper;
@@ -581,7 +581,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @JetBoost => m_Wrapper.m_InputMap_JetBoost;
         public InputAction @ChangeTarget => m_Wrapper.m_InputMap_ChangeTarget;
         public InputAction @Attack3 => m_Wrapper.m_InputMap_Attack3;
-        public InputAction @Sumbit => m_Wrapper.m_InputMap_Sumbit;
+        public InputAction @Submit => m_Wrapper.m_InputMap_Submit;
         public InputActionMap Get() { return m_Wrapper.m_InputMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -618,9 +618,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Attack3.started -= m_Wrapper.m_InputMapActionsCallbackInterface.OnAttack3;
                 @Attack3.performed -= m_Wrapper.m_InputMapActionsCallbackInterface.OnAttack3;
                 @Attack3.canceled -= m_Wrapper.m_InputMapActionsCallbackInterface.OnAttack3;
-                @Sumbit.started -= m_Wrapper.m_InputMapActionsCallbackInterface.OnSumbit;
-                @Sumbit.performed -= m_Wrapper.m_InputMapActionsCallbackInterface.OnSumbit;
-                @Sumbit.canceled -= m_Wrapper.m_InputMapActionsCallbackInterface.OnSumbit;
+                @Submit.started -= m_Wrapper.m_InputMapActionsCallbackInterface.OnSubmit;
+                @Submit.performed -= m_Wrapper.m_InputMapActionsCallbackInterface.OnSubmit;
+                @Submit.canceled -= m_Wrapper.m_InputMapActionsCallbackInterface.OnSubmit;
             }
             m_Wrapper.m_InputMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -652,9 +652,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Attack3.started += instance.OnAttack3;
                 @Attack3.performed += instance.OnAttack3;
                 @Attack3.canceled += instance.OnAttack3;
-                @Sumbit.started += instance.OnSumbit;
-                @Sumbit.performed += instance.OnSumbit;
-                @Sumbit.canceled += instance.OnSumbit;
+                @Submit.started += instance.OnSubmit;
+                @Submit.performed += instance.OnSubmit;
+                @Submit.canceled += instance.OnSubmit;
             }
         }
     }
@@ -670,6 +670,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnJetBoost(InputAction.CallbackContext context);
         void OnChangeTarget(InputAction.CallbackContext context);
         void OnAttack3(InputAction.CallbackContext context);
-        void OnSumbit(InputAction.CallbackContext context);
+        void OnSubmit(InputAction.CallbackContext context);
     }
 }
