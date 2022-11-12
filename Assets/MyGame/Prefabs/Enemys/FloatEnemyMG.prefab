@@ -133,6 +133,11 @@ MonoBehaviour:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
     Time: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
+  _currentAmmunition: 0
+  _currentMagazine: 0
+  _count: 0
   IsFire: 0
   IsWait: 0
   _bullet: {fileID: 8661921769014990206, guid: 39db53a3d59e45145977d37637cfba41, type: 3}
@@ -146,8 +151,6 @@ MonoBehaviour:
   _exPower: 0
   _exCount: 0
   _exRadius: 0
-  _maxAmmunitionCapacity: -1
-  _magazineCount: -1
 --- !u!1 &1131160592875507443
 GameObject:
   m_ObjectHideFlags: 0
@@ -5647,6 +5650,7 @@ GameObject:
   - component: {fileID: 7018357406306533421}
   - component: {fileID: 7018357406306533423}
   - component: {fileID: 7018357406306533422}
+  - component: {fileID: 2984526895331830430}
   m_Layer: 0
   m_Name: FloatEnemyMG
   m_TagString: Untagged
@@ -5732,6 +5736,22 @@ MonoBehaviour:
   _transSpeed: 5
   _moveSpeed: 2
   _naviInterval: 1
+--- !u!114 &2984526895331830430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7018357406306533420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be8f8331b6b2ed4c916dd7601642fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageCheckers:
+  - {fileID: 7018357406894510803}
+  _targets:
+  - {fileID: 7018357405746824296}
 --- !u!1 &7018357406413398478
 GameObject:
   m_ObjectHideFlags: 0
@@ -5824,6 +5844,7 @@ GameObject:
   - component: {fileID: 7018357406894510801}
   - component: {fileID: 7018357406894510803}
   - component: {fileID: 7018357406894510802}
+  - component: {fileID: 919673312630691375}
   m_Layer: 0
   m_Name: TargetBalloon
   m_TagString: Untagged
@@ -5876,6 +5897,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 919673312630691375}
+        m_TargetAssemblyTypeName: ItemPopController, Assembly-CSharp
+        m_MethodName: PopItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 7018357406306533420}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -5891,15 +5924,18 @@ MonoBehaviour:
   _onSeverelyDamagedEvent:
     m_PersistentCalls:
       m_Calls: []
-  _onDamageEvent:
-    m_PersistentCalls:
-      m_Calls: []
   _deadEffect: {fileID: 6068882791912315188, guid: 0a45a63bea573c54bba398129f6b5c7d, type: 3}
   _deadShakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 70
     Time: 1
-  _addCount: 1
+  _addCount: 0
+  OnDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRecoveryEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!136 &7018357406894510802
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5914,6 +5950,25 @@ CapsuleCollider:
   m_Height: 2.7
   m_Direction: 0
   m_Center: {x: 0, y: 0.2, z: 0}
+--- !u!114 &919673312630691375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7018357406894510800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0a5f1aad5824d5459f61003827190ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _items:
+  - {fileID: 1351174841993859409, guid: b15ec99a961eb2d4599e2898ae001aac, type: 3}
+  - {fileID: 1351174841993859409, guid: b15ec99a961eb2d4599e2898ae001aac, type: 3}
+  - {fileID: 1351174841993859409, guid: ab908356eec1a4e438d305a8e2d27020, type: 3}
+  - {fileID: 1234321730564965865, guid: b72018ba32c20f64eb6dd9eee453fd91, type: 3}
+  - {fileID: 1234321730564965865, guid: b72018ba32c20f64eb6dd9eee453fd91, type: 3}
+  - {fileID: 1234321730564965865, guid: 6215920cd43c3334b967b1bc5f017da6, type: 3}
 --- !u!1 &7018357406923311752
 GameObject:
   m_ObjectHideFlags: 0
