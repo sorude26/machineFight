@@ -105,6 +105,8 @@ namespace MyGame
             instance._controls.InputMap.JetBoost.started += context => { ExecuteInput(InputType.Booster, ExecuteType.Enter); };
             instance._controls.InputMap.JetBoost.canceled += context => { ExecuteInput(InputType.Booster, ExecuteType.Exit); };
             instance._controls.InputMap.ChangeTarget.started += context => { ExecuteInput(InputType.ChangeTarget, ExecuteType.Enter); };
+            instance._controls.InputMap.Sumbit.started += context => { ExecuteInput(InputType.Submit, ExecuteType.Enter); };
+            instance._controls.InputMap.Sumbit.canceled += context => { ExecuteInput(InputType.Submit, ExecuteType.Exit); };
             isInstanced = true;
         }
         /// <summary>
