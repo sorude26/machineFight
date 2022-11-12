@@ -27,6 +27,7 @@ public class CustomizeMenu : MonoBehaviour
     /// </summary>
     /// <param name="category">パーツの種類</param>
     /// <param name="id">パーツのID(再起関数のため0を与える)</param>
+    //各パーツ情報の要素数があればおそらく完成
     public void ButtonInstantiate(PartsCategory category, int id)
     {
         Button button;
@@ -113,6 +114,6 @@ public class CustomizeMenu : MonoBehaviour
         _._partsId = id;
         button.onClick.AddListener(() => _.Customize());
         button.transform.parent = _content.transform;
-        ButtonInstantiate(category, id++);
+        //ButtonInstantiate(category, id++);
     }
 }

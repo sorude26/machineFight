@@ -26,7 +26,7 @@ public class PartsButton : MonoBehaviour
     /// <param name="partsId">ÉpÅ[ÉcÇÃID</param>
     public void Customize()
     {
-        PartsBuildParam partsData = PlayerData.instance.BuildPreset;
+        PartsBuildParam partsData = PlayerData.instance.BuildPreset.Value;
         switch (_partsCategory)
         {
             case PartsCategory.Head:
@@ -55,6 +55,6 @@ public class PartsButton : MonoBehaviour
                 break;
         }
 
-        PlayerData.instance.BuildPreset = partsData;
+        PlayerData.instance.BuildPreset.Value = partsData;
     }
 }
