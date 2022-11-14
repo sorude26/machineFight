@@ -32,6 +32,7 @@ public class AutoAttacker : MonoBehaviour
     private float _lockSpeed = 5f;
     private float _attackTimer = 0f;
     private Transform _player = default;
+    public bool IsAttackMode { get; private set; }
     private void Start()
     {
         _player = NavigationManager.Instance.Target;
@@ -43,18 +44,20 @@ public class AutoAttacker : MonoBehaviour
             _attackTimer -= Time.fixedDeltaTime;
         }
         CheckLockOn();
-        _lockBody.forward = Vector3.Lerp(_lockBody.forward, _playerLock.forward, _lockSpeed * Time.fixedDeltaTime);
+        _lockBody.localRotation = Quaternion.Lerp(_lockBody.localRotation, _playerLock.localRotation, _lockSpeed * Time.fixedDeltaTime);
     }
     private void CheckLockOn()
     {
         if (Vector3.Distance(_player.position, _bodyTrans.position) > LockOnRange)
         {
+            IsAttackMode = false;
             return;
         }
         Vector3 targetDir = _player.position - _bodyTrans.position;
         float range = Vector3.Distance(_bodyTrans.position, _player.position);
         if (ChackAngle(targetDir) && !Physics.SphereCast(_bodyTrans.position, _rayWide, targetDir, out RaycastHit hit, range, _wallLayer))
         {
+            IsAttackMode = true;
             _playerLock.LookAt(_player);
             if (_attackTimer <= 0)
             {
@@ -63,6 +66,7 @@ public class AutoAttacker : MonoBehaviour
         }
         else
         {
+            IsAttackMode = false;
             _playerLock.forward = _attackerMoveBody.forward;
         }
     }
