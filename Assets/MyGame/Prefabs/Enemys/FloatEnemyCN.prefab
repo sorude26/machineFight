@@ -5735,7 +5735,8 @@ MonoBehaviour:
   _diffusivity: 0.5
   _transSpeed: 5
   _moveSpeed: 2
-  _naviInterval: 1
+  _naviInterval: 3
+  _minYLevel: 1
 --- !u!114 &-3338703610236240453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5930,6 +5931,7 @@ MonoBehaviour:
     Power: 70
     Time: 1
   _addCount: 0
+  _isMarkTarget: 0
   OnDamageEvent:
     m_PersistentCalls:
       m_Calls: []

@@ -9859,6 +9859,11 @@ MonoBehaviour:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
     Time: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
+  _currentAmmunition: 0
+  _currentMagazine: 0
+  _count: 0
   IsFire: 0
   IsWait: 0
   _bullet: {fileID: 4864901343781380692, guid: cb503772fb257df4fb734580139af4d4, type: 3}
@@ -9872,8 +9877,6 @@ MonoBehaviour:
   _exPower: 0
   _exCount: 0
   _exRadius: 0
-  _maxAmmunitionCapacity: -1
-  _magazineCount: -1
 --- !u!1 &1774059876713360882
 GameObject:
   m_ObjectHideFlags: 0
@@ -10175,15 +10178,19 @@ MonoBehaviour:
   _onSeverelyDamagedEvent:
     m_PersistentCalls:
       m_Calls: []
-  _onDamageEvent:
-    m_PersistentCalls:
-      m_Calls: []
   _deadEffect: {fileID: 6068882791912315188, guid: 0a45a63bea573c54bba398129f6b5c7d, type: 3}
   _deadShakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 70
     Time: 1
   _addCount: 0
+  _isMarkTarget: 0
+  OnDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRecoveryEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!136 &3237878469338392889
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10375,6 +10382,7 @@ MonoBehaviour:
   _transSpeed: 5
   _moveSpeed: 2
   _naviInterval: 1
+  _minYLevel: 1
 --- !u!1 &3237878469756177023
 GameObject:
   m_ObjectHideFlags: 0
@@ -11079,6 +11087,7 @@ MonoBehaviour:
   _transSpeed: 5
   _moveSpeed: 2
   _naviInterval: 1
+  _minYLevel: 1
 --- !u!1 &3237878470274935239
 GameObject:
   m_ObjectHideFlags: 0
@@ -11319,15 +11328,19 @@ MonoBehaviour:
   _onSeverelyDamagedEvent:
     m_PersistentCalls:
       m_Calls: []
-  _onDamageEvent:
-    m_PersistentCalls:
-      m_Calls: []
   _deadEffect: {fileID: 6068882791912315188, guid: 0a45a63bea573c54bba398129f6b5c7d, type: 3}
   _deadShakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 70
     Time: 1
   _addCount: 0
+  _isMarkTarget: 0
+  OnDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRecoveryEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!136 &3237878470891248832
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11617,6 +11630,11 @@ MonoBehaviour:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
     Time: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
+  _currentAmmunition: 0
+  _currentMagazine: 0
+  _count: 0
   IsFire: 0
   IsWait: 0
   _bullet: {fileID: 8661921769014990206, guid: 39db53a3d59e45145977d37637cfba41, type: 3}
@@ -11630,8 +11648,6 @@ MonoBehaviour:
   _exPower: 0
   _exCount: 0
   _exRadius: 0
-  _maxAmmunitionCapacity: -1
-  _magazineCount: -1
 --- !u!1 &4772627173686533296
 GameObject:
   m_ObjectHideFlags: 0
@@ -11684,6 +11700,11 @@ MonoBehaviour:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
     Time: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
+  _currentAmmunition: 0
+  _currentMagazine: 0
+  _count: 0
   IsFire: 0
   IsWait: 0
   _bullet: {fileID: 1233709711767816154, guid: e6e67469e48f0e04ba2720aa3bacb866, type: 3}
@@ -11697,8 +11718,6 @@ MonoBehaviour:
   _exPower: 0
   _exCount: 0
   _exRadius: 0
-  _maxAmmunitionCapacity: -1
-  _magazineCount: -1
 --- !u!1 &4772627174303039713
 GameObject:
   m_ObjectHideFlags: 0
@@ -11863,6 +11882,11 @@ MonoBehaviour:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
     Time: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
+  _currentAmmunition: 0
+  _currentMagazine: 0
+  _count: 0
   IsFire: 0
   IsWait: 0
   _bullet: {fileID: 1233709711767816154, guid: e6e67469e48f0e04ba2720aa3bacb866, type: 3}
@@ -11876,8 +11900,6 @@ MonoBehaviour:
   _exPower: 0
   _exCount: 0
   _exRadius: 0
-  _maxAmmunitionCapacity: -1
-  _magazineCount: -1
 --- !u!1 &5587128410657555735
 GameObject:
   m_ObjectHideFlags: 0
@@ -21964,6 +21986,11 @@ MonoBehaviour:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
     Time: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
+  _currentAmmunition: 0
+  _currentMagazine: 0
+  _count: 0
   IsFire: 0
   IsWait: 0
   _bullet: {fileID: 1233709711767816154, guid: e6e67469e48f0e04ba2720aa3bacb866, type: 3}
@@ -21977,8 +22004,6 @@ MonoBehaviour:
   _exPower: 0
   _exCount: 0
   _exRadius: 0
-  _maxAmmunitionCapacity: -1
-  _magazineCount: -1
 --- !u!1 &5587128410949737563
 GameObject:
   m_ObjectHideFlags: 0
@@ -22295,6 +22320,7 @@ MonoBehaviour:
   _transSpeed: 5
   _moveSpeed: 2
   _naviInterval: 1
+  _minYLevel: 1
 --- !u!1 &5587128411201251244
 GameObject:
   m_ObjectHideFlags: 0
@@ -22657,6 +22683,7 @@ MonoBehaviour:
   _transSpeed: 5
   _moveSpeed: 2
   _naviInterval: 1
+  _minYLevel: 1
 --- !u!1 &5587128411476589061
 GameObject:
   m_ObjectHideFlags: 0
@@ -27850,6 +27877,11 @@ MonoBehaviour:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
     Time: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
+  _currentAmmunition: 0
+  _currentMagazine: 0
+  _count: 0
   IsFire: 0
   IsWait: 0
   _bullet: {fileID: 1233709711767816154, guid: e6e67469e48f0e04ba2720aa3bacb866, type: 3}
@@ -27863,8 +27895,6 @@ MonoBehaviour:
   _exPower: 0
   _exCount: 0
   _exRadius: 0
-  _maxAmmunitionCapacity: -1
-  _magazineCount: -1
 --- !u!1 &5587128411795133708
 GameObject:
   m_ObjectHideFlags: 0
@@ -28027,6 +28057,7 @@ MonoBehaviour:
   _transSpeed: 5
   _moveSpeed: 2
   _naviInterval: 1
+  _minYLevel: 1
 --- !u!1 &5587128411847135988
 GameObject:
   m_ObjectHideFlags: 0
@@ -57911,13 +57942,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 0
+  m_UseCustomVertexStreams: 1
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_VertexStreams: 00010304
+  m_VertexStreams: 000304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -58492,6 +58523,11 @@ MonoBehaviour:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
     Time: 0
+  _maxAmmunitionCapacity: -1
+  _magazineCount: -1
+  _currentAmmunition: 0
+  _currentMagazine: 0
+  _count: 0
   IsFire: 0
   IsWait: 0
   _bullet: {fileID: 4864901343781380692, guid: cb503772fb257df4fb734580139af4d4, type: 3}
@@ -58505,8 +58541,6 @@ MonoBehaviour:
   _exPower: 0
   _exCount: 0
   _exRadius: 0
-  _maxAmmunitionCapacity: -1
-  _magazineCount: -1
 --- !u!1 &6738788053060603905
 GameObject:
   m_ObjectHideFlags: 0
@@ -63299,13 +63333,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 0
+  m_UseCustomVertexStreams: 1
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_VertexStreams: 00010304
+  m_VertexStreams: 000304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -64201,15 +64235,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _onDamageEvent:
-    m_PersistentCalls:
-      m_Calls: []
   _deadEffect: {fileID: 6068882791912315188, guid: 0a45a63bea573c54bba398129f6b5c7d, type: 3}
   _deadShakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 250
     Time: 1
   _addCount: 1
+  _isMarkTarget: 0
+  OnDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRecoveryEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!136 &8523691758279455187
 CapsuleCollider:
   m_ObjectHideFlags: 0
