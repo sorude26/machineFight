@@ -1,3 +1,4 @@
+using MyGame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,10 @@ public class StageManager : MonoBehaviour
         Instance = this;
         PartsManager.Instance.LoadData();
     }
+    private void Start()
+    {
+        PlayerInput.ChangeInputMode(InputMode.InGame);
+    }
     public void AddCount(int count = 1)
     {
         if (_clear == true)
@@ -29,8 +34,10 @@ public class StageManager : MonoBehaviour
     }
     private void ViewClearPop()
     {
+        PlayerInput.Instance.InitializeInput();
         var massage = new PopUpData(center: "”C–±Š®—¹");
         PopUpMessage.CreatePopUp(massage);
+        SceneControl.ChangeTargetScene("Result");
     }
     public void ViewGameOver()
     {
@@ -38,8 +45,10 @@ public class StageManager : MonoBehaviour
         {
             return;
         }
+        PlayerInput.Instance.InitializeInput();
         _gameOver = true;
         var massage = new PopUpData(center: "”C–±Ž¸”s");
         PopUpMessage.CreatePopUp(massage);
+        SceneControl.ChangeTargetScene("Result");
     }
 }
