@@ -12,6 +12,12 @@ public class MachineBuilder : MonoBehaviour
     private Transform _lockTrans = default;
     [SerializeField]
     private Transform _aimTrans = default;
+    [SerializeField]
+    private BodyController _anBuildBody = default;
+    [SerializeField]
+    private LegController _anBuildLeg = default;
+    [SerializeField]
+    private BackPackController _anBuildBackPack = default;
     public BodyController Body { get; private set; }
     public LegController Leg { get; private set; }
 
@@ -22,6 +28,11 @@ public class MachineBuilder : MonoBehaviour
     public float BoosterConsumption { get; private set; }
     public void Build(PartsBuildParam buildPattern)
     {
+        if (_anBuildBackPack != null && _anBuildBody != null && _anBuildLeg != null)
+        {
+            AnBuildSet();
+            return;
+        }
         var modelID = new PartsBuildParam();
         modelID.Head = PartsManager.Instance.AllParamData.GetPartsHead(buildPattern.Head).ModelID;
         modelID.Body = PartsManager.Instance.AllParamData.GetPartsBody(buildPattern.Body).ModelID;
@@ -33,6 +44,13 @@ public class MachineBuilder : MonoBehaviour
         modelID.RWeapon = buildPattern.RWeapon;
         _buildData = modelID;
         Build();
+    }
+    public void AnBuildSet()
+    {
+        _anBuildBody.SetBackPack(_anBuildBackPack);
+        _anBuildBody.AddBooster(_anBuildLeg.LegBoost);
+        Body = _anBuildBody;
+        Leg = _anBuildLeg;
     }
     public void Build()
     {

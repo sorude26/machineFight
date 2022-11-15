@@ -56,5 +56,9 @@ namespace MyGame
             }
             _machineController.ExecuteFixedUpdate(dir);
         }
+        public void ExeExecuteJet()
+        {
+            _machineController.ExecuteJet(_currentDir.normalized);
+        }
     }
 }
