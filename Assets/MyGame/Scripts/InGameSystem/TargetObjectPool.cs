@@ -18,6 +18,8 @@ public abstract class TargetObjectPool<TObject,TPool> : MonoBehaviour
             {
                 var obj = new GameObject($"{typeof(TObject)}Pool");
                 instance = obj.AddComponent<TPool>();
+                DontDestroyOnLoad(obj);
+                SceneControl.OnSceneChange += instance.CleanUpObject;
             }
             return instance;
         }
@@ -85,5 +87,15 @@ public abstract class TargetObjectPool<TObject,TPool> : MonoBehaviour
         instance._poolDic[useObject.name].Add(obj);
         obj.gameObject.SetActive(false);
         return obj;
+    }
+    public void CleanUpObject()
+    {
+        foreach (var objList in _poolDic.Values)
+        {
+            foreach (var obj in objList)
+            {
+                obj.gameObject.SetActive(false);
+            }
+        }
     }
 }
