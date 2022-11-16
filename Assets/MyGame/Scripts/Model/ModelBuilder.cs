@@ -22,7 +22,7 @@ public class ModelBuilder : MonoBehaviour
     {
         var baseObj = new GameObject("ModelBase");
         baseObj.transform.position = transform.position;
-        baseObj.transform.rotation = Quaternion.identity;
+        baseObj.transform.rotation = transform.rotation;
         _modelBase = baseObj;
     }
     private void DeleteModelBase()
@@ -55,8 +55,8 @@ public class ModelBuilder : MonoBehaviour
     {
         var leg = Instantiate(PartsManager.Instance.AllModelData.GetPartsLeg(_buildData.Leg));
         leg.transform.SetParent(_modelBase.transform);
-        leg.transform.localPosition = _modelBase.transform.localPosition;
-        leg.transform.localRotation = _modelBase.transform.localRotation;
+        leg.transform.localPosition = Vector3.zero;
+        leg.transform.localRotation = Quaternion.identity;
         var body = Instantiate(PartsManager.Instance.AllModelData.GetPartsBody(_buildData.Body));
         body.transform.SetParent(_modelBase.transform);
         body.transform.position = leg.BodyJoint.position;
