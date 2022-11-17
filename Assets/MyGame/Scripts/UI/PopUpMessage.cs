@@ -1,4 +1,5 @@
 using System;
+using MyGame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,9 @@ public class PopUpMessage : MonoBehaviour
     private Button _cancelButton = null;
     [SerializeField]
     private Button _otherButton = null;
+    private Action _submitDel = default;
+    private Action _cancelDel = default;
+    private Action _otherDel = default;
     public static void CreatePopUp(PopUpData data, Action submitAction = null, Action cancelAction = null, Action otherAction = null)
     {
         var obj = Instantiate(Resources.Load<PopUpMessage>("Prefabs/PopUpCanvas"));
@@ -36,6 +40,7 @@ public class PopUpMessage : MonoBehaviour
         {
             _cancelText.text = data.Cancel;
             _cancelButton.onClick.AddListener(() => { cancelAction?.Invoke(); });
+            _cancelDel = cancelAction;
             _cancelButton.gameObject.SetActive(true);
         }
         else
@@ -46,6 +51,7 @@ public class PopUpMessage : MonoBehaviour
         {
             _submitText.text = data.Submit;
             _submitButton.onClick.AddListener(() => { submitAction?.Invoke(); });
+            _submitDel = submitAction;
             _submitButton.gameObject.SetActive(true);
         }
         else
@@ -55,15 +61,36 @@ public class PopUpMessage : MonoBehaviour
         if (otherAction != null)
         {
             _otherButton.onClick.AddListener(() => { otherAction?.Invoke(); });
+            _otherDel = otherAction;
             _otherButton.gameObject.SetActive(true);
         }
         else
         {
             _otherButton.gameObject.SetActive(false);
         }
+        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Submit, Submit);
+        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Cancel, Cancel);
+        PlayerInput.ChangeInputMode(InputMode.Menu);
+    }
+    private void Submit()
+    {
+        _submitDel?.Invoke();
+        ClosePopUp();
+    }
+    private void Cancel()
+    {
+        _cancelDel?.Invoke();
+        ClosePopUp();
+    }
+    private void Other()
+    {
+        _otherDel?.Invoke();
+        ClosePopUp();
     }
     public void ClosePopUp()
     {
+        PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Submit, Submit);
+        PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Cancel, Cancel);
         Destroy(this.gameObject);
     }
 }
