@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CustomizeMenu : MonoBehaviour
 {
-    //[SerializeField] Text _partsName = default;
+    [SerializeField] Text _partsName = default;
     [SerializeField] Button _partsButton = default;
     [SerializeField] GameObject _content = default;
+    [SerializeField] PartsCategory _category = default;
 
     private void Awake()
     {
@@ -18,8 +20,7 @@ public class CustomizeMenu : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(PartsManager.Instance.AllParamData.GetPartsHead(0));
-        ButtonInstantiate(PartsCategory.Head, 0);
+        ButtonInstantiate(_category, 0);
     }
 
     /// <summary>
@@ -29,6 +30,7 @@ public class CustomizeMenu : MonoBehaviour
     /// <param name="id">パーツのID(再起関数のため0を与える)</param>
     public void ButtonInstantiate(PartsCategory category, int id)
     {
+        _partsName.text = category.ToString();
         Button button;
         button = Instantiate(_partsButton);
         switch (category)
@@ -38,6 +40,7 @@ public class CustomizeMenu : MonoBehaviour
                 if (headParts == null)
                 {
                     Destroy(button);
+                    ButtonSelectController.OnButtonFirstSelect(_content);
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = headParts.Name;
@@ -47,6 +50,7 @@ public class CustomizeMenu : MonoBehaviour
                 if (bodyParts == null)
                 {
                     Destroy(button);
+                    ButtonSelectController.OnButtonFirstSelect(_content);
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = bodyParts.Name;
@@ -56,6 +60,7 @@ public class CustomizeMenu : MonoBehaviour
                 if (lhandParts == null)
                 {
                     Destroy(button);
+                    ButtonSelectController.OnButtonFirstSelect(_content);
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = lhandParts.Name;
@@ -65,6 +70,7 @@ public class CustomizeMenu : MonoBehaviour
                 if (rhandParts == null)
                 {
                     Destroy(button);
+                    ButtonSelectController.OnButtonFirstSelect(_content);
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = rhandParts.Name;
@@ -74,6 +80,7 @@ public class CustomizeMenu : MonoBehaviour
                 if (legParts == null)
                 {
                     Destroy(button);
+                    ButtonSelectController.OnButtonFirstSelect(_content);
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = legParts.Name;
@@ -83,6 +90,7 @@ public class CustomizeMenu : MonoBehaviour
                 if (boosterParts == null)
                 {
                     Destroy(button);
+                    ButtonSelectController.OnButtonFirstSelect(_content);
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = boosterParts.Name;
@@ -92,6 +100,7 @@ public class CustomizeMenu : MonoBehaviour
                 if (lweaponParts == null)
                 {
                     Destroy(button);
+                    ButtonSelectController.OnButtonFirstSelect(_content);
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = lweaponParts.ID.ToString();
@@ -101,6 +110,7 @@ public class CustomizeMenu : MonoBehaviour
                 if (rweaponParts == null)
                 {
                     Destroy(button);
+                    ButtonSelectController.OnButtonFirstSelect(_content);
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = rweaponParts.ID.ToString();
@@ -113,6 +123,15 @@ public class CustomizeMenu : MonoBehaviour
         _._partsId = id;
         button.onClick.AddListener(() => _.Customize());
         button.transform.parent = _content.transform;
-        ButtonInstantiate(category, id++);
+        ButtonInstantiate(category, id += 1);
+    }
+
+    /// <summary>
+    /// 変更したいパーツのリストに変える
+    /// </summary>
+    /// <param name="category">変更先のカテゴリー</param>
+    private void CategoryChange(PartsCategory category)
+    {
+        ButtonInstantiate(_category, 0);
     }
 }

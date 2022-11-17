@@ -17,6 +17,7 @@ public enum PartsCategory
 
 public class PartsButton : MonoBehaviour
 {
+    private PlayerData _playerData;
     public PartsCategory _partsCategory = default;
     public int _partsId = default;
 
@@ -26,7 +27,8 @@ public class PartsButton : MonoBehaviour
     /// <param name="partsId">ÉpÅ[ÉcÇÃID</param>
     public void Customize()
     {
-        PartsBuildParam partsData = PlayerData.instance.BuildPreset;
+        _playerData = PlayerData.Instance;
+        PartsBuildParam partsData = _playerData.BuildPreset;
         switch (_partsCategory)
         {
             case PartsCategory.Head:
@@ -55,6 +57,9 @@ public class PartsButton : MonoBehaviour
                 break;
         }
 
-        PlayerData.instance.BuildPreset = partsData;
+        _playerData.BuildPreset = partsData;
+        _playerData.PartsLog();
     }
+
+    
 }
