@@ -10,5 +10,6 @@ public class PartsBodyData : ScriptableObject
     public int ModelID;
     public int Hp;
     public float Energy;
+    public float Generator;
     public float GeneratorRecoverySpeed;
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.VersionControl.Message;
 
 public class DamageChecker : MonoBehaviour, IDamageApplicable
 {
@@ -19,12 +20,20 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     private ShakeParam _deadShakeParam = default;
     [SerializeField]
     private bool _addCount = true;
+    [SerializeField]
+    private bool _isMarkTarget = false;
     private int _hp = 1;
     private bool _isSeverelyDamaged = false;
     public int MaxHp { get => _maxHp; }
     public int CurrentHp { get => _hp; }
+    public bool AddTarget { get => _addCount || _isMarkTarget; }
     public UnityEvent OnDamageEvent;
+    public UnityEvent OnRecoveryEvent;
     private void Start()
+    {
+        StartSet();
+    }
+    public void StartSet()
     {
         _hp = _maxHp;
     }
@@ -33,6 +42,16 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
         _maxHp = hp;
         _hp = hp;
         _severelyDamage = (int)(_maxHp * severely);
+    }
+    public void RecoveryHp(int point)
+    {
+        if (_hp <= 0) { return; }
+        _hp += point;
+        if (_hp > _maxHp)
+        {
+            _hp = _maxHp;
+        }
+        OnRecoveryEvent?.Invoke();
     }
     public void AddlyDamage(int damage)
     {

@@ -15,18 +15,17 @@ public class ObjectPoolManager : MonoBehaviour
             {
                 var poolObj = new GameObject("PoolBase");
                 instance = poolObj.AddComponent<ObjectPoolManager>();
-                instance._keysDic = new Dictionary<string, int>();
-                instance._objectDic = new Dictionary<int, List<GameObject>>();
+                instance._objectDic = new Dictionary<string, List<GameObject>>();
                 DontDestroyOnLoad(poolObj);
+                SceneControl.OnSceneChange += instance.CleanUpObject;
             }
             return instance;
         }
     }
-    private Dictionary<string, int> _keysDic = default;
-    private Dictionary<int, List<GameObject>> _objectDic = default;
+    private Dictionary<string, List<GameObject>> _objectDic = default;
     public void CreatePool(GameObject poolObject,int poolCount = DEFAULT_POOL_COUNT)
     {
-        if (_keysDic.ContainsKey(poolObject.name))
+        if (_objectDic.ContainsKey(poolObject.name))
         {
             return;
         }
@@ -37,16 +36,15 @@ public class ObjectPoolManager : MonoBehaviour
             obj.SetActive(false);
             list.Add(obj);
         }
-        _objectDic.Add(_keysDic.Count, list);
-        _keysDic.Add(poolObject.name, _keysDic.Count);
+        _objectDic.Add(poolObject.name, list);
     }
     public GameObject Use(GameObject useObject)
     {
-        if (!_keysDic.ContainsKey(useObject.name))
+        if (!_objectDic.ContainsKey(useObject.name))
         {
             CreatePool(useObject);
         }
-        foreach (var listObj in _objectDic[_keysDic[useObject.name]])
+        foreach (var listObj in _objectDic[useObject.name])
         {
             if (listObj.activeInHierarchy)
             {
@@ -55,17 +53,17 @@ public class ObjectPoolManager : MonoBehaviour
             return listObj;
         }
         var obj = Instantiate(useObject, this.transform);
-        _objectDic[_keysDic[useObject.name]].Add(obj);
+        _objectDic[useObject.name].Add(obj);
         obj.SetActive(false);
         return obj;
     }
     public GameObject LimitUse(GameObject useObject)
     {
-        if (!_keysDic.ContainsKey(useObject.name))
+        if (!_objectDic.ContainsKey(useObject.name))
         {
             CreatePool(useObject);
         }
-        foreach (var listObj in _objectDic[_keysDic[useObject.name]])
+        foreach (var listObj in _objectDic[useObject.name])
         {
             if (listObj.activeInHierarchy)
             {
@@ -84,11 +82,11 @@ public class ObjectPoolManager : MonoBehaviour
     }
     public bool LimitUse(GameObject useObject,Vector3 pos,int limitCount = DEFAULT_LIMIT_COUNT)
     {
-        if (!_keysDic.ContainsKey(useObject.name))
+        if (!_objectDic.ContainsKey(useObject.name))
         {
             CreatePool(useObject);
         }
-        if (_objectDic[_keysDic[useObject.name]].Count >= limitCount && limitCount > DEFAULT_POOL_COUNT)
+        if (_objectDic[useObject.name].Count >= limitCount && limitCount > DEFAULT_POOL_COUNT)
         {
             var obj = LimitUse(useObject);
             if (obj != null)
@@ -103,12 +101,12 @@ public class ObjectPoolManager : MonoBehaviour
     }
     public int GetCount(GameObject countObject)
     {
-        if (!_keysDic.ContainsKey(countObject.name))
+        if (!_objectDic.ContainsKey(countObject.name))
         {
             return 0;
         }
         int activeCount = 0;
-        foreach (var listObj in _objectDic[_keysDic[countObject.name]])
+        foreach (var listObj in _objectDic[countObject.name])
         {
             if (listObj.activeInHierarchy)
             {
@@ -116,5 +114,15 @@ public class ObjectPoolManager : MonoBehaviour
             }
         }
         return activeCount;
+    }
+    public void CleanUpObject()
+    {
+        foreach (var objList in _objectDic.Values)
+        {
+            foreach (var obj in objList)
+            {
+                obj.SetActive(false);
+            }
+        }
     }
 }

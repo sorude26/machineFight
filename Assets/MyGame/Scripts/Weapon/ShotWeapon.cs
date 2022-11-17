@@ -142,4 +142,18 @@ public class ShotWeapon : WeaponBase
         }
         _onCount?.Invoke();
     }
+    public override void RefillAmmunition(float percent)
+    {
+        if (_maxAmmunitionCapacity <= 0)
+        {
+            return;
+        }
+        int ammunition = (int)(_maxAmmunitionCapacity * percent);
+        _currentAmmunition += ammunition;
+        if (_currentAmmunition > _maxAmmunitionCapacity)
+        {
+            _currentAmmunition = _maxAmmunitionCapacity;
+        }
+        _onCount?.Invoke();
+    }
 }

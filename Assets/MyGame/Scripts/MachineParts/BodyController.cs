@@ -31,6 +31,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     private MoveController _moveController = default;
     private BackPackController _backPack = default;
     private bool _isShoot = false;
+    private bool _isInitialized = false;
     private float _jetTimer = 0;
     private List<BoosterController> _boosters = new List<BoosterController>();
     public event Action OnBodyDestroy = default;
@@ -38,6 +39,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     public Transform Lock = null;
     public Transform AttackTarget = null;
     public bool IsDown = false;
+    public event Action UseBooster = default;
     public int ID { get => _id; }
     public Transform HeadJoint { get => _headJoint; } 
     public DamageChecker DamageChecker { get => _damageChecker; }
@@ -48,6 +50,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     {
         _moveController = moveController;
         _boosters.Add(_boster);
+        _isInitialized = true;
     }
     public void SetParam(BodyParam param)
     {
@@ -84,6 +87,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     }
     private void FixedUpdate()
     {
+        if (_isInitialized == false) { return; }
         transform.position = BodyBase.position;
         if (IsDown == true)
         {
@@ -127,12 +131,7 @@ public class BodyController : MonoBehaviour, IPartsModel
         {
             if (isFall == false || IsDown == true)
             {
-                foreach (var booster in _boosters)
-                {
-                    booster.StopBooster();
-                }
-                _lHand.ShoulderBoost.StopBooster();
-                _rHand.ShoulderBoost.StopBooster();
+                StopBooster();
             }
         }
         if (_jetTimer > 0)
@@ -145,7 +144,7 @@ public class BodyController : MonoBehaviour, IPartsModel
         var angle = Vector3.Dot(targetDir.normalized, transform.forward);
         return angle > ATTACK_ANGLE;
     }
-    public void BoostMove(Vector3 dir)
+    public void BoostMove(Vector3 dir,bool floatMode)
     {
         if (IsDown == true)
         {
@@ -154,12 +153,7 @@ public class BodyController : MonoBehaviour, IPartsModel
         _moveController.MoveDecelerate();
         if (_boster != null && _boster.IsBoost == false)
         {
-            foreach (var booster in _boosters)
-            {
-                booster.StartBooster();
-            }
-            _lHand.ShoulderBoost.StartBooster();
-            _rHand.ShoulderBoost.StartBooster();
+            StartJetBoosters();
         }
         if (_jetTimer > 0)
         {
@@ -174,7 +168,15 @@ public class BodyController : MonoBehaviour, IPartsModel
         {
             dir = Vector3.up * _param.BoostUpPower;
         }
-        _moveController.AddMove(dir);
+        if (floatMode == true && dir.x != 0 && dir.z != 0)
+        {
+            dir *= 2f;
+            _moveController.VelocityMove(dir);
+        }
+        else
+        {
+            _moveController.AddMove(dir);
+        }
     }
     public void UpBoost()
     {
@@ -182,79 +184,47 @@ public class BodyController : MonoBehaviour, IPartsModel
         {
             return;
         }
+        UseBooster?.Invoke();
         if (_boster != null)
         {
             if (_boster.IsBoost == false)
             {
-                foreach (var booster in _boosters)
-                {
-                    booster.StartBooster();
-                }
-                _lHand.ShoulderBoost.StartBooster();
-                _rHand.ShoulderBoost.StartBooster();
+                StartJetBoosters();
             }
-            foreach (var booster in _boosters)
-            {
-                booster.MainBoost();
-            }
-            _lHand.ShoulderBoost.MainBoost();
-            _rHand.ShoulderBoost.MainBoost();
+            StartMainBooster();
         }
         _moveController.AddImpulse(Vector3.up * _param.UpPower);
+
     }
-    public void AngleBoost(Vector3 dir, bool isFall)
+    public void AngleBoost(Vector3 dir, bool isFall,bool isFloat)
     {
         if (isFall == false || IsDown == true)
         {
             return;
         }
+        UseBooster?.Invoke();
         _jetTimer = _param.JetTime;
         if (_boster != null && _boster.IsBoost == false)
         {
-            foreach (var booster in _boosters)
-            {
-                booster.StartBooster();
-            }
-            _lHand.ShoulderBoost.StartBooster();
-            _rHand.ShoulderBoost.StartBooster();
+            StartJetBoosters();
         }
         if (dir.x > 0 && Mathf.Abs(dir.z) <= FRONT_ANGLE)
         {
-            foreach (var booster in _boosters)
-            {
-                booster.LeftBoost();
-            }
-            _lHand.ShoulderBoost.LeftBoost();
+            StartLeftBooster();
         }
         else if (dir.x < 0 && Mathf.Abs(dir.z) <= FRONT_ANGLE)
         {
-            foreach (var booster in _boosters)
-            {
-                booster.RightBoost();
-            }
-            _rHand.ShoulderBoost.RightBoost();
+            StartRightBooster();
         }
         else if (dir.z > 0)
         {
-            foreach (var booster in _boosters)
-            {
-                booster.MainBoost();
-                booster.LeftBoost();
-                booster.RightBoost();
-            }
-            _lHand.ShoulderBoost.MainBoost();
-            _rHand.ShoulderBoost.MainBoost();
-            _lHand.ShoulderBoost.LeftBoost();
-            _rHand.ShoulderBoost.RightBoost();
+            StartJetBoosters();
+            StartLeftBooster();
+            StartRightBooster();
         }
         else
         {
-            foreach (var booster in _boosters)
-            {
-                booster.BackBoost();
-            }
-            _lHand.ShoulderBoost.BackBoost();
-            _rHand.ShoulderBoost.BackBoost();
+            StartBackBooster();
         }
         if (dir != Vector3.zero)
         {
@@ -265,7 +235,63 @@ public class BodyController : MonoBehaviour, IPartsModel
         {
             dir.y = -_param.JetPower;
         }
+        if (isFloat == true)
+        {
+            dir *= 2f;
+        }
         _moveController.VelocityMove(dir);
+    }
+    private void StartJetBoosters()
+    {
+        foreach (var booster in _boosters)
+        {
+            booster.StartBooster();
+        }
+        _lHand.ShoulderBoost.StartBooster();
+        _rHand.ShoulderBoost.StartBooster();
+    }
+    private void StartMainBooster()
+    {
+        foreach (var booster in _boosters)
+        {
+            booster.MainBoost();
+        }
+        _lHand.ShoulderBoost.MainBoost();
+        _rHand.ShoulderBoost.MainBoost();
+    }
+    private void StartBackBooster()
+    {
+        foreach (var booster in _boosters)
+        {
+            booster.BackBoost();
+        }
+        _lHand.ShoulderBoost.BackBoost();
+        _rHand.ShoulderBoost.BackBoost();
+    }
+    private void StartLeftBooster()
+    {
+        foreach (var booster in _boosters)
+        {
+            booster.LeftBoost();
+        }
+        _lHand.ShoulderBoost.LeftBoost();
+    }
+    private void StartRightBooster()
+    {
+        foreach (var booster in _boosters)
+        {
+            booster.RightBoost();
+        }
+        _rHand.ShoulderBoost.RightBoost();
+    }
+    private void StopBooster()
+    {
+        foreach (var booster in _boosters)
+        {
+            booster.StopBooster();
+        }
+        _lHand.ShoulderBoost.StopBooster();
+        _rHand.ShoulderBoost.StopBooster();
     }
     public void ShotLeft()
     {
@@ -278,6 +304,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     public void DestroyBody()
     {
         OnBodyDestroy?.Invoke();
+        StopBooster();
     }
 }
 

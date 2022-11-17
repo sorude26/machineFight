@@ -15,6 +15,11 @@ public class WeaponDataView : MonoBehaviour
     private Image _totalGauge = default;
     public void ShowWeaponData(WeaponBase weapon)
     {
+        if (weapon == null)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
         if (weapon.MaxAmmunitionCapacity <= 0)
         {
             _total.text = "‡";

@@ -23,6 +23,7 @@ public struct LegAnimation
     public string StepBack;
     public string StepLeft;
     public string StepRight;
+    public string FloatMove;
 }
 [Serializable]
 public struct LegActionParam
@@ -30,6 +31,7 @@ public struct LegActionParam
     public float WalkSpeed;
     public float WalkTurnSpeed;
     public float JumpPower;
+    public float StepUpPower;
     public float DotSub;
     public float AnimeChangeSpeed;
 }

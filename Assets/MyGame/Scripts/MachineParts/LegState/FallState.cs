@@ -11,9 +11,10 @@ public partial class LegStateContext
         {
             context.ChangeAnimation(context.AnimeName.Fall);
             context.IsFall = true;
+            context.IsFloat = false;
         }
         private float _turnSpeed = 2f;
-        private float _identiySpeed = 2f;
+        private float _identiySpeed = 5f;
         public void ExecuteFixedUpdate(LegStateContext context)
         {
             var rootR = context.BodyTrans.localRotation;

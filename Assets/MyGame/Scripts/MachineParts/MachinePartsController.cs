@@ -20,6 +20,7 @@ namespace MyGame
         public bool IsInitalized { get; private set; }
         public DamageChecker DamageChecker { get => _bodyController.DamageChecker; }
         public BodyController BodyController { get => _bodyController; }
+        public MachineBuilder Builder { get => _builder; }
         public void Initialize(PartsBuildParam buildParam)
         {
             _builder.Build(buildParam);
@@ -44,7 +45,7 @@ namespace MyGame
             }
             if (_legController.IsFall == true)
             {
-                _bodyController.BoostMove(dir);
+                _bodyController.BoostMove(dir,_legController.IsFloat);
             }
             _bodyController.ExecuteFixedUpdate(_legController.IsFall);
         }
@@ -54,7 +55,7 @@ namespace MyGame
         }
         public void ExecuteJump()
         {
-            if (_legController != null && _legController.IsFall == false)
+            if (_legController != null && _legController.IsFall == false && _legController.IsFloat == false)
             {
                 _legController.Jump();
             }
@@ -71,12 +72,19 @@ namespace MyGame
             }
             else
             {
-                _bodyController.AngleBoost(dir, _legController.IsFall);
+                _bodyController.AngleBoost(dir, _legController.IsFall, _legController.IsFloat);
             }
         }
         public void ExecuteBurst()
         {
-            _bodyController.BackPackBurst();
+            if (_bodyController.BackPack.BackPackWeapon != null)
+            {
+                _bodyController.BackPackBurst();
+            }
+            else
+            {
+                _legController.ChangeFloat();
+            }
         }
         public void ShotLeft()
         {

@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public static class SceneControl 
 {
     private static bool sceneChange = false;
+    public static Action OnSceneChange = default;
     public static void ChangeTargetScene(string sceneName)
     {
         if (!sceneChange)
@@ -13,6 +13,7 @@ public static class SceneControl
             sceneChange = true;
             FadeController.StartFadeOutIn(() =>
             {
+                OnSceneChange?.Invoke();
                 SceneManager.LoadScene(sceneName);
                 sceneChange = false;
             });

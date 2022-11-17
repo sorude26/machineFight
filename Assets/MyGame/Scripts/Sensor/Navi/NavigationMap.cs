@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using System.Drawing;
 
 public class NavigationMap
 {
@@ -29,7 +30,7 @@ public class NavigationMap
     }
     public void MakeFootprints(Transform target,int power)
     {
-        var tPoint = _naviMap.OrderBy(point => Vector3.Distance(point.Pos, target.position)).FirstOrDefault();
+        var tPoint = GetNearPoint(target.position);
         if (tPoint == null) { return; }
         _currentTarget = tPoint;
         _power = power;
@@ -38,16 +39,49 @@ public class NavigationMap
     }
     public Vector3 GetMoveDir(Transform user,int power)
     {
-        var uPoint = _naviMap.Where(point => !point.IsNoEntry).OrderBy(point => Vector3.Distance(point.Pos, user.position)).FirstOrDefault();
+        var uPoint = GetNearPoint(user.position);
         if (uPoint == null) { return Vector3.zero; }
         if (uPoint.Footprints <= power)
         {
             return Vector3.zero;
         }
-        var target = uPoint.ConnectPoint.Where(point => uPoint.Footprints + 1 == point.Footprints).OrderBy(point => Vector3.Distance(point.Pos, user.position)).FirstOrDefault();
+        var target = GetNextPoint(user.position, uPoint);
         if (target == null) { return Vector3.zero; }
         var dir = target.Pos - user.transform.position;
         dir.y = 0;
         return dir.normalized;
+    }
+
+    private NaviPoint GetNearPoint(Vector3 pos)
+    {
+        float minDis = float.MaxValue;
+        float range = 0;
+        NaviPoint nearPoint = null;
+        foreach (var naviPoint in _naviMap)
+        {
+            range = Vector3.Distance(naviPoint.Pos, pos);
+            if (naviPoint.IsNoEntry == false && range < minDis)
+            {
+                minDis = range;
+                nearPoint = naviPoint;
+            }
+        }
+        return nearPoint;
+    }
+    private NaviPoint GetNextPoint(Vector3 pos, NaviPoint point)
+    {
+        float minDis = float.MaxValue;
+        float range = 0;
+        NaviPoint nearPoint = null;
+        foreach (var naviPoint in point.ConnectPoint)
+        {
+            range = Vector3.Distance(naviPoint.Pos, pos);
+            if (naviPoint.IsNoEntry == false && point.Footprints + 1 == naviPoint.Footprints && range < minDis)
+            {
+                minDis = range;
+                nearPoint = naviPoint;
+            }
+        }
+        return nearPoint;
     }
 }

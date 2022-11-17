@@ -105,12 +105,14 @@ namespace MyGame
             instance._controls.InputMap.JetBoost.started += context => { ExecuteInput(InputType.Booster, ExecuteType.Enter); };
             instance._controls.InputMap.JetBoost.canceled += context => { ExecuteInput(InputType.Booster, ExecuteType.Exit); };
             instance._controls.InputMap.ChangeTarget.started += context => { ExecuteInput(InputType.ChangeTarget, ExecuteType.Enter); };
+            instance._controls.InputMap.Submit.started += context => { ExecuteInput(InputType.Submit, ExecuteType.Enter); };
+            instance._controls.InputMap.Submit.canceled += context => { ExecuteInput(InputType.Submit, ExecuteType.Exit); };
             isInstanced = true;
         }
         /// <summary>
         /// 入力処理の初期化を行う
         /// </summary>
-        private void InitializeInput()
+        public void InitializeInput()
         {
             if (isInstanced == true)
             {
@@ -143,7 +145,7 @@ namespace MyGame
             if (isInstanced == false)
             {
                 Initialize();
-            }
+            }            
             switch (type)
             {
                 case ExecuteType.Enter:
@@ -162,6 +164,10 @@ namespace MyGame
         /// <param name="input"></param>
         private static void ExecuteEnterInput(InputType input)
         {
+            if (instance._isStayInputDic[input] == true)
+            {
+                return;
+            }
             switch (instance._mode)
             {
                 case InputMode.InGame:
@@ -181,6 +187,10 @@ namespace MyGame
         /// <param name="input"></param>
         private static void ExecuteExitInput(InputType input)
         {
+            if (instance._isStayInputDic[input] == false)
+            {
+                return;
+            }
             switch (instance._mode)
             {
                 case InputMode.InGame:
@@ -198,9 +208,9 @@ namespace MyGame
         /// 指定操作モードへ切替
         /// </summary>
         /// <param name="mode"></param>
-        public void ChangeInputMode(InputMode mode)
+        public static void ChangeInputMode(InputMode mode)
         {
-            _mode = mode;
+            instance._mode = mode;
         }
         /// <summary>
         /// 指定入力の入力中フラグを返す
