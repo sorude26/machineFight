@@ -107,6 +107,8 @@ namespace MyGame
             instance._controls.InputMap.ChangeTarget.started += context => { ExecuteInput(InputType.ChangeTarget, ExecuteType.Enter); };
             instance._controls.InputMap.Submit.started += context => { ExecuteInput(InputType.Submit, ExecuteType.Enter); };
             instance._controls.InputMap.Submit.canceled += context => { ExecuteInput(InputType.Submit, ExecuteType.Exit); };
+            instance._controls.InputMap.Cancel.started += context => { ExecuteInput(InputType.Cancel, ExecuteType.Enter); };
+            instance._controls.InputMap.Cancel.canceled += context => { ExecuteInput(InputType.Cancel, ExecuteType.Exit); };
             isInstanced = true;
         }
         /// <summary>
