@@ -105,8 +105,11 @@ namespace MyGame
             instance._controls.InputMap.JetBoost.started += context => { ExecuteInput(InputType.Booster, ExecuteType.Enter); };
             instance._controls.InputMap.JetBoost.canceled += context => { ExecuteInput(InputType.Booster, ExecuteType.Exit); };
             instance._controls.InputMap.ChangeTarget.started += context => { ExecuteInput(InputType.ChangeTarget, ExecuteType.Enter); };
+            instance._controls.InputMap.ChangeTarget.canceled += context => { ExecuteInput(InputType.ChangeTarget, ExecuteType.Exit); };
             instance._controls.InputMap.Submit.started += context => { ExecuteInput(InputType.Submit, ExecuteType.Enter); };
             instance._controls.InputMap.Submit.canceled += context => { ExecuteInput(InputType.Submit, ExecuteType.Exit); };
+            instance._controls.InputMap.Cancel.started += context => { ExecuteInput(InputType.Cancel, ExecuteType.Enter); };
+            instance._controls.InputMap.Cancel.canceled += context => { ExecuteInput(InputType.Cancel, ExecuteType.Exit); };
             isInstanced = true;
         }
         /// <summary>
@@ -210,6 +213,10 @@ namespace MyGame
         /// <param name="mode"></param>
         public static void ChangeInputMode(InputMode mode)
         {
+            if (isInstanced == false)
+            {
+                Initialize();
+            }
             instance._mode = mode;
         }
         /// <summary>

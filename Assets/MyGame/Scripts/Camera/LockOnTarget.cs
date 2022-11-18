@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class LockOnTarget : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class LockOnTarget : MonoBehaviour
     [SerializeField]
     private DamageChecker _damageChecker = default;
     private float _timer = 0;
+    private RectTransform _targetMark = default;
     /// <summary> ロックオン中フラグ </summary>
     public bool IsLockOn { get; private set; }
     public DamageChecker DamageChecker { get => _damageChecker; }
@@ -25,7 +27,7 @@ public class LockOnTarget : MonoBehaviour
     {
         if (_isInitialized == false)
         {
-            LockOnController.Instance.LockOnTargets.Add(this);
+            LockOnController.Instance.AddTarget(this);
             _isInitialized = true;
         }
         _isActive = true;
@@ -34,6 +36,10 @@ public class LockOnTarget : MonoBehaviour
     {
         IsLockOn = false;
         _isActive = false;
+        if (_targetMark != null)
+        {
+            _targetMark.gameObject.SetActive(false);
+        }
     }
     /// <summary>
     /// 設定時間を超えるとロックオン
@@ -41,7 +47,15 @@ public class LockOnTarget : MonoBehaviour
     /// <param name="lockSpeed"></param>
     public void SetLockOn(float lockSpeed = 1)
     {
-        if (IsLockOn == true || _isActive == false)
+        if (IsLockOn == true)
+        {
+            if (_targetMark != null)
+            {
+                _targetMark.position = RectTransformUtility.WorldToScreenPoint(Camera.main, transform.position);
+            }
+            return;
+        }
+        if (_isActive == false)
         {
             return;
         }
@@ -49,6 +63,10 @@ public class LockOnTarget : MonoBehaviour
         if (_timer >= _lockOnTime)
         {
             IsLockOn = true;
+            if (_targetMark != null)
+            {
+                _targetMark.gameObject.SetActive(true);
+            }
         }
     }
     /// <summary>
@@ -58,9 +76,17 @@ public class LockOnTarget : MonoBehaviour
     {
         IsLockOn = false;
         _timer = 0;
+        if (_targetMark != null)
+        {
+            _targetMark.gameObject.SetActive(false);
+        }
     }
     public void SetChecker(DamageChecker checker)
     {
         _damageChecker = checker;
+    }
+    public void SetTargetMark(RectTransform markRect)
+    {
+        _targetMark = markRect;
     }
 }

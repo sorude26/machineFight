@@ -15,12 +15,16 @@ public class LockOnController : MonoBehaviour
     [Tooltip("障害レイヤー")]
     [SerializeField]
     private LayerMask _wallLayer = default;
+    [SerializeField]
+    private RectTransform _markCanvas = default;
+    [SerializeField]
+    private GameObject _inRangeMarkPrefab = default;
     /// <summary> ロックオン速度 </summary>
     public float LockOnSpeed { get; set; } = 2;
     /// <summary> ロックオン距離 </summary>
     public float LockOnRange { get; set; } = 500;
     /// <summary> ロックオン対象 </summary>
-    public List<LockOnTarget> LockOnTargets = new List<LockOnTarget>();
+    private List<LockOnTarget> _lockOnTargets = new List<LockOnTarget>();
     private int _targetNum = 0;
     private void Awake()
     {
@@ -28,10 +32,17 @@ public class LockOnController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        foreach (var target in LockOnTargets)
+        foreach (var target in _lockOnTargets)
         {
             LockOnCheck(target);
         }
+    }
+    public void AddTarget(LockOnTarget target)
+    {
+        var mark = Instantiate(_inRangeMarkPrefab, _markCanvas);
+        mark.gameObject.SetActive(false);
+        target.SetTargetMark(mark.GetComponent<RectTransform>());
+        _lockOnTargets.Add(target);
     }
     /// <summary>
     /// ターゲットを返す
@@ -39,16 +50,16 @@ public class LockOnController : MonoBehaviour
     /// <returns></returns>
     public LockOnTarget GetTarget()
     {
-        if (LockOnTargets[_targetNum].IsLockOn)
+        if (_lockOnTargets[_targetNum].IsLockOn)
         {
-            return LockOnTargets[_targetNum];
+            return _lockOnTargets[_targetNum];
         }
-        for (int i = 0; i < LockOnTargets.Count; i++)
+        for (int i = 0; i < _lockOnTargets.Count; i++)
         {
             ChangeTargetNum();
-            if (LockOnTargets[_targetNum].IsLockOn)
+            if (_lockOnTargets[_targetNum].IsLockOn)
             {
-                return LockOnTargets[_targetNum];
+                return _lockOnTargets[_targetNum];
             }
         }
         return null;
@@ -59,7 +70,7 @@ public class LockOnController : MonoBehaviour
     public void ChangeTargetNum()
     {
         _targetNum++;
-        if (_targetNum >= LockOnTargets.Count)
+        if (_targetNum >= _lockOnTargets.Count)
         {
             _targetNum = 0;
         }
