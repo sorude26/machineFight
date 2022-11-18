@@ -116,6 +116,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""423c3b31-328c-482a-a3a6-3ca4659fc930"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -481,6 +490,28 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""318589b0-2019-43bc-802a-9815f1188f35"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""938c3535-d339-4920-af04-9e22767e5171"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -499,6 +530,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         m_InputMap_ChangeTarget = m_InputMap.FindAction("ChangeTarget", throwIfNotFound: true);
         m_InputMap_Attack3 = m_InputMap.FindAction("Attack3", throwIfNotFound: true);
         m_InputMap_Submit = m_InputMap.FindAction("Submit", throwIfNotFound: true);
+        m_InputMap_Cancel = m_InputMap.FindAction("Cancel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -568,6 +600,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_InputMap_ChangeTarget;
     private readonly InputAction m_InputMap_Attack3;
     private readonly InputAction m_InputMap_Submit;
+    private readonly InputAction m_InputMap_Cancel;
     public struct InputMapActions
     {
         private @InputControls m_Wrapper;
@@ -582,6 +615,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         public InputAction @ChangeTarget => m_Wrapper.m_InputMap_ChangeTarget;
         public InputAction @Attack3 => m_Wrapper.m_InputMap_Attack3;
         public InputAction @Submit => m_Wrapper.m_InputMap_Submit;
+        public InputAction @Cancel => m_Wrapper.m_InputMap_Cancel;
         public InputActionMap Get() { return m_Wrapper.m_InputMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -621,6 +655,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Submit.started -= m_Wrapper.m_InputMapActionsCallbackInterface.OnSubmit;
                 @Submit.performed -= m_Wrapper.m_InputMapActionsCallbackInterface.OnSubmit;
                 @Submit.canceled -= m_Wrapper.m_InputMapActionsCallbackInterface.OnSubmit;
+                @Cancel.started -= m_Wrapper.m_InputMapActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_InputMapActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_InputMapActionsCallbackInterface.OnCancel;
             }
             m_Wrapper.m_InputMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -655,6 +692,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @Submit.started += instance.OnSubmit;
                 @Submit.performed += instance.OnSubmit;
                 @Submit.canceled += instance.OnSubmit;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
             }
         }
     }
@@ -671,5 +711,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         void OnChangeTarget(InputAction.CallbackContext context);
         void OnAttack3(InputAction.CallbackContext context);
         void OnSubmit(InputAction.CallbackContext context);
+        void OnCancel(InputAction.CallbackContext context);
     }
 }
