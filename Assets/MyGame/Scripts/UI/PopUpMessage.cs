@@ -70,6 +70,8 @@ public class PopUpMessage : MonoBehaviour
         }
         PlayerInput.SetEnterInput(InputMode.Menu, InputType.Submit, Submit);
         PlayerInput.SetEnterInput(InputMode.Menu, InputType.Cancel, Cancel);
+        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Submit, Other);
+        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Cancel, Other);
         PlayerInput.ChangeInputMode(InputMode.Menu);
     }
     private void Submit()
@@ -91,6 +93,8 @@ public class PopUpMessage : MonoBehaviour
     {
         PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Submit, Submit);
         PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Cancel, Cancel);
+        PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Submit, Other);
+        PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Cancel, Other);
         Destroy(this.gameObject);
     }
 }
