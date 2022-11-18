@@ -40,6 +40,10 @@ public class PlayerMachineController : MonoBehaviour
     private float _boosterConsumption = default;
     private IEnumerator Start()
     {
+        if (PlayerData.instance != null)
+        {
+            _buildParam = PlayerData.instance.BuildPreset;
+        }
         SetInput();
         _machineController.Initialize(_buildParam);
         _machineController.DamageChecker.OnDamageEvent.AddListener(DamagePlayer);
