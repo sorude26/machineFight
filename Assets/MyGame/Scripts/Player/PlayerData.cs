@@ -77,6 +77,9 @@ public class PlayerData : MonoBehaviour
         Debug.Log("RWeapon:" + BuildPreset.RWeapon);
     }
 
+    /// <summary>
+    /// ƒ‚ƒfƒ‹‚ğ¶¬‚·‚é
+    /// </summary>
     public void Build()
     {
         _modelBuilder.ViewModel(BuildPreset);

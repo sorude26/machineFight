@@ -9,6 +9,7 @@ public class PartsSelectButton : MonoBehaviour
     [SerializeField] PartsCategory _category = default;
     [SerializeField] GameObject _customizePanel = default;
     [SerializeField] GameObject _content = default;
+    bool isStart = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +46,7 @@ public class PartsSelectButton : MonoBehaviour
 
     private void OnEnable()
     {
-        if (PlayerData.instance != null)
+        if (isStart == false)
         {
             switch (_category)
             {
@@ -75,6 +76,7 @@ public class PartsSelectButton : MonoBehaviour
                     break;
             }
         }
+        isStart = false;
     }
 
 

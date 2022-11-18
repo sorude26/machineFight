@@ -9,16 +9,21 @@ public class PartsSelectMenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Fire3, ClosePanel);
         this.gameObject.SetActive(false);
     }
 
     private void OnEnable()
     {
+        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Cancel, ClosePanel);
         if (this.gameObject.transform.childCount > 0)
         {
             ButtonSelectController.OnButtonFirstSelect(this.gameObject);
         }
+    }
+
+    private void OnDisable()
+    {
+        PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Cancel, ClosePanel);
     }
 
     private void ClosePanel()

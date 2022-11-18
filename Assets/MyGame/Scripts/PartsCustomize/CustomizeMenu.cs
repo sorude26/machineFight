@@ -25,7 +25,7 @@ public class CustomizeMenu : MonoBehaviour
     {
         PlayerInput.SetEnterInput(InputMode.Menu, InputType.Fire2, CategoryChangeNext);
         PlayerInput.SetEnterInput(InputMode.Menu, InputType.Fire1, CategoryChangePre);
-        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Fire3, EndCustomize);
+        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Cancel, EndCustomize);
         PlayerInput.ChangeInputMode(InputMode.Menu);
         //ButtonInstantiate(_category, 0);
         this.gameObject.SetActive(false);
