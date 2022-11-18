@@ -11,12 +11,7 @@ public static class ButtonSelectController
     /// <param name="window">ボタンの親オブジェクト</param>
     public static void OnButtonFirstSelect(GameObject content)
     {
-        foreach (Transform button in content.transform)
-        {
-            Debug.Log(button.GetComponent<PartsButton>()._partsCategory);
-        }
         EventSystem.current.SetSelectedGameObject(content.transform.GetChild(0).gameObject);
-        Debug.Log(EventSystem.current.currentSelectedGameObject.GetComponent<PartsButton>()._partsCategory);
     }
 
 
@@ -26,6 +21,5 @@ public static class ButtonSelectController
     public static void OnButtonNonSelect()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        Debug.Log("Null");
     }
 }

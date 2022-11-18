@@ -27,7 +27,8 @@ public class PartsButton : MonoBehaviour
     /// <param name="partsId">ÉpÅ[ÉcÇÃID</param>
     public void Customize()
     {
-        _playerData = PlayerData.Instance;
+        _playerData = PlayerData.instance;
+        _playerData.PartsLog();
         PartsBuildParam partsData = _playerData.BuildPreset;
         switch (_partsCategory)
         {
@@ -58,8 +59,6 @@ public class PartsButton : MonoBehaviour
         }
 
         _playerData.BuildPreset = partsData;
-        _playerData.PartsLog();
+        _playerData.Build();
     }
-
-    
 }

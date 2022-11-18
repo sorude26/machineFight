@@ -2,42 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
-using UniRx.Triggers;
-using UniRx;
 
 public class PlayerData : MonoBehaviour
 {
     public static PlayerData instance;
 
-    public static PlayerData Instance
+    private PartsBuildParam _buildPreset = default;
+    public PartsBuildParam BuildPreset
     {
         get
         {
-            if (instance == null)
-            {
-                instance = new PlayerData();
-                instance.PresetLoad();
-            }
-            return instance;
+            return _buildPreset;
+        }
+        set
+        {
+            _buildPreset = value;
         }
     }
-    private PartsBuildParam _buildPreset = default;
-    public ReactiveProperty<PartsBuildParam> BuildPreset = new ReactiveProperty<PartsBuildParam>();
 
-    private void Start()
+    private ModelBuilder _modelBuilder = default;
+
+    private void Awake()
     {
-        BuildPreset.Value = _buildPreset;
-        BuildPreset.Subscribe(_ => { 
-            Debug.Log(BuildPreset.Value.Head);
-            Debug.Log(BuildPreset.Value.Body);
-            Debug.Log(BuildPreset.Value.LHand);
-            Debug.Log(BuildPreset.Value.RHand);
-            Debug.Log(BuildPreset.Value.Leg);
-            Debug.Log(BuildPreset.Value.Booster);
-            Debug.Log(BuildPreset.Value.LWeapon);
-            Debug.Log(BuildPreset.Value.RWeapon);
-        }).AddTo(this);
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+            instance._buildPreset = instance.PresetLoad();
+            instance._modelBuilder = new ModelBuilder();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
+
     //JsonÇ…èëÇ´çûÇ›
     public void PresetSave()
     {
@@ -72,5 +71,10 @@ public class PlayerData : MonoBehaviour
         Debug.Log("Booster:" + BuildPreset.Booster);
         Debug.Log("LWeapon:" + BuildPreset.LWeapon);
         Debug.Log("RWeapon:" + BuildPreset.RWeapon);
+    }
+
+    public void Build()
+    {
+        _modelBuilder.ViewModel(BuildPreset);
     }
 }
