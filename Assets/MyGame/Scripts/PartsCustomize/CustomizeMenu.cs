@@ -10,6 +10,7 @@ using MyGame;
 
 public class CustomizeMenu : MonoBehaviour
 {
+    [SerializeField] GameObject _partsSelectPanel = default;
     [SerializeField] Text _partsName = default;
     [SerializeField] Button _partsButton = default;
     [SerializeField] GameObject _content = default;
@@ -22,12 +23,22 @@ public class CustomizeMenu : MonoBehaviour
 
     private void Start()
     {
-        PlayerInput.SetEnterInput(InputMode.InGame, InputType.Fire2, CategoryChangeNext);
-        PlayerInput.SetEnterInput(InputMode.InGame, InputType.Fire1, CategoryChangePre);
-        ButtonInstantiate(_category, 0);
-        ButtonSelectController.OnButtonFirstSelect(_content);
+        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Fire2, CategoryChangeNext);
+        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Fire1, CategoryChangePre);
+        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Fire3, EndCustomize);
+        PlayerInput.ChangeInputMode(InputMode.Menu);
+        //ButtonInstantiate(_category, 0);
+        this.gameObject.SetActive(false);
+        //ButtonSelectController.OnButtonFirstSelect(_content);
     }
 
+    private void OnEnable()
+    {
+        if (_content.transform.childCount > 0)
+        {
+            ButtonSelectController.OnButtonFirstSelect(_content);
+        }
+    }
     /// <summary>
     /// ボタンの生成
     /// </summary>
@@ -45,6 +56,7 @@ public class CustomizeMenu : MonoBehaviour
                 if (headParts == null)
                 {
                     Destroy(button.gameObject);
+                    _category = category;
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = headParts.Name;
@@ -54,6 +66,7 @@ public class CustomizeMenu : MonoBehaviour
                 if (bodyParts == null)
                 {
                     Destroy(button.gameObject);
+                    _category = category;
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = bodyParts.Name;
@@ -63,6 +76,7 @@ public class CustomizeMenu : MonoBehaviour
                 if (lhandParts == null)
                 {
                     Destroy(button.gameObject);
+                    _category = category;
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = lhandParts.Name;
@@ -72,6 +86,7 @@ public class CustomizeMenu : MonoBehaviour
                 if (rhandParts == null)
                 {
                     Destroy(button.gameObject);
+                    _category = category;
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = rhandParts.Name;
@@ -81,6 +96,7 @@ public class CustomizeMenu : MonoBehaviour
                 if (legParts == null)
                 {
                     Destroy(button.gameObject);
+                    _category = category;
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = legParts.Name;
@@ -90,6 +106,7 @@ public class CustomizeMenu : MonoBehaviour
                 if (boosterParts == null)
                 {
                     Destroy(button.gameObject);
+                    _category = category;
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = boosterParts.Name;
@@ -99,6 +116,7 @@ public class CustomizeMenu : MonoBehaviour
                 if (lweaponParts == null)
                 {
                     Destroy(button.gameObject);
+                    _category = category;
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = lweaponParts.ID.ToString();
@@ -108,6 +126,7 @@ public class CustomizeMenu : MonoBehaviour
                 if (rweaponParts == null)
                 {
                     Destroy(button.gameObject);
+                    _category = category;
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = rweaponParts.ID.ToString();
@@ -127,7 +146,7 @@ public class CustomizeMenu : MonoBehaviour
     /// 変更したいパーツのリストに変える
     /// </summary>
     /// <param name="category">変更先のカテゴリー</param>
-    private IEnumerator CategoryChange(PartsCategory category)
+    public IEnumerator CategoryChange(PartsCategory category)
     {
         ButtonSelectController.OnButtonNonSelect();
         ButtonDestory(_content);
@@ -139,7 +158,7 @@ public class CustomizeMenu : MonoBehaviour
     /// <summary>
     /// ボタンをすべて削除する
     /// </summary>
-    private void ButtonDestory(GameObject content)
+    public void ButtonDestory(GameObject content)
     {
         foreach (Transform button in content.transform)
         {
@@ -150,7 +169,7 @@ public class CustomizeMenu : MonoBehaviour
     /// <summary>
     /// 次のカテゴリーに変更
     /// </summary>
-    private void CategoryChangeNext()
+    public void CategoryChangeNext()
     {
         int nextcategoryNum = (int)_category + 1;
         if (nextcategoryNum >= Enum.GetValues(typeof(PartsCategory)).Length)
@@ -167,7 +186,7 @@ public class CustomizeMenu : MonoBehaviour
     /// <summary>
     /// 前のカテゴリーに変更
     /// </summary>
-    private void CategoryChangePre()
+    public void CategoryChangePre()
     {
         int nextcategoryNum = (int)_category - 1;
         if (nextcategoryNum < 0 )
@@ -178,6 +197,20 @@ public class CustomizeMenu : MonoBehaviour
         {
             _category = (PartsCategory)nextcategoryNum;
             StartCoroutine(CategoryChange(_category));
+        }
+    }
+
+    /// <summary>
+    /// カスタマイズメニューを閉じる
+    /// </summary>
+    public void EndCustomize()
+    {
+        if (this.gameObject.activeSelf == true)
+        {
+            ButtonSelectController.OnButtonNonSelect();
+            _partsSelectPanel.SetActive(true);
+            ButtonSelectController.OnButtonFirstSelect(_partsSelectPanel);
+            this.gameObject.SetActive(false);
         }
     }
 }

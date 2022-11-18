@@ -37,6 +37,10 @@ public class PlayerData : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        instance.Build();
+    }
     //Json‚É‘‚«‚İ
     public void PresetSave()
     {

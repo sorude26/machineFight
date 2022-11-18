@@ -21,8 +21,8 @@ public class ModelBuilder : MonoBehaviour
     private void CreateModelBase()
     {
         var baseObj = new GameObject("ModelBase");
-        //baseObj.transform.position = this.gameObject.transform.position;
-        //baseObj.transform.rotation = this.gameObject.transform.rotation;
+        baseObj.transform.position = new Vector3(6, -3, 0);
+        baseObj.transform.rotation = Quaternion.Euler(0, 200, 0);
         _modelBase = baseObj;
     }
     private void DeleteModelBase()
