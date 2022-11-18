@@ -21,6 +21,8 @@ public class NaviMoveController : MonoBehaviour
     private float _moveSpeed = 5f;
     [SerializeField]
     private float _naviInterval = 1f;
+    [SerializeField]
+    private float _minYLevel = 1f;
     private float _timer = 0f;
     private Vector3 _currentDir = Vector3.zero;
     private void FixedUpdate()
@@ -40,13 +42,9 @@ public class NaviMoveController : MonoBehaviour
             {
                 _currentDir = -_currentDir;
             }
-            if (Physics.Raycast(_body.position, Vector3.down, _wallRayRange, _wallLayer))
+            if (_body.position.y <= _minYLevel)
             {
-                _currentDir += Vector3.up;
-            }
-            if (Physics.Raycast(_body.position, Vector3.up, _wallRayRange, _wallLayer))
-            {
-                _currentDir += Vector3.down;
+                _currentDir = Vector3.up;
             }
             _body.forward = Vector3.Lerp(_body.forward, _currentDir, _transSpeed * Time.fixedDeltaTime);
             _body.position = Vector3.Lerp(_body.position, _body.position + _body.forward * _moveSpeed, _transSpeed * Time.fixedDeltaTime);

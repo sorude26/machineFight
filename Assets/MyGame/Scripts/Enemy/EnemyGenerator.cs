@@ -16,15 +16,9 @@ public class EnemyGenerator : MonoBehaviour
     private float _minSpwanRange = 800f;
     [SerializeField]
     private int _enemySpwanCount = 5;
-    [SerializeField]
-    private int _enemySpwanTargetCount = 5;
-    [SerializeField]
-    private bool _isAutoSpwan = true;
     private int _enemyIndex = 0;
     private int _pointIndex = 0;
     private int _count = 0;
-    private int _totalCount = 0;
-    private bool _isStart = false;
     private GeneratorEnemyContoroller[] _allEnemys = default;
     private IEnumerator Start()
     {
@@ -34,45 +28,27 @@ public class EnemyGenerator : MonoBehaviour
             for (int k = 0; k < _defaultCount; k++)
             {
                 _allEnemys[i * _defaultCount + k] = Instantiate(_enemys[i],transform);
-                if (_isAutoSpwan == true)
-                {
-                    _allEnemys[i * _defaultCount + k].OnDeadEvent += AddCount;
-                }
                 _allEnemys[i * _defaultCount + k].gameObject.SetActive(false);
             }
         }
         yield return null;
-        Spwan();
+        ShufflePoints();
+        ShuffleEnemys();
         for (int i = 0; i < _startSpwanCount; i++)
         {
             SpwanEnemys();
         }
-        _isStart = true;
     }
     public void Spwan()
     {
-        ShufflePoints();
-        SpwanEnemys();
-    }
-    private void AddCount()
-    {
-        if (_isStart == false)
-        {
-            return;
-        }
         _count++;
-        if (_count >= _enemySpwanTargetCount)
+        if (_count >= _spwanPoints.Length)
         {
-            SpwanEnemys();
-            _count = 0;
-        }
-        _totalCount++;
-        if (_totalCount >= _allEnemys.Length)
-        {
-            _totalCount = 0;
             ShuffleEnemys();
             ShufflePoints();
+            _count = 0;
         }
+        SpwanEnemys();
     }
     private void SpwanEnemys()
     {
@@ -136,6 +112,11 @@ public class EnemyGenerator : MonoBehaviour
     {
         for (int i = 0; i < _spwanPoints.Length; i++)
         {
+            _pointIndex++;
+            if (_pointIndex >= _spwanPoints.Length)
+            {
+                _pointIndex = 0;
+            }
             if (NavigationManager.Instance.Target == null)
             {
                 return;
@@ -143,11 +124,6 @@ public class EnemyGenerator : MonoBehaviour
             if (Vector3.Distance(_spwanPoints[i].position,NavigationManager.Instance.Target.position) > _minSpwanRange)
             {
                 return;
-            }
-            _pointIndex++;
-            if (_pointIndex >= _spwanPoints.Length)
-            {
-                _pointIndex = 0;
             }
         }
     }

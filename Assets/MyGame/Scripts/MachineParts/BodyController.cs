@@ -31,6 +31,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     private MoveController _moveController = default;
     private BackPackController _backPack = default;
     private bool _isShoot = false;
+    private bool _isInitialized = false;
     private float _jetTimer = 0;
     private List<BoosterController> _boosters = new List<BoosterController>();
     public event Action OnBodyDestroy = default;
@@ -49,6 +50,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     {
         _moveController = moveController;
         _boosters.Add(_boster);
+        _isInitialized = true;
     }
     public void SetParam(BodyParam param)
     {
@@ -85,6 +87,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     }
     private void FixedUpdate()
     {
+        if (_isInitialized == false) { return; }
         transform.position = BodyBase.position;
         if (IsDown == true)
         {

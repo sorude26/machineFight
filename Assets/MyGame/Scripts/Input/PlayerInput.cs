@@ -112,7 +112,7 @@ namespace MyGame
         /// <summary>
         /// 入力処理の初期化を行う
         /// </summary>
-        private void InitializeInput()
+        public void InitializeInput()
         {
             if (isInstanced == true)
             {
@@ -208,9 +208,9 @@ namespace MyGame
         /// 指定操作モードへ切替
         /// </summary>
         /// <param name="mode"></param>
-        public void ChangeInputMode(InputMode mode)
+        public static void ChangeInputMode(InputMode mode)
         {
-            _mode = mode;
+            instance._mode = mode;
         }
         /// <summary>
         /// 指定入力の入力中フラグを返す

@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
+using MyGame;
 
 public class CustomizeMenu : MonoBehaviour
 {
-    //[SerializeField] Text _partsName = default;
+    [SerializeField] Text _partsName = default;
     [SerializeField] Button _partsButton = default;
     [SerializeField] GameObject _content = default;
+    [SerializeField] PartsCategory _category = default;
 
     private void Awake()
     {
@@ -18,8 +22,10 @@ public class CustomizeMenu : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(PartsManager.Instance.AllParamData.GetPartsHead(0));
-        ButtonInstantiate(PartsCategory.Head, 0);
+        PlayerInput.SetEnterInput(InputMode.InGame, InputType.Fire2, CategoryChangeNext);
+        PlayerInput.SetEnterInput(InputMode.InGame, InputType.Fire1, CategoryChangePre);
+        ButtonInstantiate(_category, 0);
+        ButtonSelectController.OnButtonFirstSelect(_content);
     }
 
     /// <summary>
@@ -27,9 +33,9 @@ public class CustomizeMenu : MonoBehaviour
     /// </summary>
     /// <param name="category">パーツの種類</param>
     /// <param name="id">パーツのID(再起関数のため0を与える)</param>
-    //各パーツ情報の要素数があればおそらく完成
     public void ButtonInstantiate(PartsCategory category, int id)
     {
+        _partsName.text = category.ToString();
         Button button;
         button = Instantiate(_partsButton);
         switch (category)
@@ -38,7 +44,7 @@ public class CustomizeMenu : MonoBehaviour
                 PartsHeadData headParts = PartsManager.Instance.AllParamData.GetPartsHead(id);
                 if (headParts == null)
                 {
-                    Destroy(button);
+                    Destroy(button.gameObject);
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = headParts.Name;
@@ -47,7 +53,7 @@ public class CustomizeMenu : MonoBehaviour
                 PartsBodyData bodyParts = PartsManager.Instance.AllParamData.GetPartsBody(id);
                 if (bodyParts == null)
                 {
-                    Destroy(button);
+                    Destroy(button.gameObject);
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = bodyParts.Name;
@@ -56,7 +62,7 @@ public class CustomizeMenu : MonoBehaviour
                 PartsHandData lhandParts = PartsManager.Instance.AllParamData.GetPartsHand(id);
                 if (lhandParts == null)
                 {
-                    Destroy(button);
+                    Destroy(button.gameObject);
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = lhandParts.Name;
@@ -65,7 +71,7 @@ public class CustomizeMenu : MonoBehaviour
                 PartsHandData rhandParts = PartsManager.Instance.AllParamData.GetPartsHand(id);
                 if (rhandParts == null)
                 {
-                    Destroy(button);
+                    Destroy(button.gameObject);
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = rhandParts.Name;
@@ -74,7 +80,7 @@ public class CustomizeMenu : MonoBehaviour
                 PartsLegData legParts = PartsManager.Instance.AllParamData.GetPartsLeg(id);
                 if (legParts == null)
                 {
-                    Destroy(button);
+                    Destroy(button.gameObject);
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = legParts.Name;
@@ -83,7 +89,7 @@ public class CustomizeMenu : MonoBehaviour
                 PartsBackPackData boosterParts = PartsManager.Instance.AllParamData.GetPartsBack(id);
                 if (boosterParts == null)
                 {
-                    Destroy(button);
+                    Destroy(button.gameObject);
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = boosterParts.Name;
@@ -92,7 +98,7 @@ public class CustomizeMenu : MonoBehaviour
                 WeaponBase lweaponParts = PartsManager.Instance.AllModelData.GetWeapon(id);
                 if (lweaponParts == null)
                 {
-                    Destroy(button);
+                    Destroy(button.gameObject);
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = lweaponParts.ID.ToString();
@@ -101,7 +107,7 @@ public class CustomizeMenu : MonoBehaviour
                 WeaponBase rweaponParts = PartsManager.Instance.AllModelData.GetWeapon(id);
                 if (rweaponParts == null)
                 {
-                    Destroy(button);
+                    Destroy(button.gameObject);
                     return;
                 }
                 button.GetComponentInChildren<Text>().text = rweaponParts.ID.ToString();
@@ -114,6 +120,64 @@ public class CustomizeMenu : MonoBehaviour
         _._partsId = id;
         button.onClick.AddListener(() => _.Customize());
         button.transform.parent = _content.transform;
-        //ButtonInstantiate(category, id++);
+        ButtonInstantiate(category, id += 1);
+    }
+
+    /// <summary>
+    /// 変更したいパーツのリストに変える
+    /// </summary>
+    /// <param name="category">変更先のカテゴリー</param>
+    private IEnumerator CategoryChange(PartsCategory category)
+    {
+        ButtonSelectController.OnButtonNonSelect();
+        ButtonDestory(_content);
+        yield return null;
+        ButtonInstantiate(_category, 0);
+        ButtonSelectController.OnButtonFirstSelect(_content);
+    }
+
+    /// <summary>
+    /// ボタンをすべて削除する
+    /// </summary>
+    private void ButtonDestory(GameObject content)
+    {
+        foreach (Transform button in content.transform)
+        {
+            Destroy(button.gameObject);
+        }
+    }
+
+    /// <summary>
+    /// 次のカテゴリーに変更
+    /// </summary>
+    private void CategoryChangeNext()
+    {
+        int nextcategoryNum = (int)_category + 1;
+        if (nextcategoryNum >= Enum.GetValues(typeof(PartsCategory)).Length)
+        {
+            nextcategoryNum = 0;
+        }
+        if (Enum.IsDefined((typeof(PartsCategory)), nextcategoryNum))
+        {
+            _category = (PartsCategory)nextcategoryNum;
+            StartCoroutine(CategoryChange(_category));
+        }
+    }
+
+    /// <summary>
+    /// 前のカテゴリーに変更
+    /// </summary>
+    private void CategoryChangePre()
+    {
+        int nextcategoryNum = (int)_category - 1;
+        if (nextcategoryNum < 0 )
+        {
+            nextcategoryNum = Enum.GetValues(typeof(PartsCategory)).Length - 1;
+        }
+        if (Enum.IsDefined((typeof(PartsCategory)), nextcategoryNum))
+        {
+            _category = (PartsCategory)nextcategoryNum;
+            StartCoroutine(CategoryChange(_category));
+        }
     }
 }

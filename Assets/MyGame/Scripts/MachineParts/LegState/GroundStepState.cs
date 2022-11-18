@@ -8,6 +8,7 @@ public partial class LegStateContext
         private readonly float SIDE_RANGE = 0.5f;
         public void ExecuteEnter(LegStateContext context)
         {
+            _upPower = context.ActionParam.StepUpPower;
             var moveDir = context._moveDir;
             if (moveDir.z > 0)
             {
