@@ -22,11 +22,14 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     private bool _addCount = true;
     [SerializeField]
     private bool _isMarkTarget = false;
+    [SerializeField]
+    private bool _count = true;
     private int _hp = 1;
     private bool _isSeverelyDamaged = false;
     public int MaxHp { get => _maxHp; }
     public int CurrentHp { get => _hp; }
     public bool AddTarget { get => _addCount || _isMarkTarget; }
+    public int TotalDamage { get; private set; }
     public UnityEvent OnDamageEvent;
     public UnityEvent OnRecoveryEvent;
     private void Start()
@@ -36,6 +39,10 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     public void StartSet()
     {
         _hp = _maxHp;
+        if (_isMarkTarget == true && StageManager.Instance != null)
+        {
+            StageManager.Instance.SetTargetCount();
+        }
     }
     public void SetHp(int hp,float severely = 0.8f)
     {
@@ -57,6 +64,7 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     {
         if (_hp <= 0) { return; }
         _hp -= damage;
+        TotalDamage += damage;
         if (_isSeverelyDamaged == false &&_hp <= _maxHp - _severelyDamage) 
         {
             _onSeverelyDamagedEvent?.Invoke();
@@ -68,10 +76,33 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
             _onDeadEvent?.Invoke();
             if (_addCount == true)
             {
+                StageManager.Instance.AddBossCount();
+            }
+            if (_isMarkTarget == true)
+            {
+                StageManager.Instance.AddTargetCount();
+            }
+            if (_count == true)
+            {
                 StageManager.Instance.AddCount();
             }
         }
         OnDamageEvent?.Invoke();
+    }
+    public void ChangeAnTarget()
+    {
+        _addCount = false;
+        _isMarkTarget = false;
+        _count = false;
+        StageManager.Instance.SetTargetCount(-1);
+    }
+    public void ChangeTarget()
+    {
+        _isMarkTarget = true;
+    }
+    public void ChangeBoss()
+    {
+        _addCount = true;
     }
     public void PlayEffect()
     {
