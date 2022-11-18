@@ -40,6 +40,10 @@ public class PlayerMachineController : MonoBehaviour
     private float _boosterConsumption = default;
     private IEnumerator Start()
     {
+        if (PlayerData.instance != null)
+        {
+            _buildParam = PlayerData.instance.BuildPreset;
+        }
         SetInput();
         _machineController.Initialize(_buildParam);
         _machineController.DamageChecker.OnDamageEvent.AddListener(DamagePlayer);
@@ -75,6 +79,8 @@ public class PlayerMachineController : MonoBehaviour
         LockOnController.Instance.LockOnSpeed = PartsManager.Instance.AllParamData.GetPartsHead(_buildParam.Head).LockOnSpeed;
         SetParam();
         _machineController.BodyController.UseBooster += UseBooster;
+        _machineController.DamageChecker.ChangeAnTarget();
+        StageManager.Instance.OnGameEnd += SetTotalDamage;
     }
     private void FixedUpdate()
     {
@@ -156,6 +162,10 @@ public class PlayerMachineController : MonoBehaviour
     {
         _uiAnime.Play(_damage);
         ShowHpData();
+    }
+    private void SetTotalDamage()
+    {
+        StageManager.Instance.TotalDamage = _machineController.DamageChecker.TotalDamage;
     }
     public void ShotLeft()
     {

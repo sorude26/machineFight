@@ -8291,7 +8291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ab9c3174ad9014689d8e1ea796c59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CLEAR_COUNT: 1
+  _clearBossCount: 1
 --- !u!4 &588769597
 Transform:
   m_ObjectHideFlags: 0
@@ -8875,13 +8875,13 @@ MonoBehaviour:
   _targetMark: {fileID: 714540175}
   _buildParam:
     Head: 3
-    Body: 1
+    Body: 3
     LHand: 1
     RHand: 1
-    Leg: 5
-    Booster: 5
-    LWeapon: 0
-    RWeapon: 0
+    Leg: 3
+    Booster: 4
+    LWeapon: 1
+    RWeapon: 1
   _leftWeapon: {fileID: 1102960719}
   _rightWeapon: {fileID: 610640876}
   _backPack: {fileID: 1655616156}
@@ -9501,7 +9501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &768258645
 Transform:
   m_ObjectHideFlags: 0
