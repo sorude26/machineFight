@@ -34,10 +34,14 @@ public class StageManager : MonoBehaviour
     }
     private void ViewClearPop()
     {
+        if (_gameOver == true)
+        {
+            return;
+        }
         PlayerInput.Instance.InitializeInput();
+        _gameOver = true;
         var massage = new PopUpData(center: "”C–±Š®—¹");
-        PopUpMessage.CreatePopUp(massage);
-        SceneControl.ChangeTargetScene("Result");
+        PopUpMessage.CreatePopUp(massage, otherAction: () => { SceneControl.ChangeTargetScene("Result"); });
     }
     public void ViewGameOver()
     {
@@ -48,7 +52,6 @@ public class StageManager : MonoBehaviour
         PlayerInput.Instance.InitializeInput();
         _gameOver = true;
         var massage = new PopUpData(center: "”C–±Ž¸”s");
-        PopUpMessage.CreatePopUp(massage);
-        SceneControl.ChangeTargetScene("Result");
+        PopUpMessage.CreatePopUp(massage, otherAction: () => { SceneControl.ChangeTargetScene("Result"); });
     }
 }
