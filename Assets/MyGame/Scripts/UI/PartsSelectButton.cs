@@ -17,22 +17,22 @@ public class PartsSelectButton : MonoBehaviour
         switch (_category)
         {
             case PartsCategory.Head:
-                this.gameObject.GetComponentInChildren<Text>().text = PartsManager.Instance.AllParamData.GetPartsHead(PlayerData.instance.BuildPreset.Head).name;
+                this.gameObject.GetComponentInChildren<Text>().text = PartsManager.Instance.AllParamData.GetPartsHead(PlayerData.instance.BuildPreset.Head).Name;
                 break;
             case PartsCategory.Body:
-                this.gameObject.GetComponentInChildren<Text>().text = PartsManager.Instance.AllParamData.GetPartsBody(PlayerData.instance.BuildPreset.Body).name;
+                this.gameObject.GetComponentInChildren<Text>().text = PartsManager.Instance.AllParamData.GetPartsBody(PlayerData.instance.BuildPreset.Body).Name;
                 break;
             case PartsCategory.LHand:
-                this.gameObject.GetComponentInChildren<Text>().text = PartsManager.Instance.AllParamData.GetPartsHand(PlayerData.instance.BuildPreset.LHand).name;
+                this.gameObject.GetComponentInChildren<Text>().text = PartsManager.Instance.AllParamData.GetPartsHand(PlayerData.instance.BuildPreset.LHand).Name;
                 break;
             case PartsCategory.RHand:
-                this.gameObject.GetComponentInChildren<Text>().text = PartsManager.Instance.AllParamData.GetPartsHand(PlayerData.instance.BuildPreset.RHand).name;
+                this.gameObject.GetComponentInChildren<Text>().text = PartsManager.Instance.AllParamData.GetPartsHand(PlayerData.instance.BuildPreset.RHand).Name;
                 break;
             case PartsCategory.Leg:
-                this.gameObject.GetComponentInChildren<Text>().text = PartsManager.Instance.AllParamData.GetPartsLeg(PlayerData.instance.BuildPreset.Leg).name;
+                this.gameObject.GetComponentInChildren<Text>().text = PartsManager.Instance.AllParamData.GetPartsLeg(PlayerData.instance.BuildPreset.Leg).Name;
                 break;
             case PartsCategory.Booster:
-                this.gameObject.GetComponentInChildren<Text>().text = PartsManager.Instance.AllParamData.GetPartsBack(PlayerData.instance.BuildPreset.Booster).name;
+                this.gameObject.GetComponentInChildren<Text>().text = PartsManager.Instance.AllParamData.GetPartsBack(PlayerData.instance.BuildPreset.Booster).Name;
                 break;
             case PartsCategory.LWeapon:
                 this.gameObject.GetComponentInChildren<Text>().text = PartsManager.Instance.AllModelData.GetWeapon(PlayerData.instance.BuildPreset.LWeapon).name;
