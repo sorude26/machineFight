@@ -26,13 +26,14 @@ public class StageSelectController : MonoBehaviour
         for (int i = 0; i < _stageMaxNumber; i++)
         {
             var p = Instantiate(_namePanelPrefab, _base);
-            p.SetPanel("STAGE:" + (i + 1).ToString(), Quaternion.Euler(0, -Angle * i, 0), _stageMaxNumber);
+            p.SetPanel($"STAGE:{i + 1}", Quaternion.Euler(0, -Angle * i, 0), _stageMaxNumber);
         }
         transform.position = Vector3.forward * _stageMaxNumber * 2 - Vector3.forward * 5 + Vector3.up * 2;
         _buttonOn = true;
         yield return new WaitForSeconds(_waitTime);
         _buttonOn = false;
         PlayerInput.SetEnterInput(InputMode.Menu, InputType.Submit, SelectStage);
+        PlayerInput.ChangeInputMode(InputMode.Menu);
     }
     private void Update()
     {
@@ -59,17 +60,17 @@ public class StageSelectController : MonoBehaviour
                 UIControl(-1, 0);
             }
         }
-        //else if (v > INPUT_SENSITIVITY || v < -INPUT_SENSITIVITY)
-        //{
-        //    if (v > 0)
-        //    {
-        //        UIControl(1, 0);
-        //    }
-        //    else
-        //    {
-        //        UIControl(-1, 0);
-        //    }
-        //}
+        else if (v > INPUT_SENSITIVITY || v < -INPUT_SENSITIVITY)
+        {
+            if (v > 0)
+            {
+                UIControl(0, 1);
+            }
+            else
+            {
+                UIControl(0, -1);
+            }
+        }
     }
     private void UIControl(int target, int value)
     {
@@ -118,7 +119,7 @@ public class StageSelectController : MonoBehaviour
         {
             target = 0;
         }
-        var message = new PopUpData(middle: $"{StageNames[target]}へ出撃");
+        var message = new PopUpData(middle: $"STAGE:{target + 1}へ出撃",sub: "〇：OK",cancel: "×:Cancel");
         PopUpMessage.CreatePopUp(message, submitAction: () => SceneChange(StageNames[target]), cancelAction: () => { _buttonOn = false; });
     }
     private void SceneChange(string target)
