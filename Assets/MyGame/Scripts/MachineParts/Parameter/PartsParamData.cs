@@ -23,7 +23,15 @@ public class PartsParamData : ScriptableObject
     }
     public PartsHeadData GetPartsHead(int id)
     {
-        return _headData.Where(data => data.ID == id).FirstOrDefault();
+        if (id >= _headData.Length)
+        {
+            return null;
+        }
+        else
+        {
+            return _headData.Where(data => data.ID == id).FirstOrDefault();
+        }
+        
     }
     public PartsHandData GetPartsHand(int id)
     {
