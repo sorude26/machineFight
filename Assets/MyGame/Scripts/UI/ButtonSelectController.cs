@@ -9,9 +9,23 @@ public static class ButtonSelectController
     /// ボタンがアクティブになったとき一番上のボタンを選択している状態にする
     /// </summary>
     /// <param name="window">ボタンの親オブジェクト</param>
-    public static void OnButtonFirstSelect(GameObject window)
+    public static void OnButtonFirstSelect(GameObject content)
     {
-        Debug.Log(window.transform.GetChild(0).gameObject);
-        EventSystem.current.SetSelectedGameObject(window.transform.GetChild(0).gameObject);
+        foreach (Transform button in content.transform)
+        {
+            Debug.Log(button.GetComponent<PartsButton>()._partsCategory);
+        }
+        EventSystem.current.SetSelectedGameObject(content.transform.GetChild(0).gameObject);
+        Debug.Log(EventSystem.current.currentSelectedGameObject.GetComponent<PartsButton>()._partsCategory);
+    }
+
+
+    /// <summary>
+    /// ボタンの選択状態を初期化(何も選択していない状態)にする
+    /// </summary>
+    public static void OnButtonNonSelect()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        Debug.Log("Null");
     }
 }
