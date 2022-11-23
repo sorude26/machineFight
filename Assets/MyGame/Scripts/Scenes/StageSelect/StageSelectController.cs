@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class StageSelectController : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class StageSelectController : MonoBehaviour
     private Transform _base = default;
     [SerializeField]
     private string[] StageNames = default;
+    private string _returnScene = "Home";
     private int _stageMaxNumber = default;
     private int _stageNumber = 0;
     private float _changetime = 1f;
@@ -32,7 +34,9 @@ public class StageSelectController : MonoBehaviour
         _buttonOn = true;
         yield return new WaitForSeconds(_waitTime);
         _buttonOn = false;
+        PlayerInput.Instance.InitializeInput();
         PlayerInput.SetEnterInput(InputMode.Menu, InputType.Submit, SelectStage);
+        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Cancel, ReturnScene);
         PlayerInput.ChangeInputMode(InputMode.Menu);
     }
     private void Update()
@@ -124,8 +128,18 @@ public class StageSelectController : MonoBehaviour
     }
     private void SceneChange(string target)
     {
-        PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Submit, SelectStage);
+        PlayerInput.Instance.InitializeInput();
         SceneControl.ChangeTargetScene(target);
+    }
+    private void ReturnScene()
+    {
+        if (_inputStop == true || _buttonOn == true)
+        {
+            return;
+        }
+        _buttonOn = true;
+        PlayerInput.Instance.InitializeInput();
+        SceneControl.ChangeTargetScene(_returnScene);
     }
     private void ChangeStage(int target)
     {

@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class ResultSceneController : MonoBehaviour
 {
-    [SerializeField]
-    private string _targetScene = default;
+    //[SerializeField]
+    //private string _targetScene = default;
     [SerializeField]
     private Text _totalDamage = default;
     [SerializeField]
