@@ -27,6 +27,7 @@ namespace MyGame
         private LockOnTarget _bodyTarget = default;
         private void Start()
         {
+            SetRandamBuildDat();
             _machineController.Initialize(_buildParam);
             _bodyTarget.SetChecker(_machineController.DamageChecker);
             _machineController.BodyController.LeftHand.WeaponBase.AnLimitAmmunition();
@@ -59,6 +60,13 @@ namespace MyGame
         public void ExeExecuteJet()
         {
             _machineController.ExecuteJet(_currentDir.normalized);
+        }
+        private void SetRandamBuildDat()
+        {
+            for (int i = 0; i < PartsBuildParam.PARTS_TYPE_NUM; i++)
+            {
+                _buildParam[(PartsType)i] = PartsManager.Instance.AllParamData.GetRandamPartsId((PartsType)i);
+            }
         }
     }
 }
