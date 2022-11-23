@@ -20,7 +20,7 @@ public class MachineBuilder : MonoBehaviour
     private BackPackController _anBuildBackPack = default;
     public BodyController Body { get; private set; }
     public LegController Leg { get; private set; }
-
+    public PartsBuildParam BuildData { get => _buildData; }
     public float MaxBooster { get; private set; }
     public float BoosterRecoverySpeed { get; private set; }
     public float MaxEnergy { get; private set; }
