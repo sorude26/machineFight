@@ -15,22 +15,7 @@ public class PlayerMachineController : MonoBehaviour
     [SerializeField]
     private PartsBuildParam _buildParam = default;
     [SerializeField]
-    private WeaponDataView _leftWeapon = default;
-    [SerializeField]
-    private WeaponDataView _rightWeapon = default;
-    [SerializeField]
-    private WeaponDataView _backPack = default;
-    [SerializeField]
-    private Image _boosterGauge = default;
-    [SerializeField]
-    private Image _energyGauge = default;
-    [SerializeField]
-    private Text _hpText = default;
-    [SerializeField]
-    private Image _hpGauge = default;
-    [SerializeField]
-    private Animator _uiAnime = default;
-    private string _damage = "Damage";
+    private StageUIController _stageUI = default;
     private float _maxBooster = default;
     private float _currentBooster = default;
     private float _boosterRecoverySpeed = default;
@@ -47,34 +32,11 @@ public class PlayerMachineController : MonoBehaviour
         SetInput();
         _machineController.Initialize(_buildParam);
         _machineController.DamageChecker.OnDamageEvent.AddListener(DamagePlayer);
-        _machineController.DamageChecker.OnRecoveryEvent.AddListener(ShowHpData);
-        void ShowLeft()
-        {
-            _leftWeapon.ShowWeaponData(_machineController.BodyController.LeftHand.WeaponBase);
-        }
-        void ShowRight()
-        {
-            _rightWeapon.ShowWeaponData(_machineController.BodyController.RightHand.WeaponBase);
-        }
-        void ShowBackPack()
-        {
-            _backPack.ShowWeaponData(_machineController.BodyController.BackPack.BackPackWeapon);
-        }
-        yield return null;        
-        _machineController.BodyController.LeftHand.WeaponBase.OnCount += ShowLeft;
-        _machineController.BodyController.RightHand.WeaponBase.OnCount += ShowRight;
+        _machineController.DamageChecker.OnRecoveryEvent.AddListener(ShowHpData);        
+        yield return null;
+        _stageUI.StartSet(_machineController.BodyController.LeftHand.WeaponBase,
+            _machineController.BodyController.RightHand.WeaponBase, _machineController.BodyController.BackPack.BackPackWeapon);
         ShowHpData();
-        ShowLeft();
-        ShowRight();
-        if (_machineController.BodyController.BackPack.BackPackWeapon != null)
-        {
-            _machineController.BodyController.BackPack.BackPackWeapon.OnCount += ShowBackPack;
-            ShowBackPack();
-        }
-        else
-        {
-            _backPack.ShowWeaponData(null);
-        }
         LockOnController.Instance.LockOnRange = PartsManager.Instance.AllParamData.GetPartsHead(_buildParam.Head).LockOnRange;
         LockOnController.Instance.LockOnSpeed = PartsManager.Instance.AllParamData.GetPartsHead(_buildParam.Head).LockOnSpeed;
         SetParam();
@@ -138,7 +100,7 @@ public class PlayerMachineController : MonoBehaviour
             {
                 _currentBooster = _maxBooster;
             }
-            _boosterGauge.fillAmount = _currentBooster / _maxBooster;
+            _stageUI.BoosterUpdate(_currentBooster, _maxBooster);
         }
     }
     private void EnergyUpdate()
@@ -146,21 +108,20 @@ public class PlayerMachineController : MonoBehaviour
         if (_currentEnergy > 0)
         {
             _currentEnergy -= _energyConsumption * Time.fixedDeltaTime;
-            _energyGauge.fillAmount = _currentEnergy / _maxEnergy;
             if (_currentEnergy <= 0)
             {
                 LiftInput();
             }
+            _stageUI.EnergyUpdate(_currentEnergy, _maxEnergy);
         }
     }
     private void ShowHpData()
     {
-        _hpText.text = _machineController.DamageChecker.CurrentHp.ToString();
-        _hpGauge.fillAmount = (float)_machineController.DamageChecker.CurrentHp / _machineController.DamageChecker.MaxHp;
+        _stageUI.ShowHpData(_machineController.DamageChecker.CurrentHp, _machineController.DamageChecker.MaxHp);
     }
     private void DamagePlayer()
     {
-        _uiAnime.Play(_damage);
+        _stageUI.DamagePlayer();
         ShowHpData();
     }
     private void SetTotalDamage()
