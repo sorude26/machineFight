@@ -58,7 +58,7 @@ public class ModelBuilder : MonoBehaviour
         leg.transform.localPosition = Vector3.zero;
         leg.transform.localRotation = Quaternion.identity;
         var body = Instantiate(PartsManager.Instance.AllModelData.GetPartsBody(_buildData.Body));
-        body.transform.SetParent(_modelBase.transform);
+        body.transform.SetParent(leg.BodyJoint);
         body.transform.position = leg.BodyJoint.position;
         body.transform.rotation = leg.BodyJoint.rotation;
         body.BodyBase = leg.BodyJoint;

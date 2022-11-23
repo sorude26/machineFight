@@ -2,6 +2,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [CreateAssetMenu]
 public class PartsModelData : ScriptableObject
@@ -42,6 +43,10 @@ public class PartsModelData : ScriptableObject
     {
         return _allWeaponParts.Where(weapon => weapon.ID == id).FirstOrDefault();
     }
+    public int GetRandamPartsId()
+    {
+        return _allWeaponParts[UnityEngine.Random.Range(0, _allWeaponParts.Length)].ID;
+    }
 }
 
 public interface IPartsModel
@@ -59,4 +64,77 @@ public struct PartsBuildParam
     public int Booster;
     public int LWeapon;
     public int RWeapon;
+
+    public static readonly int PARTS_TYPE_NUM = Enum.GetValues(typeof(PartsType)).Length;
+    public int this[PartsType type]
+    {
+        get 
+        {
+            switch (type)
+            {
+                case PartsType.Head:
+                    return Head;
+                case PartsType.Body:
+                    return Body;
+                case PartsType.LHand:
+                    return LHand;
+                case PartsType.RHand:
+                    return RHand;
+                case PartsType.Leg:
+                    return Leg;
+                case PartsType.BackPack:
+                    return Booster;
+                case PartsType.LWeapon:
+                    return LWeapon;
+                case PartsType.RWeapon:
+                    return RWeapon;
+                default:
+                    break;
+            }
+            return -1; 
+        }
+        set
+        {
+            switch (type)
+            {
+                case PartsType.Head:
+                    Head = value;
+                    break;
+                case PartsType.Body:
+                    Body = value;
+                    break;
+                case PartsType.LHand:
+                    LHand = value;
+                    break;
+                case PartsType.RHand:
+                    RHand = value;
+                    break;
+                case PartsType.Leg:
+                    Leg = value;
+                    break;
+                case PartsType.BackPack:
+                    Booster = value;
+                    break;
+                case PartsType.LWeapon:
+                    LWeapon = value;
+                    break;
+                case PartsType.RWeapon:
+                    RWeapon = value;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+}
+public enum PartsType
+{
+    Head,
+    Body,
+    LHand,
+    RHand,
+    Leg,
+    BackPack,
+    LWeapon,
+    RWeapon,
 }

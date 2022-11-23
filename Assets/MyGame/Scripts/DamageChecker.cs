@@ -74,15 +74,15 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
         {
             _hp = 0;
             _onDeadEvent?.Invoke();
-            if (_addCount == true)
+            if (_addCount == true && StageManager.Instance != null)
             {
                 StageManager.Instance.AddBossCount();
             }
-            if (_isMarkTarget == true)
+            if (_isMarkTarget == true && StageManager.Instance != null)
             {
                 StageManager.Instance.AddTargetCount();
             }
-            if (_count == true)
+            if (_count == true && StageManager.Instance != null)
             {
                 StageManager.Instance.AddCount();
             }

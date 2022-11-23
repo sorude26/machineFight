@@ -23,15 +23,7 @@ public class PartsParamData : ScriptableObject
     }
     public PartsHeadData GetPartsHead(int id)
     {
-        if (id >= _headData.Length)
-        {
-            return null;
-        }
-        else
-        {
-            return _headData.Where(data => data.ID == id).FirstOrDefault();
-        }
-        
+        return _headData.Where(data => data.ID == id).FirstOrDefault();
     }
     public PartsHandData GetPartsHand(int id)
     {
@@ -44,5 +36,30 @@ public class PartsParamData : ScriptableObject
     public PartsBackPackData GetPartsBack(int id)
     {
         return _backData.Where(data => data.ID == id).FirstOrDefault();
+    }
+    public int GetRandamPartsId(PartsType type)
+    {
+        switch (type)
+        {
+            case PartsType.Head:
+                return _headData[Random.Range(0,_headData.Length)].ID;
+            case PartsType.Body:
+                return _bodyData[Random.Range(0, _bodyData.Length)].ID;
+            case PartsType.LHand:
+                return _handData[Random.Range(0, _handData.Length)].ID;
+            case PartsType.RHand:
+                return _handData[Random.Range(0, _handData.Length)].ID;
+            case PartsType.Leg:
+                return _legData[Random.Range(0, _legData.Length)].ID;
+            case PartsType.BackPack:
+                return _backData[Random.Range(0, _backData.Length)].ID;
+            case PartsType.LWeapon:
+                return PartsManager.Instance.AllModelData.GetRandamPartsId();
+            case PartsType.RWeapon:
+                return PartsManager.Instance.AllModelData.GetRandamPartsId();
+            default:
+                break;
+        }
+        return 0;
     }
 }
