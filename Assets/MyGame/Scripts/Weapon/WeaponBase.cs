@@ -42,6 +42,13 @@ public abstract class WeaponBase : MonoBehaviour, IPartsModel
     {
         StageShakeController.PlayShake(transform.position + _fireShakeParam.Pos, _fireShakeParam.Power, _fireShakeParam.Time);
     }
+    public virtual void SetParam(WeaponParam param)
+    {
+        _power = param.Power;
+        _speed = param.Speed;
+        _maxAmmunitionCapacity = param.MaxAmmunitionCapacity;
+        _magazineCount = param.MagazineCount;
+    }
     public abstract void Initialize();
     public abstract void Fire();
     public virtual void Reload() { }

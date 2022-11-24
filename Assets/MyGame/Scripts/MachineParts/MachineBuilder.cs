@@ -18,6 +18,7 @@ public class MachineBuilder : MonoBehaviour
     private LegController _anBuildLeg = default;
     [SerializeField]
     private BackPackController _anBuildBackPack = default;
+    private PartsBuildParam _buildParam = default;
     public BodyController Body { get; private set; }
     public LegController Leg { get; private set; }
     public PartsBuildParam BuildData { get => _buildData; }
@@ -40,9 +41,10 @@ public class MachineBuilder : MonoBehaviour
         modelID.LHand = PartsManager.Instance.AllParamData.GetPartsHand(buildPattern.LHand).ModelID;
         modelID.Leg = PartsManager.Instance.AllParamData.GetPartsLeg(buildPattern.Leg).ModelID;
         modelID.Booster = PartsManager.Instance.AllParamData.GetPartsBack(buildPattern.Booster).ModelID;
-        modelID.LWeapon = buildPattern.LWeapon;
-        modelID.RWeapon = buildPattern.RWeapon;
+        modelID.LWeapon = PartsManager.Instance.AllParamData.GetPartsWeapon(buildPattern.LWeapon).ModelID;
+        modelID.RWeapon = PartsManager.Instance.AllParamData.GetPartsWeapon(buildPattern.RWeapon).ModelID;
         _buildData = modelID;
+        _buildParam = buildPattern;
         Build();
     }
     public void AnBuildSet()
@@ -73,10 +75,12 @@ public class MachineBuilder : MonoBehaviour
         _lockTrans.position = head.transform.position;
         var larm = Instantiate(PartsManager.Instance.AllModelData.GetPartsHand(_buildData.LHand));
         var lweapon = Instantiate(PartsManager.Instance.AllModelData.GetWeapon(_buildData.LWeapon));
+        lweapon.SetParam(PartsManager.Instance.AllParamData.GetPartsWeapon(_buildParam.LWeapon).Param);
         larm.SetWeapon(lweapon);
         larm.SetLockAim(_aimTrans);
         var rarm = Instantiate(PartsManager.Instance.AllModelData.GetPartsHand(_buildData.RHand));
         var rweapon = Instantiate(PartsManager.Instance.AllModelData.GetWeapon(_buildData.RWeapon));
+        rweapon.SetParam(PartsManager.Instance.AllParamData.GetPartsWeapon(_buildParam.RWeapon).Param);
         rarm.SetWeapon(rweapon);
         rarm.SetLockAim(_aimTrans);
         body.SetHands(larm, rarm);

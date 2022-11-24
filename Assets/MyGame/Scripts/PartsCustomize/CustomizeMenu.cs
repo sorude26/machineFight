@@ -1,9 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
 using MyGame;
@@ -112,24 +108,24 @@ public class CustomizeMenu : MonoBehaviour
                 button.GetComponentInChildren<Text>().text = boosterParts.Name;
                 break;
             case PartsCategory.LWeapon:
-                WeaponBase lweaponParts = PartsManager.Instance.AllModelData.GetWeapon(id);
+                PartsWeaponData lweaponParts = PartsManager.Instance.AllParamData.GetPartsWeapon(id);
                 if (lweaponParts == null)
                 {
                     Destroy(button.gameObject);
                     _category = category;
                     return;
                 }
-                button.GetComponentInChildren<Text>().text = lweaponParts.ID.ToString();
+                button.GetComponentInChildren<Text>().text = lweaponParts.Name;
                 break;
             case PartsCategory.RWeapon:
-                WeaponBase rweaponParts = PartsManager.Instance.AllModelData.GetWeapon(id);
+                PartsWeaponData rweaponParts = PartsManager.Instance.AllParamData.GetPartsWeapon(id);
                 if (rweaponParts == null)
                 {
                     Destroy(button.gameObject);
                     _category = category;
                     return;
                 }
-                button.GetComponentInChildren<Text>().text = rweaponParts.ID.ToString();
+                button.GetComponentInChildren<Text>().text = rweaponParts.Name;
                 break;
         }
         button.gameObject.AddComponent<PartsButton>();

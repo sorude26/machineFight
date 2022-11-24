@@ -16,6 +16,8 @@ public class PartsParamData : ScriptableObject
     private PartsLegData[] _legData;
     [SerializeField]
     private PartsBackPackData[] _backData;
+    [SerializeField]
+    private PartsWeaponData[] _weaponData;
 
     public PartsBodyData GetPartsBody(int id)
     {
@@ -37,6 +39,10 @@ public class PartsParamData : ScriptableObject
     {
         return _backData.Where(data => data.ID == id).FirstOrDefault();
     }
+    public PartsWeaponData GetPartsWeapon(int id)
+    {
+        return _weaponData.Where(data => data.ID == id).FirstOrDefault();
+    }
     public int GetRandamPartsId(PartsType type)
     {
         switch (type)
@@ -54,9 +60,9 @@ public class PartsParamData : ScriptableObject
             case PartsType.BackPack:
                 return _backData[Random.Range(0, _backData.Length)].ID;
             case PartsType.LWeapon:
-                return PartsManager.Instance.AllModelData.GetRandamPartsId();
+                return _weaponData[Random.Range(0,_weaponData.Length)].ID;
             case PartsType.RWeapon:
-                return PartsManager.Instance.AllModelData.GetRandamPartsId();
+                return _weaponData[Random.Range(0, _weaponData.Length)].ID;
             default:
                 break;
         }
