@@ -156,4 +156,19 @@ public class ShotWeapon : WeaponBase
         }
         _onCount?.Invoke();
     }
+    public override void SetParam(WeaponParam param)
+    {
+        _power = param.Power;
+        _speed = param.Speed;
+        _maxAmmunitionCapacity = param.MaxAmmunitionCapacity;
+        _magazineCount = param.MagazineCount;
+        _shotCount = param.ShotCount;
+        _subCount = param.SubCount;
+        _triggerInterval = param.TriggerInterval;
+        _shotInterval = param.ShotInterval;
+        _diffusivity = param.Diffusivity;
+        _exPower = param.ExPower;
+        _exCount = param.ExCount;
+        _exRadius = param.ExRadius;
+    }
 }
