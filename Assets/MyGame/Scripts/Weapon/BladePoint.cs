@@ -7,15 +7,11 @@ public class BladePoint : MonoBehaviour
     [SerializeField]
     private int _power = 1;
     [SerializeField]
-    private int _rayFrame = 1;
-    [SerializeField]
     private float _radius = 1f;
     [SerializeField]
     private LayerMask _hitLayer = default;
     [SerializeField]
     private GameObject _hitEffect = default;
-    private Vector3 _beforePos = default;
-    private int _frameCount = default;
     public bool OnBlade { get; set; }
     private void FixedUpdate()
     {
@@ -28,32 +24,18 @@ public class BladePoint : MonoBehaviour
     private void HitCheck()
     {
         if (gameObject.activeInHierarchy == false) { return; }
-        _frameCount++;
-        if (_frameCount < _rayFrame) { return; }
-        _frameCount = 0;
-        if (_radius > 0)
+        foreach(var hit in Physics.OverlapSphere(transform.position, _radius, _hitLayer))
         {
-            if (Physics.SphereCast(_beforePos, _radius, transform.forward, out RaycastHit hit, Vector3.Distance(_beforePos, transform.position), _hitLayer))
-            {
-                HitAction(hit);
-            }
-        }
-        else
-        {
-            if (Physics.Raycast(_beforePos, transform.forward, out RaycastHit hit, Vector3.Distance(_beforePos, transform.position), _hitLayer))
-            {
-                HitAction(hit);
-            }
-        }
-        _beforePos = transform.position;
+            HitAction(hit);
+        }        
     }
-    private void HitAction(RaycastHit hit)
+    private void HitAction(Collider hit)
     {
-        if (hit.collider.TryGetComponent(out IDamageApplicable target))
+        if (hit.TryGetComponent(out IDamageApplicable target))
         {
             target.AddlyDamage(_power);
         }
-        HitBlade(hit.point);
+        HitBlade(transform.position);
     }
     private void HitBlade(Vector3 pos)
     {
