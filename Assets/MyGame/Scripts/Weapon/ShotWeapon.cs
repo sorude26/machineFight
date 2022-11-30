@@ -39,11 +39,11 @@ public class ShotWeapon : WeaponBase
             _currentMagazine = _magazineCount;
         }
     }
-    protected void Shot()
+    protected void Shot(Transform target = null)
     {
         var bullet = ShotBulletPool.GetObject(_bullet);
         bullet.transform.position = _muzzle.position;
-        bullet.Shot(new BulletParam(Diffusivity(_muzzle.forward), _speed, _power,_exPower,_exCount,_exRadius));
+        bullet.Shot(new BulletParam(Diffusivity(_muzzle.forward), _speed, _power,_exPower,_exCount,_exRadius),target);
         PlayShake();        
     }
     protected Vector3 Diffusivity(Vector3 target)
@@ -56,8 +56,7 @@ public class ShotWeapon : WeaponBase
         }
         return target;
     }
-    
-    public override void Fire()
+    public override void Fire(Transform target)
     {
         if (IsFire == true || IsWait == true || _isTrigerOn == true)
         {
@@ -65,9 +64,9 @@ public class ShotWeapon : WeaponBase
         }
         _isTrigerOn = true;
         StartCoroutine(TriggerWait());
-        StartCoroutine(FireImpl());
+        StartCoroutine(FireImpl(target));
     }
-    protected IEnumerator FireImpl()
+    protected IEnumerator FireImpl(Transform target = null)
     {
         IsFire = true;
         _count = 0;
@@ -77,7 +76,7 @@ public class ShotWeapon : WeaponBase
             {
                 _muzzleFlashEffect.Play();
             }
-            Shot();
+            Shot(target);
             if (_magazineCount >= 0)
             {
                 _currentMagazine--;
@@ -98,7 +97,7 @@ public class ShotWeapon : WeaponBase
             }
             for (int i = 0; i < _subCount; i++)
             {
-                Shot();
+                Shot(target);
             }
             _count++;
             _onCount?.Invoke();

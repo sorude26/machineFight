@@ -24,7 +24,7 @@ public class MultipleWeapon : WeaponBase
         }
         _currentAmmunition = _maxAmmunitionCapacity;
     }
-    public override void Fire()
+    public override void Fire(Transform target)
     {
         if (_maxAmmunitionCapacity > 0 && _currentAmmunition <= 0 || _timer > 0)
         {
@@ -34,7 +34,7 @@ public class MultipleWeapon : WeaponBase
         PlayShake();
         foreach (var weapon in _weapons)
         { 
-            weapon?.Fire();
+            weapon?.Fire(target);
         }
         if (_currentAmmunition > 0)
         {

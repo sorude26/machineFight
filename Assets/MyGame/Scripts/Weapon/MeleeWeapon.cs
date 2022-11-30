@@ -13,18 +13,11 @@ public class MeleeWeapon : WeaponBase
             blade.SetPower(_power);
         }
     }
-    public override void Fire()
+    public override void Fire(Transform target)
     {
         foreach(var blade in _bladePoints)
         {
-            blade.OnBlade = true;
-        }
-    }
-    public override void StopFire()
-    {
-        foreach (var blade in _bladePoints)
-        {
-            blade.OnBlade = false;
+            blade.OnBlade();
         }
     }
 }
