@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 10
   _speed: 250
   _fireShakeParam:
@@ -20929,6 +20930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 10
   _speed: 1500
   _fireShakeParam:
@@ -21162,6 +21164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 10
   _speed: 1500
   _fireShakeParam:
@@ -45924,6 +45927,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 10
   _speed: 250
   _fireShakeParam:
@@ -50795,6 +50799,9 @@ GameObject:
   - component: {fileID: 8934769015736490749}
   - component: {fileID: 8934769015736490722}
   - component: {fileID: 8934769015736490723}
+  - component: {fileID: 780570910187633227}
+  - component: {fileID: 237907413700430645}
+  - component: {fileID: 6977698370881143553}
   m_Layer: 0
   m_Name: TargetBalloon
   m_TagString: Untagged
@@ -50906,6 +50913,7 @@ MonoBehaviour:
     Time: 1
   _addCount: 0
   _isMarkTarget: 1
+  _count: 1
   OnDamageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -50926,6 +50934,48 @@ CapsuleCollider:
   m_Height: 5
   m_Direction: 2
   m_Center: {x: 0, y: 0.2, z: 0}
+--- !u!136 &780570910187633227
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8934769015736490748}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 3.5
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: -1.8}
+--- !u!136 &237907413700430645
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8934769015736490748}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 2.55
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &6977698370881143553
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8934769015736490748}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 3.2
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: -0.86}
 --- !u!1 &8934769015881620234
 GameObject:
   m_ObjectHideFlags: 0
@@ -51559,6 +51609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 30
   _speed: 210
   _fireShakeParam:
@@ -51643,7 +51694,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 2
+  m_Radius: 1.7
   m_Height: 5
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: -2.22}

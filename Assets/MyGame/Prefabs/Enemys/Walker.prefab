@@ -321,6 +321,7 @@ MonoBehaviour:
   _lHandJoint: {fileID: 65961222358029151}
   _rHandJoint: {fileID: 65961220832149784}
   _damageChecker: {fileID: 65961221417074236}
+  _bodyAnime: {fileID: 0}
   BodyBase: {fileID: 7488058726277849951}
   Lock: {fileID: 1958008585183981406}
   AttackTarget: {fileID: 0}
@@ -6279,6 +6280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 3
+  _weaponType: 0
   _power: 50
   _speed: 600
   _fireShakeParam:
@@ -6519,6 +6521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 15
   _speed: 210
   _fireShakeParam:
@@ -16980,6 +16983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 15
   _speed: 210
   _fireShakeParam:
@@ -17081,6 +17085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 15
   _speed: 210
   _fireShakeParam:
@@ -22411,6 +22416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 10
   _speed: 200
   _fireShakeParam:
@@ -27755,6 +27761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 3
+  _weaponType: 0
   _power: 5
   _speed: 1200
   _fireShakeParam:
@@ -33081,6 +33088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 10
   _speed: 200
   _fireShakeParam:
@@ -38211,6 +38219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 15
   _speed: 210
   _fireShakeParam:
@@ -43225,6 +43234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 15
   _speed: 210
   _fireShakeParam:
@@ -43410,6 +43420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 3
+  _weaponType: 0
   _power: 5
   _speed: 1200
   _fireShakeParam:
@@ -48505,6 +48516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 15
   _speed: 210
   _fireShakeParam:
@@ -54568,6 +54580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 10
   _speed: 200
   _fireShakeParam:
@@ -59495,6 +59508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 3
+  _weaponType: 0
   _power: 50
   _speed: 600
   _fireShakeParam:
@@ -59679,6 +59693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 10
   _speed: 200
   _fireShakeParam:
@@ -69648,6 +69663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 15
   _speed: 210
   _fireShakeParam:
@@ -69830,6 +69846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 15
   _speed: 210
   _fireShakeParam:
@@ -76763,6 +76780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 7
   _speed: 2000
   _fireShakeParam:
@@ -78656,6 +78674,7 @@ MonoBehaviour:
     StepLeft: StepLeft
     StepRight: StepRight
     FloatMove: FloatMove
+    Attack: 
   _actionParam:
     WalkSpeed: 15
     WalkTurnSpeed: 5
@@ -80040,6 +80059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 15
   _speed: 210
   _fireShakeParam:
@@ -81631,8 +81651,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.4
-  m_Height: 1.61
+  m_Radius: 0.61
+  m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0, y: -0.6, z: 0}
 --- !u!136 &6442842163435970062
@@ -81645,10 +81665,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.4
-  m_Height: 3
+  m_Radius: 0.55
+  m_Height: 3.0810032
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0.35}
+  m_Center: {x: 0, y: 0, z: 0.3094988}
 --- !u!136 &7562538700057930959
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -81659,10 +81679,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.6
-  m_Height: 2.4
+  m_Radius: 0.738641
+  m_Height: 4.43
   m_Direction: 0
-  m_Center: {x: 0, y: 0.29, z: -0.54}
+  m_Center: {x: 0, y: 0.29000005, z: -0.6786411}
 --- !u!1001 &2454130455143162254
 PrefabInstance:
   m_ObjectHideFlags: 0

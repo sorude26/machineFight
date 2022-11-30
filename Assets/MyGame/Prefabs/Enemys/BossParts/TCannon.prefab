@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 10
   _speed: 1500
   _fireShakeParam:
@@ -11514,6 +11515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 10
   _speed: 1500
   _fireShakeParam:
@@ -21594,7 +21596,7 @@ CapsuleCollider:
   m_Radius: 2
   m_Height: 7.08
   m_Direction: 2
-  m_Center: {x: 0, y: -1.46, z: -0.59}
+  m_Center: {x: 0, y: -1.86, z: -0.59}
 --- !u!1 &5962862600614624250
 GameObject:
   m_ObjectHideFlags: 0
@@ -46175,6 +46177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 10
   _speed: 250
   _fireShakeParam:
@@ -46245,6 +46248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 30
   _speed: 210
   _fireShakeParam:
@@ -46849,6 +46853,7 @@ MonoBehaviour:
     Time: 1
   _addCount: 0
   _isMarkTarget: 1
+  _count: 1
   OnDamageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -46865,8 +46870,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.75
-  m_Height: 2.11
+  m_Radius: 0.91
+  m_Height: 2.59
   m_Direction: 2
   m_Center: {x: 0, y: 0.09, z: -0.72}
 --- !u!1001 &474220745915442957

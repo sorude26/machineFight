@@ -10015,6 +10015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 10
   _speed: 200
   _fireShakeParam:
@@ -10121,13 +10122,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 3
-  _power: 20
+  _weaponType: 0
+  _power: 40
   _speed: 1500
   _fireShakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 50
     Time: 0.05
-  _maxAmmunitionCapacity: -1
+  _maxAmmunitionCapacity: 100
   _magazineCount: -1
   _currentAmmunition: 0
   _currentMagazine: 0
@@ -10426,18 +10428,6 @@ MonoBehaviour:
   _backPackBurstEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5610951795504372326}
-        m_TargetAssemblyTypeName: ShotWeapon, Assembly-CSharp
-        m_MethodName: Fire
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 8477328547213583601}
         m_TargetAssemblyTypeName: ShotWeapon, Assembly-CSharp
         m_MethodName: Fire
@@ -10610,13 +10600,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 3
-  _power: 20
+  _weaponType: 0
+  _power: 40
   _speed: 1500
   _fireShakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 50
     Time: 0.05
-  _maxAmmunitionCapacity: -1
+  _maxAmmunitionCapacity: 100
   _magazineCount: -1
   _currentAmmunition: 0
   _currentMagazine: 0
