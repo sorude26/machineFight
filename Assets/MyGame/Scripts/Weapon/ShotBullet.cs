@@ -5,30 +5,30 @@ using UnityEngine;
 public class ShotBullet : MonoBehaviour
 {
     [SerializeField]
-    private float _lifeTime = 1f;
+    protected float _lifeTime = 1f;
     [SerializeField]
-    private int _rayFrame = 5;
+    protected int _rayFrame = 5;
     [SerializeField]
-    private LayerMask _hitLayer = default;
+    protected LayerMask _hitLayer = default;
     [SerializeField]
-    private GameObject _hitEffect = default;
+    protected GameObject _hitEffect = default;
     [SerializeField]
-    private bool _penetrate = default;
+    protected bool _penetrate = default;
     [SerializeField]
-    private float _radius = 0f;
+    protected float _radius = 0f;
     [SerializeField]
-    private ShakeParam _hitShakeParam = default;
+    protected ShakeParam _hitShakeParam = default;
     [SerializeField]
-    private float _gravity = 0f;
-    private float _timer = 0f;
-    private float _speed = 5f;
-    private int _power = 1;
-    private int _exPower = 0;
-    private int _exCount = 0;
-    private float _exRadius = 0;
-    private int _frameCount = default;
-    private Vector3 _beforePos = default;
-    private ExplosionBullet _explosion = new ExplosionBullet();
+    protected float _gravity = 0f;
+    protected float _timer = 0f;
+    protected float _speed = 5f;
+    protected int _power = 1;
+    protected int _exPower = 0;
+    protected int _exCount = 0;
+    protected float _exRadius = 0;
+    protected int _frameCount = default;
+    protected Vector3 _beforePos = default;
+    protected ExplosionBullet _explosion = new ExplosionBullet();
 
     private void FixedUpdate()
     {
@@ -38,6 +38,10 @@ public class ShotBullet : MonoBehaviour
     protected virtual void ActiveEnd()
     {
         gameObject.SetActive(false);
+    }
+    public void HitBullet()
+    {
+        HitBullet(transform.position);
     }
     protected virtual void HitBullet(Vector3 hitPos)
     {
@@ -49,13 +53,13 @@ public class ShotBullet : MonoBehaviour
     {
         StageShakeController.PlayShake(transform.position + _hitShakeParam.Pos, _hitShakeParam.Power, _hitShakeParam.Time);
     }
-    private IEnumerator HitActionImpl()
+    protected IEnumerator HitActionImpl()
     {
         _speed = 0f;
         yield return _explosion.ExplosionImpl(transform.position, _exPower, _exCount, _exRadius, _hitLayer);
         ActiveEnd();
     }
-    private void PlayHitEffect(Vector3 hitPos)
+    protected void PlayHitEffect(Vector3 hitPos)
     {
         var effect = ObjectPoolManager.Instance.Use(_hitEffect);
         effect.transform.position = hitPos;
@@ -63,7 +67,7 @@ public class ShotBullet : MonoBehaviour
         effect.gameObject.SetActive(true);
         PlayShake();
     }
-    private void MoveBullet()
+    protected virtual void MoveBullet()
     {
         if(_speed <= 0) { return; }
         transform.forward = Vector3.Lerp(transform.forward, transform.forward + Vector3.down * _gravity, Time.fixedDeltaTime);
@@ -74,7 +78,7 @@ public class ShotBullet : MonoBehaviour
             ActiveEnd();
         }
     }
-    private void HitCheck()
+    protected void HitCheck()
     {
         if (gameObject.activeInHierarchy == false || _speed <= 0) { return; }
         _frameCount++;
@@ -96,7 +100,7 @@ public class ShotBullet : MonoBehaviour
         }
         _beforePos = transform.position;
     }
-    private void HitAction(RaycastHit hit)
+    protected void HitAction(RaycastHit hit)
     {
         if (hit.collider.TryGetComponent(out IDamageApplicable target))
         {
@@ -104,12 +108,7 @@ public class ShotBullet : MonoBehaviour
         }
         HitBullet(hit.point);
     }
-    
-    public void Shot(Vector3 dir,float speed,int power)
-    {
-        Shot(new BulletParam(dir, speed, power));
-    }
-    public void Shot(BulletParam param)
+    public virtual void Shot(BulletParam param, Transform target = null)
     {
         transform.forward = param.Dir;
         _speed = param.Speed;
