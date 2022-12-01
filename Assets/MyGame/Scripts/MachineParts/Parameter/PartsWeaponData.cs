@@ -38,4 +38,10 @@ public struct WeaponParam
     public int ExCount;
     [Header("爆風範囲")]
     public int ExRadius;
+    [Header("追尾旋回速度（誘導弾のみ）")]
+    public float HomingSpeed;
+    [Header("追尾開始時間（誘導弾のみ）")]
+    public float HomingStartTime;
+    [Header("追尾終了時間（誘導弾のみ）")]
+    public float HomingEndTime;
 }
