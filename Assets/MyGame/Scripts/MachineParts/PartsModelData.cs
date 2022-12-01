@@ -43,10 +43,6 @@ public class PartsModelData : ScriptableObject
     {
         return _allWeaponParts.Where(weapon => weapon.ID == id).FirstOrDefault();
     }
-    public int GetRandamPartsId()
-    {
-        return _allWeaponParts[UnityEngine.Random.Range(0, _allWeaponParts.Length)].ID;
-    }
 }
 
 public interface IPartsModel
