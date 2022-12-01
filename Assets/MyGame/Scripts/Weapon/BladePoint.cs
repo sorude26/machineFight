@@ -9,25 +9,30 @@ public class BladePoint : MonoBehaviour
     [SerializeField]
     private float _radius = 1f;
     [SerializeField]
+    private float _onBladeTime = 0.5f;
+    [SerializeField]
     private LayerMask _hitLayer = default;
     [SerializeField]
     private GameObject _hitEffect = default;
-    public bool OnBlade { get; set; }
+    [SerializeField]
+    private ParticleSystem _onEffect = default;
+    private float _timer = 0;
     private void FixedUpdate()
     {
-        if (OnBlade == false)
+        if (_timer < 0)
         {
             return;
         }
+        _timer -= Time.fixedDeltaTime;
         HitCheck();
     }
     private void HitCheck()
     {
         if (gameObject.activeInHierarchy == false) { return; }
-        foreach(var hit in Physics.OverlapSphere(transform.position, _radius, _hitLayer))
+        foreach (var hit in Physics.OverlapSphere(transform.position, _radius, _hitLayer))
         {
             HitAction(hit);
-        }        
+        }
     }
     private void HitAction(Collider hit)
     {
@@ -51,5 +56,10 @@ public class BladePoint : MonoBehaviour
     public void SetPower(int power)
     {
         _power = power;
+    }
+    public void OnBlade()
+    {
+        _timer = _onBladeTime;
+        _onEffect.Play();
     }
 }
