@@ -94,6 +94,10 @@ namespace MyGame
         {
             _bodyController.ShotRight();
         }
+        public void AttackLeg()
+        {
+            _legController.Attack();
+        }
         public void PowerDownMachine()
         {
             if (_isDown == true)

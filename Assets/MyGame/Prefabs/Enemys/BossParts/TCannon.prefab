@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 10
   _speed: 1500
   _fireShakeParam:
@@ -143,14 +144,21 @@ MonoBehaviour:
   _bullet: {fileID: 4864901343781380692, guid: 0cac8b74d585fbd4ca90cdcb1c3ee6bf, type: 3}
   _muzzleFlashEffect: {fileID: 5854086136197468612}
   _muzzle: {fileID: 565089946247796353}
+  _bulletParam:
+    Speed: 1500
+    Power: 10
+    ExplosionPower: 0
+    ExplosionCount: 0
+    Radius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
+    Dir: {x: 0, y: 0, z: 0}
   _shotCount: 100
   _subCount: 0
   _triggerInterval: 0.2
   _shotInterval: 0.01
   _diffusivity: 0
-  _exPower: 0
-  _exCount: 0
-  _exRadius: 0
 --- !u!1 &565089946247796352
 GameObject:
   m_ObjectHideFlags: 0
@@ -10411,6 +10419,7 @@ MonoBehaviour:
   LockOnRange: 500
   _attackMaxInterval: 4
   _attackIntervalDiffusivity: 2
+  _weapon: {fileID: 0}
   _onAttackEvent:
     m_PersistentCalls:
       m_Calls:
@@ -11032,6 +11041,7 @@ MonoBehaviour:
   LockOnRange: 500
   _attackMaxInterval: 4
   _attackIntervalDiffusivity: 2
+  _weapon: {fileID: 0}
   _onAttackEvent:
     m_PersistentCalls:
       m_Calls:
@@ -11514,6 +11524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 10
   _speed: 1500
   _fireShakeParam:
@@ -11530,14 +11541,21 @@ MonoBehaviour:
   _bullet: {fileID: 4864901343781380692, guid: 0cac8b74d585fbd4ca90cdcb1c3ee6bf, type: 3}
   _muzzleFlashEffect: {fileID: 4813745773267757964}
   _muzzle: {fileID: 4813745772608890585}
+  _bulletParam:
+    Speed: 1500
+    Power: 10
+    ExplosionPower: 0
+    ExplosionCount: 0
+    Radius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
+    Dir: {x: 0, y: 0, z: 0}
   _shotCount: 100
   _subCount: 0
   _triggerInterval: 0.2
   _shotInterval: 0.01
   _diffusivity: 0
-  _exPower: 0
-  _exCount: 0
-  _exRadius: 0
 --- !u!1 &4813745773267757939
 GameObject:
   m_ObjectHideFlags: 0
@@ -21594,7 +21612,7 @@ CapsuleCollider:
   m_Radius: 2
   m_Height: 7.08
   m_Direction: 2
-  m_Center: {x: 0, y: -1.46, z: -0.59}
+  m_Center: {x: 0, y: -1.86, z: -0.59}
 --- !u!1 &5962862600614624250
 GameObject:
   m_ObjectHideFlags: 0
@@ -46175,6 +46193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 10
   _speed: 250
   _fireShakeParam:
@@ -46191,14 +46210,21 @@ MonoBehaviour:
   _bullet: {fileID: 8661921769014990206, guid: 39db53a3d59e45145977d37637cfba41, type: 3}
   _muzzleFlashEffect: {fileID: 835586494863362350}
   _muzzle: {fileID: 6733698799318437483}
+  _bulletParam:
+    Speed: 10
+    Power: 250
+    ExplosionPower: 0
+    ExplosionCount: 0
+    Radius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
+    Dir: {x: 0, y: 0, z: 0}
   _shotCount: 40
   _subCount: 0
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.03
-  _exPower: 0
-  _exCount: 0
-  _exRadius: 0
 --- !u!1 &6733698800244565954
 GameObject:
   m_ObjectHideFlags: 0
@@ -46245,6 +46271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 30
   _speed: 210
   _fireShakeParam:
@@ -46261,14 +46288,21 @@ MonoBehaviour:
   _bullet: {fileID: 1233709711767816154, guid: e6e67469e48f0e04ba2720aa3bacb866, type: 3}
   _muzzleFlashEffect: {fileID: 835586493176528087}
   _muzzle: {fileID: 6733698800836082578}
+  _bulletParam:
+    Speed: 210
+    Power: 30
+    ExplosionPower: 0
+    ExplosionCount: 0
+    Radius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
+    Dir: {x: 0, y: 0, z: 0}
   _shotCount: 3
   _subCount: 7
   _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.2
-  _exPower: 0
-  _exCount: 0
-  _exRadius: 0
 --- !u!1 &6733698800442623800
 GameObject:
   m_ObjectHideFlags: 0
@@ -46690,6 +46724,7 @@ MonoBehaviour:
   LockOnRange: 1500
   _attackMaxInterval: 10
   _attackIntervalDiffusivity: 4
+  _weapon: {fileID: 0}
   _onAttackEvent:
     m_PersistentCalls:
       m_Calls:
@@ -46849,6 +46884,7 @@ MonoBehaviour:
     Time: 1
   _addCount: 0
   _isMarkTarget: 1
+  _count: 1
   OnDamageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -46865,8 +46901,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.75
-  m_Height: 2.11
+  m_Radius: 0.91
+  m_Height: 2.59
   m_Direction: 2
   m_Center: {x: 0, y: 0.09, z: -0.72}
 --- !u!1001 &474220745915442957

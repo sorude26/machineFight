@@ -25,7 +25,12 @@ public class HandController : MonoBehaviour, IPartsModel
     private Animator _handAnime = default;
     [SerializeField]
     private BoosterController _shoulderBoosters = default;
+    private float _changeTime = 0.1f;
     private string _reloadName = "Reload";
+    private string _gholdName = "HandWeaponAim";
+    private string _sholdName = "SaberHold";
+    private string _attackName = "SaberAttack";
+    private bool _isMeleeAttack = false;
     private bool _isReload = false;
     private bool _firstShot = false;
     private bool _isShooting = false;
@@ -72,6 +77,7 @@ public class HandController : MonoBehaviour, IPartsModel
     }
     public void SetLockOn(Vector3 targetPos)
     {
+        if (_isMeleeAttack == true) { return; }
         if (_firstShot == false)
         {
             _targetBefore = targetPos;
@@ -88,12 +94,13 @@ public class HandController : MonoBehaviour, IPartsModel
         _weapon = weapon;
         _weapon.Initialize();
         _reloadWait = new WaitForSeconds(ReloadTime);
+        SetHoldAnim();
     }
     public void SetLockAim(Transform target)
     {
         _lockAim = target;
     }
-    public void StartShot()
+    public void StartShot(Transform target = null)
     {
         if (_weapon.IsWait == true)
         {
@@ -111,7 +118,7 @@ public class HandController : MonoBehaviour, IPartsModel
             return;
         }
         _isShooting = true;
-        StartCoroutine(AttackImpl());
+        StartCoroutine(AttackImpl(target));
     }
     private void ReloadWeapon()
     {
@@ -128,13 +135,13 @@ public class HandController : MonoBehaviour, IPartsModel
         _shoulder.localRotation = Quaternion.Lerp(_shoulder.localRotation, _topRotaion, PartsRotaionSpeed * Time.fixedDeltaTime);
         _arm.localRotation = Quaternion.Lerp(_arm.localRotation, _handRotaion, PartsRotaionSpeed * Time.fixedDeltaTime);
     }
-    private IEnumerator AttackImpl()
+    private IEnumerator AttackImpl(Transform target)
     {
         while (IsAttack == true || _weapon.IsFire == true)
         {
             if (IsAttack == true && _weapon.IsFire == false && ChackAngle())
             {
-                _weapon.Fire();
+                _weapon.Fire(target);
                 IsAttack = false;
             }
             yield return null;
@@ -146,5 +153,35 @@ public class HandController : MonoBehaviour, IPartsModel
     {
         yield return _reloadWait;
         ReloadWeapon();
+    }
+    private void SetHoldAnim()
+    {
+        switch (_weapon.Type)
+        {
+            case WeaponType.HandGun:
+                _handAnime.CrossFadeInFixedTime(_gholdName, _changeTime);
+                break;
+            case WeaponType.HandSaber:
+                _handAnime.CrossFadeInFixedTime(_sholdName, _changeTime);
+                break;
+            default:
+                break;
+        }
+    }
+    public void MeleeAttack()
+    {
+        if (IsAttack == true) { return; }
+        _handAnime.CrossFadeInFixedTime(_attackName, _changeTime);
+        _weapon.Fire();
+        IsAttack = true;
+        _isMeleeAttack = true;
+        StartCoroutine(MeleeAttackImpl());
+    }
+    private IEnumerator MeleeAttackImpl()
+    {
+        ResetAngle();
+        yield return _reloadWait;
+        IsAttack = false;
+        _isMeleeAttack = false;
     }
 }

@@ -8,6 +8,8 @@ public abstract class WeaponBase : MonoBehaviour, IPartsModel
     [SerializeField]
     private int _id = default;
     [SerializeField]
+    protected WeaponType _weaponType = default;
+    [SerializeField]
     protected int _power = 10;
     [SerializeField]
     protected float _speed = 200f;
@@ -38,6 +40,7 @@ public abstract class WeaponBase : MonoBehaviour, IPartsModel
     }
     public int ID { get => _id; }
     public float Speed { get => _speed; }
+    public WeaponType Type { get => _weaponType; }
     protected void PlayShake()
     {
         StageShakeController.PlayShake(transform.position + _fireShakeParam.Pos, _fireShakeParam.Power, _fireShakeParam.Time);
@@ -50,11 +53,18 @@ public abstract class WeaponBase : MonoBehaviour, IPartsModel
         _magazineCount = param.MagazineCount;
     }
     public abstract void Initialize();
-    public abstract void Fire();
+    public virtual void Fire() { Fire(null); }
+    public abstract void Fire(Transform target = null);
     public virtual void Reload() { }
+    public virtual void StopFire() { }
     public virtual void RefillAmmunition(float percent) { }
     public void AnLimitAmmunition()
     {
         _maxAmmunitionCapacity = -1;
     }
+}
+public enum WeaponType
+{
+    HandGun,
+    HandSaber,
 }

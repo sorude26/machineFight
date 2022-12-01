@@ -5252,6 +5252,7 @@ MonoBehaviour:
   LockOnRange: 1500
   _attackMaxInterval: 10
   _attackIntervalDiffusivity: 4
+  _weapon: {fileID: 0}
   _onAttackEvent:
     m_PersistentCalls:
       m_Calls:
@@ -10246,6 +10247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 10
   _speed: 250
   _fireShakeParam:
@@ -10262,14 +10264,21 @@ MonoBehaviour:
   _bullet: {fileID: 8661921769014990206, guid: 39db53a3d59e45145977d37637cfba41, type: 3}
   _muzzleFlashEffect: {fileID: 8274603080979557675}
   _muzzle: {fileID: 8274603080419456970}
+  _bulletParam:
+    Speed: 250
+    Power: 10
+    ExplosionPower: 0
+    ExplosionCount: 0
+    Radius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
+    Dir: {x: 0, y: 0, z: 0}
   _shotCount: 40
   _subCount: 0
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.03
-  _exPower: 0
-  _exCount: 0
-  _exRadius: 0
 --- !u!1 &8274603080030523978
 GameObject:
   m_ObjectHideFlags: 0
@@ -10316,6 +10325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 10
   _speed: 1500
   _fireShakeParam:
@@ -10332,14 +10342,21 @@ MonoBehaviour:
   _bullet: {fileID: 4864901343781380692, guid: 0cac8b74d585fbd4ca90cdcb1c3ee6bf, type: 3}
   _muzzleFlashEffect: {fileID: 8274603079997786363}
   _muzzle: {fileID: 8274603081693861179}
+  _bulletParam:
+    Speed: 1500
+    Power: 10
+    ExplosionPower: 0
+    ExplosionCount: 0
+    Radius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
+    Dir: {x: 0, y: 0, z: 0}
   _shotCount: 100
   _subCount: 0
   _triggerInterval: 0.2
   _shotInterval: 0.01
   _diffusivity: 0
-  _exPower: 0
-  _exCount: 0
-  _exRadius: 0
 --- !u!1 &8274603080036185249
 GameObject:
   m_ObjectHideFlags: 0
@@ -10488,6 +10505,7 @@ MonoBehaviour:
   LockOnRange: 500
   _attackMaxInterval: 4
   _attackIntervalDiffusivity: 2
+  _weapon: {fileID: 0}
   _onAttackEvent:
     m_PersistentCalls:
       m_Calls:
@@ -20336,7 +20354,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8274603080598696745}
-  m_Layer: 0
+  - component: {fileID: 1071049248897503390}
+  m_Layer: 10
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20357,6 +20376,19 @@ Transform:
   m_Father: {fileID: 8274603079834872994}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1071049248897503390
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8274603080598696746}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8274603080612271705
 GameObject:
   m_ObjectHideFlags: 0
@@ -20416,10 +20448,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 2
-  m_Height: 3
-  m_Direction: 0
-  m_Center: {x: 0, y: 0, z: -2.17}
+  m_Radius: 1.76
+  m_Height: 4.75
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: -1.92}
 --- !u!1 &8274603080612501483
 GameObject:
   m_ObjectHideFlags: 0
@@ -20506,6 +20538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 10
   _speed: 1500
   _fireShakeParam:
@@ -20522,14 +20555,21 @@ MonoBehaviour:
   _bullet: {fileID: 4864901343781380692, guid: 0cac8b74d585fbd4ca90cdcb1c3ee6bf, type: 3}
   _muzzleFlashEffect: {fileID: 8274603080928584956}
   _muzzle: {fileID: 8274603080154381007}
+  _bulletParam:
+    Speed: 1500
+    Power: 10
+    ExplosionPower: 0
+    ExplosionCount: 0
+    Radius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
+    Dir: {x: 0, y: 0, z: 0}
   _shotCount: 100
   _subCount: 0
   _triggerInterval: 0.2
   _shotInterval: 0.01
   _diffusivity: 0
-  _exPower: 0
-  _exCount: 0
-  _exRadius: 0
 --- !u!1 &8274603080784514153
 GameObject:
   m_ObjectHideFlags: 0
@@ -35752,6 +35792,9 @@ GameObject:
   - component: {fileID: 8274603081268379429}
   - component: {fileID: 8274603081268379428}
   - component: {fileID: 8274603081268379427}
+  - component: {fileID: 7893059854869152065}
+  - component: {fileID: 2081350500424652981}
+  - component: {fileID: 940826051444568550}
   m_Layer: 0
   m_Name: TargetBalloon
   m_TagString: Untagged
@@ -35863,6 +35906,7 @@ MonoBehaviour:
     Time: 1
   _addCount: 0
   _isMarkTarget: 1
+  _count: 1
   OnDamageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -35880,9 +35924,51 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.7
-  m_Height: 4
+  m_Height: 5
   m_Direction: 2
-  m_Center: {x: 0, y: 0.2, z: -0.7}
+  m_Center: {x: 0, y: 0.2, z: 0.17}
+--- !u!136 &7893059854869152065
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8274603081268379430}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 3
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &2081350500424652981
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8274603081268379430}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 3.2
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: -1.8}
+--- !u!136 &940826051444568550
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8274603081268379430}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 3.24
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: -0.85}
 --- !u!1 &8274603081294366502
 GameObject:
   m_ObjectHideFlags: 0
@@ -35929,6 +36015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 30
   _speed: 210
   _fireShakeParam:
@@ -35945,14 +36032,21 @@ MonoBehaviour:
   _bullet: {fileID: 1233709711767816154, guid: e6e67469e48f0e04ba2720aa3bacb866, type: 3}
   _muzzleFlashEffect: {fileID: 8274603081382640050}
   _muzzle: {fileID: 8274603081062991750}
+  _bulletParam:
+    Speed: 210
+    Power: 30
+    ExplosionPower: 0
+    ExplosionCount: 0
+    Radius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
+    Dir: {x: 0, y: 0, z: 0}
   _shotCount: 3
   _subCount: 7
   _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.2
-  _exPower: 0
-  _exCount: 0
-  _exRadius: 0
 --- !u!1 &8274603081382640053
 GameObject:
   m_ObjectHideFlags: 0
@@ -46008,6 +46102,7 @@ MonoBehaviour:
   LockOnRange: 500
   _attackMaxInterval: 4
   _attackIntervalDiffusivity: 2
+  _weapon: {fileID: 0}
   _onAttackEvent:
     m_PersistentCalls:
       m_Calls:

@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 5
   _speed: 250
   _fireShakeParam:
@@ -143,14 +144,21 @@ MonoBehaviour:
   _bullet: {fileID: 8661921769014990206, guid: 39db53a3d59e45145977d37637cfba41, type: 3}
   _muzzleFlashEffect: {fileID: 6438122768468511159}
   _muzzle: {fileID: 1131160592875507442}
+  _bulletParam:
+    Speed: 250
+    Power: 5
+    ExplosionPower: 0
+    ExplosionCount: 0
+    Radius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
+    Dir: {x: 0, y: 0, z: 0}
   _shotCount: 10
   _subCount: 0
   _triggerInterval: 0.2
   _shotInterval: 0.1
   _diffusivity: 0.03
-  _exPower: 0
-  _exCount: 0
-  _exRadius: 0
 --- !u!1 &1131160592875507443
 GameObject:
   m_ObjectHideFlags: 0
@@ -5695,6 +5703,7 @@ MonoBehaviour:
   LockOnRange: 500
   _attackMaxInterval: 6
   _attackIntervalDiffusivity: 2
+  _weapon: {fileID: 0}
   _onAttackEvent:
     m_PersistentCalls:
       m_Calls:
@@ -5932,6 +5941,7 @@ MonoBehaviour:
     Time: 1
   _addCount: 0
   _isMarkTarget: 0
+  _count: 1
   OnDamageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -5971,6 +5981,7 @@ MonoBehaviour:
   - {fileID: 1234321730564965865, guid: b72018ba32c20f64eb6dd9eee453fd91, type: 3}
   - {fileID: 1234321730564965865, guid: b72018ba32c20f64eb6dd9eee453fd91, type: 3}
   - {fileID: 1234321730564965865, guid: 6215920cd43c3334b967b1bc5f017da6, type: 3}
+  _count: 1
 --- !u!1 &7018357406923311752
 GameObject:
   m_ObjectHideFlags: 0

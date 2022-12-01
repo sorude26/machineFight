@@ -28,8 +28,13 @@ public class BodyController : MonoBehaviour, IPartsModel
     private Transform _rHandJoint = default;
     [SerializeField]
     private DamageChecker _damageChecker = default;
+    [SerializeField]
+    private Animator _bodyAnime = default;
     private MoveController _moveController = default;
     private BackPackController _backPack = default;
+    private string _lSAttack = "SaberSlashL";
+    private string _rSAttack = "SaberSlashR";
+    private float _changeTime = 0.1f;
     private bool _isShoot = false;
     private bool _isInitialized = false;
     private float _jetTimer = 0;
@@ -83,7 +88,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     }
     public void BackPackBurst()
     {
-        _backPack?.ExecuteBackPackBurst();
+        _backPack?.ExecuteBackPackBurst(AttackTarget);
     }
     private void FixedUpdate()
     {
@@ -295,11 +300,33 @@ public class BodyController : MonoBehaviour, IPartsModel
     }
     public void ShotLeft()
     {
-        _lHand.StartShot();
+        if (_lHand.WeaponBase.Type == WeaponType.HandSaber)
+        {
+            if (_lHand.IsAttack == false)
+            {
+                _bodyAnime.CrossFadeInFixedTime(_lSAttack, _changeTime);
+                _lHand.MeleeAttack();
+            }
+        }
+        else
+        {
+            _lHand.StartShot(AttackTarget);
+        }
     }
     public void ShotRight()
     {
-        _rHand.StartShot();
+        if (_rHand.WeaponBase.Type == WeaponType.HandSaber)
+        {
+            if (_rHand.IsAttack == false)
+            {
+                _bodyAnime.CrossFadeInFixedTime(_rSAttack, _changeTime);
+                _rHand.MeleeAttack();
+            }
+        }
+        else
+        {
+            _rHand.StartShot(AttackTarget);
+        }
     }
     public void DestroyBody()
     {

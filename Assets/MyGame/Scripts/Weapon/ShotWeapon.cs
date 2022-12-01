@@ -10,6 +10,8 @@ public class ShotWeapon : WeaponBase
     private ParticleSystem _muzzleFlashEffect = default;
     [SerializeField]
     private Transform _muzzle = default;
+    [SerializeField]
+    private BulletParam _bulletParam = default;
     [SerializeField,Range(1,100)]
     private int _shotCount = 1;
     [SerializeField, Range(0, 30)]
@@ -20,12 +22,6 @@ public class ShotWeapon : WeaponBase
     protected float _shotInterval = 0.2f;
     [SerializeField]
     protected float _diffusivity = 0.01f;
-    [SerializeField]
-    protected int _exPower = 0;
-    [SerializeField]
-    protected int _exCount = 0;
-    [SerializeField]
-    protected int _exRadius = 0;
    
     private bool _isTrigerOn = false;
     public override void Initialize()
@@ -39,11 +35,14 @@ public class ShotWeapon : WeaponBase
             _currentMagazine = _magazineCount;
         }
     }
-    protected void Shot()
+    protected void Shot(Transform target = null)
     {
         var bullet = ShotBulletPool.GetObject(_bullet);
         bullet.transform.position = _muzzle.position;
-        bullet.Shot(new BulletParam(Diffusivity(_muzzle.forward), _speed, _power,_exPower,_exCount,_exRadius));
+        _bulletParam.Dir = Diffusivity(_muzzle.forward);
+        _bulletParam.Power = _power;
+        _bulletParam.Speed = _speed;
+        bullet.Shot(_bulletParam, target);
         PlayShake();        
     }
     protected Vector3 Diffusivity(Vector3 target)
@@ -56,8 +55,7 @@ public class ShotWeapon : WeaponBase
         }
         return target;
     }
-    
-    public override void Fire()
+    public override void Fire(Transform target)
     {
         if (IsFire == true || IsWait == true || _isTrigerOn == true)
         {
@@ -65,9 +63,9 @@ public class ShotWeapon : WeaponBase
         }
         _isTrigerOn = true;
         StartCoroutine(TriggerWait());
-        StartCoroutine(FireImpl());
+        StartCoroutine(FireImpl(target));
     }
-    protected IEnumerator FireImpl()
+    protected IEnumerator FireImpl(Transform target = null)
     {
         IsFire = true;
         _count = 0;
@@ -77,7 +75,7 @@ public class ShotWeapon : WeaponBase
             {
                 _muzzleFlashEffect.Play();
             }
-            Shot();
+            Shot(target);
             if (_magazineCount >= 0)
             {
                 _currentMagazine--;
@@ -98,7 +96,7 @@ public class ShotWeapon : WeaponBase
             }
             for (int i = 0; i < _subCount; i++)
             {
-                Shot();
+                Shot(target);
             }
             _count++;
             _onCount?.Invoke();
@@ -167,8 +165,8 @@ public class ShotWeapon : WeaponBase
         _triggerInterval = param.TriggerInterval;
         _shotInterval = param.ShotInterval;
         _diffusivity = param.Diffusivity;
-        _exPower = param.ExPower;
-        _exCount = param.ExCount;
-        _exRadius = param.ExRadius;
+        _bulletParam.ExplosionPower = param.ExPower;
+        _bulletParam.ExplosionCount = param.ExCount;
+        _bulletParam.Radius = param.ExRadius;
     }
 }
