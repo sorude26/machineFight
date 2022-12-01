@@ -68,6 +68,10 @@ public class LegController : MonoBehaviour, IPartsModel
     {
         _isStep = true;
     }
+    public void Attack()
+    {
+        _stateContext.Attack();
+    }
     public void PowerDown()
     {
         _stateContext.ChangeToDown();

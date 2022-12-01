@@ -23,6 +23,7 @@ public partial class LegStateContext
     private DownState _downState = new DownState();
     private GroundStepState _stepState = new GroundStepState();
     private FloatState _floatState = new FloatState();
+    private AttackState _attackState = new AttackState();
     //-----------------------------------------------------------
     #endregion
     public LegAnimation AnimeName = default;
@@ -59,6 +60,10 @@ public partial class LegStateContext
     public void ChangeToDown()
     {
         ChangeState(_downState);
+    }
+    public void Attack()
+    {
+        ChangeState(_attackState);
     }
     public void ChangeFloatMode()
     {

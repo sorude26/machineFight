@@ -24,6 +24,7 @@ public struct LegAnimation
     public string StepLeft;
     public string StepRight;
     public string FloatMove;
+    public string Attack;
 }
 [Serializable]
 public struct LegActionParam
