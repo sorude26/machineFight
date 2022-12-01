@@ -130,17 +130,11 @@ public struct BulletParam
     public int ExplosionPower;
     public int ExplosionCount;
     public float Radius;
+    public float HomingSpeed;
+    public float HomingStartTime;
+    public float HomingEndTime;
     public Vector3 Dir;
-    public BulletParam(Vector3 dir, float speed, int power)
-    {
-        Dir = dir;
-        Speed = speed;
-        Power = power;
-        ExplosionPower = 0;
-        ExplosionCount = 0;
-        Radius = 0;
-    }
-    public BulletParam(Vector3 dir,float speed,int power,int exPower,int count,float radius)
+    public BulletParam(Vector3 dir,float speed,int power,int exPower,int count,float radius,float homSpeed = 0,float homSTime = 0, float homETime = 0)
     {
         Dir = dir;
         Speed = speed;
@@ -148,5 +142,8 @@ public struct BulletParam
         ExplosionPower = exPower;
         ExplosionCount = count;
         Radius = radius;
+        HomingSpeed = homSpeed;
+        HomingStartTime = homSTime;
+        HomingEndTime = homETime;
     }
 }
