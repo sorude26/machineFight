@@ -69,6 +69,7 @@ public class PlayerMachineController : MonoBehaviour
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.Fire2, ShotRight);
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.Fire1, ShotLeft);
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.Fire3, _machineController.ExecuteBurst);
+        PlayerInput.SetEnterInput(InputMode.InGame, InputType.Fire4, _machineController.AttackLeg);
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.Booster, JetBoost);
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.ChangeTarget, ChangeTarget);
     }
@@ -78,6 +79,7 @@ public class PlayerMachineController : MonoBehaviour
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.Fire2, ShotRight);
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.Fire1, ShotLeft);
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.Fire3, _machineController.ExecuteBurst);
+        PlayerInput.LiftEnterInput(InputMode.InGame, InputType.Fire4, _machineController.AttackLeg);
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.Booster, JetBoost);
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.ChangeTarget, ChangeTarget);
     }
