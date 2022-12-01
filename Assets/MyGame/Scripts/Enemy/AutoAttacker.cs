@@ -21,6 +21,8 @@ public class AutoAttacker : MonoBehaviour
     [SerializeField]
     private float _attackIntervalDiffusivity = 0f;
     [SerializeField]
+    private WeaponBase _weapon = default;
+    [SerializeField]
     private UnityEvent _onAttackEvent = default;
     [SerializeField]
     private Transform _attackerMoveBody = default;
@@ -73,6 +75,10 @@ public class AutoAttacker : MonoBehaviour
     private void ExecuteAttack()
     {
         _onAttackEvent?.Invoke();
+        if (_weapon != null)
+        {
+            _weapon.Fire(_player);
+        }
         _attackTimer = Random.Range(_attackMaxInterval - _attackIntervalDiffusivity, _attackMaxInterval);
     }
     /// <summary>
