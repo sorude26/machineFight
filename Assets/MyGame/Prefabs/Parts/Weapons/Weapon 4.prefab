@@ -4874,7 +4874,7 @@ GameObject:
   - component: {fileID: 4052949859152166964}
   - component: {fileID: 4052949859152166965}
   m_Layer: 0
-  m_Name: HitEffect
+  m_Name: MuzzleEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14667,6 +14667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 4
+  _weaponType: 0
   _power: 50
   _speed: 220
   _fireShakeParam:
@@ -14683,14 +14684,21 @@ MonoBehaviour:
   _bullet: {fileID: 1233709711767816154, guid: 21422f45a42a25b48be65d96690eb91c, type: 3}
   _muzzleFlashEffect: {fileID: 4052949859152166964}
   _muzzle: {fileID: 7986155857372268401}
+  _bulletParam:
+    Speed: 0
+    Power: 0
+    ExplosionPower: 0
+    ExplosionCount: 0
+    Radius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
+    Dir: {x: 0, y: 0, z: 0}
   _shotCount: 1
   _subCount: 0
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.02
-  _exPower: 50
-  _exCount: 2
-  _exRadius: 15
 --- !u!1 &7986155858764926498
 GameObject:
   m_ObjectHideFlags: 0
