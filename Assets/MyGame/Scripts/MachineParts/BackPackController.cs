@@ -50,10 +50,14 @@ public class BackPackController : MonoBehaviour, IPartsModel
         var lockRotation = ClampRotation(_lockBase.localRotation);
         _partsBase.localRotation = Quaternion.Lerp(_partsBase.localRotation, lockRotation, _followSpeed * Time.fixedDeltaTime);
     }
-    public void ExecuteBackPackBurst()
+    public void ExecuteBackPackBurst(Transform target)
     {
         _backPackBurstEvent?.Invoke();
         OnBackPackBurst?.Invoke();
+        if(_backPackWeapon != null)
+        {
+            _backPackWeapon.Fire(target);
+        }
     }
     private Quaternion ClampRotation(Quaternion angle)
     {
