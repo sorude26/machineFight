@@ -41,15 +41,23 @@ public class HandController : MonoBehaviour, IPartsModel
     private Vector3 _targetTwoBefore = default;
     private Quaternion _topRotaion = Quaternion.identity;
     private Quaternion _handRotaion = Quaternion.identity;
-    private WaitForSeconds _reloadWait = default;
-
     public float PartsRotaionSpeed = 6.0f;
+    public float ReloadSpeed = 1f;
     public float ReloadTime = 1f;
     public Transform TargetTrans = default;
     public int ID { get => _id; }
     public bool IsAttack { get; private set; }
     public WeaponBase WeaponBase { get => _weapon; }
     public BoosterController ShoulderBoost { get => _shoulderBoosters; }
+    public WeaponParam WeaponParam { get; set; }
+    public void InitializeHand()
+    {
+        if (_anSetWeapon == true)
+        {
+            _weapon.SetParam(WeaponParam);
+            _weapon.Initialize();
+        }
+    }
     public void SetCameraAim()
     {
         _topRotaion = _lockAim.localRotation;
@@ -102,7 +110,6 @@ public class HandController : MonoBehaviour, IPartsModel
             _weapon = weapon;
         }
         _weapon.Initialize();
-        _reloadWait = new WaitForSeconds(ReloadTime);
         SetHoldAnim();
     }
     public void SetLockAim(Transform target)
@@ -160,7 +167,12 @@ public class HandController : MonoBehaviour, IPartsModel
     }
     private IEnumerator ReloadWait()
     {
-        yield return _reloadWait;
+        float timer = ReloadTime;
+        while (timer > 0)
+        {
+            timer -= ReloadSpeed * Time.deltaTime;
+            yield return null;
+        }
         ReloadWeapon();
     }
     private void SetHoldAnim()
@@ -189,7 +201,12 @@ public class HandController : MonoBehaviour, IPartsModel
     private IEnumerator MeleeAttackImpl()
     {
         ResetAngle();
-        yield return _reloadWait;
+        float timer = ReloadTime;
+        while (timer > 0)
+        {
+            timer -= ReloadSpeed * Time.deltaTime;
+            yield return null;
+        }
         IsAttack = false;
         _isMeleeAttack = false;
     }
