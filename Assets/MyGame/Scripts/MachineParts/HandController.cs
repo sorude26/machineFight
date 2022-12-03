@@ -24,6 +24,8 @@ public class HandController : MonoBehaviour, IPartsModel
     [SerializeField]
     private Animator _handAnime = default;
     [SerializeField]
+    private bool _anSetWeapon = false;
+    [SerializeField]
     private BoosterController _shoulderBoosters = default;
     private float _changeTime = 0.1f;
     private string _reloadName = "Reload";
@@ -88,10 +90,17 @@ public class HandController : MonoBehaviour, IPartsModel
     }
     public void SetWeapon(WeaponBase weapon)
     {
-        weapon.transform.SetParent(_grip);
-        weapon.transform.localPosition = Vector3.zero;
-        weapon.transform.localRotation = Quaternion.identity;
-        _weapon = weapon;
+        if (_anSetWeapon == true)
+        {
+            weapon.gameObject.SetActive(false);
+        }
+        else
+        {
+            weapon.transform.SetParent(_grip);
+            weapon.transform.localPosition = Vector3.zero;
+            weapon.transform.localRotation = Quaternion.identity;
+            _weapon = weapon;
+        }
         _weapon.Initialize();
         _reloadWait = new WaitForSeconds(ReloadTime);
         SetHoldAnim();
