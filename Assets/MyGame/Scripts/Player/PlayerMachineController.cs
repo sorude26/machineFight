@@ -16,6 +16,10 @@ public class PlayerMachineController : MonoBehaviour
     private PartsBuildParam _buildParam = default;
     [SerializeField]
     private StageUIController _stageUI = default;
+    [SerializeField]
+    private Transform _headTrans = default;
+    [SerializeField]
+    private FollowCamera _camera = default;
     private float _maxBooster = default;
     private float _currentBooster = default;
     private float _boosterRecoverySpeed = default;
@@ -23,6 +27,7 @@ public class PlayerMachineController : MonoBehaviour
     private float _currentEnergy = default;
     private float _energyConsumption = default;
     private float _boosterConsumption = default;
+    public Transform HeadTrans { get => _headTrans; }
     private IEnumerator Start()
     {
         if (PlayerData.instance != null)
@@ -32,7 +37,7 @@ public class PlayerMachineController : MonoBehaviour
         SetInput();
         _machineController.Initialize(_buildParam);
         _machineController.DamageChecker.OnDamageEvent.AddListener(DamagePlayer);
-        _machineController.DamageChecker.OnRecoveryEvent.AddListener(ShowHpData);        
+        _machineController.DamageChecker.OnRecoveryEvent.AddListener(ShowHpData);
         yield return null;
         _stageUI.StartSet(_machineController.BodyController.LeftHand.WeaponBase,
             _machineController.BodyController.RightHand.WeaponBase, _machineController.BodyController.BackPack.BackPackWeapon);
@@ -43,6 +48,7 @@ public class PlayerMachineController : MonoBehaviour
         _machineController.BodyController.UseBooster += UseBooster;
         _machineController.DamageChecker.ChangeAnTarget();
         StageManager.Instance.OnGameEnd += SetTotalDamage;
+        _headTrans.SetParent(_machineController.BodyController.HeadJoint.transform);
     }
     private void FixedUpdate()
     {
@@ -72,6 +78,7 @@ public class PlayerMachineController : MonoBehaviour
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.Fire4, _machineController.AttackLeg);
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.Booster, JetBoost);
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.ChangeTarget, ChangeTarget);
+        PlayerInput.SetEnterInput(InputMode.InGame, InputType.ChangeMode, _camera.ChangeMode);
     }
     private void LiftInput()
     {
@@ -82,6 +89,7 @@ public class PlayerMachineController : MonoBehaviour
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.Fire4, _machineController.AttackLeg);
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.Booster, JetBoost);
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.ChangeTarget, ChangeTarget);
+        PlayerInput.LiftEnterInput(InputMode.InGame, InputType.ChangeMode, _camera.ChangeMode);
     }
     private void SetParam()
     {

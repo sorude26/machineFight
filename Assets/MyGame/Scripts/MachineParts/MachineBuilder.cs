@@ -97,10 +97,15 @@ public class MachineBuilder : MonoBehaviour
         var boosterData = PartsManager.Instance.AllParamData.GetPartsBack(_buildData.Booster);
         var bodyData = PartsManager.Instance.AllParamData.GetPartsBody(_buildData.Body);
         var headData = PartsManager.Instance.AllParamData.GetPartsHead(_buildData.Head);
-        var handDataL = PartsManager.Instance.AllParamData.GetPartsHead(_buildData.LHand);
-        var handDataR = PartsManager.Instance.AllParamData.GetPartsHead(_buildData.RHand);
+        var handDataL = PartsManager.Instance.AllParamData.GetPartsHand(_buildData.LHand);
+        var handDataR = PartsManager.Instance.AllParamData.GetPartsHand(_buildData.RHand);
         var legData = PartsManager.Instance.AllParamData.GetPartsLeg(_buildData.Leg);
         var bodyParam = boosterData.Param;
+        int hp = bodyData.Hp;
+        hp += handDataL.PartsHp;
+        hp += handDataR.PartsHp;
+        hp += legData.PartsHp;
+        hp += headData.PartsHp;
         BoosterConsumption = boosterData.UseGeneratorPower;
         EnergyConsumption += boosterData.EnergyConsumption;
         EnergyConsumption += headData.EnergyConsumption;
@@ -110,8 +115,10 @@ public class MachineBuilder : MonoBehaviour
         MaxBooster = bodyData.Generator;
         MaxEnergy = bodyData.Energy;
         BoosterRecoverySpeed = bodyData.GeneratorRecoverySpeed;
-        bodyParam.Hp = bodyData.Hp;
-        Body.SetParam(bodyParam);
+        bodyParam.BoostMoveSpeed += handDataR.AdditionalBooster + handDataL.AdditionalBooster;
+        bodyParam.JetPower += handDataR.AdditionalBooster + handDataL.AdditionalBooster;
+        bodyParam.Hp = hp;
+        Body.SetParam(bodyParam,handDataL,handDataR);
         Leg.SetLegParam(legData.Param);
     }
 }
