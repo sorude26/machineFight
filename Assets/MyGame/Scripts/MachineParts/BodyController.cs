@@ -56,11 +56,31 @@ public class BodyController : MonoBehaviour, IPartsModel
         _moveController = moveController;
         _boosters.Add(_boster);
         _isInitialized = true;
+        if (_lHand != null)
+        {
+            _lHand.InitializeHand();
+        }
+        if (_rHand != null)
+        {
+            _rHand.InitializeHand();
+        }
     }
-    public void SetParam(BodyParam param)
+    public void SetParam(BodyParam param,in PartsHandData handL = default,in PartsHandData handR = default)
     {
         _param = param;
         _damageChecker.SetHp(_param.Hp);
+        if (_lHand != null)
+        {
+            _lHand.ReloadSpeed = handL.ReloadSpeed;
+            _lHand.PartsRotaionSpeed = handL.AimSpeed;
+            _lHand.WeaponParam = handL.WeaponParam;
+        }
+        if (_rHand != null)
+        {
+            _rHand.ReloadSpeed = handR.ReloadSpeed;
+            _rHand.PartsRotaionSpeed = handR.AimSpeed;
+            _rHand.WeaponParam = handR.WeaponParam;
+        }
     }
     public void SetHands(HandController lhand,HandController rhand)
     {

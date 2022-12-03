@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0a88323743368f4ebb3a840dde4691d, type: 3}
-  m_Name: Hand 4
+  m_Name: Hand 6
   m_EditorClassIdentifier: 
-  ID: 3
-  Name: ShieldArm
-  ModelID: 3
+  ID: 5
+  Name: MachineGunArm
+  ModelID: 5
   PartsHp: 150
-  AimSpeed: 6
-  ReloadSpeed: 1
-  EnergyConsumption: 0.03
-  AdditionalBooster: 0
+  AimSpeed: 5
+  ReloadSpeed: 5
+  EnergyConsumption: 0.01
+  AdditionalBooster: 0.2
   WeaponParam:
-    Power: 0
-    Speed: 0
-    MaxAmmunitionCapacity: 0
-    MagazineCount: 0
-    ShotCount: 0
+    Power: 8
+    Speed: 1200
+    MaxAmmunitionCapacity: 800
+    MagazineCount: 100
+    ShotCount: 5
     SubCount: 0
-    TriggerInterval: 0
-    ShotInterval: 0
-    Diffusivity: 0
+    TriggerInterval: 0.1
+    ShotInterval: 0.05
+    Diffusivity: 0.01
     ExPower: 0
     ExCount: 0
     ExRadius: 0

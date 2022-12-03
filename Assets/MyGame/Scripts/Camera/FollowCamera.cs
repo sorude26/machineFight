@@ -21,6 +21,8 @@ public class FollowCamera : MonoBehaviour
     [SerializeField]
     Transform _camera = default;
     [SerializeField]
+    Transform _cameraBase = default;
+    [SerializeField]
     private float _curveSpeed = 1f;
     [SerializeField]
     private float _resetSpeed = 1f;
@@ -35,36 +37,42 @@ public class FollowCamera : MonoBehaviour
     
     private void LateUpdate()
     {
-        if (!_noneLerp)
+        if (_noneLerp == false)
         {
             return;
         }
-        //_camera.localPosition = _changePos;
+        _camera.localPosition = _changePos;
+        _cameraBase.localRotation = Quaternion.identity;
         transform.forward = _lookRotationTarget.forward;
         transform.position = _lookTarget.position;
     }
     private void FixedUpdate()
     {
-        if (_noneLerp)
+        if (_noneLerp == true)
         {
             return;
         }
-        //_camera.localPosition = _normalPos;
+        _camera.localPosition = _normalPos;
         transform.forward = Vector3.Lerp(transform.forward, _rotationTarget.forward, _rotationSpeed * Time.fixedDeltaTime);
         float speed = (transform.position - _followTarget.position).sqrMagnitude;
         transform.position = Vector3.Lerp(transform.position, _followTarget.position, speed * _followSpeed * Time.fixedDeltaTime);
         var target =Vector3.Cross(_followTarget.position - transform.position ,transform.forward);
         if (target.y < -_minDis)
         {
-            _camera.localRotation = Quaternion.Lerp(_camera.localRotation, Quaternion.Euler(0,0,_maxCurve), _curveSpeed * Time.fixedDeltaTime);
+            _cameraBase.localRotation = Quaternion.Lerp(_cameraBase.localRotation, Quaternion.Euler(0,0,_maxCurve), _curveSpeed * Time.fixedDeltaTime);
         }
         else if (target.y > _minDis)
         {
-            _camera.localRotation = Quaternion.Lerp(_camera.localRotation, Quaternion.Euler(0, 0, -_maxCurve), _curveSpeed * Time.fixedDeltaTime);
+            _cameraBase.localRotation = Quaternion.Lerp(_cameraBase.localRotation, Quaternion.Euler(0, 0, -_maxCurve), _curveSpeed * Time.fixedDeltaTime);
         }
         else
         {
-            _camera.localRotation = Quaternion.Lerp(_camera.localRotation,Quaternion.identity, _resetSpeed * Time.fixedDeltaTime);
+            _cameraBase.localRotation = Quaternion.Lerp(_cameraBase.localRotation,Quaternion.identity, _resetSpeed * Time.fixedDeltaTime);
         }
+    }
+    public void ChangeMode()
+    {
+        _noneLerp = !_noneLerp;
+        Debug.Log(_noneLerp);
     }
 }
