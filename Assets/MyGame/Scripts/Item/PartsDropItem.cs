@@ -10,6 +10,7 @@ public class PartsDropItem : ItemBase
     private int _partsID;
     public override void CatchItem(ItemCatcher catcher)
     {
+        PlayerData playerData = PlayerData.instance;
         string get = "";
         switch (_partsType)
         {
@@ -41,6 +42,7 @@ public class PartsDropItem : ItemBase
                 break;
         }
         PopUpLog.CreatePopUp($"{_partsType}\n{get} “üŽè‚µ‚Ü‚µ‚½", _viewTime);
+        playerData.PartsGet(_partsType, _partsID);
         //Debug.Log($"Type:{_partsType} ID:{_partsID}");
     }
     public void SetData(PartsType type, int id)
