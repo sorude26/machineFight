@@ -12,6 +12,8 @@ public class CustomizeMenu : MonoBehaviour
     [SerializeField] GameObject _content = default;
     [SerializeField] PartsCategory _category = default;
 
+    PlayerData _playerData; 
+
     private void Awake()
     {
         PartsManager.Instance.LoadData();
@@ -19,6 +21,7 @@ public class CustomizeMenu : MonoBehaviour
 
     private void Start()
     {
+        _playerData = PlayerData.instance;
         PlayerInput.SetEnterInput(InputMode.Menu, InputType.Fire2, CategoryChangeNext);
         PlayerInput.SetEnterInput(InputMode.Menu, InputType.Fire1, CategoryChangePre);
         PlayerInput.SetEnterInput(InputMode.Menu, InputType.Cancel, EndCustomize);
@@ -39,103 +42,198 @@ public class CustomizeMenu : MonoBehaviour
     /// ボタンの生成
     /// </summary>
     /// <param name="category">パーツの種類</param>
-    /// <param name="id">パーツのID(再起関数のため0を与える)</param>
-    public void ButtonInstantiate(PartsCategory category, int id)
+    public void ButtonInstantiate(PartsCategory category)
     {
         _partsName.text = category.ToString();
-        Button button;
-        button = Instantiate(_partsButton);
         switch (category)
         {
             case PartsCategory.Head:
-                PartsHeadData headParts = PartsManager.Instance.AllParamData.GetPartsHead(id);
+                PartsHeadData[] headParts = _playerData.GetObtainPartsHead();
+                _category = category;
                 if (headParts == null)
-                {
-                    Destroy(button.gameObject);
-                    _category = category;
+                {   
                     return;
                 }
-                button.GetComponentInChildren<Text>().text = headParts.Name;
+                else
+                {
+                    foreach (var parts in headParts)
+                    {
+                        Button button = Instantiate(_partsButton);
+                        button.gameObject.AddComponent<PartsButton>();
+                        //button.gameObject.AddComponent<EventTrigger>();
+                        PartsButton _ = button.GetComponent<PartsButton>();
+                        _._partsCategory = category;
+                        _._partsId = parts.ID;
+                        button.onClick.AddListener(() => _.Customize());
+                        button.transform.parent = _content.transform;
+                        button.GetComponentInChildren<Text>().text = parts.Name;
+                    }
+                }
+                
                 break;
             case PartsCategory.Body:
-                PartsBodyData bodyParts = PartsManager.Instance.AllParamData.GetPartsBody(id);
+                PartsBodyData[] bodyParts = _playerData.GetObtainPartsBody();
                 if (bodyParts == null)
                 {
-                    Destroy(button.gameObject);
-                    _category = category;
                     return;
                 }
-                button.GetComponentInChildren<Text>().text = bodyParts.Name;
+                else
+                {
+                    foreach (var parts in bodyParts)
+                    {
+                        Button button = Instantiate(_partsButton);
+                        button.gameObject.AddComponent<PartsButton>();
+                        //button.gameObject.AddComponent<EventTrigger>();
+                        PartsButton _ = button.GetComponent<PartsButton>();
+                        _._partsCategory = category;
+                        _._partsId = parts.ID;
+                        button.onClick.AddListener(() => _.Customize());
+                        button.transform.parent = _content.transform;
+                        button.GetComponentInChildren<Text>().text = parts.Name;
+                    }
+                }
                 break;
             case PartsCategory.LHand:
-                PartsHandData lhandParts = PartsManager.Instance.AllParamData.GetPartsHand(id);
+                PartsHandData[] lhandParts = _playerData.GetObtainPartsHand();
                 if (lhandParts == null)
                 {
-                    Destroy(button.gameObject);
-                    _category = category;
                     return;
                 }
-                button.GetComponentInChildren<Text>().text = lhandParts.Name;
+                else
+                {
+                    foreach (var parts in lhandParts)
+                    {
+                        Button button = Instantiate(_partsButton);
+                        button.gameObject.AddComponent<PartsButton>();
+                        //button.gameObject.AddComponent<EventTrigger>();
+                        PartsButton _ = button.GetComponent<PartsButton>();
+                        _._partsCategory = category;
+                        _._partsId = parts.ID;
+                        button.onClick.AddListener(() => _.Customize());
+                        button.transform.parent = _content.transform;
+                        button.GetComponentInChildren<Text>().text = parts.Name;
+                    }
+                }
                 break;
             case PartsCategory.RHand:
-                PartsHandData rhandParts = PartsManager.Instance.AllParamData.GetPartsHand(id);
+                PartsHandData[] rhandParts = _playerData.GetObtainPartsHand();
                 if (rhandParts == null)
                 {
-                    Destroy(button.gameObject);
-                    _category = category;
                     return;
                 }
-                button.GetComponentInChildren<Text>().text = rhandParts.Name;
+                else
+                {
+                    foreach (var parts in rhandParts)
+                    {
+                        Button button = Instantiate(_partsButton);
+                        button.gameObject.AddComponent<PartsButton>();
+                        //button.gameObject.AddComponent<EventTrigger>();
+                        PartsButton _ = button.GetComponent<PartsButton>();
+                        _._partsCategory = category;
+                        _._partsId = parts.ID;
+                        button.onClick.AddListener(() => _.Customize());
+                        button.transform.parent = _content.transform;
+                        button.GetComponentInChildren<Text>().text = parts.Name;
+                    }
+                }
                 break;
             case PartsCategory.Leg:
-                PartsLegData legParts = PartsManager.Instance.AllParamData.GetPartsLeg(id);
+                PartsLegData[] legParts = _playerData.GetObtainPartsLeg();
                 if (legParts == null)
                 {
-                    Destroy(button.gameObject);
-                    _category = category;
                     return;
                 }
-                button.GetComponentInChildren<Text>().text = legParts.Name;
+                else
+                {
+                    foreach (var parts in legParts)
+                    {
+                        Button button = Instantiate(_partsButton);
+                        button.gameObject.AddComponent<PartsButton>();
+                        //button.gameObject.AddComponent<EventTrigger>();
+                        PartsButton _ = button.GetComponent<PartsButton>();
+                        _._partsCategory = category;
+                        _._partsId = parts.ID;
+                        button.onClick.AddListener(() => _.Customize());
+                        button.transform.parent = _content.transform;
+                        button.GetComponentInChildren<Text>().text = parts.Name;
+                    }
+                }
                 break;
             case PartsCategory.Booster:
-                PartsBackPackData boosterParts = PartsManager.Instance.AllParamData.GetPartsBack(id);
+                PartsBackPackData[] boosterParts = _playerData.GetObtainPartsBack();
                 if (boosterParts == null)
                 {
-                    Destroy(button.gameObject);
-                    _category = category;
                     return;
                 }
-                button.GetComponentInChildren<Text>().text = boosterParts.Name;
+                else
+                {
+                    foreach (var parts in boosterParts)
+                    {
+                        Button button = Instantiate(_partsButton);
+                        button.gameObject.AddComponent<PartsButton>();
+                        //button.gameObject.AddComponent<EventTrigger>();
+                        PartsButton _ = button.GetComponent<PartsButton>();
+                        _._partsCategory = category;
+                        _._partsId = parts.ID;
+                        button.onClick.AddListener(() => _.Customize());
+                        button.transform.parent = _content.transform;
+                        button.GetComponentInChildren<Text>().text = parts.Name;
+                    }
+                }
                 break;
             case PartsCategory.LWeapon:
-                PartsWeaponData lweaponParts = PartsManager.Instance.AllParamData.GetPartsWeapon(id);
+                PartsWeaponData[] lweaponParts = _playerData.GetObtainPartsWeapon();
                 if (lweaponParts == null)
                 {
-                    Destroy(button.gameObject);
-                    _category = category;
                     return;
                 }
-                button.GetComponentInChildren<Text>().text = lweaponParts.Name;
+                else
+                {
+                    foreach (var parts in lweaponParts)
+                    {
+                        Button button = Instantiate(_partsButton);
+                        button.gameObject.AddComponent<PartsButton>();
+                        //button.gameObject.AddComponent<EventTrigger>();
+                        PartsButton _ = button.GetComponent<PartsButton>();
+                        _._partsCategory = category;
+                        _._partsId = parts.ID;
+                        button.onClick.AddListener(() => _.Customize());
+                        button.transform.parent = _content.transform;
+                        button.GetComponentInChildren<Text>().text = parts.Name;
+                    }
+                }
                 break;
             case PartsCategory.RWeapon:
-                PartsWeaponData rweaponParts = PartsManager.Instance.AllParamData.GetPartsWeapon(id);
+                PartsWeaponData[] rweaponParts = _playerData.GetObtainPartsWeapon();
                 if (rweaponParts == null)
                 {
-                    Destroy(button.gameObject);
-                    _category = category;
                     return;
                 }
-                button.GetComponentInChildren<Text>().text = rweaponParts.Name;
+                else
+                {
+                    foreach (var parts in rweaponParts)
+                    {
+                        Button button = Instantiate(_partsButton);
+                        button.gameObject.AddComponent<PartsButton>();
+                        //button.gameObject.AddComponent<EventTrigger>();
+                        PartsButton _ = button.GetComponent<PartsButton>();
+                        _._partsCategory = category;
+                        _._partsId = parts.ID;
+                        button.onClick.AddListener(() => _.Customize());
+                        button.transform.parent = _content.transform;
+                        button.GetComponentInChildren<Text>().text = parts.Name;
+                    }
+                }
                 break;
         }
-        button.gameObject.AddComponent<PartsButton>();
-        //button.gameObject.AddComponent<EventTrigger>();
-        var _ = button.GetComponent<PartsButton>();
-        _._partsCategory = category;
-        _._partsId = id;
-        button.onClick.AddListener(() => _.Customize());
-        button.transform.parent = _content.transform;
-        ButtonInstantiate(category, id += 1);
+        //button.gameObject.AddComponent<PartsButton>();
+        ////button.gameObject.AddComponent<EventTrigger>();
+        //var _ = button.GetComponent<PartsButton>();
+        //_._partsCategory = category;
+        //_._partsId = id;
+        //button.onClick.AddListener(() => _.Customize());
+        //button.transform.parent = _content.transform;
+        //ButtonInstantiate(category, id += 1);
     }
 
     /// <summary>
@@ -147,7 +245,7 @@ public class CustomizeMenu : MonoBehaviour
         ButtonSelectController.OnButtonNonSelect();
         ButtonDestory(_content);
         yield return null;
-        ButtonInstantiate(_category, 0);
+        ButtonInstantiate(_category);
         ButtonSelectController.OnButtonFirstSelect(_content);
     }
 
