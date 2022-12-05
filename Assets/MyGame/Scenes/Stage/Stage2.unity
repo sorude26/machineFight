@@ -666,6 +666,7 @@ MonoBehaviour:
     Booster: 0
     LWeapon: 0
     RWeapon: 0
+    ColorId: 0
   _machineBase: {fileID: 1630088900}
   _lockTrans: {fileID: 616848981}
   _aimTrans: {fileID: 352799812}
@@ -1158,6 +1159,7 @@ MonoBehaviour:
     Booster: 0
     LWeapon: 0
     RWeapon: 2
+    ColorId: 0
   _bodyTarget: {fileID: 1901519611}
 --- !u!114 &514584079
 MonoBehaviour:
@@ -1508,6 +1510,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5356225296424533020, guid: a202a4441e62fe84892afcc97893dd93, type: 3}
+      propertyPath: _onDeadEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 588769596}
+    - target: {fileID: 5356225296424533020, guid: a202a4441e62fe84892afcc97893dd93, type: 3}
+      propertyPath: _onDeadEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ViewGameOver
+      objectReference: {fileID: 0}
     - target: {fileID: 5356225296602973574, guid: a202a4441e62fe84892afcc97893dd93, type: 3}
       propertyPath: m_Name
       value: PlayerSet
@@ -2005,6 +2015,7 @@ MonoBehaviour:
     Booster: 0
     LWeapon: 0
     RWeapon: 0
+    ColorId: 0
   _machineBase: {fileID: 1246903693}
   _lockTrans: {fileID: 1295317484}
   _aimTrans: {fileID: 624472792}
@@ -3105,6 +3116,7 @@ MonoBehaviour:
     Booster: 0
     LWeapon: 0
     RWeapon: 0
+    ColorId: 0
   _machineBase: {fileID: 514584077}
   _lockTrans: {fileID: 87522609}
   _aimTrans: {fileID: 890531205}
@@ -3733,6 +3745,7 @@ MonoBehaviour:
     Booster: 2
     LWeapon: 0
     RWeapon: 2
+    ColorId: 0
   _bodyTarget: {fileID: 960123715}
 --- !u!114 &1246903695
 MonoBehaviour:
@@ -4745,6 +4758,7 @@ MonoBehaviour:
     Booster: 0
     LWeapon: 0
     RWeapon: 2
+    ColorId: 0
   _bodyTarget: {fileID: 1474327827}
 --- !u!114 &1630088902
 MonoBehaviour:
@@ -4870,6 +4884,7 @@ MonoBehaviour:
     Booster: 0
     LWeapon: 0
     RWeapon: 0
+    ColorId: 0
   _machineBase: {fileID: 1778404527}
   _lockTrans: {fileID: 1334612630}
   _aimTrans: {fileID: 845422686}
@@ -5180,6 +5195,7 @@ MonoBehaviour:
     Booster: 3
     LWeapon: 0
     RWeapon: 2
+    ColorId: 0
   _bodyTarget: {fileID: 1845774968}
 --- !u!1 &1780231476
 GameObject:
