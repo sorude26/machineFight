@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 1029337336841686260}
   - component: {fileID: 1029337336841686261}
   - component: {fileID: 200906885704468297}
+  - component: {fileID: 8086289721912741166}
   m_Layer: 0
   m_Name: BodyFrame 2
   m_TagString: Untagged
@@ -263,6 +264,7 @@ MonoBehaviour:
   _rHandJoint: {fileID: 1029337337775905110}
   _damageChecker: {fileID: 1029337337286944370}
   _bodyAnime: {fileID: 200906885704468297}
+  _partsColorChanger: {fileID: 8086289721912741166}
   BodyBase: {fileID: 0}
   Lock: {fileID: 0}
   AttackTarget: {fileID: 0}
@@ -286,6 +288,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8086289721912741166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029337336841686251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254b3cc64a645614fa76cb2759f896bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _armors:
+  - {fileID: 1029337336450128697}
+  - {fileID: 6110423271242106034}
+  _eyes: []
+  _covers: []
 --- !u!1 &1029337336921477226
 GameObject:
   m_ObjectHideFlags: 0

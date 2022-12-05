@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.XR;
+using UnityEngine.SceneManagement;
 
 public class PlayerData : MonoBehaviour
 {
@@ -22,6 +24,19 @@ public class PlayerData : MonoBehaviour
 
     private ModelBuilder _modelBuilder = default;
 
+    [SerializeField] 
+    private List<PartsHeadData> _getsHeadParts = new List<PartsHeadData>();
+    [SerializeField] 
+    private List<PartsBodyData> _getsBodyParts = new List<PartsBodyData>();
+    [SerializeField] 
+    private List<PartsHandData> _getsHandParts = new List<PartsHandData>();
+    [SerializeField] 
+    private List<PartsLegData> _getsLegParts = new List<PartsLegData>();
+    [SerializeField] 
+    private List<PartsBackPackData> _getsBackPackParts = new List<PartsBackPackData>();
+    [SerializeField] 
+    private List<PartsWeaponData> _getsWeaponParts = new List<PartsWeaponData>();
+
     private void Awake()
     {
         if (instance == null)
@@ -30,6 +45,8 @@ public class PlayerData : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             instance._buildPreset = instance.PresetLoad();
             instance._modelBuilder = new ModelBuilder();
+            PartsManager.Instance.LoadData();
+            SceneManager.activeSceneChanged += ActiveSceneChanged;
         }
         else
         {
@@ -83,5 +100,146 @@ public class PlayerData : MonoBehaviour
     public void Build()
     {
         _modelBuilder.ViewModel(BuildPreset);
+    }
+
+    /// <summary>
+    /// パーツを入手する　HandとWeaponはLHand、LWeaponのタグを使う
+    /// </summary>
+    /// <param name="type">パーツの種類</param>
+    /// <param name="partsId">取得するパーツのID</param>
+    public void PartsGet(PartsType type, int partsId)
+    {
+        switch(type)
+        {
+            case PartsType.Head:
+                if (_getsHeadParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
+                {
+                    Debug.Log("入手済み");
+                    break;
+                }
+                else
+                {
+                    Debug.Log("入手");
+                    _getsHeadParts.Add(PartsManager.Instance.AllParamData.GetPartsHead(partsId));
+                }
+                break;
+            case PartsType.Body:
+                if (_getsBodyParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
+                {
+                    Debug.Log("入手済み");
+                    break;
+                }
+                else
+                {
+                    Debug.Log("入手");
+                    _getsBodyParts.Add(PartsManager.Instance.AllParamData.GetPartsBody(partsId));
+                }
+                break;
+            case PartsType.LHand:
+                if (_getsHandParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
+                {
+                    Debug.Log("入手済み");
+                    break;
+                }
+                else
+                {
+                    Debug.Log("入手");
+                    _getsHandParts.Add(PartsManager.Instance.AllParamData.GetPartsHand(partsId));
+                }
+                break;
+            case PartsType.RHand:
+                if (_getsHandParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
+                {
+                    Debug.Log("入手済み");
+                    break;
+                }
+                else
+                {
+                    Debug.Log("入手");
+                    _getsHandParts.Add(PartsManager.Instance.AllParamData.GetPartsHand(partsId));
+                }
+                break;
+            case PartsType.BackPack:
+                if (_getsBackPackParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
+                {
+                    Debug.Log("入手済み");
+                    break;
+                }
+                else
+                {
+                    Debug.Log("入手");
+                    _getsBackPackParts.Add(PartsManager.Instance.AllParamData.GetPartsBack(partsId));
+                }
+                break;
+            case PartsType.Leg:
+                if (_getsLegParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
+                {
+                    Debug.Log("入手済み");
+                    break;
+                }
+                else
+                {
+                    Debug.Log("入手");
+                    _getsLegParts.Add(PartsManager.Instance.AllParamData.GetPartsLeg(partsId));
+                }
+                break;
+            case PartsType.LWeapon:
+                if (_getsWeaponParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
+                {
+                    Debug.Log("入手済み");
+                    break;
+                }
+                else
+                {
+                    Debug.Log("入手");
+                    _getsWeaponParts.Add(PartsManager.Instance.AllParamData.GetPartsWeapon(partsId));
+                }
+                break;
+            case PartsType.RWeapon:
+                if (_getsWeaponParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
+                {
+                    Debug.Log("入手済み");
+                    break;
+                }
+                else
+                {
+                    Debug.Log("入手");
+                    _getsWeaponParts.Add(PartsManager.Instance.AllParamData.GetPartsWeapon(partsId));
+                }
+                break;
+        }
+    }
+
+    public PartsBodyData[] GetObtainPartsBody()
+    {
+        return _getsBodyParts.ToArray();
+    }
+    public PartsHeadData[] GetObtainPartsHead()
+    {
+        return _getsHeadParts.ToArray();
+    }
+    public PartsHandData[] GetObtainPartsHand()
+    {
+        return _getsHandParts.ToArray();
+    }
+    public PartsLegData[] GetObtainPartsLeg()
+    {
+        return _getsLegParts.ToArray();
+    }
+    public PartsBackPackData[] GetObtainPartsBack()
+    {
+        return _getsBackPackParts.ToArray();
+    }
+    public PartsWeaponData[] GetObtainPartsWeapon()
+    {
+        return _getsWeaponParts.ToArray();
+    }
+
+    public void ActiveSceneChanged(Scene prescene, Scene thisscene)
+    {
+        if (thisscene.name == "Home")
+        {
+            instance.Build();
+        }
     }
 }

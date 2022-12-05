@@ -50,31 +50,36 @@ public class ModelBuilder : MonoBehaviour
     /// <summary>
     /// ëgÇ›óßÇƒèàóù
     /// </summary>
-    /// <param name="_buildData"></param>
-    private void Build(PartsBuildParam _buildData)
+    /// <param name="buildData"></param>
+    private void Build(PartsBuildParam buildData)
     {
-        var leg = Instantiate(PartsManager.Instance.AllModelData.GetPartsLeg(_buildData.Leg));
+        var leg = Instantiate(PartsManager.Instance.AllModelData.GetPartsLeg(buildData.Leg));
         leg.transform.SetParent(_modelBase.transform);
         leg.transform.localPosition = Vector3.zero;
         leg.transform.localRotation = Quaternion.identity;
-        var body = Instantiate(PartsManager.Instance.AllModelData.GetPartsBody(_buildData.Body));
+        var body = Instantiate(PartsManager.Instance.AllModelData.GetPartsBody(buildData.Body));
         body.transform.SetParent(leg.BodyJoint);
         body.transform.position = leg.BodyJoint.position;
         body.transform.rotation = leg.BodyJoint.rotation;
         body.BodyBase = leg.BodyJoint;
-        var head = Instantiate(PartsManager.Instance.AllModelData.GetPartsHead(_buildData.Head));
+        var head = Instantiate(PartsManager.Instance.AllModelData.GetPartsHead(buildData.Head));
         head.transform.SetParent(body.HeadJoint);
         head.transform.localPosition = Vector3.zero;
         head.transform.localRotation = Quaternion.identity;
-        var larm = Instantiate(PartsManager.Instance.AllModelData.GetPartsHand(_buildData.LHand));
-        var lweapon = Instantiate(PartsManager.Instance.AllModelData.GetWeapon(_buildData.LWeapon));
+        var larm = Instantiate(PartsManager.Instance.AllModelData.GetPartsHand(buildData.LHand));
+        var lweapon = Instantiate(PartsManager.Instance.AllModelData.GetWeapon(buildData.LWeapon));
         larm.SetWeapon(lweapon);
-        var rarm = Instantiate(PartsManager.Instance.AllModelData.GetPartsHand(_buildData.RHand));
-        var rweapon = Instantiate(PartsManager.Instance.AllModelData.GetWeapon(_buildData.RWeapon));
+        var rarm = Instantiate(PartsManager.Instance.AllModelData.GetPartsHand(buildData.RHand));
+        var rweapon = Instantiate(PartsManager.Instance.AllModelData.GetWeapon(buildData.RWeapon));
         rarm.SetWeapon(rweapon);
         body.SetHands(larm, rarm);
-        var backPack = Instantiate(PartsManager.Instance.AllModelData.GetBackPack(_buildData.Booster));
+        var backPack = Instantiate(PartsManager.Instance.AllModelData.GetBackPack(buildData.Booster));
         body.SetBackPack(backPack);
         body.AddBooster(leg.LegBoost);
+        IPartsModel[] parts = { head, body, larm, rarm, leg, backPack };
+        foreach (var par in parts)
+        {
+            par.ChangeColor(buildData.ColorId);
+        }
     }
 }

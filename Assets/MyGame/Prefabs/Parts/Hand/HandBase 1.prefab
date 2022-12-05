@@ -670,6 +670,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4870021205371790580}
   - component: {fileID: 4870021205371790583}
+  - component: {fileID: -8672870561505857913}
   m_Layer: 0
   m_Name: HandBase 1
   m_TagString: Untagged
@@ -714,10 +715,31 @@ MonoBehaviour:
   _grip: {fileID: 4870021205482334915}
   _weapon: {fileID: 0}
   _handAnime: {fileID: 4870021205946339209}
+  _anSetWeapon: 0
   _shoulderBoosters: {fileID: 4557457684506568681}
+  _partsColorChanger: {fileID: -8672870561505857913}
   PartsRotaionSpeed: 6
+  ReloadSpeed: 1
   ReloadTime: 1.5
   TargetTrans: {fileID: 0}
+--- !u!114 &-8672870561505857913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4870021205371790581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254b3cc64a645614fa76cb2759f896bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _armors:
+  - {fileID: 4870021204593329491}
+  - {fileID: 4870021205605920983}
+  - {fileID: 4870021204422227770}
+  _eyes: []
+  _covers: []
 --- !u!1 &4870021205482334912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,14 +1414,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5df1d73663a98741b7aa18541b0beff, type: 3}
---- !u!198 &7892765276776435002 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4416932975788090213, guid: f5df1d73663a98741b7aa18541b0beff, type: 3}
-  m_PrefabInstance: {fileID: 5819958107199172191}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4264102386511696422 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7775895315897269369, guid: f5df1d73663a98741b7aa18541b0beff, type: 3}
+  m_PrefabInstance: {fileID: 5819958107199172191}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7892765276776435002 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4416932975788090213, guid: f5df1d73663a98741b7aa18541b0beff, type: 3}
   m_PrefabInstance: {fileID: 5819958107199172191}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6382232744643960384

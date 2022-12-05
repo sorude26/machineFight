@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Parts/Head")]
 public class PartsHeadData : ScriptableObject
 {
     public int ID;

@@ -30,6 +30,8 @@ public class BodyController : MonoBehaviour, IPartsModel
     private DamageChecker _damageChecker = default;
     [SerializeField]
     private Animator _bodyAnime = default;
+    [SerializeField]
+    private PartsColorChanger _partsColorChanger = default;
     private MoveController _moveController = default;
     private BackPackController _backPack = default;
     private string _lSAttack = "SaberSlashL";
@@ -109,6 +111,13 @@ public class BodyController : MonoBehaviour, IPartsModel
     public void BackPackBurst()
     {
         _backPack?.ExecuteBackPackBurst(AttackTarget);
+    }
+    public void ChangeColor(int id)
+    {
+        if (_partsColorChanger != null)
+        {
+            _partsColorChanger.ChangeColor(id);
+        }
     }
     private void FixedUpdate()
     {
