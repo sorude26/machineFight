@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoosterController : MonoBehaviour, IPartsModel
+public class BoosterController : MonoBehaviour
 {
-    [SerializeField]
-    private int _id = default;
     [SerializeField]
     private ParticleSystem[] _mainBoosters = default;
     [SerializeField]
@@ -17,8 +15,6 @@ public class BoosterController : MonoBehaviour, IPartsModel
     [SerializeField]
     private ParticleSystem[] _rightBoosters = default;
     public bool IsBoost { get; private set; }
-
-    public int ID { get => _id; }
 
     public void StartBooster()
     {

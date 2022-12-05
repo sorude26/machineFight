@@ -27,6 +27,8 @@ public class HandController : MonoBehaviour, IPartsModel
     private bool _anSetWeapon = false;
     [SerializeField]
     private BoosterController _shoulderBoosters = default;
+    [SerializeField]
+    private PartsColorChanger _partsColorChanger = default;
     private float _changeTime = 0.1f;
     private string _reloadName = "Reload";
     private string _gholdName = "HandWeaponAim";
@@ -111,6 +113,13 @@ public class HandController : MonoBehaviour, IPartsModel
         }
         _weapon.Initialize();
         SetHoldAnim();
+    }
+    public void ChangeColor(int id)
+    {
+        if (_partsColorChanger != null)
+        {
+            _partsColorChanger.ChangeColor(id);
+        }
     }
     public void SetLockAim(Transform target)
     {

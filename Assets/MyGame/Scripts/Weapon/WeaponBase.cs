@@ -19,6 +19,8 @@ public abstract class WeaponBase : MonoBehaviour, IPartsModel
     protected int _maxAmmunitionCapacity = -1;
     [SerializeField]
     protected int _magazineCount = -1;
+    [SerializeField]
+    private PartsColorChanger _partsColorChanger = default;
     protected Action _onCount = default;
     public int MaxAmmunitionCapacity => _maxAmmunitionCapacity;
     public int MagazineCount => _magazineCount;
@@ -51,6 +53,13 @@ public abstract class WeaponBase : MonoBehaviour, IPartsModel
         _speed = param.Speed;
         _maxAmmunitionCapacity = param.MaxAmmunitionCapacity;
         _magazineCount = param.MagazineCount;
+    }
+    public void ChangeColor(int id)
+    {
+        if (_partsColorChanger != null)
+        {
+            _partsColorChanger.ChangeColor(id);
+        }
     }
     public abstract void Initialize();
     public virtual void Fire() { Fire(null); }

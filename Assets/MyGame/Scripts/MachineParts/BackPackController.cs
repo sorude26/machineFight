@@ -28,6 +28,9 @@ public class BackPackController : MonoBehaviour, IPartsModel
     private UnityEvent _backPackBurstEvent = default;
     [SerializeField]
     private WeaponBase _backPackWeapon = default;
+    [SerializeField]
+    private PartsColorChanger _partsColorChanger = default;
+
     public Transform CameraLock = default;
     public int ID { get => _id; }
     public BoosterController Booster { get => _booster; }
@@ -57,6 +60,13 @@ public class BackPackController : MonoBehaviour, IPartsModel
         if(_backPackWeapon != null)
         {
             _backPackWeapon.Fire(target);
+        }
+    }
+    public void ChangeColor(int id)
+    {
+        if (_partsColorChanger != null)
+        {
+            _partsColorChanger.ChangeColor(id);
         }
     }
     private Quaternion ClampRotation(Quaternion angle)

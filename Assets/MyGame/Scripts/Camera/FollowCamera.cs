@@ -73,6 +73,5 @@ public class FollowCamera : MonoBehaviour
     public void ChangeMode()
     {
         _noneLerp = !_noneLerp;
-        Debug.Log(_noneLerp);
     }
 }
