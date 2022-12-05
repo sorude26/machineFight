@@ -31,10 +31,11 @@ public static class OculusGameInput
 
     public static bool GetGrabIn(OVRInput.Controller controller)
     {
-        return false;
+        return OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controller);
     }
     public static bool GetGrabOut(OVRInput.Controller controller)
     {
-        return false;
+        return !OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controller);
+
     }
 }
