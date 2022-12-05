@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _holdType: 1
-  _holdPosition: {fileID: 0}
-  _holdRotation: {fileID: 0}
+  _holdPosition: {fileID: 9042501767734541209}
+  _holdRotation: {fileID: 9042501767734541209}
   _poseOnHold: {fileID: 11400000, guid: 986e1540b1436ff4b9c4229cdf27a86a, type: 2}
-  _isReverseHoldOnRight: 1
+  _isReverseHoldOnRight: 0
   _rotateLockX: 1
   _rotateLockY: 0.5
   _rotateLockZ: 1
@@ -107,8 +107,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3065626955061530579}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.30070576, y: 0, z: 0, w: 0.953717}
+  m_LocalPosition: {x: 0.14, y: 0.025, z: 0.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8949188523875313247}
@@ -141,8 +141,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6371393204389919966}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalPosition: {x: 0, y: 0.05, z: 0}
+  m_LocalScale: {x: 0.03, y: 0.1, z: 0.03}
   m_Children:
   - {fileID: 9042501767734541209}
   m_Father: {fileID: 8540691232488469984}
@@ -205,7 +205,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6371393204389919966}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

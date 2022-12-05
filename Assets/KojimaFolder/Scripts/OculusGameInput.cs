@@ -35,7 +35,7 @@ public static class OculusGameInput
     }
     public static bool GetGrabOut(OVRInput.Controller controller)
     {
-        return !OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger, controller);
+        return !OVRInput.Get(OVRInput.Button.PrimaryHandTrigger, controller);
 
     }
 }
