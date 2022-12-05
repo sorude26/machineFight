@@ -22,6 +22,8 @@ public class LegController : MonoBehaviour, IPartsModel
     private Transform _rightIk = default;
     [SerializeField]
     private BoosterController _legBooster = default;
+    [SerializeField]
+    private PartsColorChanger _partsColorChanger = default;
     public Transform LegBase = default;
     public Transform LockTrans = default;
     public Transform BaseTrans = default;
@@ -59,6 +61,13 @@ public class LegController : MonoBehaviour, IPartsModel
     {
         _leftIk.SetParent(trans);
         _rightIk.SetParent(trans);
+    }
+    public void ChangeColor(int id)
+    {
+        if (_partsColorChanger != null)
+        {
+            _partsColorChanger.ChangeColor(id);
+        }
     }
     public void Jump()
     {

@@ -19,6 +19,8 @@ public class PartsModelData : ScriptableObject
     private BackPackController[] _allBackPack = default;
     [SerializeField]
     private WeaponBase[] _allWeaponParts = default;
+    [SerializeField]
+    private ColorSetData[] _allColorSetData = default;
     public HeadController GetPartsHead(int id) 
     {
         return _allHeadParts.Where(parts => parts.ID == id).FirstOrDefault();
@@ -43,11 +45,16 @@ public class PartsModelData : ScriptableObject
     {
         return _allWeaponParts.Where(weapon => weapon.ID == id).FirstOrDefault();
     }
+    public ColorSetData GetColor(int id)
+    {
+        return _allColorSetData.Where(colorData => colorData.ID == id).FirstOrDefault();
+    }
 }
 
 public interface IPartsModel
 {
     public int ID { get; }
+    public void ChangeColor(int id);
 }
 [System.Serializable]
 public struct PartsBuildParam
@@ -60,6 +67,7 @@ public struct PartsBuildParam
     public int Booster;
     public int LWeapon;
     public int RWeapon;
+    public int ColorId;
 
     public static readonly int PARTS_TYPE_NUM = Enum.GetValues(typeof(PartsType)).Length;
     public int this[PartsType type]

@@ -833,6 +833,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4870021205371790580}
   - component: {fileID: 4870021205371790583}
+  - component: {fileID: -6796527920307406276}
   m_Layer: 0
   m_Name: HandBase 3
   m_TagString: Untagged
@@ -877,10 +878,36 @@ MonoBehaviour:
   _grip: {fileID: 4870021205482334915}
   _weapon: {fileID: 0}
   _handAnime: {fileID: 4870021205946339209}
+  _anSetWeapon: 0
   _shoulderBoosters: {fileID: 4557457684506568681}
+  _partsColorChanger: {fileID: -6796527920307406276}
   PartsRotaionSpeed: 6
+  ReloadSpeed: 1
   ReloadTime: 1.5
   TargetTrans: {fileID: 0}
+--- !u!114 &-6796527920307406276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4870021205371790581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254b3cc64a645614fa76cb2759f896bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _armors:
+  - {fileID: 4870021204593329491}
+  - {fileID: 2558791475880401892}
+  - {fileID: 4870021205605920983}
+  - {fileID: 4769597992129016806}
+  - {fileID: 1143423071125486044}
+  - {fileID: 6945869675210794065}
+  - {fileID: 3520092553883506224}
+  _eyes: []
+  _covers:
+  - {fileID: 8391120383123867156}
 --- !u!1 &4870021205482334912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,7 +1264,7 @@ GameObject:
   - component: {fileID: 6566908312679553488}
   - component: {fileID: 8391120383123867156}
   m_Layer: 0
-  m_Name: ArmorShoulder (4)
+  m_Name: CoverShoulder (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

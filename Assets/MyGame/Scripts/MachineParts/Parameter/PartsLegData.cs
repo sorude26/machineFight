@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Parts/Leg")]
 public class PartsLegData : ScriptableObject
 {
     public int ID;
