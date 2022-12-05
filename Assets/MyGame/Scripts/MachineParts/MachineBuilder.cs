@@ -43,6 +43,7 @@ public class MachineBuilder : MonoBehaviour
         modelID.Booster = PartsManager.Instance.AllParamData.GetPartsBack(buildPattern.Booster).ModelID;
         modelID.LWeapon = PartsManager.Instance.AllParamData.GetPartsWeapon(buildPattern.LWeapon).ModelID;
         modelID.RWeapon = PartsManager.Instance.AllParamData.GetPartsWeapon(buildPattern.RWeapon).ModelID;
+        modelID.ColorId = buildPattern.ColorId;
         _buildData = modelID;
         _buildParam = buildPattern;
         Build();
@@ -88,6 +89,11 @@ public class MachineBuilder : MonoBehaviour
         backPack.CameraLock = _aimTrans;
         body.SetBackPack(backPack);
         body.AddBooster(leg.LegBoost);
+        IPartsModel[] parts = { head, body, larm, rarm, leg, backPack };
+        foreach (var par in parts)
+        {
+            par.ChangeColor(_buildData.ColorId);
+        }
         Body = body;
         Leg = leg;
         SetParam();
