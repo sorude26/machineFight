@@ -5,10 +5,23 @@ using UnityEngine;
 
 public class HandTouchCollision : MonoBehaviour
 {
+    const float TOUCH_LENGTH = 0.1f;
+    float _touchSqrLength;
+
+    private void Awake()
+    {
+        _touchSqrLength = TOUCH_LENGTH * TOUCH_LENGTH;
+    }
+
     public Switch GetActiveSwitch(Switch.HoldTypes holdType)
     {
-        return Switch.SwitchList.Where(a => a.HoldType == holdType).
+        Switch result = Switch.SwitchList.Where(a => a.HoldType == holdType).
             OrderBy(a => GetSqrLengsh(a)).FirstOrDefault();
+        if (GetSqrLengsh(result) > _touchSqrLength)
+        {
+            return null;
+        }
+        return result;
     }
     float GetSqrLengsh(Switch swich)
     {
