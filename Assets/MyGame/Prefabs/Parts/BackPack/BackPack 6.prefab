@@ -105,6 +105,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -346,6 +347,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -422,6 +424,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: 10
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -617,6 +620,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -701,6 +705,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -819,6 +824,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -947,6 +953,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -1075,6 +1082,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -1284,6 +1292,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -1412,6 +1421,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -1663,6 +1673,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -1778,6 +1789,7 @@ GameObject:
   - component: {fileID: 7621560814504741536}
   - component: {fileID: 7405507347480766417}
   - component: {fileID: 1963577440719883629}
+  - component: {fileID: 1267416118070142237}
   m_Layer: 0
   m_Name: BackPack 6
   m_TagString: Untagged
@@ -1847,6 +1859,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _backPackWeapon: {fileID: 6222759897150331873}
+  _partsColorChanger: {fileID: 1267416118070142237}
   CameraLock: {fileID: 0}
 --- !u!114 &1963577440719883629
 MonoBehaviour:
@@ -1878,6 +1891,23 @@ MonoBehaviour:
   - {fileID: 4600954735563685878}
   _rightBoosters:
   - {fileID: 9086704614346272319}
+--- !u!114 &1267416118070142237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6810459593647748129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254b3cc64a645614fa76cb2759f896bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _armors:
+  - {fileID: 4352291349741198288}
+  - {fileID: 3493570190208056849}
+  _eyes: []
+  _covers: []
 --- !u!1 &6825334403630684599
 GameObject:
   m_ObjectHideFlags: 0
@@ -2064,6 +2094,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -2229,6 +2260,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -2347,6 +2379,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -2667,6 +2700,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -2893,14 +2927,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5df1d73663a98741b7aa18541b0beff, type: 3}
---- !u!198 &1763929808123321476 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4416932975788090213, guid: f5df1d73663a98741b7aa18541b0beff, type: 3}
-  m_PrefabInstance: {fileID: 2681513092036640737}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5683299068961948568 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7775895315897269369, guid: f5df1d73663a98741b7aa18541b0beff, type: 3}
+  m_PrefabInstance: {fileID: 2681513092036640737}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1763929808123321476 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4416932975788090213, guid: f5df1d73663a98741b7aa18541b0beff, type: 3}
   m_PrefabInstance: {fileID: 2681513092036640737}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2836532562057116332

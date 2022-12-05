@@ -55,6 +55,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -295,6 +296,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: 20
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -5494,6 +5496,7 @@ GameObject:
   - component: {fileID: 7621560814504741536}
   - component: {fileID: 7405507347480766417}
   - component: {fileID: 1963577440719883629}
+  - component: {fileID: -8739186568607841092}
   m_Layer: 0
   m_Name: BackPack 3
   m_TagString: Untagged
@@ -5562,6 +5565,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _backPackWeapon: {fileID: 7991276006298840308}
+  _partsColorChanger: {fileID: 0}
   CameraLock: {fileID: 0}
 --- !u!114 &1963577440719883629
 MonoBehaviour:
@@ -5593,6 +5597,21 @@ MonoBehaviour:
   - {fileID: 4600954735563685878}
   _rightBoosters:
   - {fileID: 9086704614346272319}
+--- !u!114 &-8739186568607841092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6810459593647748129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254b3cc64a645614fa76cb2759f896bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _armors: []
+  _eyes: []
+  _covers: []
 --- !u!1 &7341457327253291903
 GameObject:
   m_ObjectHideFlags: 0
@@ -5810,6 +5829,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0

@@ -172,6 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3975796896852269873}
   - component: {fileID: -3350619150711380617}
+  - component: {fileID: 1306433366853700385}
   m_Layer: 0
   m_Name: HeadBase 4
   m_TagString: Untagged
@@ -212,6 +213,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 3
+  _partsColorChanger: {fileID: 1306433366853700385}
+--- !u!114 &1306433366853700385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975796896852269872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254b3cc64a645614fa76cb2759f896bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _armors:
+  - {fileID: 3975796897904381353}
+  - {fileID: 1367683696801622988}
+  _eyes:
+  - {fileID: 3975796898122047569}
+  _covers:
+  - {fileID: 5149883845948385842}
+  - {fileID: 258027745140596970}
 --- !u!1 &3975796897653650769
 GameObject:
   m_ObjectHideFlags: 0

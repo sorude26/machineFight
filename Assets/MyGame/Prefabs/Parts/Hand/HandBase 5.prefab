@@ -630,6 +630,7 @@ MonoBehaviour:
     Time: 0.05
   _maxAmmunitionCapacity: 60
   _magazineCount: 5
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -1002,6 +1003,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6103685229491413732}
   - component: {fileID: 1441092845680463986}
+  - component: {fileID: 2636118948375085779}
   m_Layer: 0
   m_Name: HandBase 5
   m_TagString: Untagged
@@ -1048,9 +1050,30 @@ MonoBehaviour:
   _handAnime: {fileID: 6493080874281740131}
   _anSetWeapon: 1
   _shoulderBoosters: {fileID: 2863695934915252489}
+  _partsColorChanger: {fileID: 2636118948375085779}
   PartsRotaionSpeed: 3
+  ReloadSpeed: 1
   ReloadTime: 1.5
   TargetTrans: {fileID: 0}
+--- !u!114 &2636118948375085779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6619612952058385168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254b3cc64a645614fa76cb2759f896bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _armors:
+  - {fileID: 6937448152496476927}
+  - {fileID: 1102722604364029818}
+  _eyes: []
+  _covers:
+  - {fileID: 5148970787060105842}
+  - {fileID: 1817803825087482273}
 --- !u!1 &6762340936695400256
 GameObject:
   m_ObjectHideFlags: 0

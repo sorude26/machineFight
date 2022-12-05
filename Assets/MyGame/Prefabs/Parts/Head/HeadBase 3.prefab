@@ -91,6 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3975796896852269873}
   - component: {fileID: -3350619150711380617}
+  - component: {fileID: 3843385833596456358}
   m_Layer: 0
   m_Name: HeadBase 3
   m_TagString: Untagged
@@ -110,8 +111,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3975796897653650774}
-  - {fileID: 3975796897904381352}
   - {fileID: 3975796898122047568}
+  - {fileID: 3975796897904381352}
   - {fileID: 3152524528107824386}
   - {fileID: 7163703686502502929}
   - {fileID: 1242280686924521086}
@@ -131,6 +132,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 2
+  _partsColorChanger: {fileID: 3843385833596456358}
+--- !u!114 &3843385833596456358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3975796896852269872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254b3cc64a645614fa76cb2759f896bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _armors:
+  - {fileID: 3975796897904381353}
+  - {fileID: 7162437683406050500}
+  - {fileID: 1705110925537095268}
+  - {fileID: 4835615456092433808}
+  _eyes:
+  - {fileID: 3975796898122047569}
+  _covers: []
 --- !u!1 &3975796897653650769
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +264,7 @@ Transform:
   m_LocalScale: {x: 2, y: 0.4, z: 0.3}
   m_Children: []
   m_Father: {fileID: 3975796896852269873}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -70, y: 0, z: 0}
 --- !u!33 &3975796897904381358
 MeshFilter:
@@ -323,7 +345,7 @@ Transform:
   m_LocalScale: {x: 1.25, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3975796896852269873}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 5, y: 0, z: 0}
 --- !u!33 &3975796898122047574
 MeshFilter:
