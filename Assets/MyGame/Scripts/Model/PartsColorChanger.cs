@@ -10,6 +10,17 @@ public class PartsColorChanger : MonoBehaviour
     private MeshRenderer[] _eyes = default;
     [SerializeField]
     private MeshRenderer[] _covers = default;
+    [SerializeField]
+    private bool _startColorSetMode = false;
+    [SerializeField]
+    private int _startColorID = default;
+    private void Start()
+    {
+        if (_startColorSetMode == true)
+        {
+            ChangeColor(_startColorID);
+        }
+    }
 
     public void ChangeColor(int id)
     {
