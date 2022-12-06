@@ -275,7 +275,7 @@ public class BodyController : MonoBehaviour, IPartsModel
         }
         _moveController.VelocityMove(dir);
     }
-    private void StartJetBoosters()
+    public void StartJetBoosters()
     {
         foreach (var booster in _boosters)
         {

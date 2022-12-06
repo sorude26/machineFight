@@ -35,6 +35,7 @@ namespace MyGame
             {
                 _machineController.BodyController.BackPack.BackPackWeapon.AnLimitAmmunition();
             }
+            _machineController.BodyController.AttackTarget = NavigationManager.Instance.Target;
         }
         private void FixedUpdate()
         {

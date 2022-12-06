@@ -43,8 +43,8 @@ public class ModelBuilder : MonoBehaviour
         modelID.LHand = PartsManager.Instance.AllParamData.GetPartsHand(buildPattern.LHand).ModelID;
         modelID.Leg = PartsManager.Instance.AllParamData.GetPartsLeg(buildPattern.Leg).ModelID;
         modelID.Booster = PartsManager.Instance.AllParamData.GetPartsBack(buildPattern.Booster).ModelID;
-        modelID.LWeapon = buildPattern.LWeapon;
-        modelID.RWeapon = buildPattern.RWeapon;
+        modelID.LWeapon = PartsManager.Instance.AllParamData.GetPartsWeapon(buildPattern.LWeapon).ModelID;
+        modelID.RWeapon = PartsManager.Instance.AllParamData.GetPartsWeapon(buildPattern.RWeapon).ModelID;
         Build(modelID);
     }
     /// <summary>
