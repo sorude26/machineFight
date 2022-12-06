@@ -20,6 +20,10 @@ public class PlayerMachineController : MonoBehaviour
     private Transform _headTrans = default;
     [SerializeField]
     private FollowCamera _camera = default;
+    [SerializeField]
+    private bool _startWaitMode = false;
+    [SerializeField]
+    private Rigidbody _machineRB = default;
     private float _maxBooster = default;
     private float _currentBooster = default;
     private float _boosterRecoverySpeed = default;
@@ -34,10 +38,17 @@ public class PlayerMachineController : MonoBehaviour
         {
             _buildParam = PlayerData.instance.BuildPreset;
         }
-        SetInput();
         _machineController.Initialize(_buildParam);
         _machineController.DamageChecker.OnDamageEvent.AddListener(DamagePlayer);
         _machineController.DamageChecker.OnRecoveryEvent.AddListener(ShowHpData);
+        if (_startWaitMode == true)
+        {
+            _machineRB.isKinematic = true;
+        }
+        else
+        {
+            SetInput();
+        }
         yield return null;
         _stageUI.StartSet(_machineController.BodyController.LeftHand.WeaponBase,
             _machineController.BodyController.RightHand.WeaponBase, _machineController.BodyController.BackPack.BackPackWeapon);
@@ -49,10 +60,14 @@ public class PlayerMachineController : MonoBehaviour
         _machineController.DamageChecker.ChangeAnTarget();
         StageManager.Instance.OnGameEnd += SetTotalDamage;
         _headTrans.SetParent(_machineController.BodyController.HeadJoint.transform);
+        if (_startWaitMode == true)
+        {
+            _machineController.BodyController.StartJetBoosters();
+        }
     }
     private void FixedUpdate()
     {
-        if (_machineController.IsInitalized == false) { return; }
+        if (_machineController.IsInitalized == false || _startWaitMode == true) { return; }
         BoosterUpdate();
         EnergyUpdate();
         _playerCamera.FreeLock(PlayerInput.CameraDir);
@@ -182,5 +197,11 @@ public class PlayerMachineController : MonoBehaviour
     public void RecoveryHp(int point)
     {
         _machineController.DamageChecker.RecoveryHp(point);
+    }
+    public void EndWaitMode()
+    {
+        SetInput();
+        _startWaitMode = false;
+        _machineRB.isKinematic = false;
     }
 }
