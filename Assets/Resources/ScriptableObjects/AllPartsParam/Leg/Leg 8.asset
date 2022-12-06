@@ -9,13 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cbfe9ba7058da14b938c2a30a4e2210, type: 3}
-  m_Name: Head 4
+  m_Script: {fileID: 11500000, guid: 70d65a0dd2a3868459d4da16a1f27f56, type: 3}
+  m_Name: Leg 8
   m_EditorClassIdentifier: 
-  ID: 3
-  Name: StandardHead
+  ID: 7
+  Name: GroundWalker
   ModelID: 5
-  PartsHp: 50
-  LockOnRange: 500
-  LockOnSpeed: 5
-  EnergyConsumption: 0.04
+  PartsHp: 300
+  EnergyConsumption: 0.03
+  Param:
+    WalkSpeed: 9
+    WalkTurnSpeed: 2
+    JumpPower: 55
+    StepUpPower: 3
+    DotSub: 0.6
+    AnimeChangeSpeed: 0.3
