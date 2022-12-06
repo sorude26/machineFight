@@ -21,7 +21,7 @@ public class MachineBuilder : MonoBehaviour
     private PartsBuildParam _buildParam = default;
     public BodyController Body { get; private set; }
     public LegController Leg { get; private set; }
-    public PartsBuildParam BuildData { get => _buildData; }
+    public PartsBuildParam BuildData { get => _buildParam; }
     public float MaxBooster { get; private set; }
     public float BoosterRecoverySpeed { get; private set; }
     public float MaxEnergy { get; private set; }

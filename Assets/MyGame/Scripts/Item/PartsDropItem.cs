@@ -33,10 +33,10 @@ public class PartsDropItem : ItemBase
                 get = PartsManager.Instance.AllParamData.GetPartsBack(_partsID).Name;
                 break;
             case PartsType.LWeapon:
-                get = PartsManager.Instance.AllModelData.GetWeapon(_partsID).name;
+                get = PartsManager.Instance.AllParamData.GetPartsWeapon(_partsID).Name;
                 break;
             case PartsType.RWeapon:
-                get = PartsManager.Instance.AllModelData.GetWeapon(_partsID).name;
+                get = PartsManager.Instance.AllParamData.GetPartsWeapon(_partsID).Name;
                 break;
             default:
                 break;
