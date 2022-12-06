@@ -9,13 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cbfe9ba7058da14b938c2a30a4e2210, type: 3}
-  m_Name: Head 5
+  m_Script: {fileID: 11500000, guid: 70d65a0dd2a3868459d4da16a1f27f56, type: 3}
+  m_Name: Leg 9
   m_EditorClassIdentifier: 
-  ID: 4
-  Name: MiddlerangeHead
+  ID: 8
+  Name: GroundFourFoot
   ModelID: 6
-  PartsHp: 50
-  LockOnRange: 600
-  LockOnSpeed: 2
-  EnergyConsumption: 0.01
+  PartsHp: 300
+  EnergyConsumption: 0.03
+  Param:
+    WalkSpeed: 23
+    WalkTurnSpeed: 4
+    JumpPower: 40
+    StepUpPower: 3
+    DotSub: 0.6
+    AnimeChangeSpeed: 0.3
