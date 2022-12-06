@@ -16,11 +16,18 @@ public class SoundClipList : MonoBehaviour
     /// <returns></returns>
     public AudioClip GetAudioClip(int index)
     {
+        if (index > audioClips.Count)
+        {
+            Debug.LogWarning("サウンドリストの範囲外です");
+            return null;
+        }
+
         if(audioClips[index] == null)
         {
             Debug.LogWarning("指定された番号にサウンドが登録されていませんでした。 指定番号 : " + index);
             return null;
         }
+
         return audioClips[index];
     }
 }
