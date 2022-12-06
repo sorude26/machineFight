@@ -41,7 +41,10 @@ public class SoundManager : MonoBehaviour
     /// <param name="volume"></param>
     public void PlayBGM(int soundId, float volume = 1f)
     {
-        _bgmAudioSource.Play(_soundList.GetAudioClip(soundId), volume);
+        AudioClip audioClip = _soundList.GetAudioClip(soundId);
+        if (audioClip == null) return;
+
+        _bgmAudioSource.Play(audioClip, volume);
     }
 
     /// <summary>
@@ -52,9 +55,12 @@ public class SoundManager : MonoBehaviour
     /// <param name="mixerGroup"></param>
     public void PlaySE(int soundId, float volume = 1f, SoundMixerGroup mixerGroup = SoundMixerGroup.SE)
     {
+        AudioClip audioClip = _soundList.GetAudioClip(soundId);
+        if (audioClip == null) return;
+
         SoundPlayer soundPlayer = GetSoundPlayer();
         soundPlayer.gameObject.SetActive(true);
-        soundPlayer.PlaySE(_soundList.GetAudioClip(soundId), volume, mixerGroup);
+        soundPlayer.PlaySE(audioClip, volume, mixerGroup);
     }
 
     /// <summary>
@@ -64,12 +70,15 @@ public class SoundManager : MonoBehaviour
     /// <param name="pos"></param>
     /// <param name="volume"></param>
     /// <param name="mixerGroup"></param>
-    public void Play3DSE(int soundId, Vector3 pos, float volume = 1f, SoundMixerGroup mixerGroup = SoundMixerGroup.SE)
+    public void PlaySE(int soundId, Vector3 pos, float volume = 1f, SoundMixerGroup mixerGroup = SoundMixerGroup.SE)
     {
+        AudioClip audioClip = _soundList.GetAudioClip(soundId);
+        if (audioClip == null) return;
+
         SoundPlayer soundPlayer = GetSound3DPlayer();
         soundPlayer.gameObject.SetActive(true);
         soundPlayer.transform.position = pos;
-        soundPlayer.PlaySE(_soundList.GetAudioClip(soundId), volume, mixerGroup);
+        soundPlayer.PlaySE(audioClip, volume, mixerGroup);
     }
 
 
