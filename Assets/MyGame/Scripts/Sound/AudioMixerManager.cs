@@ -70,19 +70,19 @@ public class AudioMixerManager : MonoBehaviour
     /// </summary>
     /// <param name="mixerGroup">取得したいグループ</param>
     /// <returns></returns>
-    public AudioMixerGroup GetAudioMixerGroup(SoundManager.SoundMixerGroup mixerGroup)
+    public AudioMixerGroup GetAudioMixerGroup(SoundManager.AudioMixerGroup mixerGroup)
     {
         switch (mixerGroup)
         {
-            case SoundManager.SoundMixerGroup.BGM:
+            case SoundManager.AudioMixerGroup.BGM:
                 return _audioMixerGroup[0];
-            case SoundManager.SoundMixerGroup.SE:
+            case SoundManager.AudioMixerGroup.SE:
                 return _audioMixerGroup[1];
-            case SoundManager.SoundMixerGroup.SYSTEM_SE:
+            case SoundManager.AudioMixerGroup.SYSTEM_SE:
                 return _audioMixerGroup[2];
-            case SoundManager.SoundMixerGroup.PLAYER_SE:
+            case SoundManager.AudioMixerGroup.PLAYER_SE:
                 return _audioMixerGroup[3];
-            case SoundManager.SoundMixerGroup.ENEMY_SE:
+            case SoundManager.AudioMixerGroup.ENEMY_SE:
                 return _audioMixerGroup[4];
             default:
                 Debug.LogWarning("指定されたAudioMixerGroupがありません");

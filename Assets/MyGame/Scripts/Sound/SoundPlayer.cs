@@ -24,7 +24,7 @@ public class SoundPlayer : MonoBehaviour
     public void PlayBGM(AudioClip audioClip, float volume = 1f)
     {
         _audioSource.loop = true;
-        _audioSource.outputAudioMixerGroup = AudioMixerManager.Instance.GetAudioMixerGroup(SoundManager.SoundMixerGroup.BGM);
+        _audioSource.outputAudioMixerGroup = AudioMixerManager.Instance.GetAudioMixerGroup(SoundManager.AudioMixerGroup.BGM);
         _audioSource.Play(audioClip, volume);
     }
 
@@ -34,7 +34,7 @@ public class SoundPlayer : MonoBehaviour
     /// <param name="audioClip"></param>
     /// <param name="volume"></param>
     /// <param name="group"></param>
-    public void PlaySE(AudioClip audioClip, float volume = 1f, SoundManager.SoundMixerGroup group = SoundManager.SoundMixerGroup.SE)
+    public void PlaySE(AudioClip audioClip, float volume = 1f, SoundManager.AudioMixerGroup group = SoundManager.AudioMixerGroup.SE)
     {
         _audioSource.loop = false;
         _audioSource.outputAudioMixerGroup = AudioMixerManager.Instance.GetAudioMixerGroup(group);

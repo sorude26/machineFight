@@ -19,7 +19,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private AudioSource _bgmAudioSource;
 
-    public enum SoundMixerGroup
+    public enum AudioMixerGroup
     {
         BGM,
         SE,
@@ -53,7 +53,7 @@ public class SoundManager : MonoBehaviour
     /// <param name="soundId"></param>
     /// <param name="volume"></param>
     /// <param name="mixerGroup"></param>
-    public void PlaySE(int soundId, float volume = 1f, SoundMixerGroup mixerGroup = SoundMixerGroup.SE)
+    public void PlaySE(int soundId, float volume = 1f, AudioMixerGroup mixerGroup = AudioMixerGroup.SE)
     {
         AudioClip audioClip = _soundList.GetAudioClip(soundId);
         if (audioClip == null) return;
@@ -70,7 +70,7 @@ public class SoundManager : MonoBehaviour
     /// <param name="pos"></param>
     /// <param name="volume"></param>
     /// <param name="mixerGroup"></param>
-    public void PlaySE(int soundId, Vector3 pos, float volume = 1f, SoundMixerGroup mixerGroup = SoundMixerGroup.SE)
+    public void PlaySE(int soundId, Vector3 pos, float volume = 1f, AudioMixerGroup mixerGroup = AudioMixerGroup.SE)
     {
         AudioClip audioClip = _soundList.GetAudioClip(soundId);
         if (audioClip == null) return;
