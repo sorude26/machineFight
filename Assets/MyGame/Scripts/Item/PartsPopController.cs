@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PartsPopController : MonoBehaviour
-{
+public class PartsPopController : PopController 
+{ 
     [SerializeField]
     private PartsDropItem _item = default;
     [SerializeField]
     private MachineBuilder _machineBuilder = null;
-    public void PopItem()
+    public override void PopItem()
     {
         var partsType = (PartsType)Random.Range(0, PartsBuildParam.PARTS_TYPE_NUM);
         var partsId = _machineBuilder.BuildData[partsType];

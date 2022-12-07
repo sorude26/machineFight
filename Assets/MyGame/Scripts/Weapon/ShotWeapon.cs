@@ -72,6 +72,10 @@ public class ShotWeapon : WeaponBase
         _count = 0;
         while (_count < _shotCount && IsFire)
         {
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlaySE(_seFireID,_muzzle.position, _seFireVolume);
+            }
             if (_muzzleFlashEffect != null)
             {
                 _muzzleFlashEffect.Play();

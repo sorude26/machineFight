@@ -16,9 +16,16 @@ public class BladePoint : MonoBehaviour
     private GameObject _hitEffect = default;
     [SerializeField]
     private ParticleSystem _onEffect = default;
+    [SerializeField]
+    private bool _anSleepBlade = false;
     private float _timer = 0;
     private void FixedUpdate()
     {
+        if (_anSleepBlade == true)
+        {
+            HitCheck();
+            return;
+        }
         if (_timer < 0)
         {
             return;
