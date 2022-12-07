@@ -260,6 +260,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""ba966861-d40e-4883-9d77-70134df82784"",
+                    ""path"": ""<VrCockpit>/moveAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""86dd8a81-c854-4310-b079-bcafa81e89cd"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -293,6 +304,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""20f63a1e-c373-4bca-a49f-0f37cc58bced"",
+                    ""path"": ""<VrCockpit>/jump"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""df524d69-c126-4493-b47f-62b81589828b"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
@@ -317,6 +339,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""0b5c084d-9ece-4333-a291-e54df66d5773"",
                     ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d4eca91b-0642-49d6-a125-7d72188d393b"",
+                    ""path"": ""<VrCockpit>/attack1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -392,6 +425,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""bbed9390-c095-4b35-9a8e-d421d849b115"",
+                    ""path"": ""<VrCockpit>/cameraAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""71928ce6-1239-4975-8673-70d03119bd88"",
                     ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
@@ -405,6 +449,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""7b4b1b7e-7440-4f00-b91f-a2fcf1b806f5"",
                     ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""052c1209-9ddb-45e0-aeae-0932e98a2fd1"",
+                    ""path"": ""<VrCockpit>/attack2"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -436,6 +491,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""547a24b8-4eb7-4d87-ae7b-0c040c9b048a"",
+                    ""path"": ""<VrCockpit>/jetBoost"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JetBoost"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""a477a5ef-b351-4c03-881c-a077fafcc79c"",
                     ""path"": ""<Keyboard>/numpad5"",
                     ""interactions"": """",
@@ -458,6 +524,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""0491bb48-a239-49de-8a9d-e615533a7f6e"",
+                    ""path"": ""<VrCockpit>/changeTarget"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""ec3d8d51-f551-45b5-b3f7-4d4756750f3d"",
                     ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
@@ -471,6 +548,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""41d43e35-12e2-497e-adde-81dce7093e46"",
                     ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad377b89-ca40-4d4a-a6a9-4405687f4c15"",
+                    ""path"": ""<VrCockpit>/attack3"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -537,6 +625,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""ec7134b3-b1cb-4f37-9771-b507978b4b32"",
                     ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b61b73d3-e6fe-400d-9e4c-50f2511e7f62"",
+                    ""path"": ""<VrCockpit>/attack4"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
