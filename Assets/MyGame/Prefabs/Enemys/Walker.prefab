@@ -5843,6 +5843,9 @@ MonoBehaviour:
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
   _partsColorChanger: {fileID: 0}
+  _weaponFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -11500,6 +11503,9 @@ MonoBehaviour:
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
   _partsColorChanger: {fileID: 0}
+  _weaponFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -11790,6 +11796,9 @@ MonoBehaviour:
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
   _partsColorChanger: {fileID: 0}
+  _weaponFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -12474,6 +12483,9 @@ MonoBehaviour:
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
   _partsColorChanger: {fileID: 0}
+  _weaponFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -12725,6 +12737,13 @@ MonoBehaviour:
     RWeapon: 0
     ColorId: 0
   _bodyTarget: {fileID: 1958008585692962140}
+  _deadEffct: {fileID: 5285524602227699168, guid: 13820972174337440960fa1dc6f4f234, type: 3}
+  _explosionTime: 3
+  _exParam:
+    Pos: {x: 0, y: 0, z: 0}
+    Power: 110
+    Time: 2
+  _popControllers: []
 --- !u!114 &1958008586036044223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12862,6 +12881,8 @@ MonoBehaviour:
   _eyes:
   - {fileID: 1958008585940668674}
   _covers: []
+  _startColorSetMode: 0
+  _startColorID: 0
 --- !u!1 &1958008586100759609
 GameObject:
   m_ObjectHideFlags: 0
@@ -13373,6 +13394,9 @@ MonoBehaviour:
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
   _partsColorChanger: {fileID: 0}
+  _weaponFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -18301,6 +18325,9 @@ MonoBehaviour:
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
   _partsColorChanger: {fileID: 0}
+  _weaponFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -30168,6 +30195,9 @@ MonoBehaviour:
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
   _partsColorChanger: {fileID: 0}
+  _weaponFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -34676,6 +34706,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
+      propertyPath: _onDeadEvent.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
       propertyPath: _onDeadEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 65961222045291707}
@@ -34692,11 +34726,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1958008586036044221}
     - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
+      propertyPath: _onDeadEvent.m_PersistentCalls.m_Calls.Array.data[5].m_Target
+      value: 
+      objectReference: {fileID: 1958008586036044208}
+    - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
       propertyPath: _onDeadEvent.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
       propertyPath: _onDeadEvent.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
+      propertyPath: _onDeadEvent.m_PersistentCalls.m_Calls.Array.data[5].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
@@ -34712,6 +34754,10 @@ PrefabInstance:
       value: set_enabled
       objectReference: {fileID: 0}
     - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
+      propertyPath: _onDeadEvent.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
+      value: ExplosionMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
       propertyPath: _onDeadEvent.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -34724,6 +34770,10 @@ PrefabInstance:
       value: UnityEngine.Behaviour, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
+      propertyPath: _onDeadEvent.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
+      value: MyGame.NaviMachine, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
       propertyPath: _onDeadEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -34733,6 +34783,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
       propertyPath: _onDeadEvent.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
+      propertyPath: _onDeadEvent.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2793980863180316608, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}

@@ -24,6 +24,10 @@ public abstract class WeaponBase : MonoBehaviour, IPartsModel
     private PartsColorChanger _partsColorChanger = default;
     [SerializeField]
     protected UnityEvent _weaponFireEvent = default;
+    [SerializeField]
+    protected int _seFireID = 3;
+    [SerializeField]
+    protected float _seFireVolume = 0.2f;
     protected Action _onCount = default;
     public int MaxAmmunitionCapacity => _maxAmmunitionCapacity;
     public int MagazineCount => _magazineCount;
