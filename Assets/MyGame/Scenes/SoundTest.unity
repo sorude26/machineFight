@@ -158,6 +158,11 @@ MonoBehaviour:
   _activeMaterial: {fileID: 2100000, guid: a43a9375b61f233408cee3c56303ca57, type: 2}
   _rightRenderer: {fileID: 293880847}
   _leftRenderer: {fileID: 1558260645}
+  _isPlayBGM: 1
+  _playBGMIndex: 0
+  _playRightIndex: 1
+  _playLeftIndex: 1
+  _playCount: 4
 --- !u!4 &242852328
 Transform:
   m_ObjectHideFlags: 0
@@ -846,9 +851,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 398824329000574496, guid: bfaa70d726eaef94c847ee124faf467d, type: 3}
+      propertyPath: audioClips.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 398824329000574496, guid: bfaa70d726eaef94c847ee124faf467d, type: 3}
       propertyPath: audioClips.Array.data[2]
       value: 
       objectReference: {fileID: 8300000, guid: 53e6be94e8ea55f40ae54a85364b4b82, type: 3}
+    - target: {fileID: 398824329000574496, guid: bfaa70d726eaef94c847ee124faf467d, type: 3}
+      propertyPath: audioClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 09f5ccba21d72f149b46fa020d47b92c, type: 3}
+    - target: {fileID: 398824329000574496, guid: bfaa70d726eaef94c847ee124faf467d, type: 3}
+      propertyPath: audioClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 766d77d9c868f7b49854b5bcc0ebb6da, type: 3}
+    - target: {fileID: 398824329000574496, guid: bfaa70d726eaef94c847ee124faf467d, type: 3}
+      propertyPath: audioClips.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 00954e9144d10c64daa0b069779262c9, type: 3}
     - target: {fileID: 398824329000574497, guid: bfaa70d726eaef94c847ee124faf467d, type: 3}
       propertyPath: m_Name
       value: SoundList
