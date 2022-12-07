@@ -89,7 +89,7 @@ public class MachineBuilder : MonoBehaviour
         backPack.CameraLock = _aimTrans;
         body.SetBackPack(backPack);
         body.AddBooster(leg.LegBoost);
-        IPartsModel[] parts = { head, body, larm, rarm, leg, backPack };
+        IPartsModel[] parts = { head, body, larm, rarm, leg, backPack, lweapon, rweapon };
         foreach (var par in parts)
         {
             par.ChangeColor(_buildData.ColorId);
@@ -124,7 +124,7 @@ public class MachineBuilder : MonoBehaviour
         bodyParam.BoostMoveSpeed += handDataR.AdditionalBooster + handDataL.AdditionalBooster;
         bodyParam.JetPower += handDataR.AdditionalBooster + handDataL.AdditionalBooster;
         bodyParam.Hp = hp;
-        Body.SetParam(bodyParam,handDataL,handDataR);
+        Body.SetParam(bodyParam, handDataL, handDataR);
         Leg.SetLegParam(legData.Param);
     }
 }
