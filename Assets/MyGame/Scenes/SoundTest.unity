@@ -147,7 +147,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242852326}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb09f7def13e99e43b3809c5951ac2ff, type: 3}
   m_Name: 
@@ -156,13 +156,11 @@ MonoBehaviour:
   _left: {fileID: 1558260643}
   _defaultMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   _activeMaterial: {fileID: 2100000, guid: a43a9375b61f233408cee3c56303ca57, type: 2}
-  _rightRenderer: {fileID: 293880847}
-  _leftRenderer: {fileID: 1558260645}
-  _isPlayBGM: 1
+  _isPlayBGM: 0
   _playBGMIndex: 0
-  _playRightIndex: 1
+  _playRightIndex: 3
   _playLeftIndex: 1
-  _playCount: 4
+  _playCount: 1
 --- !u!4 &242852328
 Transform:
   m_ObjectHideFlags: 0
@@ -758,7 +756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 45473426757602597, guid: 59bf071db1b9e0841960a8edb8002b9f, type: 3}
       propertyPath: Loop
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 45473426757602597, guid: 59bf071db1b9e0841960a8edb8002b9f, type: 3}
       propertyPath: MinDistance
@@ -767,10 +765,10 @@ PrefabInstance:
     - target: {fileID: 45473426757602597, guid: 59bf071db1b9e0841960a8edb8002b9f, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 94992ee345a2efe41be61ac07c8abc46, type: 3}
     - target: {fileID: 45473426757602597, guid: 59bf071db1b9e0841960a8edb8002b9f, type: 3}
       propertyPath: m_PlayOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 45473426757602597, guid: 59bf071db1b9e0841960a8edb8002b9f, type: 3}
       propertyPath: OutputAudioMixerGroup
@@ -861,7 +859,7 @@ PrefabInstance:
     - target: {fileID: 398824329000574496, guid: bfaa70d726eaef94c847ee124faf467d, type: 3}
       propertyPath: audioClips.Array.data[3]
       value: 
-      objectReference: {fileID: 8300000, guid: 09f5ccba21d72f149b46fa020d47b92c, type: 3}
+      objectReference: {fileID: 8300000, guid: 0e7ad37d8efb18540b45a5a90eec7844, type: 3}
     - target: {fileID: 398824329000574496, guid: bfaa70d726eaef94c847ee124faf467d, type: 3}
       propertyPath: audioClips.Array.data[4]
       value: 

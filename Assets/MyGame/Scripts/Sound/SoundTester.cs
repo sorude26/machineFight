@@ -30,7 +30,7 @@ public class SoundTester : MonoBehaviour
     void Start()
     {
         _rightRenderer = _right.GetComponent<MeshRenderer>();
-        _rightRenderer = _left.GetComponent<MeshRenderer>();
+        _leftRenderer = _left.GetComponent<MeshRenderer>();
         
         StartCoroutine(Play());
     }
