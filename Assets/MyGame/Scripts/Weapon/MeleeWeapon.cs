@@ -6,6 +6,10 @@ public class MeleeWeapon : WeaponBase
 {
     [SerializeField]
     private BladePoint[] _bladePoints = default;
+    [SerializeField]
+    private Animator _animator = default;
+    [SerializeField]
+    private string _attackName = default;
     public override void Initialize()
     {
         foreach (var blade in _bladePoints)
@@ -19,5 +23,10 @@ public class MeleeWeapon : WeaponBase
         {
             blade.OnBlade();
         }
+        if (_animator != null)
+        {
+            _animator.Play(_attackName);
+        }
+        _weaponFireEvent?.Invoke();
     }
 }
