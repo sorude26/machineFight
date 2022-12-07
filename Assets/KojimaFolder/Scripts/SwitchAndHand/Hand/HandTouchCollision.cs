@@ -17,8 +17,10 @@ public class HandTouchCollision : MonoBehaviour
     {
         Switch result = Switch.SwitchList.Where(a => a.HoldType == holdType).
             OrderBy(a => GetSqrLengsh(a)).FirstOrDefault();
+        if (result == null) return null;
         if (GetSqrLengsh(result) > _touchSqrLength)
         {
+            //‹——£‚ª’·‚¢ê‡‚Ínull‚ğreturn
             return null;
         }
         return result;
