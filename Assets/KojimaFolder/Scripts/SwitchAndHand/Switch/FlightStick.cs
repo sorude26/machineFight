@@ -9,14 +9,16 @@ using UnityEngine.SocialPlatforms;
 public class FlightStick : Switch
 {
     const float STICK_ANGLE_MAX = 45f;
+    static float STICK_ANGLE_MAX_REVERSE = 1f / STICK_ANGLE_MAX; 
 
     [SerializeField]
     float _holdMoveOffsetX;
     [SerializeField]
     Transform _stickRotateBase;
 
+    Vector3 _currentStickValue;
     //フライトスティック入力
-    Vector3 _currentStickRotate;
+    Vector3 CurrentStickValue { get => _currentStickValue; set => _currentStickValue = value * STICK_ANGLE_MAX_REVERSE; }
 
     /// <summary>
     /// フライトスティック、本体の入力を取る
@@ -25,7 +27,7 @@ public class FlightStick : Switch
     public Vector2 GetStickBodyInput()
     {
         if (_lockinHand == null) return Vector2.zero;
-        return new Vector2(_currentStickRotate.x / STICK_ANGLE_MAX, _currentStickRotate.z / STICK_ANGLE_MAX);
+        return CurrentStickValue;
     }
 
     /// <summary>
@@ -129,7 +131,7 @@ public class FlightStick : Switch
         //Stickの回転を適用
         _stickRotateBase.localRotation = Quaternion.Euler(stickRotate);
         //フライトスティック入力を外部から取れるように保存
-        _currentStickRotate = stickRotate;
+        CurrentStickValue = stickRotate;
         //
         //追記部終了
         //
