@@ -15,6 +15,7 @@ public class FlightStick : Switch
     [SerializeField]
     Transform _stickRotateBase;
 
+    //フライトスティック入力
     Vector3 _currentStickRotate;
 
     /// <summary>
@@ -23,6 +24,7 @@ public class FlightStick : Switch
     /// <returns></returns>
     public Vector2 GetStickBodyInput()
     {
+        if (_lockinHand == null) return Vector2.zero;
         return new Vector2(_currentStickRotate.x / STICK_ANGLE_MAX, _currentStickRotate.z / STICK_ANGLE_MAX);
     }
 
@@ -126,6 +128,8 @@ public class FlightStick : Switch
         stickRotate.z = Mathf.Max(stickRotate.z, -STICK_ANGLE_MAX);
         //Stickの回転を適用
         _stickRotateBase.localRotation = Quaternion.Euler(stickRotate);
+        //フライトスティック入力を外部から取れるように保存
+        _currentStickRotate = stickRotate;
         //
         //追記部終了
         //
