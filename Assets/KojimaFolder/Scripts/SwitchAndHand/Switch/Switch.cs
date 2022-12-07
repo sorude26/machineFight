@@ -12,8 +12,8 @@ public class Switch : MonoBehaviour
     protected const float SWITCH_VALUE_MAX = 1;
     protected const float SWITCH_VALUE_MIN = 0;
     protected const float SWITCH_VALUE_MID = 0.5f;
-    const float ROTATE_LERP_SPEED = 0.15f;
-    const float MOVE_LERP_SPEED = 0.15f;
+    protected const float ROTATE_LERP_SPEED = 0.2f;
+    protected const float MOVE_LERP_SPEED = 0.5f;
     public enum HoldTypes
     {
         Pinch,
@@ -34,19 +34,19 @@ public class Switch : MonoBehaviour
     bool _isReverseHoldOnRight = true;
     [Header("ペットボトル開けるときのひねり")]
     [SerializeField, Range(0.0f, 1.0f)]
-    float _rotateLockX = 0f;
+    protected float _rotateLockX = 0f;
     [Header("雑巾絞りのひねり")]
     [SerializeField, Range(0.0f, 1.0f)]
-    float _rotateLockY = 0f;
+    protected float _rotateLockY = 0f;
     [Header("鍵穴のひねり")]
     [SerializeField, Range(0.0f, 1.0f)]
-    float _rotateLockZ = 0f;
+    protected float _rotateLockZ = 0f;
     [SerializeField]
     AudioClip _audioClip;
 
     AudioSource _audioSource;
-    Vector3 _handMove = Vector3.zero;
-    Quaternion _currentHandRotate = Quaternion.identity;
+    protected Vector3 _handMove = Vector3.zero;
+    protected Quaternion _currentHandRotate = Quaternion.identity;
     
 
     //スイッチの状態(基本的に0～1で管理)
@@ -204,7 +204,7 @@ public class Switch : MonoBehaviour
         _lockinHand.transform.position = _handMove + _lockinHand.transform.position - _lockinHand.HoldPosition(_holdType);
     }
 
-    private Quaternion GetMyHoldRotation()
+    protected Quaternion GetMyHoldRotation()
     {
         //rotate
         Quaternion myRotate = _holdRotation.rotation;
