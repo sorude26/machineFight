@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7086520550321928448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2099780054749077946}
+  - component: {fileID: 881275777431235224}
+  m_Layer: 10
+  m_Name: ItemPop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2099780054749077946
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7086520550321928448}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7633314310045737434}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &881275777431235224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7086520550321928448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0a5f1aad5824d5459f61003827190ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _items:
+  - {fileID: 1351174841993859409, guid: ab908356eec1a4e438d305a8e2d27020, type: 3}
+  - {fileID: 1234321730564965865, guid: 6215920cd43c3334b967b1bc5f017da6, type: 3}
+  - {fileID: 1234321730564965865, guid: b72018ba32c20f64eb6dd9eee453fd91, type: 3}
+  - {fileID: 1234321730564965865, guid: b72018ba32c20f64eb6dd9eee453fd91, type: 3}
+  - {fileID: 1234321730564965865, guid: b72018ba32c20f64eb6dd9eee453fd91, type: 3}
+  - {fileID: 1351174841993859409, guid: b15ec99a961eb2d4599e2898ae001aac, type: 3}
+  - {fileID: 1351174841993859409, guid: b15ec99a961eb2d4599e2898ae001aac, type: 3}
+  - {fileID: 1351174841993859409, guid: b15ec99a961eb2d4599e2898ae001aac, type: 3}
+  _count: 3
 --- !u!1 &7633314310021058516
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +126,6 @@ GameObject:
   - component: {fileID: 7633314310045737436}
   - component: {fileID: 7633314310045737437}
   - component: {fileID: 7633314310045737248}
-  - component: {fileID: 7633314310045737249}
   m_Layer: 10
   m_Name: MachineBase
   m_TagString: Untagged
@@ -96,6 +148,7 @@ Transform:
   - {fileID: 7633314310370346843}
   - {fileID: 7633314310533338935}
   - {fileID: 7633314311662574896}
+  - {fileID: 2099780054749077946}
   m_Father: {fileID: 7633314310087903502}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -182,30 +235,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7633314310045737248}
-        m_TargetAssemblyTypeName: PartsPopController, Assembly-CSharp
-        m_MethodName: PopItem
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 7633314310045737249}
-        m_TargetAssemblyTypeName: ItemPopController, Assembly-CSharp
-        m_MethodName: PopItem
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &7633314310045737437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +256,7 @@ MonoBehaviour:
     Booster: 0
     LWeapon: 0
     RWeapon: 0
+    ColorId: 0
   _machineBase: {fileID: 7633314310087903502}
   _lockTrans: {fileID: 7633314310533338935}
   _aimTrans: {fileID: 7633314311566681599}
@@ -247,24 +277,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _item: {fileID: 3457143520140681576, guid: b1f593892a3be2b42a968140c0798c64, type: 3}
   _machineBuilder: {fileID: 7633314310045737437}
---- !u!114 &7633314310045737249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7633314310045737435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0a5f1aad5824d5459f61003827190ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _items:
-  - {fileID: 1351174841993859409, guid: ab908356eec1a4e438d305a8e2d27020, type: 3}
-  - {fileID: 1351174841993859409, guid: b15ec99a961eb2d4599e2898ae001aac, type: 3}
-  - {fileID: 1234321730564965865, guid: 6215920cd43c3334b967b1bc5f017da6, type: 3}
-  - {fileID: 1234321730564965865, guid: b72018ba32c20f64eb6dd9eee453fd91, type: 3}
-  _count: 2
 --- !u!1 &7633314310087903503
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +337,17 @@ MonoBehaviour:
     Booster: 3
     LWeapon: 0
     RWeapon: 2
+    ColorId: 0
   _bodyTarget: {fileID: 7633314310021058521}
+  _deadEffct: {fileID: 5285524602227699168, guid: df5f695c72ecae540933096803ca70b6, type: 3}
+  _explosionTime: 3
+  _exParam:
+    Pos: {x: 0, y: 0, z: 0}
+    Power: 50
+    Time: 1
+  _popControllers:
+  - {fileID: 7633314310045737248}
+  - {fileID: 881275777431235224}
 --- !u!114 &7633314310087903505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,6 +369,7 @@ MonoBehaviour:
   LockOnRange: 500
   _attackMaxInterval: 5
   _attackIntervalDiffusivity: 2
+  _weapon: {fileID: 0}
   _onAttackEvent:
     m_PersistentCalls:
       m_Calls:
