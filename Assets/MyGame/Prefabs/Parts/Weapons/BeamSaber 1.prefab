@@ -9736,7 +9736,7 @@ GameObject:
   - component: {fileID: 1855310726834662663}
   - component: {fileID: 8651882359323835491}
   m_Layer: 0
-  m_Name: BeamSaber
+  m_Name: BeamSaber 1
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -9787,6 +9787,7 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -9800,6 +9801,8 @@ MonoBehaviour:
   - {fileID: 1052076050997304563}
   - {fileID: 9015371109056104209}
   - {fileID: 1851651344662881592}
+  _animator: {fileID: 0}
+  _attackName: 
 --- !u!1 &1855310727816323469
 GameObject:
   m_ObjectHideFlags: 0
@@ -14640,6 +14643,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blade (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _radius
       value: 1.5
@@ -14732,6 +14739,10 @@ PrefabInstance:
     - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: m_Name
       value: Blade (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _radius
@@ -14896,6 +14907,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blade (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _radius
       value: 1.5
@@ -14988,6 +15003,10 @@ PrefabInstance:
     - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: m_Name
       value: Blade (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _radius
@@ -15082,6 +15101,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blade (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _radius
       value: 1.5
@@ -15175,6 +15198,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blade (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _radius
       value: 1.5
@@ -15267,6 +15294,10 @@ PrefabInstance:
     - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: m_Name
       value: Blade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _radius
