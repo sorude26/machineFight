@@ -24,6 +24,14 @@ namespace MyGame
         private PartsBuildParam _buildParam;
         [SerializeField]
         private LockOnTarget _bodyTarget = default;
+        [SerializeField]
+        private GameObject _deadEffct = default;
+        [SerializeField]
+        private float _explosionTime = 3f;
+        [SerializeField]
+        private ShakeParam _exParam = default;
+        [SerializeField]
+        private PopController[] _popControllers = default;
         private void Start()
         {
             SetRandamBuildDat();
@@ -36,6 +44,7 @@ namespace MyGame
                 _machineController.BodyController.BackPack.BackPackWeapon.AnLimitAmmunition();
             }
             _machineController.BodyController.AttackTarget = NavigationManager.Instance.Target;
+            _machineController.BodyController.OnBodyDestroy += ExplosionMachine;
         }
         private void FixedUpdate()
         {
@@ -67,6 +76,27 @@ namespace MyGame
             {
                 _buildParam[(PartsType)i] = PartsManager.Instance.AllParamData.GetRandamPartsId((PartsType)i);
             }
+        }
+        public void ExplosionMachine()
+        {
+            StartCoroutine(ExplosionImpl());
+        }
+        private IEnumerator ExplosionImpl()
+        {
+            yield return new WaitForSeconds(_explosionTime);
+            var effect = ObjectPoolManager.Instance.Use(_deadEffct);
+            effect.transform.position = _body.position;
+            effect.SetActive(true);
+            _exParam.Pos = _body.position;
+            StageShakeController.PlayShake(_exParam);
+            if (_popControllers != null)
+            {
+                foreach (var controller in _popControllers)
+                {
+                    controller.PopItem();
+                }
+            }
+            gameObject.SetActive(false);
         }
     }
 }
