@@ -51,7 +51,9 @@ public class LockOnTarget : MonoBehaviour
         {
             if (_targetMark != null)
             {
-                _targetMark.position = RectTransformUtility.WorldToScreenPoint(Camera.main, transform.position);
+                var ajust = RectTransformUtility.WorldToScreenPoint(MainCameraLocator.MainCamera, transform.position);
+                ajust -= new Vector2(MainCameraLocator.MainCamera.pixelWidth / 2, MainCameraLocator.MainCamera.pixelHeight / 2);
+                _targetMark.anchoredPosition = ajust;
             }
             return;
         }
