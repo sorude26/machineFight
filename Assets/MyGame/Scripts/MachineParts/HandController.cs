@@ -33,7 +33,9 @@ public class HandController : MonoBehaviour, IPartsModel
     private string _reloadName = "Reload";
     private string _gholdName = "HandWeaponAim";
     private string _sholdName = "SaberHold";
+    private string _pholdName = "KnuckleHold";
     private string _attackName = "SaberAttack";
+    private string _pAttackName = "Punch";
     private bool _isMeleeAttack = false;
     private bool _isReload = false;
     private bool _firstShot = false;
@@ -194,6 +196,9 @@ public class HandController : MonoBehaviour, IPartsModel
             case WeaponType.HandSaber:
                 _handAnime.CrossFadeInFixedTime(_sholdName, _changeTime);
                 break;
+            case WeaponType.Knuckle:
+                _handAnime.CrossFadeInFixedTime(_pholdName, _changeTime);
+                break;
             default:
                 break;
         }
@@ -201,7 +206,20 @@ public class HandController : MonoBehaviour, IPartsModel
     public void MeleeAttack()
     {
         if (IsAttack == true) { return; }
-        _handAnime.CrossFadeInFixedTime(_attackName, _changeTime);
+        switch (_weapon.Type)
+        {
+            case WeaponType.HandGun:
+                _handAnime.CrossFadeInFixedTime(_pAttackName, _changeTime);
+                break;
+            case WeaponType.HandSaber:
+                _handAnime.CrossFadeInFixedTime(_attackName, _changeTime);
+                break;
+            case WeaponType.Knuckle:
+                _handAnime.CrossFadeInFixedTime(_pAttackName, _changeTime);
+                break;
+            default:
+                break;
+        }
         _weapon.Fire();
         IsAttack = true;
         _isMeleeAttack = true;

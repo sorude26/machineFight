@@ -62,6 +62,7 @@ public class ShotWeapon : WeaponBase
             return;
         }
         _isTrigerOn = true;
+        _weaponFireEvent?.Invoke();
         StartCoroutine(TriggerWait());
         StartCoroutine(FireImpl(target));
     }
