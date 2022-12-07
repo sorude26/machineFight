@@ -76,10 +76,10 @@ public class ModelBuilder : MonoBehaviour
         var backPack = Instantiate(PartsManager.Instance.AllModelData.GetBackPack(buildData.Booster));
         body.SetBackPack(backPack);
         body.AddBooster(leg.LegBoost);
-        IPartsModel[] parts = { head, body, larm, rarm, leg, backPack };
-        foreach (var par in parts)
+        IPartsModel[] parts = { head, body, larm, rarm, leg, backPack ,lweapon, rweapon};
+        foreach (var p in parts)
         {
-            par.ChangeColor(buildData.ColorId);
+            p.ChangeColor(buildData.ColorId);
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class WeaponBase : MonoBehaviour, IPartsModel
 {
@@ -21,6 +22,8 @@ public abstract class WeaponBase : MonoBehaviour, IPartsModel
     protected int _magazineCount = -1;
     [SerializeField]
     private PartsColorChanger _partsColorChanger = default;
+    [SerializeField]
+    protected UnityEvent _weaponFireEvent = default;
     protected Action _onCount = default;
     public int MaxAmmunitionCapacity => _maxAmmunitionCapacity;
     public int MagazineCount => _magazineCount;
@@ -76,4 +79,5 @@ public enum WeaponType
 {
     HandGun,
     HandSaber,
+    Knuckle,
 }

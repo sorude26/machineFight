@@ -41,6 +41,7 @@ public class MultipleWeapon : WeaponBase
             _currentAmmunition--;
         }
         _onCount?.Invoke();
+        _weaponFireEvent?.Invoke();
     }
     public override void RefillAmmunition(float percent)
     {
