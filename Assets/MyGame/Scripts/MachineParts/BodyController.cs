@@ -36,6 +36,8 @@ public class BodyController : MonoBehaviour, IPartsModel
     private BackPackController _backPack = default;
     private string _lSAttack = "SaberSlashL";
     private string _rSAttack = "SaberSlashR";
+    private string _lPAttack = "PunchL";
+    private string _rPAttack = "PunchR";
     private float _changeTime = 0.1f;
     private bool _isShoot = false;
     private bool _isInitialized = false;
@@ -329,33 +331,66 @@ public class BodyController : MonoBehaviour, IPartsModel
     }
     public void ShotLeft()
     {
+        if (_lHand.WeaponBase.Type == WeaponType.HandGun)
+        {
+            _lHand.StartShot(AttackTarget);
+            return;
+        }
         if (_lHand.WeaponBase.Type == WeaponType.HandSaber)
         {
             if (_lHand.IsAttack == false)
             {
                 _bodyAnime.CrossFadeInFixedTime(_lSAttack, _changeTime);
                 _lHand.MeleeAttack();
+                MeleeAttackMove();
             }
         }
-        else
+        else if(_lHand.WeaponBase.Type == WeaponType.Knuckle)
         {
-            _lHand.StartShot(AttackTarget);
+            if (_lHand.IsAttack == false && _rHand.IsAttack == false)
+            {
+                _bodyAnime.CrossFadeInFixedTime(_lPAttack, _changeTime);
+                _lHand.MeleeAttack();
+                MeleeAttackMove();
+            }
         }
     }
     public void ShotRight()
     {
+        if (_rHand.WeaponBase.Type == WeaponType.HandGun)
+        {
+            _rHand.StartShot(AttackTarget);
+            return;
+        }
         if (_rHand.WeaponBase.Type == WeaponType.HandSaber)
         {
             if (_rHand.IsAttack == false)
             {
                 _bodyAnime.CrossFadeInFixedTime(_rSAttack, _changeTime);
                 _rHand.MeleeAttack();
+                MeleeAttackMove();
             }
         }
-        else
+        else if (_rHand.WeaponBase.Type == WeaponType.Knuckle)
         {
-            _rHand.StartShot(AttackTarget);
+            if (_lHand.IsAttack == false && _rHand.IsAttack == false)
+            {
+                _bodyAnime.CrossFadeInFixedTime(_rPAttack, _changeTime);
+                _rHand.MeleeAttack();
+                MeleeAttackMove();
+            }
         }
+    }
+    private void MeleeAttackMove()
+    {
+        StartMainBooster();
+        Vector3 dir = Lock.forward;
+        if (AttackTarget != null)
+        {
+            dir = AttackTarget.position - transform.position;
+        }
+        //_moveController.AddImpulse(dir.normalized * _param.JetPower);
+        _moveController.VelocityMove(dir.normalized * _param.JetPower);
     }
     public void DestroyBody()
     {
