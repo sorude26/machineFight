@@ -20,6 +20,10 @@ public class ShotBullet : MonoBehaviour
     protected ShakeParam _hitShakeParam = default;
     [SerializeField]
     protected float _gravity = 0f;
+    [SerializeField]
+    protected int _seHitID = 12;
+    [SerializeField]
+    protected float _seHitVolume = 0.01f;
     protected float _timer = 0f;
     protected float _speed = 5f;
     protected int _power = 1;
@@ -52,6 +56,10 @@ public class ShotBullet : MonoBehaviour
     protected void PlayShake()
     {
         StageShakeController.PlayShake(transform.position + _hitShakeParam.Pos, _hitShakeParam.Power, _hitShakeParam.Time);
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySE(_seHitID, transform.position, _seHitVolume);
+        }
     }
     protected IEnumerator HitActionImpl()
     {
