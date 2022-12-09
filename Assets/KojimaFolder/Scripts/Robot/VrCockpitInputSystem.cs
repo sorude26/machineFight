@@ -21,15 +21,29 @@ using UnityEngine.UIElements;
 [InputControlLayout(displayName = "VrCockpit", stateType = typeof(CockpitInputState))]
 public class VrCockpitInputSystem : InputDevice, IInputUpdateCallbackReceiver
 {
-    public static string ATTACK1 = "attack1";
-    public static string ATTACK2 = "attack2";
-    public static string ATTACK3 = "attack3";
-    public static string ATTACK4 = "attack4";
-    public static string JUMP = "jump";
-    public static string JETBOOST = "jetBoost";
-    public static string CHANGETARGET = "changeTarget";
-    public static string MOVEAXIS = "moveAxis";
-    public static string CAMERAAXIS = "cameraAxis";
+    public const string ATTACK1         = "attack1";
+    public const int    ATTACK1_BIT     = 0;
+
+    public const string ATTACK2         = "attack2";
+    public const int    ATTACK2_BIT     = 1;
+
+    public const string ATTACK3         = "attack3";
+    public const int    ATTACK3_BIT     = 2;
+
+    public const string ATTACK4         = "attack4";
+    public const int    ATTACK4_BIT     = 3;
+
+    public const string JUMP            = "jump";
+    public const int    JUMP_BIT        = 4;
+
+    public const string JETBOOST        = "jetBoost";
+    public const int    JETBOOST_BIT    = 5;
+
+    public const string CHANGETARGET    = "changeTarget";
+    public const int    CHANGETARGET_BIT= 6;
+
+    public const string MOVEAXIS = "moveAxis";
+    public const string CAMERAAXIS = "cameraAxis";
 
     public ButtonControl attack1 { get; private set; }
     public ButtonControl attack2 { get; private set; }
@@ -67,6 +81,7 @@ public class VrCockpitInputSystem : InputDevice, IInputUpdateCallbackReceiver
 
     public void OnUpdate()
     {
+        
         var state = new CockpitInputState();
         if (PlayerVrCockpit.Instance == null)
         {
@@ -74,8 +89,25 @@ public class VrCockpitInputSystem : InputDevice, IInputUpdateCallbackReceiver
             InputSystem.QueueStateEvent(this, state);
             return;
         }
+        //ÉrÉbÉgââéZä÷êî
+        void SetButtonBit(bool isButton, int bit)
+        {
+            if (isButton)
+            {
+                state.buttons |= (ushort)(1 << bit);
+            }
+        }
+        SetButtonBit(PlayerVrCockpit.Input.Attack1(), ATTACK1_BIT);
+        SetButtonBit(PlayerVrCockpit.Input.Attack2(), ATTACK2_BIT);
+        SetButtonBit(PlayerVrCockpit.Input.Attack3(), ATTACK3_BIT);
+        SetButtonBit(PlayerVrCockpit.Input.Attack4(), ATTACK4_BIT);
+        SetButtonBit(PlayerVrCockpit.Input.Jump(), JUMP_BIT);
+        SetButtonBit(PlayerVrCockpit.Input.JetBoost(), JETBOOST_BIT);
+        SetButtonBit(PlayerVrCockpit.Input.ChangeTarget(), CHANGETARGET_BIT);
         InputSystem.QueueStateEvent(this, state);
     }
+
+   
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void InitializeInPlayer()
@@ -90,22 +122,22 @@ public struct CockpitInputState : IInputStateTypeInfo
     public FourCC format => new FourCC('V', 'R', 'C', 'K');
 
 
-    [InputControl(name = "attack1"      , layout = "Button", bit = 0)]
-    [InputControl(name = "attack2"      , layout = "Button", bit = 1)]
-    [InputControl(name = "attack3"      , layout = "Button", bit = 2)]
-    [InputControl(name = "attack4"      , layout = "Button", bit = 3)]
-    [InputControl(name = "jump"         , layout = "Button", bit = 4)]
-    [InputControl(name = "jetBoost"     , layout = "Button", bit = 5)]
-    [InputControl(name = "changeTarget" , layout = "Button", bit = 6)]
+    [InputControl(name = VrCockpitInputSystem.ATTACK1       , layout = "Button", bit = VrCockpitInputSystem.ATTACK1_BIT)]
+    [InputControl(name = VrCockpitInputSystem.ATTACK2       , layout = "Button", bit = VrCockpitInputSystem.ATTACK2_BIT)]
+    [InputControl(name = VrCockpitInputSystem.ATTACK3       , layout = "Button", bit = VrCockpitInputSystem.ATTACK3_BIT)]
+    [InputControl(name = VrCockpitInputSystem.ATTACK4       , layout = "Button", bit = VrCockpitInputSystem.ATTACK4_BIT)]
+    [InputControl(name = VrCockpitInputSystem.JUMP          , layout = "Button", bit = VrCockpitInputSystem.JUMP_BIT)]
+    [InputControl(name = VrCockpitInputSystem.JETBOOST      , layout = "Button", bit = VrCockpitInputSystem.JETBOOST_BIT)]
+    [InputControl(name = VrCockpitInputSystem.CHANGETARGET  , layout = "Button", bit = VrCockpitInputSystem.CHANGETARGET_BIT)]
     public ushort buttons;//16bit
 
     //é≤
-    [InputControl(name = "moveAxis", layout = "Vector2")]
+    [InputControl(name = VrCockpitInputSystem.MOVEAXIS, layout = "Vector2")]
     [InputControl(name = "moveAxis/x", defaultState = 0.0f, format = "FLT", parameters = "normalize,normalizeMin=-1,normalizeMax=1,normalizeZero=0.0,clamp=2,clampMin=-1,clampMax=1")]
     [InputControl(name = "moveAxis/y", defaultState = 0.0f, format = "FLT", parameters = "normalize,normalizeMin=-1,normalizeMax=1,normalizeZero=0.0,clamp=2,clampMin=-1,clampMax=1")]
     public Vector2 MoveAxis;
 
-    [InputControl(name = "cameraAxis", layout = "Vector2")]
+    [InputControl(name = VrCockpitInputSystem.CAMERAAXIS, layout = "Vector2")]
     [InputControl(name = "cameraAxis/x", defaultState = 0.0f, format = "FLT", parameters = "normalize,normalizeMin=-1,normalizeMax=1,normalizeZero=0.0,clamp=2,clampMin=-1,clampMax=1")]
     [InputControl(name = "cameraAxis/y", defaultState = 0.0f, format = "FLT", parameters = "normalize,normalizeMin=-1,normalizeMax=1,normalizeZero=0.0,clamp=2,clampMin=-1,clampMax=1")]
     public Vector2 CameraAxis;

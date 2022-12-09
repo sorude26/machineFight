@@ -45,7 +45,7 @@ public class FlightStick : Switch
     /// </summary>
     /// <param name="down"></param>
     /// <returns></returns>
-    public bool GetTriggerInput(bool down = false)
+    public bool GetTriggerInput(bool down)
     {
         if (_lockinHand == null) return false;
         if (down)
@@ -57,6 +57,42 @@ public class FlightStick : Switch
             return OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, _lockinHand.ControllerType);
         }
     }
+
+    /// <summary>
+    /// フライトスティック、コントローラー上部のボタンの入力を取る
+    /// </summary>
+    /// <param name="down"></param>
+    /// <returns></returns>
+    public bool GetUpperButtonInput(bool down)
+    {
+        if (_lockinHand == null) return false;
+        if (down)
+        {
+            return OVRInput.GetDown(OVRInput.Button.Two, _lockinHand.ControllerType);
+        }
+        else
+        {
+            return OVRInput.Get(OVRInput.Button.Two, _lockinHand.ControllerType);
+        }
+    }
+    /// <summary>
+    /// フライトスティック、コントローラー下部のボタンの入力を取る
+    /// </summary>
+    /// <param name="down"></param>
+    /// <returns></returns>
+    public bool GetLowerButtonInput(bool down)
+    {
+        if (_lockinHand == null) return false;
+        if (down)
+        {
+            return OVRInput.GetDown(OVRInput.Button.One, _lockinHand.ControllerType);
+        }
+        else
+        {
+            return OVRInput.Get(OVRInput.Button.One, _lockinHand.ControllerType);
+        }
+    }
+
 
     protected override void LockIn(SwitchCtrlHand from)
     {
