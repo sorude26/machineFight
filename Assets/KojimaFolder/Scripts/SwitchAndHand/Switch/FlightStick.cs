@@ -173,7 +173,7 @@ public class FlightStick : Switch
 
 
         //move
-        _handMove = Vector3.Lerp(_handMove, _holdPosition.position, MOVE_LERP_SPEED);
-        _lockinHand.transform.position = _handMove + _lockinHand.transform.position - _lockinHand.HoldPosition(_holdType);
+        _handMove = Vector3.Lerp(_handMove, _holdPosition.position - this.transform.position, MOVE_LERP_SPEED);
+        _lockinHand.transform.position = _handMove + _lockinHand.transform.position - _lockinHand.HoldPosition(_holdType) + this.transform.position;
     }
 }

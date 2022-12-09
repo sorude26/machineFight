@@ -137,7 +137,7 @@ public class Switch : MonoBehaviour
         //rotate
         _currentHandRotate = from.transform.rotation;
         //move
-        _handMove = from.HoldPosition(_holdType);
+        _handMove = from.HoldPosition(_holdType) - this.transform.position;
     }
     protected virtual void Free()
     {
@@ -200,8 +200,9 @@ public class Switch : MonoBehaviour
         _currentHandRotate = newRotate;
 
         //move
-        _handMove = Vector3.Lerp(_handMove, _holdPosition.position, MOVE_LERP_SPEED);
-        _lockinHand.transform.position = _handMove + _lockinHand.transform.position - _lockinHand.HoldPosition(_holdType);
+        //move
+        _handMove = Vector3.Lerp(_handMove, _holdPosition.position - this.transform.position, MOVE_LERP_SPEED);
+        _lockinHand.transform.position = _handMove + _lockinHand.transform.position - _lockinHand.HoldPosition(_holdType) + this.transform.position;
     }
 
     protected Quaternion GetMyHoldRotation()
