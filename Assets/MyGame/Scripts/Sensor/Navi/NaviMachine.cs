@@ -23,6 +23,10 @@ namespace MyGame
         [SerializeField]
         private PartsBuildParam _buildParam;
         [SerializeField]
+        private PartsBuildParam[] _buildSet;
+        [SerializeField]
+        private bool _randamSet = default;
+        [SerializeField]
         private LockOnTarget _bodyTarget = default;
         [SerializeField]
         private GameObject _deadEffct = default;
@@ -72,6 +76,19 @@ namespace MyGame
         }
         private void SetRandamBuildDat()
         {
+            if (_buildSet.Length > 0)
+            {
+                if (_randamSet == false)
+                {
+                    _buildParam = _buildSet[Random.Range(0, _buildSet.Length)];
+                    return;
+                }
+                for (int i = 0; i < PartsBuildParam.PARTS_TYPE_NUM; i++)
+                {
+                    _buildParam[(PartsType)i] = _buildSet[Random.Range(0, _buildSet.Length)][(PartsType)i];
+                }
+                return;
+            }
             for (int i = 0; i < PartsBuildParam.PARTS_TYPE_NUM; i++)
             {
                 _buildParam[(PartsType)i] = PartsManager.Instance.AllParamData.GetRandamPartsId((PartsType)i);

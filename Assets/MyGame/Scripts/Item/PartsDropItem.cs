@@ -42,7 +42,10 @@ public class PartsDropItem : ItemBase
                 break;
         }
         PopUpLog.CreatePopUp($"{_partsType}\n{get} “üŽè‚µ‚Ü‚µ‚½", _viewTime);
-        playerData.PartsGet(_partsType, _partsID);
+        if (playerData != null)
+        {
+            playerData.PartsGet(_partsType, _partsID);
+        }
     }
     public void SetData(PartsType type, int id)
     {

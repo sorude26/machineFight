@@ -26,7 +26,7 @@ public class BladePoint : MonoBehaviour
             HitCheck();
             return;
         }
-        if (_timer < 0)
+        if (_timer <= 0)
         {
             return;
         }
@@ -52,6 +52,11 @@ public class BladePoint : MonoBehaviour
     private void HitBlade(Vector3 pos)
     {
         PlayHitEffect(pos);
+    }
+    private void OnDrawGizmosSelected() 
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _radius);
     }
     private void PlayHitEffect(Vector3 hitPos)
     {
