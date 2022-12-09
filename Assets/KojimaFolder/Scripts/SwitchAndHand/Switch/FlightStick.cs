@@ -9,7 +9,6 @@ using UnityEngine.SocialPlatforms;
 public class FlightStick : Switch
 {
     const float STICK_ANGLE_MAX = 45f;
-    static float STICK_ANGLE_MAX_REVERSE = 1f / STICK_ANGLE_MAX; 
 
     [SerializeField]
     float _holdMoveOffsetX;
@@ -18,7 +17,7 @@ public class FlightStick : Switch
 
     Vector3 _currentStickValue;
     //フライトスティック入力
-    Vector3 CurrentStickValue { get => _currentStickValue; set => _currentStickValue = value * STICK_ANGLE_MAX_REVERSE; }
+    Vector3 CurrentStickValue { get => _currentStickValue; set => _currentStickValue = value / STICK_ANGLE_MAX; }
 
     /// <summary>
     /// フライトスティック、本体の入力を取る
@@ -27,7 +26,7 @@ public class FlightStick : Switch
     public Vector2 GetStickBodyInput()
     {
         if (_lockinHand == null) return Vector2.zero;
-        return CurrentStickValue;
+        return new Vector2(-CurrentStickValue.z, CurrentStickValue.x);
     }
 
     /// <summary>

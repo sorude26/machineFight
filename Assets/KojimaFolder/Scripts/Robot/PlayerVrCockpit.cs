@@ -47,6 +47,16 @@ public class PlayerVrCockpit : MonoBehaviour
         {
             return false;
         }
+
+        public static Vector2 Move()
+        {
+            return _flightStick.GetStickBodyInput();
+        }
+
+        public static Vector2 Camera()
+        {
+            return _flightStick.GetThumbsStickInput();
+        }
     }
 
     private void Awake()

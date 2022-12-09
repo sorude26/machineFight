@@ -104,6 +104,8 @@ public class VrCockpitInputSystem : InputDevice, IInputUpdateCallbackReceiver
         SetButtonBit(PlayerVrCockpit.Input.Jump(), JUMP_BIT);
         SetButtonBit(PlayerVrCockpit.Input.JetBoost(), JETBOOST_BIT);
         SetButtonBit(PlayerVrCockpit.Input.ChangeTarget(), CHANGETARGET_BIT);
+        state.MoveAxis = PlayerVrCockpit.Input.Move();
+        state.CameraAxis = PlayerVrCockpit.Input.Camera();
         InputSystem.QueueStateEvent(this, state);
     }
 
