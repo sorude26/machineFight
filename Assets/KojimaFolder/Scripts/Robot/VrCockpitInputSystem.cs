@@ -94,7 +94,7 @@ public class VrCockpitInputSystem : InputDevice, IInputUpdateCallbackReceiver
         {
             if (isButton)
             {
-                state.buttons |= (ushort)(1 << bit);
+                state.buttons |= (ushort)(1u << bit);
             }
         }
         SetButtonBit(PlayerVrCockpit.Input.Attack1(), ATTACK1_BIT);
