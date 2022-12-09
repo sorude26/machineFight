@@ -168,6 +168,11 @@ MonoBehaviour:
   _maxAmmunitionCapacity: 5000
   _magazineCount: -1
   _partsColorChanger: {fileID: 0}
+  _weaponFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _seFireID: 3
+  _seFireVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -483,7 +488,7 @@ MonoBehaviour:
   _partsBase: {fileID: 7457738879323115533}
   _lockBase: {fileID: 9058160813013713367}
   _maxUpAngle: -80
-  _minDownAngle: 50
+  _minDownAngle: 30
   _maxLockAngle: 20
   _followSpeed: 10
   _initializeEvent:
@@ -519,7 +524,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b126583716b91459c548988ec66d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: 0
   _mainBoosters:
   - {fileID: 1691640473166196244}
   - {fileID: 8613859774331708705}
@@ -552,6 +556,8 @@ MonoBehaviour:
   _armors: []
   _eyes: []
   _covers: []
+  _startColorSetMode: 0
+  _startColorID: 0
 --- !u!1 &7546327374656079641
 GameObject:
   m_ObjectHideFlags: 0
