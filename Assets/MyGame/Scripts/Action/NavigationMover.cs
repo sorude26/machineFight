@@ -44,6 +44,6 @@ public class NavigationMover : MonoBehaviour
         {
             transform.forward = _currentDir;
         }
-        _moveController.VelocityMove(_currentDir * _moveSpeed);
+        _moveController.GVelocityMove(_currentDir * _moveSpeed);
     }
 }
