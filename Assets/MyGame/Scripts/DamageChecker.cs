@@ -25,6 +25,8 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     private bool _count = true;
     [SerializeField]
     private int _deadSEID = 8;
+    [SerializeField]
+    private float _seVolume = 1f;
     private int _hp = 1;
     private bool _isSeverelyDamaged = false;
     public int MaxHp { get => _maxHp; }
@@ -117,7 +119,7 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
         StageShakeController.PlayShake(_deadShakeParam.Pos + transform.position,_deadShakeParam.Power,_deadShakeParam.Time);
         if (SoundManager.Instance != null)
         {
-            SoundManager.Instance.PlaySE(_deadSEID,transform.position);
+            SoundManager.Instance.PlaySE(_deadSEID,transform.position, _seVolume);
         }
     }
 }

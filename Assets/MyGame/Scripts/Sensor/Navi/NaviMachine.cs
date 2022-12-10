@@ -31,6 +31,10 @@ namespace MyGame
         [SerializeField]
         private GameObject _deadEffct = default;
         [SerializeField]
+        private int _deadSEID = 11;
+        [SerializeField]
+        private float _seVolume = 1f;
+        [SerializeField]
         private float _explosionTime = 3f;
         [SerializeField]
         private ShakeParam _exParam = default;
@@ -112,6 +116,10 @@ namespace MyGame
                 {
                     controller.PopItem();
                 }
+            }
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlaySE(_deadSEID, _body.position, _seVolume);
             }
             gameObject.SetActive(false);
         }
