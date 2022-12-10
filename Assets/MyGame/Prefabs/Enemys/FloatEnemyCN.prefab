@@ -136,6 +136,12 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
+  _weaponFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _seFireID: 3
+  _seFireVolume: 0.05
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -5942,6 +5948,8 @@ MonoBehaviour:
   _addCount: 0
   _isMarkTarget: 0
   _count: 1
+  _deadSEID: 8
+  _seVolume: 0.3
   OnDamageEvent:
     m_PersistentCalls:
       m_Calls: []

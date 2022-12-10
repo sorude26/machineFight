@@ -5848,7 +5848,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
-  _seFireID: 3
+  _seFireID: 7
   _seFireVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
@@ -12761,8 +12761,12 @@ MonoBehaviour:
     LWeapon: 0
     RWeapon: 0
     ColorId: 0
+  _buildSet: []
+  _randamSet: 0
   _bodyTarget: {fileID: 1958008585692962140}
   _deadEffct: {fileID: 5285524602227699168, guid: 13820972174337440960fa1dc6f4f234, type: 3}
+  _deadSEID: 11
+  _seVolume: 1
   _explosionTime: 3
   _exParam:
     Pos: {x: 0, y: 0, z: 0}
@@ -12776,7 +12780,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1958008586036044219}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 370c006a94b7a6143bf3bd5777789ff1, type: 3}
   m_Name: 
@@ -18358,7 +18362,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
-  _seFireID: 3
+  _seFireID: 7
   _seFireVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
@@ -31767,7 +31771,7 @@ MonoBehaviour:
   - {fileID: 7488058725916752706}
   - {fileID: 7488058725838800155}
   _checkDir: {x: 0, y: -1, z: 0}
-  _checkRange: 0.5
+  _checkRange: 4
   _minConunt: 2
   _physicsLayer:
     serializedVersion: 2
