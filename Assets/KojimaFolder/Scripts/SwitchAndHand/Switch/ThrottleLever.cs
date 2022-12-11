@@ -37,8 +37,16 @@ public class ThrottleLever : Switch
         Vector3 maxPos = _maxPosition.position;
         Vector3 minToMax = maxPos - minPos;
         //内積で値を取り出す
-        float handSqrLength = Vector3.Dot(handPos, minToMax.normalized);
-        handSqrLength = handSqrLength * handSqrLength;
+        float handSqrLength = Vector3.Dot(handPos - minPos, minToMax.normalized);
+        if (handSqrLength < 0)
+        {
+            handSqrLength *= handSqrLength;
+            handSqrLength = -handSqrLength;
+        }
+        else
+        {
+            handSqrLength *= handSqrLength;
+        }
         float sqrLength = minToMax.sqrMagnitude;
         //値を算出
         float value = handSqrLength / sqrLength;
