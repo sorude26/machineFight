@@ -1,3 +1,4 @@
+using Oculus.Interaction.Input;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -65,6 +66,7 @@ public class PlayerVrCockpit : MonoBehaviour
         var layer = this.gameObject.layer;
         SetLayerToChildlen(layer, this.transform);
         Input.SetDevice(_flightStick);
+        CameraSetup();
     }
 
     private void SetLayerToChildlen(int layer, Transform t)
@@ -74,6 +76,20 @@ public class PlayerVrCockpit : MonoBehaviour
             item.gameObject.layer = layer;
             //再帰処理ですべての子オブジェクトに適用
             SetLayerToChildlen(layer, item);
+        }
+    }
+
+    private void CameraSetup()
+    {
+        //VR機器が接続されていない場合はデスクトップ用のカメラに切り替え、コックピットを非表示にする。
+        if (!OVRManager.isHmdPresent)
+        {
+            var cameras = FindObjectsOfType<Camera>(true);
+            foreach (var item in cameras)
+            {
+                item.targetTexture = null;
+            }
+            this.gameObject.SetActive(false);
         }
     }
 }
