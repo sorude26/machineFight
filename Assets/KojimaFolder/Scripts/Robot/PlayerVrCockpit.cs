@@ -20,30 +20,58 @@ public class PlayerVrCockpit : MonoBehaviour
             _flightStick = stick;
         }
 
+        /// <summary>
+        /// 右手
+        /// </summary>
+        /// <returns></returns>
         public static bool Attack1()
         {
             return _flightStick.GetTriggerInput(false);
         }
+        /// <summary>
+        /// 左手
+        /// </summary>
+        /// <returns></returns>
         public static bool Attack2()
         {
             return _flightStick.GetTriggerInput(false);
         }
+        /// <summary>
+        /// バックウェポンorホバー
+        /// </summary>
+        /// <returns></returns>
         public static bool Attack3()
         {
-            return _flightStick.GetTriggerInput(false);
+            return false;
         }
+        /// <summary>
+        /// キック
+        /// </summary>
+        /// <returns></returns>
         public static bool Attack4()
         {
-            return _flightStick.GetTriggerInput(false);
+            return false;
         }
+        /// <summary>
+        /// ジャンプ
+        /// </summary>
+        /// <returns></returns>
         public static bool Jump()
         {
-            return _flightStick.GetLowerButtonInput(false);
+            return false;
         }
+        /// <summary>
+        /// ステップ
+        /// </summary>
+        /// <returns></returns>
         public static bool JetBoost()
         {
-            return _flightStick.GetUpperButtonInput(false);
+            return false;
         }
+        /// <summary>
+        /// ターゲット切り替え
+        /// </summary>
+        /// <returns></returns>
         public static bool ChangeTarget()
         {
             return false;

@@ -50,7 +50,7 @@ public class Switch : MonoBehaviour
     
 
     //スイッチの状態(基本的に0～1で管理)
-    protected float _value;
+    protected float _value = 0;
 
     public event Action OnTurnOn;
     public event Action OnTurnOff;
