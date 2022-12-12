@@ -18,6 +18,9 @@ public class SoundManager : MonoBehaviour
     /// <summary>BGM用のAudioSource</summary>
     [SerializeField]
     private AudioSource _bgmAudioSource;
+    /// <summary>サウンド再生有効距離</summary>
+    [SerializeField]
+    float _playSoundDistance = 100f;
 
     public enum AudioMixerGroup
     {
@@ -79,7 +82,9 @@ public class SoundManager : MonoBehaviour
     {
         AudioClip audioClip = _soundList.GetAudioClip(soundId);
         if (audioClip == null) return;
-
+        
+        if (!DistanceCheck(pos)) return;
+        
         SoundPlayer soundPlayer = GetSound3DPlayer();
         soundPlayer.gameObject.SetActive(true);
         soundPlayer.transform.position = pos;
@@ -103,5 +108,20 @@ public class SoundManager : MonoBehaviour
     private SoundPlayer GetSound3DPlayer()
     {
         return AudioSource3DPool.GetObject(_sound3DPlayer);
+    }
+
+    /// <summary>
+    /// サウンドの再生距離判定
+    /// </summary>
+    /// <param name="targetPos"></param>
+    /// <returns></returns>
+    private bool DistanceCheck(Vector3 targetPos)
+    {
+        float dis = Vector3.Distance(NavigationManager.Instance.Target.transform.position, targetPos);
+        if (dis > _playSoundDistance)
+        {
+            return false;
+        }
+        return true;
     }
 }
