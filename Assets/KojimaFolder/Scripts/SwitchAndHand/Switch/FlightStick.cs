@@ -9,7 +9,6 @@ using UnityEngine.SocialPlatforms;
 public class FlightStick : Switch
 {
     const float STICK_ANGLE_MAX = 45f;
-    static float STICK_ANGLE_MAX_REVERSE = 1f / STICK_ANGLE_MAX; 
 
     [SerializeField]
     float _holdMoveOffsetX;
@@ -18,7 +17,7 @@ public class FlightStick : Switch
 
     Vector3 _currentStickValue;
     //フライトスティック入力
-    Vector3 CurrentStickValue { get => _currentStickValue; set => _currentStickValue = value * STICK_ANGLE_MAX_REVERSE; }
+    Vector3 CurrentStickValue { get => _currentStickValue; set => _currentStickValue = value / STICK_ANGLE_MAX; }
 
     /// <summary>
     /// フライトスティック、本体の入力を取る
@@ -27,7 +26,7 @@ public class FlightStick : Switch
     public Vector2 GetStickBodyInput()
     {
         if (_lockinHand == null) return Vector2.zero;
-        return CurrentStickValue;
+        return new Vector2(-CurrentStickValue.z, CurrentStickValue.x);
     }
 
     /// <summary>
@@ -45,7 +44,7 @@ public class FlightStick : Switch
     /// </summary>
     /// <param name="down"></param>
     /// <returns></returns>
-    public bool GetTriggerInput(bool down = false)
+    public bool GetTriggerInput(bool down)
     {
         if (_lockinHand == null) return false;
         if (down)
@@ -57,6 +56,42 @@ public class FlightStick : Switch
             return OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, _lockinHand.ControllerType);
         }
     }
+
+    /// <summary>
+    /// フライトスティック、コントローラー上部のボタンの入力を取る
+    /// </summary>
+    /// <param name="down"></param>
+    /// <returns></returns>
+    public bool GetUpperButtonInput(bool down)
+    {
+        if (_lockinHand == null) return false;
+        if (down)
+        {
+            return OVRInput.GetDown(OVRInput.Button.Two, _lockinHand.ControllerType);
+        }
+        else
+        {
+            return OVRInput.Get(OVRInput.Button.Two, _lockinHand.ControllerType);
+        }
+    }
+    /// <summary>
+    /// フライトスティック、コントローラー下部のボタンの入力を取る
+    /// </summary>
+    /// <param name="down"></param>
+    /// <returns></returns>
+    public bool GetLowerButtonInput(bool down)
+    {
+        if (_lockinHand == null) return false;
+        if (down)
+        {
+            return OVRInput.GetDown(OVRInput.Button.One, _lockinHand.ControllerType);
+        }
+        else
+        {
+            return OVRInput.Get(OVRInput.Button.One, _lockinHand.ControllerType);
+        }
+    }
+
 
     protected override void LockIn(SwitchCtrlHand from)
     {
@@ -138,7 +173,7 @@ public class FlightStick : Switch
 
 
         //move
-        _handMove = Vector3.Lerp(_handMove, _holdPosition.position, MOVE_LERP_SPEED);
-        _lockinHand.transform.position = _handMove + _lockinHand.transform.position - _lockinHand.HoldPosition(_holdType);
+        _handMove = Vector3.Lerp(_handMove, _holdPosition.position - this.transform.position, MOVE_LERP_SPEED);
+        _lockinHand.transform.position = _handMove + _lockinHand.transform.position - _lockinHand.HoldPosition(_holdType) + this.transform.position;
     }
 }
