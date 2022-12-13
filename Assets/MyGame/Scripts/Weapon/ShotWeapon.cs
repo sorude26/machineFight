@@ -143,6 +143,10 @@ public class ShotWeapon : WeaponBase
                 _currentMagazine = _currentAmmunition;
             }
         }
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySE(_seReloadID, _muzzle.position, _seReloadVolume);
+        }
         _onCount?.Invoke();
     }
     public override void RefillAmmunition(float percent)

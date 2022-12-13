@@ -18,7 +18,14 @@ public class BladePoint : MonoBehaviour
     private ParticleSystem _onEffect = default;
     [SerializeField]
     private bool _anSleepBlade = false;
+    [SerializeField]
+    protected int _seID = 13;
+    [SerializeField]
+    protected float _seVolume = 0.05f;
+    [SerializeField]
+    protected int _seCount = 5;
     private float _timer = 0;
+    private int _count = 0;
     private void FixedUpdate()
     {
         if (_anSleepBlade == true)
@@ -36,9 +43,23 @@ public class BladePoint : MonoBehaviour
     private void HitCheck()
     {
         if (gameObject.activeInHierarchy == false) { return; }
+        bool hitBlade = false;
         foreach (var hit in Physics.OverlapSphere(transform.position, _radius, _hitLayer))
         {
             HitAction(hit);
+            hitBlade = true;
+        }
+        if (hitBlade == true)
+        {
+            _count--;
+            if (_count < 0)
+            {
+                if (SoundManager.Instance != null)
+                {
+                    SoundManager.Instance.PlaySE(_seID,transform.position, _seVolume);
+                }
+                _count = _seCount;
+            }
         }
     }
     private void HitAction(Collider hit)
@@ -72,6 +93,7 @@ public class BladePoint : MonoBehaviour
     public void OnBlade()
     {
         _timer = _onBladeTime;
+        _count = 0;
         _onEffect.Play();
     }
 }

@@ -28,6 +28,10 @@ public abstract class WeaponBase : MonoBehaviour, IPartsModel
     protected int _seFireID = 3;
     [SerializeField]
     protected float _seFireVolume = 0.2f;
+    [SerializeField]
+    protected int _seReloadID = 32;
+    [SerializeField]
+    protected float _seReloadVolume = 0.2f;
     protected Action _onCount = default;
     public int MaxAmmunitionCapacity => _maxAmmunitionCapacity;
     public int MagazineCount => _magazineCount;

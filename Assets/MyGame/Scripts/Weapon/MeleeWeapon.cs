@@ -28,5 +28,9 @@ public class MeleeWeapon : WeaponBase
             _animator.Play(_attackName);
         }
         _weaponFireEvent?.Invoke();
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySE(_seFireID,transform.position, _seFireVolume);
+        }
     }
 }
