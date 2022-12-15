@@ -10061,6 +10061,8 @@ MonoBehaviour:
       m_Calls: []
   _seFireID: 3
   _seFireVolume: 0.2
+  _seReloadID: 32
+  _seReloadVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -10671,7 +10673,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4306369018601817012}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10759,7 +10761,7 @@ MonoBehaviour:
   _diffusivity: 0.2
   _moveDiffusivity: 0.9
   _transSpeed: 1
-  _moveSpeed: 50
+  _moveSpeed: 10
   _naviInterval: 1
 --- !u!54 &4306369018601817011
 Rigidbody:
@@ -11061,6 +11063,8 @@ MonoBehaviour:
       m_Calls: []
   _seFireID: 3
   _seFireVolume: 0.2
+  _seReloadID: 32
+  _seReloadVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0

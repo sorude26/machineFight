@@ -171,8 +171,11 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
-  _seFireVolume: 0.2
+  _seFireVolume: 0.02
+  _seReloadID: 32
+  _seReloadVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -191,10 +194,10 @@ MonoBehaviour:
     HomingStartTime: 0
     HomingEndTime: 0
     Dir: {x: 0, y: 0, z: 0}
-  _shotCount: 100
+  _shotCount: 60
   _subCount: 0
   _triggerInterval: 0.1
-  _shotInterval: 0.02
+  _shotInterval: 0.03
   _diffusivity: 0.02
 --- !u!1 &4491090342611173471
 GameObject:

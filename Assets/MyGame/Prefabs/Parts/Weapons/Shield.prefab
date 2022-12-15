@@ -120,6 +120,7 @@ MonoBehaviour:
   _isMarkTarget: 0
   _count: 0
   _deadSEID: 8
+  _seVolume: 1
   OnDamageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -273,8 +274,11 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
-  _seFireID: 3
+  _fireDelay: 0
+  _seFireID: 44
   _seFireVolume: 0.2
+  _seReloadID: 32
+  _seReloadVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
