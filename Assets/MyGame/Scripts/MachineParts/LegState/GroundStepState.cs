@@ -11,8 +11,8 @@ public partial class LegStateContext
         private float _upPower = 3f;
         private float _stepTime = 0.6f;
         private float _timer = 0;
-        private int _jumpSEID = 33;
-        private float _seVolume = 0.1f;
+        private int _jumpSEID = 34;
+        private float _seVolume = 0.05f;
         public void ExecuteEnter(LegStateContext context)
         {
             _upPower = context.ActionParam.StepUpPower;

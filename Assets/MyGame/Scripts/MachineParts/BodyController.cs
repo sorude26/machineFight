@@ -35,7 +35,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     [SerializeField]
     protected int _boosterSEID = 18;
     [SerializeField]
-    protected float _boosterVolume = 0.02f;
+    protected float _boosterSEVolume = 0.1f;
     private MoveController _moveController = default;
     private BackPackController _backPack = default;
     private string _lSAttack = "SaberSlashL";
@@ -288,7 +288,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     {
         if (SoundManager.Instance != null)
         {
-            SoundManager.Instance.PlaySE(_boosterSEID, transform.position, _boosterVolume);
+            SoundManager.Instance.PlaySE(_boosterSEID, transform.position, _boosterSEVolume);
         }
     }
     public void StartJetBoosters()
