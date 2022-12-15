@@ -7,11 +7,17 @@ public partial class LegStateContext
     {
         private readonly float landingEndTime = 0.5f;
         private float _timer = 0f;
+        private int _landingSEID = 31;
+        private float _seVolume = 0.1f;
         public void ExecuteEnter(LegStateContext context)
         {
             context.ChangeAnimation(context.AnimeName.Landing);
             context._moveController.MoveBreak();
             _timer = 0f;
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlaySE(_landingSEID, context.LegBaseTrans.position, _seVolume);
+            }
         }
         public void ExecuteFixedUpdate(LegStateContext context)
         {

@@ -32,6 +32,8 @@ public class AutoAttacker : MonoBehaviour
     private Transform _lockBody = default;
     [SerializeField]
     private float _lockSpeed = 5f;
+    [SerializeField]
+    private CameraController _cameraController = default;
     private float _attackTimer = 0f;
     private Transform _player = default;
     public bool IsAttackMode { get; private set; }
@@ -44,6 +46,11 @@ public class AutoAttacker : MonoBehaviour
         if (_attackTimer > 0)
         {
             _attackTimer -= Time.fixedDeltaTime;
+        }
+        if (_cameraController != null)
+        {
+            CheckLockOnCamera();
+            return;
         }
         CheckLockOn();
         _lockBody.localRotation = Quaternion.Lerp(_lockBody.localRotation, _playerLock.localRotation, _lockSpeed * Time.fixedDeltaTime);
@@ -69,7 +76,31 @@ public class AutoAttacker : MonoBehaviour
         else
         {
             IsAttackMode = false;
-            _playerLock.forward = _attackerMoveBody.forward;
+            _playerLock.forward = _attackerMoveBody.forward + Vector3.right * ChackLR(targetDir);
+        }
+    }
+    private void CheckLockOnCamera()
+    {
+        if (Vector3.Distance(_player.position, _bodyTrans.position) > LockOnRange)
+        {
+            IsAttackMode = false;
+            return;
+        }
+        Vector3 targetDir = _player.position - _bodyTrans.position;
+        float range = Vector3.Distance(_bodyTrans.position, _player.position);
+        if (ChackAngle(targetDir) && !Physics.SphereCast(_bodyTrans.position, _rayWide, targetDir, out RaycastHit hit, range, _wallLayer))
+        {
+            IsAttackMode = true;
+            _cameraController.FreeLock(Vector3.right * ChackLR(targetDir));
+            if (_attackTimer <= 0)
+            {
+                ExecuteAttack();
+            }
+        }
+        else
+        {
+            _cameraController.ResetLock();
+            IsAttackMode = false;
         }
     }
     private void ExecuteAttack()
@@ -90,5 +121,10 @@ public class AutoAttacker : MonoBehaviour
     {
         var angle = Vector3.Dot(targetDir.normalized, _bodyTrans.forward);
         return angle > _lockOnWide;
+    }
+    private float ChackLR(Vector3 targetDir)
+    {
+        var angle = Vector3.Dot(targetDir.normalized, _bodyTrans.right);
+        return angle;
     }
 }

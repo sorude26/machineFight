@@ -4922,7 +4922,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5034,7 +5034,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5115,7 +5115,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10055,6 +10055,14 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
+  _weaponFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _seFireID: 3
+  _seFireVolume: 0.2
+  _seReloadID: 32
+  _seReloadVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -10137,7 +10145,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10218,7 +10226,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10359,7 +10367,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10514,6 +10522,8 @@ MonoBehaviour:
   _addCount: 0
   _isMarkTarget: 0
   _count: 1
+  _deadSEID: 8
+  _seVolume: 0.5
   OnDamageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -10613,7 +10623,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10663,7 +10673,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4306369018601817012}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10751,7 +10761,7 @@ MonoBehaviour:
   _diffusivity: 0.2
   _moveDiffusivity: 0.9
   _transSpeed: 1
-  _moveSpeed: 50
+  _moveSpeed: 10
   _naviInterval: 1
 --- !u!54 &4306369018601817011
 Rigidbody:
@@ -10858,7 +10868,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10939,7 +10949,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11047,6 +11057,14 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
+  _weaponFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _seFireID: 3
+  _seFireVolume: 0.2
+  _seReloadID: 32
+  _seReloadVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0

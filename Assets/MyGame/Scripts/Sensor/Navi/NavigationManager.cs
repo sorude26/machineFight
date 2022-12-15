@@ -17,7 +17,12 @@ public class NavigationManager : MonoBehaviour
     private LayerMask _obstacleLayer = default;
     [SerializeField]
     private int _maxRayCount = 500;
+    [SerializeField]
     private float _rayRange = 5f;
+    [SerializeField]
+    private Vector3 _rayDir = Vector3.up;
+    [SerializeField]
+    private Vector3 _rayStart = Vector3.zero;
     private WaitForSeconds _updateInterval = default;
     private NavigationMap _navMap = default;
     public Transform Target { get => _target; }
@@ -59,7 +64,7 @@ public class NavigationManager : MonoBehaviour
         int count = _maxRayCount;
         foreach (var navMap in _navMap.NaviMap)
         {
-            navMap.IsNoEntry = Physics.Raycast(navMap.Pos, Vector3.up, _rayRange, _obstacleLayer);
+            navMap.IsNoEntry = Physics.Raycast(navMap.Pos + _rayStart, _rayDir, _rayRange, _obstacleLayer);
             count--;
             if (count < 0)
             {

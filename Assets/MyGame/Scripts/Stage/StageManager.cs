@@ -11,6 +11,14 @@ public class StageManager : MonoBehaviour
     private int _breakTargetCount;
     [SerializeField]
     private int _clearBossCount = 1;
+    [SerializeField]
+    private int _bgmIDNum = 29;
+    [SerializeField]
+    private int _stageClearbgmIDNum = 41;
+    [SerializeField]
+    private int _gameOverbgmIDNum = 42;
+    [SerializeField]
+    private float _bgmVolume = 0.1f;
     private int _targetCount = 0;
     private int _totalCount = 0;
     private bool _gameOver = false;
@@ -24,6 +32,10 @@ public class StageManager : MonoBehaviour
     private void Start()
     {
         PlayerInput.ChangeInputMode(InputMode.InGame);
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayBGM(_bgmIDNum, _bgmVolume);
+        }
     }
     public void AddBossCount(int count = 1)
     {
@@ -77,6 +89,10 @@ public class StageManager : MonoBehaviour
         }
         OnGameEnd?.Invoke();
         ResultData.IsStageClear = true;
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayBGM(_stageClearbgmIDNum, _bgmVolume);
+        }
         var massage = new PopUpData(center: "”C–±Š®—¹");
         MoveResult(massage);
     }
@@ -88,6 +104,10 @@ public class StageManager : MonoBehaviour
         }
         OnGameEnd?.Invoke();
         ResultData.IsStageClear = false;
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayBGM(_gameOverbgmIDNum, _bgmVolume);
+        }
         var massage = new PopUpData(center: "”C–±Ž¸”s");
         MoveResult(massage);
     }

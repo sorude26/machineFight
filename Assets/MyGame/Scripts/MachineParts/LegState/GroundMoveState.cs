@@ -89,7 +89,7 @@ public partial class LegStateContext
                 context.ChangeAnimation(context.AnimeName.Walk);
             }
             //ˆÚ“®ˆ—
-            context._moveController.VelocityMove(moveDir * _walkSpeed);
+            context._moveController.GVelocityMove(moveDir * _walkSpeed);
         }
 
         /// <summary>

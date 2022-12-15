@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -140,7 +140,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -428,6 +428,8 @@ MonoBehaviour:
   _damageChecker: {fileID: 1029337337286944370}
   _bodyAnime: {fileID: 200906885704468297}
   _partsColorChanger: {fileID: 8086289721912741166}
+  _boosterSEID: 18
+  _boosterVolume: 0.02
   BodyBase: {fileID: 0}
   Lock: {fileID: 0}
   AttackTarget: {fileID: 0}
@@ -474,6 +476,8 @@ MonoBehaviour:
   - {fileID: 7094270908294345969}
   - {fileID: 8664271896336668729}
   - {fileID: 6255067525211507200}
+  _startColorSetMode: 0
+  _startColorID: 0
 --- !u!1 &1029337336921477226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,7 +1035,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1189,6 +1193,8 @@ MonoBehaviour:
   _addCount: 0
   _isMarkTarget: 0
   _count: 0
+  _deadSEID: 8
+  _seVolume: 1
   OnDamageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1370,7 +1376,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

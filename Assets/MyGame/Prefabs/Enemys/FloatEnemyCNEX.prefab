@@ -5919,7 +5919,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6001,6 +6001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 20
   _speed: 250
   _fireShakeParam:
@@ -6009,6 +6010,12 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
+  _weaponFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _seFireID: 3
+  _seFireVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -6017,14 +6024,21 @@ MonoBehaviour:
   _bullet: {fileID: 1233709711767816154, guid: e6e67469e48f0e04ba2720aa3bacb866, type: 3}
   _muzzleFlashEffect: {fileID: 868879943416363419}
   _muzzle: {fileID: 868879942520388921}
+  _bulletParam:
+    Speed: 0
+    Power: 0
+    ExplosionPower: 0
+    ExplosionCount: 0
+    Radius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
+    Dir: {x: 0, y: 0, z: 0}
   _shotCount: 16
   _subCount: 0
   _triggerInterval: 0.2
   _shotInterval: 0.2
   _diffusivity: 0.01
-  _exPower: 0
-  _exCount: 0
-  _exRadius: 0
 --- !u!1 &868879941990750524
 GameObject:
   m_ObjectHideFlags: 0
@@ -6310,7 +6324,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6447,7 +6461,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6629,6 +6643,7 @@ MonoBehaviour:
   LockOnRange: 500
   _attackMaxInterval: 4
   _attackIntervalDiffusivity: 2
+  _weapon: {fileID: 0}
   _onAttackEvent:
     m_PersistentCalls:
       m_Calls:
@@ -6789,7 +6804,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6885,7 +6900,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -41272,6 +41287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 20
   _speed: 250
   _fireShakeParam:
@@ -41280,6 +41296,12 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
+  _weaponFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _seFireID: 3
+  _seFireVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -41288,14 +41310,21 @@ MonoBehaviour:
   _bullet: {fileID: 1233709711767816154, guid: e6e67469e48f0e04ba2720aa3bacb866, type: 3}
   _muzzleFlashEffect: {fileID: 4721907679378510569}
   _muzzle: {fileID: 4721907678391476935}
+  _bulletParam:
+    Speed: 0
+    Power: 0
+    ExplosionPower: 0
+    ExplosionCount: 0
+    Radius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
+    Dir: {x: 0, y: 0, z: 0}
   _shotCount: 16
   _subCount: 0
   _triggerInterval: 0.2
   _shotInterval: 0.2
   _diffusivity: 0.05
-  _exPower: 0
-  _exCount: 0
-  _exRadius: 0
 --- !u!1 &4721907678336171002
 GameObject:
   m_ObjectHideFlags: 0
@@ -41431,6 +41460,7 @@ MonoBehaviour:
   LockOnRange: 500
   _attackMaxInterval: 4
   _attackIntervalDiffusivity: 2
+  _weapon: {fileID: 0}
   _onAttackEvent:
     m_PersistentCalls:
       m_Calls:
@@ -41668,7 +41698,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -56919,6 +56949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 20
   _speed: 250
   _fireShakeParam:
@@ -56927,6 +56958,12 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
+  _weaponFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _seFireID: 3
+  _seFireVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -56935,14 +56972,21 @@ MonoBehaviour:
   _bullet: {fileID: 1233709711767816154, guid: e6e67469e48f0e04ba2720aa3bacb866, type: 3}
   _muzzleFlashEffect: {fileID: 4721907679360194758}
   _muzzle: {fileID: 4721907679955080748}
+  _bulletParam:
+    Speed: 0
+    Power: 0
+    ExplosionPower: 0
+    ExplosionCount: 0
+    Radius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
+    Dir: {x: 0, y: 0, z: 0}
   _shotCount: 16
   _subCount: 0
   _triggerInterval: 0.2
   _shotInterval: 0.2
   _diffusivity: 0.01
-  _exPower: 0
-  _exCount: 0
-  _exRadius: 0
 --- !u!1 &4721907679527840793
 GameObject:
   m_ObjectHideFlags: 0
@@ -57002,7 +57046,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -57177,7 +57221,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -57326,6 +57370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
+  _weaponType: 0
   _power: 20
   _speed: 250
   _fireShakeParam:
@@ -57334,6 +57379,12 @@ MonoBehaviour:
     Time: 0
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
+  _partsColorChanger: {fileID: 0}
+  _weaponFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _seFireID: 3
+  _seFireVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -57342,14 +57393,21 @@ MonoBehaviour:
   _bullet: {fileID: 1233709711767816154, guid: e6e67469e48f0e04ba2720aa3bacb866, type: 3}
   _muzzleFlashEffect: {fileID: 4721907678733276533}
   _muzzle: {fileID: 4721907678997624587}
+  _bulletParam:
+    Speed: 0
+    Power: 0
+    ExplosionPower: 0
+    ExplosionCount: 0
+    Radius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
+    Dir: {x: 0, y: 0, z: 0}
   _shotCount: 16
   _subCount: 0
   _triggerInterval: 0.2
   _shotInterval: 0.2
   _diffusivity: 0.05
-  _exPower: 0
-  _exCount: 0
-  _exRadius: 0
 --- !u!1 &4721907679955080749
 GameObject:
   m_ObjectHideFlags: 0
@@ -57466,6 +57524,7 @@ MonoBehaviour:
   LockOnRange: 500
   _attackMaxInterval: 4
   _attackIntervalDiffusivity: 2
+  _weapon: {fileID: 0}
   _onAttackEvent:
     m_PersistentCalls:
       m_Calls:
@@ -57648,7 +57707,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -57758,6 +57817,7 @@ MonoBehaviour:
   LockOnRange: 500
   _attackMaxInterval: 4
   _attackIntervalDiffusivity: 2
+  _weapon: {fileID: 0}
   _onAttackEvent:
     m_PersistentCalls:
       m_Calls:
@@ -101956,7 +102016,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102052,7 +102112,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102222,6 +102282,9 @@ MonoBehaviour:
     Time: 20
   _addCount: 1
   _isMarkTarget: 0
+  _count: 1
+  _deadSEID: 8
+  _seVolume: 1
   OnDamageEvent:
     m_PersistentCalls:
       m_Calls:
@@ -102300,7 +102363,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102398,7 +102461,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102521,7 +102584,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102604,7 +102667,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102708,6 +102771,7 @@ MonoBehaviour:
   LockOnRange: 5000
   _attackMaxInterval: 40
   _attackIntervalDiffusivity: 2
+  _weapon: {fileID: 0}
   _onAttackEvent:
     m_PersistentCalls:
       m_Calls:
@@ -102820,7 +102884,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102943,7 +103007,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103026,7 +103090,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -9,6 +9,8 @@ public partial class LegStateContext
         private readonly float stateChangeTime = 0.5f;
         private float _timer = 0f;
         private bool _isJump = false;
+        private int _jumpSEID = 34;
+        private float _seVolume = 0.1f;
         public void ExecuteEnter(LegStateContext context)
         {
             context.ChangeAnimation(context.AnimeName.Jump);
@@ -27,6 +29,10 @@ public partial class LegStateContext
                     _timer = 0f;
                     Vector3 dir = context.BodyTrans.forward * context._moveDir.z + context.BodyTrans.right * context._moveDir.x;
                     context._moveController.AddImpulse((dir + Vector3.up).normalized * context.ActionParam.JumpPower);
+                    if (SoundManager.Instance != null)
+                    {
+                        SoundManager.Instance.PlaySE(_jumpSEID, context.LegBaseTrans.position, _seVolume);
+                    }
                 }
             }
             else if (_timer < stateChangeTime && _isJump == true)

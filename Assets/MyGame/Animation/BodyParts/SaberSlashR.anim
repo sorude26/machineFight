@@ -105,7 +105,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: -20, y: 0, z: 0}
+        value: {x: 30, y: -20, z: -20}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -510,7 +510,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -20
+        value: 30
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -547,7 +547,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: -20
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -584,7 +584,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: -20
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -795,7 +795,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: BodyJoint/Body/BodyBase/LeftJoint
+    path: BodyJoint/Body/BodyBase/HeadJoint
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -805,17 +805,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: BodyJoint/Body/BodyBase/LeftJoint
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalEulerAngles.x
-    path: BodyJoint/Body/BodyBase/LeftJoint
+    path: BodyJoint/Body/BodyBase/HeadJoint
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -834,8 +824,18 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    attribute: m_LocalEulerAngles.x
+    path: BodyJoint/Body/BodyBase/LeftJoint
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: BodyJoint/Body/BodyBase/HeadJoint
+    path: BodyJoint/Body/BodyBase/LeftJoint
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -845,7 +845,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: BodyJoint/Body/BodyBase/HeadJoint
+    path: BodyJoint/Body/BodyBase/LeftJoint
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0

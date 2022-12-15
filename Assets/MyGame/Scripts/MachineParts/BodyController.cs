@@ -32,6 +32,10 @@ public class BodyController : MonoBehaviour, IPartsModel
     private Animator _bodyAnime = default;
     [SerializeField]
     private PartsColorChanger _partsColorChanger = default;
+    [SerializeField]
+    protected int _boosterSEID = 18;
+    [SerializeField]
+    protected float _boosterSEVolume = 0.1f;
     private MoveController _moveController = default;
     private BackPackController _backPack = default;
     private string _lSAttack = "SaberSlashL";
@@ -50,11 +54,12 @@ public class BodyController : MonoBehaviour, IPartsModel
     public bool IsDown = false;
     public event Action UseBooster = default;
     public int ID { get => _id; }
-    public Transform HeadJoint { get => _headJoint; } 
+    public Transform HeadJoint { get => _headJoint; }
     public DamageChecker DamageChecker { get => _damageChecker; }
     public BackPackController BackPack { get => _backPack; }
     public HandController LeftHand { get => _lHand; }
     public HandController RightHand { get => _rHand; }
+    #region SetUpMethods
     public void Initialize(MoveController moveController)
     {
         _moveController = moveController;
@@ -69,7 +74,7 @@ public class BodyController : MonoBehaviour, IPartsModel
             _rHand.InitializeHand();
         }
     }
-    public void SetParam(BodyParam param,in PartsHandData handL = default,in PartsHandData handR = default)
+    public void SetParam(BodyParam param, in PartsHandData handL = default, in PartsHandData handR = default)
     {
         _param = param;
         _damageChecker.SetHp(_param.Hp);
@@ -86,7 +91,7 @@ public class BodyController : MonoBehaviour, IPartsModel
             _rHand.WeaponParam = handR.WeaponParam;
         }
     }
-    public void SetHands(HandController lhand,HandController rhand)
+    public void SetHands(HandController lhand, HandController rhand)
     {
         _lHand = lhand;
         _lHand.transform.SetParent(_lHandJoint);
@@ -110,10 +115,6 @@ public class BodyController : MonoBehaviour, IPartsModel
     {
         _boosters.Add(booster);
     }
-    public void BackPackBurst()
-    {
-        _backPack?.ExecuteBackPackBurst(AttackTarget);
-    }
     public void ChangeColor(int id)
     {
         if (_partsColorChanger != null)
@@ -121,6 +122,7 @@ public class BodyController : MonoBehaviour, IPartsModel
             _partsColorChanger.ChangeColor(id);
         }
     }
+    #endregion
     private void FixedUpdate()
     {
         if (_isInitialized == false) { return; }
@@ -128,7 +130,7 @@ public class BodyController : MonoBehaviour, IPartsModel
         if (IsDown == true)
         {
             transform.forward = Vector3.Lerp(transform.forward, BodyBase.forward, Time.deltaTime);
-            return;            
+            return;
         }
         transform.forward = Lock.forward;
     }
@@ -158,7 +160,7 @@ public class BodyController : MonoBehaviour, IPartsModel
                 _rHand?.SetCameraAim();
             }
         }
-        else if(IsDown == false)
+        else if (IsDown == false)
         {
             _lHand?.SetCameraAim();
             _rHand?.SetCameraAim();
@@ -180,7 +182,9 @@ public class BodyController : MonoBehaviour, IPartsModel
         var angle = Vector3.Dot(targetDir.normalized, transform.forward);
         return angle > ATTACK_ANGLE;
     }
-    public void BoostMove(Vector3 dir,bool floatMode)
+    #region ActionMethods
+    #region BoosterMethods
+    public void BoostMove(Vector3 dir, bool floatMode)
     {
         if (IsDown == true)
         {
@@ -190,6 +194,7 @@ public class BodyController : MonoBehaviour, IPartsModel
         if (_boster != null && _boster.IsBoost == false)
         {
             StartJetBoosters();
+            PlayBoosterSE();
         }
         if (_jetTimer > 0)
         {
@@ -229,10 +234,11 @@ public class BodyController : MonoBehaviour, IPartsModel
             }
             StartMainBooster();
         }
+        PlayBoosterSE();
         _moveController.AddImpulse(Vector3.up * _param.UpPower);
 
     }
-    public void AngleBoost(Vector3 dir, bool isFall,bool isFloat)
+    public void AngleBoost(Vector3 dir, bool isFall, bool isFloat)
     {
         if (isFall == false || IsDown == true)
         {
@@ -275,7 +281,15 @@ public class BodyController : MonoBehaviour, IPartsModel
         {
             dir *= 2f;
         }
+        PlayBoosterSE();
         _moveController.VelocityMove(dir);
+    }
+    private void PlayBoosterSE()
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySE(_boosterSEID, transform.position, _boosterSEVolume);
+        }
     }
     public void StartJetBoosters()
     {
@@ -329,6 +343,11 @@ public class BodyController : MonoBehaviour, IPartsModel
         _lHand.ShoulderBoost.StopBooster();
         _rHand.ShoulderBoost.StopBooster();
     }
+    #endregion
+    public void BackPackBurst()
+    {
+        _backPack?.ExecuteBackPackBurst(AttackTarget);
+    }
     public void ShotLeft()
     {
         if (_lHand.WeaponBase.Type == WeaponType.HandGun)
@@ -345,7 +364,7 @@ public class BodyController : MonoBehaviour, IPartsModel
                 MeleeAttackMove();
             }
         }
-        else if(_lHand.WeaponBase.Type == WeaponType.Knuckle)
+        else if (_lHand.WeaponBase.Type == WeaponType.Knuckle)
         {
             if (_lHand.IsAttack == false && _rHand.IsAttack == false)
             {
@@ -389,9 +408,9 @@ public class BodyController : MonoBehaviour, IPartsModel
         {
             dir = AttackTarget.position - transform.position;
         }
-        //_moveController.AddImpulse(dir.normalized * _param.JetPower);
         _moveController.VelocityMove(dir.normalized * _param.JetPower);
     }
+    #endregion
     public void DestroyBody()
     {
         OnBodyDestroy?.Invoke();
