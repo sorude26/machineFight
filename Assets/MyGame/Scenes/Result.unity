@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5824853, g: 0.63271797, b: 0.7775048, a: 1}
+  m_IndirectSpecularColor: {r: 0.30314592, g: 0.36816618, b: 0.59056205, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -230,6 +230,9 @@ MonoBehaviour:
   _targetScene: Home
   _waitTime: 2
   IsSceneChangeMode: 0
+  _changeBGMID: 28
+  _BGMVolume: 0.1
+  _changeBGM: 1
 --- !u!4 &162716117
 Transform:
   m_ObjectHideFlags: 0
@@ -1325,7 +1328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9c29b7acaf67147984ed1983717827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetScene: Home
   _totalDamage: {fileID: 1944607488}
   _countTotal: {fileID: 1562575931}
   _countTarget: {fileID: 1690173913}
