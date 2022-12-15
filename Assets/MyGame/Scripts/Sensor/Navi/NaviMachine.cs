@@ -78,6 +78,15 @@ namespace MyGame
         {
             _machineController.ExecuteJet(_currentDir.normalized);
         }
+        public void ExeExecuteJet(float side)
+        {
+            ExeExecuteJet(Vector3.right * side);
+        }
+        public void ExeExecuteJet(Vector3 dir)
+        {
+            var jetDir = _body.forward * dir.z + _body.right * dir.x;
+            _machineController.ExecuteJet(jetDir);
+        }
         private void SetRandamBuildDat()
         {
             if (_buildSet.Length > 0)
