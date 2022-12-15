@@ -24,6 +24,12 @@ public class LegController : MonoBehaviour, IPartsModel
     private BoosterController _legBooster = default;
     [SerializeField]
     private PartsColorChanger _partsColorChanger = default;
+    [SerializeField]
+    private ParticleSystem _floatEffect = default;
+    [SerializeField]
+    private float _effectRange = default;
+    [SerializeField]
+    private LayerMask _effectLayer = default;
     public Transform LegBase = default;
     public Transform LockTrans = default;
     public Transform BaseTrans = default;
@@ -50,6 +56,14 @@ public class LegController : MonoBehaviour, IPartsModel
     public void ExecuteFixedUpdate(Vector3 dir)
     {
         _stateContext.ExecuteFixedUpdate(dir, _isJump,_isStep, _groundChecker.IsWalled());
+        if (_stateContext.IsFloat == true || _stateContext.IsFall == true)
+        {
+            if (Physics.Raycast(transform.position + Vector3.up, Vector3.down,out RaycastHit hit,_effectRange,_effectLayer))
+            {
+                _floatEffect.transform.position = hit.point;
+                _floatEffect.Play();
+            }
+        }
         _isJump = false;
         _isStep = false;
     }
