@@ -19,6 +19,8 @@ public class AnimationEventController : MonoBehaviour
     private ShakeParam _shakeParam = default;
     [SerializeField]
     private ShakeParam _strongParam = default;
+    [SerializeField]
+    ParticleSystem _shakeEffect = default;
     private void PlayEvent()
     {
         _playEvent?.Invoke();
@@ -30,6 +32,10 @@ public class AnimationEventController : MonoBehaviour
         {
             SoundManager.Instance.PlaySE(_playSEID, transform.position, _shakeSEVolume);
         }
+        if (_shakeEffect != null)
+        {
+            _shakeEffect.Play();
+        }
     }
     private void PlayStrongShake()
     {
@@ -37,6 +43,10 @@ public class AnimationEventController : MonoBehaviour
         if (SoundManager.Instance != null)
         {
             SoundManager.Instance.PlaySE(_playSEID, transform.position, _strongSEVolume);
+        }
+        if (_shakeEffect != null)
+        {
+            _shakeEffect.Play();
         }
     }
 }
