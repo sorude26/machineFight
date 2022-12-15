@@ -19,13 +19,14 @@ public class BladePoint : MonoBehaviour
     [SerializeField]
     private bool _anSleepBlade = false;
     [SerializeField]
-    protected int _seID = 13;
+    private int _seID = 13;
     [SerializeField]
-    protected float _seVolume = 0.05f;
+    private float _seVolume = 0.05f;
     [SerializeField]
-    protected int _seCount = 5;
+    private int _seCount = 5;
     private float _timer = 0;
     private int _count = 0;
+    private ShakeParam _shake = default;
     private void FixedUpdate()
     {
         if (_anSleepBlade == true)
@@ -58,6 +59,8 @@ public class BladePoint : MonoBehaviour
                 {
                     SoundManager.Instance.PlaySE(_seID,transform.position, _seVolume);
                 }
+                _shake.Pos = transform.position;
+                StageShakeController.PlayShake(_shake);
                 _count = _seCount;
             }
         }
@@ -86,9 +89,10 @@ public class BladePoint : MonoBehaviour
         effect.transform.forward = transform.forward;
         effect.gameObject.SetActive(true);
     }
-    public void SetPower(int power)
+    public void SetPower(int power,ShakeParam param)
     {
         _power = power;
+        _shake = param;
     }
     public void OnBlade()
     {
