@@ -23,6 +23,11 @@ public class NaviRigidController : MonoBehaviour
     private float _naviInterval = 1f;
     private float _timer = 0f;
     private Vector3 _currentDir = Vector3.zero;
+    private MyGame.MoveController _controller = null;
+    private void Start()
+    {
+        _controller = new MyGame.MoveController(_rb);
+    }
     private void FixedUpdate()
     {
         _timer += Time.fixedDeltaTime;
@@ -30,13 +35,13 @@ public class NaviRigidController : MonoBehaviour
         {
             _timer = 0;
             _currentDir = NavigationManager.Instance.GetMoveDir(_body,_naviPower);
-            _currentDir.x += Random.Range(-_diffusivity, _diffusivity);
-            _currentDir.z += Random.Range(-_diffusivity, _diffusivity);
         }
         if (_currentDir != Vector3.zero)
         {
+            _currentDir.x += Random.Range(-_diffusivity, _diffusivity);
+            _currentDir.z += Random.Range(-_diffusivity, _diffusivity);
             _body.forward = Vector3.Lerp(_body.forward, _currentDir, _transSpeed * Time.fixedDeltaTime);
-            _rb.AddForce(_body.forward * _moveSpeed);
+            _controller.GVelocityMove(_body.forward * _moveSpeed);
         }
         var velo = _rb.velocity;
         var g = velo.y;

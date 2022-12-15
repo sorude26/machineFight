@@ -14,7 +14,7 @@ public class MeleeWeapon : WeaponBase
     {
         foreach (var blade in _bladePoints)
         {
-            blade.SetPower(_power);
+            blade.SetPower(_power,_fireShakeParam);
         }
     }
     public override void Fire(Transform target)
@@ -28,5 +28,9 @@ public class MeleeWeapon : WeaponBase
             _animator.Play(_attackName);
         }
         _weaponFireEvent?.Invoke();
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySE(_seFireID,transform.position, _seFireVolume);
+        }
     }
 }

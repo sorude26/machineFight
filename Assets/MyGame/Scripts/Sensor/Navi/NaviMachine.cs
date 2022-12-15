@@ -23,9 +23,17 @@ namespace MyGame
         [SerializeField]
         private PartsBuildParam _buildParam;
         [SerializeField]
+        private PartsBuildParam[] _buildSet;
+        [SerializeField]
+        private bool _randamSet = default;
+        [SerializeField]
         private LockOnTarget _bodyTarget = default;
         [SerializeField]
         private GameObject _deadEffct = default;
+        [SerializeField]
+        private int _deadSEID = 11;
+        [SerializeField]
+        private float _seVolume = 1f;
         [SerializeField]
         private float _explosionTime = 3f;
         [SerializeField]
@@ -70,8 +78,30 @@ namespace MyGame
         {
             _machineController.ExecuteJet(_currentDir.normalized);
         }
+        public void ExeExecuteJet(float side)
+        {
+            ExeExecuteJet(Vector3.right * side);
+        }
+        public void ExeExecuteJet(Vector3 dir)
+        {
+            var jetDir = _body.forward * dir.z + _body.right * dir.x;
+            _machineController.ExecuteJet(jetDir);
+        }
         private void SetRandamBuildDat()
         {
+            if (_buildSet.Length > 0)
+            {
+                if (_randamSet == false)
+                {
+                    _buildParam = _buildSet[Random.Range(0, _buildSet.Length)];
+                    return;
+                }
+                for (int i = 0; i < PartsBuildParam.PARTS_TYPE_NUM; i++)
+                {
+                    _buildParam[(PartsType)i] = _buildSet[Random.Range(0, _buildSet.Length)][(PartsType)i];
+                }
+                return;
+            }
             for (int i = 0; i < PartsBuildParam.PARTS_TYPE_NUM; i++)
             {
                 _buildParam[(PartsType)i] = PartsManager.Instance.AllParamData.GetRandamPartsId((PartsType)i);
@@ -95,6 +125,10 @@ namespace MyGame
                 {
                     controller.PopItem();
                 }
+            }
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlaySE(_deadSEID, _body.position, _seVolume);
             }
             gameObject.SetActive(false);
         }

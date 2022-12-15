@@ -5,13 +5,17 @@ using UnityEngine;
 public abstract class ItemBase : MonoBehaviour
 {
     [SerializeField]
+    protected int _catchSEID = 21;
+    [SerializeField]
+    protected float _seVolume = 0.02f;
+    [SerializeField]
     private float _itemLifeTime = 20f;
     private float _timer = 0;
     public abstract void CatchItem(ItemCatcher catcher);
     public virtual void CatchAction(ItemCatcher catcher)
     {
         CatchItem(catcher);
-        catcher.PlayCatchEffect();
+        catcher.PlayCatchEffect(_catchSEID,_seVolume);
         _timer = 0;
         gameObject.SetActive(false);
     }

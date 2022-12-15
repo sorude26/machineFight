@@ -70,6 +70,7 @@ public class ShotWeapon : WeaponBase
     {
         IsFire = true;
         _count = 0;
+        yield return WaitTime(_fireDelay);
         while (_count < _shotCount && IsFire)
         {
             if (SoundManager.Instance != null)
@@ -105,28 +106,14 @@ public class ShotWeapon : WeaponBase
             }
             _count++;
             _onCount?.Invoke();
-            yield return WaitShot();
+            yield return WaitTime(_shotInterval);
         }
         IsFire = false;
     }
     private IEnumerator TriggerWait()
     {
-        float timer = 0;
-        while (timer < _triggerInterval)
-        {
-            timer += Time.deltaTime;
-            yield return null;
-        }
+        yield return WaitTime(_triggerInterval);
         _isTrigerOn = false;
-    }
-    private IEnumerator WaitShot()
-    {
-        float timer = 0;
-        while (timer < _shotInterval)
-        {
-            timer += Time.deltaTime;
-            yield return null;
-        }
     }
     public override void Reload()
     {
@@ -142,6 +129,10 @@ public class ShotWeapon : WeaponBase
             {
                 _currentMagazine = _currentAmmunition;
             }
+        }
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySE(_seReloadID, _muzzle.position, _seReloadVolume);
         }
         _onCount?.Invoke();
     }

@@ -11,6 +11,8 @@ public partial class LegStateContext
         private float _upPower = 3f;
         private float _stepTime = 0.6f;
         private float _timer = 0;
+        private int _jumpSEID = 34;
+        private float _seVolume = 0.05f;
         public void ExecuteEnter(LegStateContext context)
         {
             _upPower = context.ActionParam.StepUpPower;
@@ -43,6 +45,10 @@ public partial class LegStateContext
             moveDir = context.BodyTrans.forward * moveDir.z + context.BodyTrans.right * moveDir.x;
             moveDir = moveDir.normalized * context.ActionParam.JumpPower + Vector3.up * _upPower;
             context._moveController.AddImpulse(moveDir);
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlaySE(_jumpSEID, context.LegBaseTrans.position, _seVolume);
+            }
         }
         public void ExecuteFixedUpdate(LegStateContext context)
         {

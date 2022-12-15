@@ -25,9 +25,15 @@ public abstract class WeaponBase : MonoBehaviour, IPartsModel
     [SerializeField]
     protected UnityEvent _weaponFireEvent = default;
     [SerializeField]
+    protected float _fireDelay = 0f;
+    [SerializeField]
     protected int _seFireID = 3;
     [SerializeField]
     protected float _seFireVolume = 0.2f;
+    [SerializeField]
+    protected int _seReloadID = 32;
+    [SerializeField]
+    protected float _seReloadVolume = 0.2f;
     protected Action _onCount = default;
     public int MaxAmmunitionCapacity => _maxAmmunitionCapacity;
     public int MagazineCount => _magazineCount;
@@ -77,6 +83,15 @@ public abstract class WeaponBase : MonoBehaviour, IPartsModel
     public void AnLimitAmmunition()
     {
         _maxAmmunitionCapacity = -1;
+    }
+    protected IEnumerator WaitTime(float time)
+    {
+        float timer = 0f;
+        while (timer < time)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
     }
 }
 public enum WeaponType
