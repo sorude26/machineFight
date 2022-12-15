@@ -14,7 +14,7 @@ public class MeleeWeapon : WeaponBase
     {
         foreach (var blade in _bladePoints)
         {
-            blade.SetPower(_power);
+            blade.SetPower(_power,_fireShakeParam);
         }
     }
     public override void Fire(Transform target)
