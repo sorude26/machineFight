@@ -40,6 +40,9 @@ public class PartsSelectButton : MonoBehaviour
             case PartsCategory.RWeapon:
                 this.gameObject.GetComponentInChildren<Text>().text = PartsManager.Instance.AllParamData.GetPartsWeapon(PlayerData.instance.BuildPreset.RWeapon).Name;
                 break;
+            case PartsCategory.Color:
+                this.gameObject.GetComponentInChildren<Text>().text = PartsManager.Instance.AllModelData.GetColor(PlayerData.instance.BuildPreset.ColorId).ColorSetName;
+                break;
         }
         this.gameObject.GetComponent<Button>().onClick.AddListener(PartsCustomizePanelOpen);
     }

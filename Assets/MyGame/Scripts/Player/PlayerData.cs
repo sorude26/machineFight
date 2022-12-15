@@ -76,6 +76,7 @@ public class PlayerData : MonoBehaviour
         buildPreset.Booster = 0;
         buildPreset.LWeapon = 0;
         buildPreset.RWeapon = 0;
+        buildPreset.ColorId = 0;
         return buildPreset;
     }
 
@@ -92,6 +93,8 @@ public class PlayerData : MonoBehaviour
         Debug.Log("Booster:" + BuildPreset.Booster);
         Debug.Log("LWeapon:" + BuildPreset.LWeapon);
         Debug.Log("RWeapon:" + BuildPreset.RWeapon);
+        Debug.Log("Color:" + BuildPreset.ColorId);
+
     }
 
     /// <summary>

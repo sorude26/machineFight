@@ -22,4 +22,13 @@ public static class ButtonSelectController
     {
         EventSystem.current.SetSelectedGameObject(null);
     }
+
+    /// <summary>
+    /// 今選択しているゲームオブジェクトを返す
+    /// </summary>
+    /// <returns></returns>
+    public static Object OnGetCurrentButton()
+    {
+        return EventSystem.current.currentSelectedGameObject;
+    }
 }
