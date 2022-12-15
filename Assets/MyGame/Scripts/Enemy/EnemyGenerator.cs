@@ -9,6 +9,8 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField]
     private GeneratorEnemyContoroller[] _enemys = default;
     [SerializeField]
+    private GameObject _spwanEffect = default;
+    [SerializeField]
     private int _defaultCount = 1;
     [SerializeField]
     private int _startSpwanCount = 2;
@@ -91,6 +93,12 @@ public class EnemyGenerator : MonoBehaviour
         if (_allEnemys[_enemyIndex].IsActive == false)
         {
             _allEnemys[_enemyIndex].InitializeEnemy(pos);
+            if (_spwanEffect != null)
+            {
+                var effect = ObjectPoolManager.Instance.Use(_spwanEffect);
+                effect.transform.position = pos.position;
+                effect.SetActive(true);
+            }
         }
     }
     private void NextEnemy()
