@@ -105,6 +105,7 @@ public class ThrottleLever : Switch
             {
                 //ゾーン変更適用
                 ChangeZone(value, newZone);
+                //ValueByZone適用
                 SetValueByZone(value);
                 return;
             }
@@ -121,6 +122,7 @@ public class ThrottleLever : Switch
             {
                 //ゾーン変更適用
                 ChangeZone(value, newZone);
+                //ValueByZone適用
                 SetValueByZone(value);
                 return;
             }
