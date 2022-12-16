@@ -12,7 +12,8 @@ public enum PartsCategory
     Leg,
     Booster,
     LWeapon,
-    RWeapon
+    RWeapon,
+    Color
 }
 
 public class PartsButton : MonoBehaviour
@@ -55,6 +56,9 @@ public class PartsButton : MonoBehaviour
                 break;
             case PartsCategory.RWeapon:
                 partsData.RWeapon = _partsId;
+                break;
+            case PartsCategory.Color:
+                partsData.ColorId = _partsId;
                 break;
         }
 

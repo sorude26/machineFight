@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using MyGame;
+using UniRx.Triggers;
+using UniRx;
+using UnityEngine.InputSystem.UI;
 
 public class CustomizeMenu : MonoBehaviour
 {
@@ -11,6 +14,11 @@ public class CustomizeMenu : MonoBehaviour
     [SerializeField] Button _partsButton = default;
     [SerializeField] GameObject _content = default;
     [SerializeField] PartsCategory _category = default;
+    private int _selectedIndex = default;
+    //[SerializeField] GameObject _currentButton = default;
+    ReactiveProperty<GameObject> _currentButtonProperty = new ReactiveProperty<GameObject>();
+    private GameObject _preButton = null;
+
 
     PlayerData _playerData; 
 
@@ -28,6 +36,9 @@ public class CustomizeMenu : MonoBehaviour
         PlayerInput.ChangeInputMode(InputMode.Menu);
         //ButtonInstantiate(_category, 0);
         this.gameObject.SetActive(false);
+        _currentButtonProperty.Value = (GameObject)ButtonSelectController.OnGetCurrentButton();
+        _currentButtonProperty.Skip(1).Subscribe(_ => Scroll()).AddTo(this);
+        _selectedIndex = 0;
         //ButtonSelectController.OnButtonFirstSelect(_content);
     }
 
@@ -38,6 +49,12 @@ public class CustomizeMenu : MonoBehaviour
             ButtonSelectController.OnButtonFirstSelect(_content);
         }
     }
+
+    private void Update()
+    {
+        _currentButtonProperty.Value = (GameObject)ButtonSelectController.OnGetCurrentButton();
+    }
+
     /// <summary>
     /// ボタンの生成
     /// </summary>
@@ -225,6 +242,24 @@ public class CustomizeMenu : MonoBehaviour
                     }
                 }
                 break;
+            case PartsCategory.Color:
+                int id = 0;
+                while(PartsManager.Instance.AllModelData.GetColor(id) != null)
+                {
+                    var color = PartsManager.Instance.AllModelData.GetColor(id);
+                    Button button = Instantiate(_partsButton);
+                    button.gameObject.AddComponent<PartsButton>();
+                    //button.gameObject.AddComponent<EventTrigger>();
+                    PartsButton _ = button.GetComponent<PartsButton>();
+                    _._partsCategory = category;
+                    _._partsId = color.ID;
+                    button.onClick.AddListener(() => _.Customize());
+                    button.transform.parent = _content.transform;
+                    button.GetComponentInChildren<Text>().text = color.ColorSetName;
+                    id++;
+                }
+                
+                break;
         }
         //button.gameObject.AddComponent<PartsButton>();
         ////button.gameObject.AddComponent<EventTrigger>();
@@ -242,11 +277,14 @@ public class CustomizeMenu : MonoBehaviour
     /// <param name="category">変更先のカテゴリー</param>
     public IEnumerator CategoryChange(PartsCategory category)
     {
+
         ButtonSelectController.OnButtonNonSelect();
         ButtonDestory(_content);
+        _preButton = null;
         yield return null;
         ButtonInstantiate(_category);
         ButtonSelectController.OnButtonFirstSelect(_content);
+        _selectedIndex = 0;
     }
 
     /// <summary>
@@ -306,5 +344,37 @@ public class CustomizeMenu : MonoBehaviour
             ButtonSelectController.OnButtonFirstSelect(_partsSelectPanel);
             this.gameObject.SetActive(false);
         }
+    }
+
+    public void Scroll()
+    {
+        if (_currentButtonProperty.Value != null)
+        {   
+            if (_preButton == null)
+            {
+                _preButton = _currentButtonProperty.Value;
+                return;
+            }
+            if (_currentButtonProperty.Value.transform.localPosition.y > _preButton.transform.localPosition.y)
+            {
+                _selectedIndex -= 1;
+                if (_selectedIndex < 0)
+                {
+                    _content.transform.position = new Vector3(_content.transform.position.x, _content.transform.position.y - 105, _content.transform.position.z);
+                    _selectedIndex = 0;
+                }
+            }
+            else if (_currentButtonProperty.Value.transform.localPosition.y < _preButton.transform.localPosition.y)
+            {
+                _selectedIndex += 1;
+                if (_selectedIndex > 8)
+                {
+                    _content.transform.position = new Vector3(_content.transform.position.x, _content.transform.position.y + 105, _content.transform.position.z);
+                    _selectedIndex = 8;
+                }
+            }
+        }
+        _preButton = _currentButtonProperty.Value;
+        Debug.Log(_selectedIndex);
     }
 }
