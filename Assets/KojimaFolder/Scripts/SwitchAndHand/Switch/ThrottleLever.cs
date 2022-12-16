@@ -6,7 +6,7 @@ using UnityEngine;
 
 /// <summary>
 /// レバーの位置によってvalueが0～1に変化
-/// 複数個のクリックポイント(レバーを上げ下げするときに抵抗を感じるポイント)を設定できる
+/// 複数個のクリックポイント(レバーを上げ下げするときに抵抗を感じるポイント)を外部から設定できる
 /// OnExitZoneとOnEnterZoneコールバックを外部から登録可能
 /// </summary>
 public class ThrottleLever : Switch
@@ -40,6 +40,10 @@ public class ThrottleLever : Switch
     public int ZoneCount => _clickPoints.Count + 1;
     public int CurrentZone => _currentZone;
     public float ValueByZone => _valueByZone;
+    /// <summary>
+    /// レバーを上げ下げするときに抵抗を感じるポイントを設定する
+    /// </summary>
+    /// <param name="points">0～1の範囲内で設定されるポイントの位置</param>
     public void SetClickPointsAsNew(float[] points)
     {
         //昇順に並び替えて保管
@@ -86,16 +90,26 @@ public class ThrottleLever : Switch
 
     private void ChangeValue(float value)
     {
+        if (_clickPoints.Count == 0)
+        {
+            //区分けされているゾーンが存在しないならばそのまま値を適用して終了
+            _value = value;
+            _valueByZone = value;
+            return;
+        }
+
+
         int current = _currentZone;
         int newZone = GetZone(value);
         if (current == newZone)
         {
-            //特殊な処理が必要ないためそのまま適用
+            //ゾーンを変える必要がないためそのまま値を適用して終了する
             _value = value;
             //ValueByZone適用
             SetValueByZone(value);
             return;
         }
+
         if (current < newZone)
         {
             //レバーが上に行っているとき
