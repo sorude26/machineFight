@@ -42,9 +42,9 @@ public class Switch : MonoBehaviour
     [SerializeField, Range(0.0f, 1.0f)]
     protected float _rotateLockZ = 0f;
     [SerializeField]
-    AudioClip _audioClip;
+    protected AudioClip _audioClip;
 
-    AudioSource _audioSource;
+    protected AudioSource _audioSource;
     protected Vector3 _handMove = Vector3.zero;
     protected Quaternion _currentHandRotate = Quaternion.identity;
     
@@ -217,7 +217,7 @@ public class Switch : MonoBehaviour
         return myRotate;
     }
 
-    private void Vibrate()
+    protected void Vibrate()
     {
         ControllerVibrator.Vibrate(VIBE_SPEED, VIBE_POWER, VIBE_TIME, _lockinHand?.ControllerType ?? OVRInput.Controller.None);
     }
