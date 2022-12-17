@@ -12,7 +12,7 @@ using UnityEngine;
 public class ThrottleLever : Switch
 {
     const float LEVER_LEAP_SPEED = 0.2f;
-    const float CLICK_FORCE = 0.05f;
+    const float CLICK_FORCE = 0.02f;
     [SerializeField]
     Transform _minPosition;
     [SerializeField]
