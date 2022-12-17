@@ -21,6 +21,8 @@ public class SwitchCtrlHand : MonoBehaviour
     Transform _pinchPosition;
     [SerializeField]
     Transform _grabPosition;
+    [SerializeField]
+    Transform _thumbPosition;
     Switch _lockingSwitch;
     HandState _state;
     //掴み後の手の移動を見るための基準点
@@ -39,6 +41,8 @@ public class SwitchCtrlHand : MonoBehaviour
                 return _pinchPosition.position;
             case HoldTypes.Grab:
                 return _grabPosition.position;
+            case HoldTypes.Thumb:
+                return _thumbPosition.position;
             default:
                 Debug.LogError("例外が発生しています");
                 return Vector3.zero;
@@ -89,12 +93,8 @@ public class SwitchCtrlHand : MonoBehaviour
         //手の位置、回転をラープで動かす
         this.transform.position = Vector3.Lerp(this.transform.position, this.transform.parent.position, MOVE_LERP_SPEED);
         this.transform.rotation = Quaternion.Lerp(this.transform.rotation, this.transform.parent.rotation, ROTATE_LERP_SPEED);
-        //スイッチを探索(Pinchの方が優先度高)
-        Switch activeSwitch = _handTouchCollision.GetActiveSwitch(Switch.HoldTypes.Pinch);
-        if (activeSwitch == null)
-        {
-            activeSwitch = _handTouchCollision.GetActiveSwitch(Switch.HoldTypes.Grab);
-        }
+        //スイッチを探索
+        Switch activeSwitch = _handTouchCollision.GetActiveSwitch();
         //触れる
         activeSwitch?.Touch(this);
     }
@@ -114,11 +114,14 @@ public class SwitchCtrlHand : MonoBehaviour
     {
         switch (target.HoldType)
         {
-            case Switch.HoldTypes.Pinch:
+            case HoldTypes.Pinch:
                 _referencePosition.position = _pinchPosition.position;
                 break;
-            case Switch.HoldTypes.Grab:
+            case HoldTypes.Grab:
                 _referencePosition.position = _grabPosition.position;
+                break;
+            case HoldTypes.Thumb:
+                _referencePosition.position = _thumbPosition.position;
                 break;
             default:
                 Debug.LogError("例外が発生しています");

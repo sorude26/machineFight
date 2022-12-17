@@ -14,6 +14,8 @@ public class RotateSwitch : Switch
     [SerializeField]
     float _holdRotateOffset;
 
+    public override HoldTypes HoldType => HoldTypes.Pinch;
+
     public override void TurnOn(bool isInit = false)
     {
         base.TurnOn(isInit);

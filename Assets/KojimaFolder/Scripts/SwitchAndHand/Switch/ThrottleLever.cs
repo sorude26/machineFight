@@ -36,6 +36,7 @@ public class ThrottleLever : Switch
 
     public event Action<int> OnExitZone;
     public event Action<int> OnEnterZone;
+    public override HoldTypes HoldType => HoldTypes.Grab;
     public int ZoneCount => _clickPoints.Count + 1;
     public int CurrentZone => _currentZone;
     public float ValueByZone => _valueByZone;
@@ -200,7 +201,7 @@ public class ThrottleLever : Switch
         //rotate
         _currentHandRotate = from.transform.rotation;
         //move(‰ü•Ï•”)
-        _handMove = from.HoldPosition(_holdType) - _holdPosition.transform.position;
+        _handMove = from.HoldPosition(HoldType) - _holdPosition.transform.position;
     }
 
     protected override void MoveRotateUpdateOnLockIn()
@@ -228,6 +229,6 @@ public class ThrottleLever : Switch
 
         //move(‰ü•Ï•”)
         _handMove = Vector3.Lerp(_handMove, Vector3.zero, MOVE_LERP_SPEED);
-        _lockinHand.transform.position = _handMove + _lockinHand.transform.position - _lockinHand.HoldPosition(_holdType) + _holdPosition.position;
+        _lockinHand.transform.position = _handMove + _lockinHand.transform.position - _lockinHand.HoldPosition(HoldType) + _holdPosition.position;
     }
 }

@@ -19,7 +19,45 @@ public class ToggleSwitch : Switch
     Transform _offPosition;
     [SerializeField]
     Transform _switchMovablePartObject;
+    [SerializeField]
+    HandPoseWeights _thumbHandPose;
+    [SerializeField]
+    HandPoseWeights _IndexHandPose;
     AdvancedGrabType _currentAdvancedGrabType;
+
+    public override HoldTypes HoldType 
+    { get
+        {
+            switch (_currentAdvancedGrabType)
+            {
+                case AdvancedGrabType.Nomal:
+                    return HoldTypes.Pinch;
+                case AdvancedGrabType.Thumb:
+                    return HoldTypes.Thumb;
+                case AdvancedGrabType.Index:
+                    return HoldTypes.Pinch;
+                default:
+                    Debug.LogError("ToggleSwitchでエラー");
+                    return HoldTypes.Pinch;
+            }
+        } 
+    }
+
+    public override HandPoseWeights GetPose()
+    {
+        switch (_currentAdvancedGrabType)
+        {
+            case AdvancedGrabType.Nomal:
+                return base.GetPose();
+            case AdvancedGrabType.Thumb:
+                return _thumbHandPose;
+            case AdvancedGrabType.Index:
+                return _IndexHandPose;
+            default:
+                Debug.LogError("ToggleSwitch.GetPoseでエラー");
+                return base.GetPose();
+        }
+    }
 
     public override void TurnOn(bool isInit = false)
     {
@@ -61,6 +99,8 @@ public class ToggleSwitch : Switch
 
     protected override bool GetHoldInInput(SwitchCtrlHand from, HoldTypes hold)
     {
+        //一旦Nomalにしておかないと入力がうまくいかない可能性がある
+        _currentAdvancedGrabType = AdvancedGrabType.Nomal;
         //通常のつまみ入力があればそのまま返却
         if (base.GetHoldInInput(from, hold))
         {
@@ -147,7 +187,7 @@ public class ToggleSwitch : Switch
             case AdvancedGrabType.Nomal:
                 return base.GetFreeInput(from, hold);
             case AdvancedGrabType.Thumb:
-                return !OVRInput.Get(OVRInput.Button.Two, from.ControllerType);
+                return OculusGameInput.GetThumbOut(from.ControllerType);
             case AdvancedGrabType.Index:
                 return !OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, from.ControllerType);
             default:

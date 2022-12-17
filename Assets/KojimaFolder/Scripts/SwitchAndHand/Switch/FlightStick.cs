@@ -19,6 +19,8 @@ public class FlightStick : Switch
     //フライトスティック入力
     Vector3 CurrentStickValue { get => _currentStickValue; set => _currentStickValue = value / STICK_ANGLE_MAX; }
 
+    public override HoldTypes HoldType => HoldTypes.Grab;
+
     /// <summary>
     /// フライトスティック、本体の入力を取る
     /// </summary>
@@ -174,6 +176,6 @@ public class FlightStick : Switch
 
         //move
         _handMove = Vector3.Lerp(_handMove, _holdPosition.position - this.transform.position, MOVE_LERP_SPEED);
-        _lockinHand.transform.position = _handMove + _lockinHand.transform.position - _lockinHand.HoldPosition(_holdType) + this.transform.position;
+        _lockinHand.transform.position = _handMove + _lockinHand.transform.position - _lockinHand.HoldPosition(HoldType) + this.transform.position;
     }
 }

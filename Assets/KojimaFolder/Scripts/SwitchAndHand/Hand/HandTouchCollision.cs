@@ -13,9 +13,9 @@ public class HandTouchCollision : MonoBehaviour
         _touchSqrLength = TOUCH_LENGTH * TOUCH_LENGTH;
     }
 
-    public Switch GetActiveSwitch(Switch.HoldTypes holdType)
+    public Switch GetActiveSwitch()
     {
-        Switch result = Switch.SwitchList.Where(a => a.HoldType == holdType).
+        Switch result = Switch.SwitchList.
             OrderBy(a => GetSqrLengsh(a)).FirstOrDefault();
         if (result == null) return null;
         if (GetSqrLengsh(result) > _touchSqrLength)

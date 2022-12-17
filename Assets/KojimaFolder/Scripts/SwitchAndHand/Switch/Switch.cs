@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class Switch : MonoBehaviour
+public abstract class Switch : MonoBehaviour
 {
     const float VIBE_SPEED = 0.05f;
     const float VIBE_POWER = 0.5f;
@@ -18,11 +18,12 @@ public class Switch : MonoBehaviour
     {
         Pinch,
         Grab,
+
+        //親指弾き入力用の特別なもの
+        Thumb,
     }
     static List<Switch> _switches = new List<Switch>();
 
-    [SerializeField]
-    protected HoldTypes _holdType;
     [SerializeField]
     protected Transform _holdPosition;
     [SerializeField]
@@ -60,11 +61,11 @@ public class Switch : MonoBehaviour
     /// スイッチの状態、基本的には0～1
     /// </summary>
     public virtual float Value => _value;
-    public HoldTypes HoldType => _holdType;
+    public abstract HoldTypes HoldType { get; }
     public Transform HoldPosition => _holdPosition;
 
     public static IEnumerable<Switch> SwitchList => _switches;
-    public HandPoseWeights GetPose() => _poseOnHold;
+    public virtual HandPoseWeights GetPose() => _poseOnHold;
 
     public void Touch(SwitchCtrlHand from)
     {
@@ -137,7 +138,7 @@ public class Switch : MonoBehaviour
         //rotate
         _currentHandRotate = from.transform.rotation;
         //move
-        _handMove = from.HoldPosition(_holdType) - this.transform.position;
+        _handMove = from.HoldPosition(HoldType) - this.transform.position;
     }
     protected virtual void Free()
     {
@@ -149,7 +150,7 @@ public class Switch : MonoBehaviour
         //すでにlockInされている場合は何も処理しない
         if (_lockinHand != null) return;
         //つかみ入力があればLockIn
-        if (GetHoldInInput(from, _holdType))
+        if (GetHoldInInput(from, HoldType))
         {
             LockIn(from);
         }
@@ -157,7 +158,7 @@ public class Switch : MonoBehaviour
     protected virtual void LockInUpdateImple()
     {
         //離れる判定を取りFree
-        if (GetFreeInput(_lockinHand, _holdType) || !this.gameObject.activeInHierarchy)
+        if (GetFreeInput(_lockinHand, HoldType) || !this.gameObject.activeInHierarchy)
         {
             Free();
             return;
@@ -202,7 +203,7 @@ public class Switch : MonoBehaviour
         //move
         //move
         _handMove = Vector3.Lerp(_handMove, _holdPosition.position - this.transform.position, MOVE_LERP_SPEED);
-        _lockinHand.transform.position = _handMove + _lockinHand.transform.position - _lockinHand.HoldPosition(_holdType) + this.transform.position;
+        _lockinHand.transform.position = _handMove + _lockinHand.transform.position - _lockinHand.HoldPosition(HoldType) + this.transform.position;
     }
 
     protected Quaternion GetMyHoldRotation()
@@ -230,6 +231,8 @@ public class Switch : MonoBehaviour
                 return OculusGameInput.GetPinchIn(from.ControllerType);
             case HoldTypes.Grab:
                 return OculusGameInput.GetGrabIn(from.ControllerType);
+            case HoldTypes.Thumb:
+                return OculusGameInput.GetThumbIn(from.ControllerType);
             default:
                 Debug.LogError("入力が取れません");
                 return false;
@@ -244,6 +247,8 @@ public class Switch : MonoBehaviour
                 return OculusGameInput.GetPinchOut(from.ControllerType);
             case HoldTypes.Grab:
                 return OculusGameInput.GetGrabOut(from.ControllerType);
+            case HoldTypes.Thumb:
+                return OculusGameInput.GetThumbOut(from.ControllerType);
             default:
                 Debug.LogError("入力が取れません");
                 return false;
