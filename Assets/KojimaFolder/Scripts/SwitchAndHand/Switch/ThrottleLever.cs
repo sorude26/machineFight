@@ -21,7 +21,6 @@ public class ThrottleLever : Switch
     Transform _leverBody;
 
     //è∏èá
-    [SerializeField]
     List<float> _clickPoints = new List<float>();
     float _valueByZone = 0;
     int _currentZone = 0;

@@ -222,7 +222,7 @@ public class Switch : MonoBehaviour
         ControllerVibrator.Vibrate(VIBE_SPEED, VIBE_POWER, VIBE_TIME, _lockinHand?.ControllerType ?? OVRInput.Controller.None);
     }
 
-    bool GetHoldInInput(SwitchCtrlHand from, HoldTypes hold)
+    protected virtual bool GetHoldInInput(SwitchCtrlHand from, HoldTypes hold)
     {
         switch (hold)
         {
@@ -236,7 +236,7 @@ public class Switch : MonoBehaviour
         }
     }
 
-    bool GetFreeInput(SwitchCtrlHand from, HoldTypes hold)
+    protected virtual bool GetFreeInput(SwitchCtrlHand from, HoldTypes hold)
     {
         switch (hold)
         {
