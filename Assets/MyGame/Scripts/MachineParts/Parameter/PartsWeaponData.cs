@@ -9,6 +9,7 @@ public class PartsWeaponData : ScriptableObject
     public string Name;
     public int ModelID;
     public WeaponParam Param;
+    public float AttackPower;
 }
 
 [System.Serializable]
