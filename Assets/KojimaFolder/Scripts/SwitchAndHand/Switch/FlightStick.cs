@@ -29,70 +29,7 @@ public class FlightStick : Switch
     {
         if (_lockinHand == null) return Vector2.zero;
         return new Vector2(-CurrentStickValue.z, CurrentStickValue.x);
-    }
-
-    /// <summary>
-    /// フライトスティック、サムスティックの入力を取る
-    /// </summary>
-    /// <returns></returns>
-    public Vector2 GetThumbsStickInput()
-    {
-        if (_lockinHand == null) return Vector2.zero;
-        return OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, _lockinHand.ControllerType);
-    }
-
-    /// <summary>
-    /// フライトスティック、人差し指トリガーの入力を取る
-    /// </summary>
-    /// <param name="down"></param>
-    /// <returns></returns>
-    public bool GetTriggerInput(bool down)
-    {
-        if (_lockinHand == null) return false;
-        if (down)
-        {
-            return OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, _lockinHand.ControllerType);
-        }
-        else
-        {
-            return OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, _lockinHand.ControllerType);
-        }
-    }
-
-    /// <summary>
-    /// フライトスティック、コントローラー上部のボタンの入力を取る
-    /// </summary>
-    /// <param name="down"></param>
-    /// <returns></returns>
-    public bool GetUpperButtonInput(bool down)
-    {
-        if (_lockinHand == null) return false;
-        if (down)
-        {
-            return OVRInput.GetDown(OVRInput.Button.Two, _lockinHand.ControllerType);
-        }
-        else
-        {
-            return OVRInput.Get(OVRInput.Button.Two, _lockinHand.ControllerType);
-        }
-    }
-    /// <summary>
-    /// フライトスティック、コントローラー下部のボタンの入力を取る
-    /// </summary>
-    /// <param name="down"></param>
-    /// <returns></returns>
-    public bool GetLowerButtonInput(bool down)
-    {
-        if (_lockinHand == null) return false;
-        if (down)
-        {
-            return OVRInput.GetDown(OVRInput.Button.One, _lockinHand.ControllerType);
-        }
-        else
-        {
-            return OVRInput.Get(OVRInput.Button.One, _lockinHand.ControllerType);
-        }
-    }
+    }  
 
 
     protected override void LockIn(SwitchCtrlHand from)

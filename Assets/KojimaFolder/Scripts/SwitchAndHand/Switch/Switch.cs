@@ -67,6 +67,63 @@ public abstract class Switch : MonoBehaviour
     public static IEnumerable<Switch> SwitchList => _switches;
     public virtual HandPoseWeights GetPose() => _poseOnHold;
 
+    #region HAND_INPUT
+    //フライトスティックや、スロットルレバーにおいて握った上に入力があるかチェックする時に使用
+    public bool GetTriggerInput(bool down)
+    {
+        if (_lockinHand == null) return false;
+        if (down)
+        {
+            return OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, _lockinHand.ControllerType);
+        }
+        else
+        {
+            return OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, _lockinHand.ControllerType);
+        }
+    }
+    public bool GetUpperButtonInput(bool down)
+    {
+        if (_lockinHand == null) return false;
+        if (down)
+        {
+            return OVRInput.GetDown(OVRInput.Button.Two, _lockinHand.ControllerType);
+        }
+        else
+        {
+            return OVRInput.Get(OVRInput.Button.Two, _lockinHand.ControllerType);
+        }
+    }
+    public bool GetLowerButtonInput(bool down)
+    {
+        if (_lockinHand == null) return false;
+        if (down)
+        {
+            return OVRInput.GetDown(OVRInput.Button.One, _lockinHand.ControllerType);
+        }
+        else
+        {
+            return OVRInput.Get(OVRInput.Button.One, _lockinHand.ControllerType);
+        }
+    }
+    public bool GetThumbstickButtonInput(bool down)
+    {
+        if (_lockinHand == null) return false;
+        if (down)
+        {
+            return OVRInput.GetDown(OVRInput.Button.PrimaryThumbstick, _lockinHand.ControllerType);
+        }
+        else
+        {
+            return OVRInput.Get(OVRInput.Button.PrimaryThumbstick, _lockinHand.ControllerType);
+        }
+    }
+    public Vector2 GetThumbstickInput()
+    {
+        if (_lockinHand == null) return Vector2.zero;
+        return OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, _lockinHand.ControllerType);
+    }
+    #endregion
+
     public void Touch(SwitchCtrlHand from)
     {
         TouchImple(from);

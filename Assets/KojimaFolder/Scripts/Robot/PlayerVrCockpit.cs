@@ -66,6 +66,7 @@ public class PlayerVrCockpit : MonoBehaviour
     /// <returns></returns>
     public static bool Attack4()
     {
+        //VRモードではキックしない
         return false;
     }
     /// <summary>
@@ -74,7 +75,7 @@ public class PlayerVrCockpit : MonoBehaviour
     /// <returns></returns>
     public static bool Jump()
     {
-        return false;
+        return Instance._throttleLever.GetUpperButtonInput(false);
     }
     /// <summary>
     /// ステップ
@@ -82,7 +83,7 @@ public class PlayerVrCockpit : MonoBehaviour
     /// <returns></returns>
     public static bool JetBoost()
     {
-        return false;
+        return Instance._throttleLever.GetTriggerInput(false);
     }
     /// <summary>
     /// ターゲット切り替え
@@ -90,7 +91,7 @@ public class PlayerVrCockpit : MonoBehaviour
     /// <returns></returns>
     public static bool ChangeTarget()
     {
-        return false;
+        return Instance._flightStick.GetThumbstickButtonInput(false);
     }
 
     public static Vector2 Move()
@@ -100,7 +101,7 @@ public class PlayerVrCockpit : MonoBehaviour
 
     public static Vector2 Camera()
     {
-        return Instance._flightStick.GetThumbsStickInput();
+        return Instance._flightStick.GetThumbstickInput();
     }
 
     private void Awake()

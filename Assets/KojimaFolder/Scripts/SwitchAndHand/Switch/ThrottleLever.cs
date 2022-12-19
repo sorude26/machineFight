@@ -56,6 +56,7 @@ public class ThrottleLever : Switch
         if (zone == _currentZone) return _valueByZone;
         return zone > _currentZone ? 0 : 1;
     }
+   
     /// <summary>
     /// レバーを上げ下げするときに抵抗を感じるポイントを設定する
     /// </summary>
