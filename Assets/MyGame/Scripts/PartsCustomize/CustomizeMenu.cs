@@ -111,7 +111,7 @@ public class CustomizeMenu : MonoBehaviour
                 }
                 break;
             case PartsCategory.LHand:
-                PartsHandData[] lhandParts = _playerData.GetObtainPartsHand();
+                PartsHandData[] lhandParts = _playerData.GetObtainPartsLHand();
                 if (lhandParts == null)
                 {
                     return;
@@ -133,7 +133,7 @@ public class CustomizeMenu : MonoBehaviour
                 }
                 break;
             case PartsCategory.RHand:
-                PartsHandData[] rhandParts = _playerData.GetObtainPartsHand();
+                PartsHandData[] rhandParts = _playerData.GetObtainPartsRHand();
                 if (rhandParts == null)
                 {
                     return;
