@@ -124,6 +124,10 @@ public class AutoAttacker : MonoBehaviour
     }
     private float ChackLR(Vector3 targetDir)
     {
+        if (targetDir == Vector3.zero)
+        {
+            return 0;
+        }
         var angle = Vector3.Dot(targetDir.normalized, _bodyTrans.right);
         return angle;
     }
