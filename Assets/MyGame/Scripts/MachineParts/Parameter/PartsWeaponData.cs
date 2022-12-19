@@ -10,6 +10,7 @@ public class PartsWeaponData : ScriptableObject
     public int ModelID;
     public WeaponParam Param;
     public float AttackPower;
+    public float EnergyConsumption;
 }
 
 [System.Serializable]

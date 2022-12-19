@@ -38,7 +38,7 @@ public struct TotalParam
         EnergyConsumption += handDataR.EnergyConsumption;
         EnergyConsumption += legData.EnergyConsumption;
         Generator = bodyData.Generator / boosterData.UseGeneratorPower;
-        Energy = bodyData.Energy;
+        Energy = bodyData.Energy + boosterData.AdditionEnergy;
         Recovery = bodyData.GeneratorRecoverySpeed;
         FlySpeed = boosterData.Param.BoostMoveSpeed;
         FlySpeed += handDataR.AdditionalBooster + handDataL.AdditionalBooster;
@@ -52,6 +52,7 @@ public struct TotalParam
         {
             AttackPower += lWeapon.AttackPower;
             Ammunition += lWeapon.Param.MaxAmmunitionCapacity;
+            EnergyConsumption += lWeapon.EnergyConsumption;
         }
         else
         {
@@ -61,6 +62,7 @@ public struct TotalParam
         {
             AttackPower += rWeapon.AttackPower;
             Ammunition += rWeapon.Param.MaxAmmunitionCapacity;
+            EnergyConsumption += rWeapon.EnergyConsumption;
         }
         else
         {
