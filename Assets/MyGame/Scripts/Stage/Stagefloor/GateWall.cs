@@ -12,6 +12,8 @@ public class GateWall : MonoBehaviour
     private Animator _gate = default;
     [SerializeField]
     private string _openName = "OpenGate";
+    [SerializeField]
+    private string _closeName = "CloseGate";
     public void SetGateWall(bool isGate)
     {
         _wall.SetActive(!isGate);
@@ -24,5 +26,14 @@ public class GateWall : MonoBehaviour
             return;
         }
         _gate.Play(_openName);
+    }
+    public void CloseGate()
+    {
+
+        if (gameObject.activeInHierarchy == false)
+        {
+            return;
+        }
+        _gate.Play(_closeName);
     }
 }

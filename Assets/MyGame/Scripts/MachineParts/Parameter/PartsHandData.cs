@@ -13,5 +13,7 @@ public class PartsHandData : ScriptableObject
     public float ReloadSpeed;
     public float EnergyConsumption;
     public float AdditionalBooster;
+    public bool UseWeapon;
+    public float AttackPower;
     public WeaponParam WeaponParam;
 }

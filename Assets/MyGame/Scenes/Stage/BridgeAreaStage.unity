@@ -4177,6 +4177,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: QuadrupedWalker 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3323158061770436925, guid: 16f3a558da9f5b841b4673ae8242e4c5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16f3a558da9f5b841b4673ae8242e4c5, type: 3}
 --- !u!1 &580259163
@@ -5498,6 +5502,67 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 688856374}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &690238752
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 398775998259056116, guid: 5a4125c58483eb749919f9ba362d84f0, type: 3}
+      propertyPath: _startColorSetMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882287213085409952, guid: 5a4125c58483eb749919f9ba362d84f0, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882287213085409952, guid: 5a4125c58483eb749919f9ba362d84f0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -498
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882287213085409952, guid: 5a4125c58483eb749919f9ba362d84f0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882287213085409952, guid: 5a4125c58483eb749919f9ba362d84f0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1488
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882287213085409952, guid: 5a4125c58483eb749919f9ba362d84f0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882287213085409952, guid: 5a4125c58483eb749919f9ba362d84f0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882287213085409952, guid: 5a4125c58483eb749919f9ba362d84f0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882287213085409952, guid: 5a4125c58483eb749919f9ba362d84f0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882287213085409952, guid: 5a4125c58483eb749919f9ba362d84f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882287213085409952, guid: 5a4125c58483eb749919f9ba362d84f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882287213085409952, guid: 5a4125c58483eb749919f9ba362d84f0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882287213085409959, guid: 5a4125c58483eb749919f9ba362d84f0, type: 3}
+      propertyPath: m_Name
+      value: CapsuleWalker
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5a4125c58483eb749919f9ba362d84f0, type: 3}
 --- !u!1001 &694309541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7891,6 +7956,8 @@ MonoBehaviour:
   - {fileID: 6523338354323658597, guid: 12f81493b53c45e40b2e70035ba84fed, type: 3}
   - {fileID: -3338703610236240453, guid: 6aeecb76ac0f7e1419640a85965f1978, type: 3}
   - {fileID: 2984526895331830430, guid: e5ea6dce741c5cd418046d26fe2e798a, type: 3}
+  - {fileID: 6098190686559260975, guid: fd10df3c88bd1664cb962d139c6bdea9, type: 3}
+  - {fileID: 6523338354323658597, guid: 2a9c85ccc36156e44b35f01a9f1ff488, type: 3}
   _spwanEffect: {fileID: 8664514700319092826, guid: 0c6b7e4f866a5c342858c2a7e63f1dca, type: 3}
   _defaultCount: 5
   _startSpwanCount: 1
@@ -7909,7 +7976,7 @@ Transform:
   m_Children:
   - {fileID: 1251844610}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &966738878
 PrefabInstance:
@@ -8970,6 +9037,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _maxRayCount: 500
+  _rayRange: 5
+  _rayDir: {x: 0, y: 1, z: 0}
+  _rayStart: {x: 0, y: 0, z: 0}
 --- !u!4 &1142459455
 Transform:
   m_ObjectHideFlags: 0

@@ -111,4 +111,19 @@ public class StageManager : MonoBehaviour
         var massage = new PopUpData(center: "”C–±¸”s");
         MoveResult(massage);
     }
+    public void ViewOutStage()
+    {
+        if (_gameOver == true)
+        {
+            return;
+        }
+        OnGameEnd?.Invoke();
+        ResultData.IsStageClear = false;
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayBGM(_gameOverbgmIDNum, _bgmVolume);
+        }
+        var massage = new PopUpData(center: "íˆæ—£’E");
+        MoveResult(massage);
+    }
 }
