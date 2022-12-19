@@ -30,6 +30,7 @@ public class PartsSelectMenuController : MonoBehaviour
     {
         if (this.gameObject.activeSelf == true)
         {
+            PlayerData.instance.PresetSave();
             ButtonSelectController.OnButtonNonSelect();
             _menuPanel.SetActive(true);
             ButtonSelectController.OnButtonFirstSelect(_menuPanel);

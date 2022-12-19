@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.16788375, g: 0.21073635, b: 0.28994125, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1560,6 +1560,9 @@ MonoBehaviour:
   _targetScene: StageSelect
   _waitTime: 2
   IsSceneChangeMode: 0
+  _changeBGMID: 28
+  _BGMVolume: 0.1
+  _changeBGM: 0
 --- !u!4 &652872680
 Transform:
   m_ObjectHideFlags: 0
@@ -3657,14 +3660,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 161a0730716af9441951c9d6c9487a87, type: 2}
   _getsBodyParts:
   - {fileID: 11400000, guid: c273ab67187d0dd40a6e56e7440a9109, type: 2}
-  _getsHandParts:
+  _getsLHandParts:
+  - {fileID: 11400000, guid: aac3012bf0363e34493a72c2e1e565b1, type: 2}
+  _getsRHandParts:
   - {fileID: 11400000, guid: aac3012bf0363e34493a72c2e1e565b1, type: 2}
   _getsLegParts:
   - {fileID: 11400000, guid: 0303eecf1a9aa4f4992de1ebf6c42f00, type: 2}
   _getsBackPackParts:
   - {fileID: 11400000, guid: 667f1e382d55cdf4eb249898a8415b55, type: 2}
   _getsWeaponParts:
-  - {fileID: 11400000, guid: 436222105324b6d418fdcf16db04e7f7, type: 2}
+  - {fileID: 11400000, guid: c2ae4324eabbb9e4ba4ae0541cf933fa, type: 2}
 --- !u!4 &1909951049
 Transform:
   m_ObjectHideFlags: 0
