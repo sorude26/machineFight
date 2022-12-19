@@ -5,10 +5,11 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
 public class PlayerData : MonoBehaviour
 {
     public static PlayerData instance;
-
+    
     private PartsBuildParam _buildPreset = default;
     public PartsBuildParam BuildPreset
     {
@@ -29,7 +30,9 @@ public class PlayerData : MonoBehaviour
     [SerializeField] 
     private List<PartsBodyData> _getsBodyParts = new List<PartsBodyData>();
     [SerializeField] 
-    private List<PartsHandData> _getsHandParts = new List<PartsHandData>();
+    private List<PartsHandData> _getsLHandParts = new List<PartsHandData>();
+    [SerializeField]
+    private List<PartsHandData> _getsRHandParts = new List<PartsHandData>();
     [SerializeField] 
     private List<PartsLegData> _getsLegParts = new List<PartsLegData>();
     [SerializeField] 
@@ -43,7 +46,7 @@ public class PlayerData : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            instance._buildPreset = instance.PresetLoad();
+            instance.PresetLoad();
             instance._modelBuilder = new ModelBuilder();
             PartsManager.Instance.LoadData();
             SceneManager.activeSceneChanged += ActiveSceneChanged;
@@ -61,23 +64,32 @@ public class PlayerData : MonoBehaviour
     //Json‚É‘‚«‚İ
     public void PresetSave()
     {
-        
+        Json.JsonSave(this);
     }
 
     //Json‚©‚ç“Ç‚İ‚İ
-    public PartsBuildParam PresetLoad()
+    public void PresetLoad()
     {
-        PartsBuildParam buildPreset = new PartsBuildParam();
-        buildPreset.Head = 0;
-        buildPreset.Body = 0;
-        buildPreset.LHand = 0;
-        buildPreset.RHand = 0;
-        buildPreset.Leg = 0;
-        buildPreset.Booster = 0;
-        buildPreset.LWeapon = 0;
-        buildPreset.RWeapon = 0;
-        buildPreset.ColorId = 0;
-        return buildPreset;
+        bool _isDataGet = Json.JsonLoad();
+        if (_isDataGet == false)
+        {
+            PartsBuildParam buildData = new PartsBuildParam();
+            buildData.Head = 0;
+            buildData.Body = 0;
+            buildData.LHand = 0;
+            buildData.RHand = 0;
+            buildData.Booster = 0;
+            buildData.Leg = 0;
+            buildData.LWeapon = 0;
+            buildData.RWeapon = 0;
+            buildData.ColorId = 0;
+            PlayerData.instance._buildPreset = buildData;
+            Debug.Log("‰‰ñ");
+        }
+        else
+        {
+            Debug.Log("Ä‹N“®");
+        }
     }
 
     /// <summary>
@@ -139,7 +151,7 @@ public class PlayerData : MonoBehaviour
                 }
                 break;
             case PartsType.LHand:
-                if (_getsHandParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
+                if (_getsLHandParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
                 {
                     Debug.Log("“üèÏ‚İ");
                     break;
@@ -147,11 +159,11 @@ public class PlayerData : MonoBehaviour
                 else
                 {
                     Debug.Log("“üè");
-                    _getsHandParts.Add(PartsManager.Instance.AllParamData.GetPartsHand(partsId));
+                    _getsLHandParts.Add(PartsManager.Instance.AllParamData.GetPartsHand(partsId));
                 }
                 break;
             case PartsType.RHand:
-                if (_getsHandParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
+                if (_getsRHandParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
                 {
                     Debug.Log("“üèÏ‚İ");
                     break;
@@ -159,7 +171,7 @@ public class PlayerData : MonoBehaviour
                 else
                 {
                     Debug.Log("“üè");
-                    _getsHandParts.Add(PartsManager.Instance.AllParamData.GetPartsHand(partsId));
+                    _getsRHandParts.Add(PartsManager.Instance.AllParamData.GetPartsHand(partsId));
                 }
                 break;
             case PartsType.BackPack:
@@ -221,9 +233,13 @@ public class PlayerData : MonoBehaviour
     {
         return _getsHeadParts.ToArray();
     }
-    public PartsHandData[] GetObtainPartsHand()
+    public PartsHandData[] GetObtainPartsLHand()
     {
-        return _getsHandParts.ToArray();
+        return _getsLHandParts.ToArray();
+    }
+    public PartsHandData[] GetObtainPartsRHand()
+    {
+        return _getsRHandParts.ToArray();
     }
     public PartsLegData[] GetObtainPartsLeg()
     {
@@ -243,6 +259,7 @@ public class PlayerData : MonoBehaviour
         if (thisscene.name == "Home")
         {
             instance.Build();
+            PresetSave();
         }
     }
 }
