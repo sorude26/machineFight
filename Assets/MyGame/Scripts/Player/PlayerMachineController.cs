@@ -1,4 +1,5 @@
 using MyGame;
+using MyGame.MachineFrame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,6 +33,7 @@ public class PlayerMachineController : MonoBehaviour
     private float _energyConsumption = default;
     private float _boosterConsumption = default;
     public Transform HeadTrans { get => _headTrans; }
+    public MachinePartsController MachineController => _machineController;
     private IEnumerator Start()
     {
         if (PlayerData.instance != null)

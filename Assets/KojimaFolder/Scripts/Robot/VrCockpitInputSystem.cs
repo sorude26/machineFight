@@ -97,15 +97,15 @@ public class VrCockpitInputSystem : InputDevice, IInputUpdateCallbackReceiver
                 state.buttons |= (ushort)(1u << bit);
             }
         }
-        SetButtonBit(PlayerVrCockpit.Input.Attack1(), ATTACK1_BIT);
-        SetButtonBit(PlayerVrCockpit.Input.Attack2(), ATTACK2_BIT);
-        SetButtonBit(PlayerVrCockpit.Input.Attack3(), ATTACK3_BIT);
-        SetButtonBit(PlayerVrCockpit.Input.Attack4(), ATTACK4_BIT);
-        SetButtonBit(PlayerVrCockpit.Input.Jump(), JUMP_BIT);
-        SetButtonBit(PlayerVrCockpit.Input.JetBoost(), JETBOOST_BIT);
-        SetButtonBit(PlayerVrCockpit.Input.ChangeTarget(), CHANGETARGET_BIT);
-        state.MoveAxis = PlayerVrCockpit.Input.Move();
-        state.CameraAxis = PlayerVrCockpit.Input.Camera();
+        SetButtonBit(PlayerVrCockpit.Attack1(), ATTACK1_BIT);
+        SetButtonBit(PlayerVrCockpit.Attack2(), ATTACK2_BIT);
+        SetButtonBit(PlayerVrCockpit.Attack3(), ATTACK3_BIT);
+        SetButtonBit(PlayerVrCockpit.Attack4(), ATTACK4_BIT);
+        SetButtonBit(PlayerVrCockpit.Jump(), JUMP_BIT);
+        SetButtonBit(PlayerVrCockpit.JetBoost(), JETBOOST_BIT);
+        SetButtonBit(PlayerVrCockpit.ChangeTarget(), CHANGETARGET_BIT);
+        state.MoveAxis = PlayerVrCockpit.Move();
+        state.CameraAxis = PlayerVrCockpit.Camera();
         InputSystem.QueueStateEvent(this, state);
     }
 

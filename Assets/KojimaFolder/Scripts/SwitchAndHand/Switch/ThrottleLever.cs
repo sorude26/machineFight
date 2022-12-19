@@ -32,14 +32,30 @@ public class ThrottleLever : Switch
         _leverBody.position = Vector3.Lerp(_minPosition.position, _maxPosition.position, _value);
         //ゾーンの値を初期化
         ChangeValue(_value);
+        OnValueChanged?.Invoke(_currentZone);
     }
 
+    /// <summary>
+    /// 引数のゾーンから離れたときに呼ばれる
+    /// </summary>
     public event Action<int> OnExitZone;
+    /// <summary>
+    /// 引数のゾーンに入ったときに呼ばれる
+    /// </summary>
     public event Action<int> OnEnterZone;
+    /// <summary>
+    /// 値に変更があったときに呼ばれる、引数は現在のゾーン
+    /// </summary>
+    public event Action<int> OnValueChanged;
+
     public override HoldTypes HoldType => HoldTypes.Grab;
     public int ZoneCount => _clickPoints.Count + 1;
     public int CurrentZone => _currentZone;
-    public float ValueByZone => _valueByZone;
+    public float ValueByZone(int zone)
+    {
+        if (zone == _currentZone) return _valueByZone;
+        return zone > _currentZone ? 0 : 1;
+    }
     /// <summary>
     /// レバーを上げ下げするときに抵抗を感じるポイントを設定する
     /// </summary>
@@ -50,6 +66,7 @@ public class ThrottleLever : Switch
         _clickPoints = points.Where(p => p < 1f && p > 0f).OrderBy(p => p).ToList();
         //ゾーン計算
         ChangeValue(_value);
+        OnValueChanged?.Invoke(_currentZone);
     }
 
 
@@ -189,6 +206,7 @@ public class ThrottleLever : Switch
         value = Mathf.Min(1, value);
         //値を適用
         ChangeValue(value);
+        OnValueChanged?.Invoke(_currentZone);
 
         //レバー本体を移動させる
         _leverBody.position = minPos + minToMax * _value;

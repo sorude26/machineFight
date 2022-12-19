@@ -8,6 +8,9 @@ public class BodyController : MonoBehaviour, IPartsModel
 {
     private const float ATTACK_ANGLE = 0.6f;
     private const float FRONT_ANGLE = 0.6f;
+    private const float FLOAT_SPEED_MIN = 1.5f;
+    private const float FLOAT_SPEED_DESKTOP = 2.0f;
+    private const float FLOAT_SPEED_MAX = 3.0f;
     [SerializeField]
     private int _id = default;
     [SerializeField]
@@ -46,6 +49,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     private bool _isShoot = false;
     private bool _isInitialized = false;
     private float _jetTimer = 0;
+    private float _floatSpeed = FLOAT_SPEED_DESKTOP;
     private List<BoosterController> _boosters = new List<BoosterController>();
     public event Action OnBodyDestroy = default;
     public Transform BodyBase = null;
@@ -184,6 +188,15 @@ public class BodyController : MonoBehaviour, IPartsModel
     }
     #region ActionMethods
     #region BoosterMethods
+
+    /// <summary>
+    /// VR用メソッド、ホバー速度を変更する
+    /// </summary>
+    /// <param name="value">ホバー速度(0～1で指定)</param>
+    public void SetFloatSpeed(float value)
+    {
+        _floatSpeed = Mathf.Lerp(FLOAT_SPEED_MIN, FLOAT_SPEED_MAX, value);
+    }
     public void BoostMove(Vector3 dir, bool floatMode)
     {
         if (IsDown == true)
@@ -211,7 +224,7 @@ public class BodyController : MonoBehaviour, IPartsModel
         }
         if (floatMode == true && dir.x != 0 && dir.z != 0)
         {
-            dir *= 2f;
+            dir *= _floatSpeed;
             _moveController.VelocityMove(dir);
         }
         else
@@ -279,7 +292,7 @@ public class BodyController : MonoBehaviour, IPartsModel
         }
         if (isFloat == true)
         {
-            dir *= 2f;
+            dir *= _floatSpeed;
         }
         PlayBoosterSE();
         _moveController.VelocityMove(dir);
