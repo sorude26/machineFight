@@ -259,6 +259,7 @@ public class PlayerData : MonoBehaviour
         if (thisscene.name == "Home")
         {
             instance.Build();
+            PresetSave();
         }
     }
 }
