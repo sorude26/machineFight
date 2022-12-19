@@ -72,5 +72,15 @@ public class FloorController : MonoBehaviour
             wall.OpenGate();
         }
     }
-
+    public void CloseGate()
+    {
+        if (_isInitialize == false)
+        {
+            InitializeWall();
+        }
+        foreach (var wall in _walls)
+        {
+            wall.CloseGate();
+        }
+    }
 }

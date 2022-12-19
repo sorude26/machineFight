@@ -121,7 +121,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855310726596892430}
   serializedVersion: 7
-  lengthInSec: 5
+  lengthInSec: 1.2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -4949,7 +4949,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855310726684300746}
   serializedVersion: 7
-  lengthInSec: 5
+  lengthInSec: 1.2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -9851,7 +9851,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855310727816323469}
   serializedVersion: 7
-  lengthInSec: 5
+  lengthInSec: 1.2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -14840,6 +14840,18 @@ PrefabInstance:
     - target: {fileID: 1028536660251671179, guid: 87c191c61ab04c24ba53e2baa895e612, type: 3}
       propertyPath: m_Name
       value: Spark
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028536660251671181, guid: 87c191c61ab04c24ba53e2baa895e612, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028536660251671181, guid: 87c191c61ab04c24ba53e2baa895e612, type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028536660251671181, guid: 87c191c61ab04c24ba53e2baa895e612, type: 3}
+      propertyPath: lengthInSec
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1028536660251671182, guid: 87c191c61ab04c24ba53e2baa895e612, type: 3}
       propertyPath: m_RootOrder
