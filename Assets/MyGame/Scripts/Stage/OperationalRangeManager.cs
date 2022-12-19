@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class OperationalRangeManager : MonoBehaviour
@@ -27,6 +28,10 @@ public class OperationalRangeManager : MonoBehaviour
     public float MaxLow { get =>  _operationalLevelLow - _detachmentLevel; }
     public bool IsOutOperatioanl;
     public bool IsInDetachment;
+    public bool IsOutOperatioanlLevel;
+    private bool _inStage = false;
+    private float _inTime = 1f;
+    private float _inTimer = 0f;
     private void Start()
     {
         _player = NavigationManager.Instance.Target;
@@ -41,19 +46,9 @@ public class OperationalRangeManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 playerPos = _player.transform.position;
-        playerPos.y = 0;
-        if (Vector3.Distance(playerPos, _centerPos.position) < _operationalRange)
-        {
-            IsOutOperatioanl = false;
-            return;
-        }
-        IsOutOperatioanl = true;
-        if (Vector3.Distance(playerPos, _centerPos.position) < _operationalRange + _detachmentRange)
-        {
-            return;
-        }
-        IsInDetachment = true;
+        if (IsInDetachment == true) { return; }
+        CheckRange();
+        CheckLevel();
     }
     private void CheckRange()
     {
@@ -61,8 +56,26 @@ public class OperationalRangeManager : MonoBehaviour
         playerPos.y = 0;
         if (Vector3.Distance(playerPos, _centerPos.position) < _operationalRange)
         {
+            if (_inStage == false)
+            {
+                _inTimer += Time.fixedDeltaTime;
+                if (_inTimer < _inTime)
+                {
+                    return;
+                }
+                _inStage = true;
+                PopUpLog.CreatePopUp("作戦範囲内に到達しました");
+            }
             IsOutOperatioanl = false;
             return;
+        }
+        if (_inStage == false)
+        {
+            return;
+        }
+        if (IsOutOperatioanl == false)
+        {
+            PopUpLog.CreatePopUp("作戦範囲外です");
         }
         IsOutOperatioanl = true;
         if (Vector3.Distance(playerPos, _centerPos.position) < _operationalRange + _detachmentRange)
@@ -70,19 +83,29 @@ public class OperationalRangeManager : MonoBehaviour
             return;
         }
         IsInDetachment = true;
+        StageManager.Instance.ViewOutStage();
     }
     private void CheckLevel()
     {
         if (_player.position.y < _operationalLevelHigh && _player.position.y > _operationalLevelLow)
         {
-            IsOutOperatioanl = false;
+            IsOutOperatioanlLevel = false;
             return;
         }
-        IsOutOperatioanl = true;
+        if (_inStage == false)
+        {
+            return;
+        }
+        if (IsOutOperatioanlLevel == false)
+        {
+            PopUpLog.CreatePopUp("作戦範囲外高度です");
+        }
+        IsOutOperatioanlLevel = true;
         if (_player.position.y < _operationalLevelHigh + _detachmentLevel && _player.position.y > _operationalLevelLow - _detachmentLevel)
         {
             return;
         }
         IsInDetachment = true;
+        StageManager.Instance.ViewOutStage();
     }
 }

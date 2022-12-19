@@ -10,5 +10,8 @@ public class PartsBackPackData : ScriptableObject
     public int ModelID;
     public BodyParam Param;
     public float EnergyConsumption;
+    public float AdditionEnergy;
     public float UseGeneratorPower;
+    public int AttackPower;
+    public int Ammunition;
 }
