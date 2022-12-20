@@ -27,6 +27,8 @@ public class PlayerVrCockpit : MonoBehaviour
     Switch _weaponBackToggleSwitch;
     [SerializeField, Range(0.01f, 0.99f)]
     float _groundToHoverThrottle;
+    [SerializeField]
+    LayerMask _dontChangeLayer;
 
     /// <summary>
     /// 右手
@@ -109,7 +111,7 @@ public class PlayerVrCockpit : MonoBehaviour
         _instance = this;
         var layer = this.gameObject.layer;
         SetLayerToChildlen(layer, this.transform);
-        CameraSetup();
+        //CameraSetup();
         ThrottleLeverSetUp();
     }
 
@@ -117,7 +119,10 @@ public class PlayerVrCockpit : MonoBehaviour
     {
         foreach (Transform item in t)
         {
-            item.gameObject.layer = layer;
+            if (((1 << item.gameObject.layer) & _dontChangeLayer.value) == 0)
+            {
+                item.gameObject.layer = layer;
+            }
             //再帰処理ですべての子オブジェクトに適用
             SetLayerToChildlen(layer, item);
         }

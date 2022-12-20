@@ -113,7 +113,7 @@ public class ToggleSwitch : Switch
         bool indexInput = OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, from.ControllerType);
         Vector3 rotate = (from.transform.parent.rotation * Quaternion.Inverse(this.transform.rotation))
             .eulerAngles;
-        float rotateZ = rotate.NomalizeRotate().z;
+        float rotateZ = rotate.NomalizeRotate180().z;
         if (IsOn)
         {
             //On状態なので親指か人差し指が上から押し下げる形になって入力が来ているかチェック

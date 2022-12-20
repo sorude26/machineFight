@@ -239,7 +239,7 @@ public abstract class Switch : MonoBehaviour
         //rotate
         Quaternion myRotate = GetMyHoldRotation();
         //スイッチ位置からの相対的な回転を切り出し、各軸にWeightをかける
-        Vector3 currentHandRotateEuler = (Quaternion.Inverse(myRotate) * _lockinHand.transform.parent.rotation).eulerAngles.NomalizeRotate();
+        Vector3 currentHandRotateEuler = (Quaternion.Inverse(myRotate) * _lockinHand.transform.parent.rotation).eulerAngles.NomalizeRotate180();
         currentHandRotateEuler.x = SetWeight(currentHandRotateEuler.x, _rotateLockX);
         currentHandRotateEuler.y = SetWeight(currentHandRotateEuler.y, _rotateLockY);
         currentHandRotateEuler.z = SetWeight(currentHandRotateEuler.z, _rotateLockZ);

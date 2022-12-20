@@ -58,7 +58,7 @@ public class FlightStick : Switch
         //
         //追記部、一度スティックの回転を手の正規の位置情報から得る。
         //
-        Vector3 stickRotateRaw = (Quaternion.Inverse(this.transform.rotation) * _lockinHand.transform.parent.rotation).eulerAngles.NomalizeRotate();
+        Vector3 stickRotateRaw = (Quaternion.Inverse(this.transform.rotation) * _lockinHand.transform.parent.rotation).eulerAngles.NomalizeRotate180();
         stickRotateRaw.y = 0;
         //回転がスティックの限界値を超えないように
         stickRotateRaw.x = Mathf.Min(stickRotateRaw.x, STICK_ANGLE_MAX);
@@ -74,7 +74,7 @@ public class FlightStick : Switch
         //rotate
         Quaternion myRotate = GetMyHoldRotation();
         //スイッチ位置からの相対的な回転を切り出し、各軸にWeightをかける
-        Vector3 currentHandRotateEuler = (Quaternion.Inverse(myRotate) * _lockinHand.transform.parent.rotation).eulerAngles.NomalizeRotate();
+        Vector3 currentHandRotateEuler = (Quaternion.Inverse(myRotate) * _lockinHand.transform.parent.rotation).eulerAngles.NomalizeRotate180();
         currentHandRotateEuler.x = SetWeight(currentHandRotateEuler.x, _rotateLockX);
         currentHandRotateEuler.y = SetWeight(currentHandRotateEuler.y, _rotateLockY);
         currentHandRotateEuler.z = SetWeight(currentHandRotateEuler.z, _rotateLockZ);
@@ -95,7 +95,7 @@ public class FlightStick : Switch
         //
         //追記部、もう一度スティックの回転を適用する
         //
-        Vector3 stickRotate = (Quaternion.Inverse(this.transform.rotation) * newRotate).eulerAngles.NomalizeRotate();
+        Vector3 stickRotate = (Quaternion.Inverse(this.transform.rotation) * newRotate).eulerAngles.NomalizeRotate180();
         stickRotateRaw.y = 0;
         //回転がスティックの限界値を超えないように
         stickRotate.x = Mathf.Min(stickRotate.x, STICK_ANGLE_MAX);
