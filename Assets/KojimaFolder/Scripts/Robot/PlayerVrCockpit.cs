@@ -111,7 +111,7 @@ public class PlayerVrCockpit : MonoBehaviour
         _instance = this;
         var layer = this.gameObject.layer;
         SetLayerToChildlen(layer, this.transform);
-        //CameraSetup();
+        CameraSetup();
         ThrottleLeverSetUp();
     }
 
