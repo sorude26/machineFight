@@ -78,7 +78,7 @@ public class VrRadarUI : MonoBehaviour
             f.y = 0;
             float angle = Vector3.Angle(f, diff);
             angle = Vector3.Cross(f, diff).y > 0 ? 360f - angle : angle;
-            if (angle < _scanRotate.z) continue;
+            if (angle < _scanRotate.z || Mathf.Abs(angle - _scanRotate.z) > 45f) continue;
 
             _targets[i].isAlradyShowed = true;
             ShowIcon(_targets[i].target.transform.position);
@@ -90,7 +90,7 @@ public class VrRadarUI : MonoBehaviour
     {
         Vector3 player = PlayerVrCockpit.Instance.transform.position;
         Vector3 diff = worldPos - player;
-        diff = PlayerVrCockpit.Instance.transform.rotation * diff;
+        diff = Quaternion.Inverse(PlayerVrCockpit.Instance.transform.rotation) * diff;
         diff = diff * CANVAS_WIDTH_HEIGHT / _scanRange;
         //UI‰æ–ÊŠO‚Ì‚à‚Ì‚Í•\Ž¦‚µ‚È‚¢
         if (diff.x > CANVAS_WIDTH_HEIGHT || diff.z > CANVAS_WIDTH_HEIGHT) return;
@@ -103,6 +103,6 @@ public class VrRadarUI : MonoBehaviour
             _icons.Add(icon);
         }
         icon.transform.localPosition = new Vector3(diff.x, diff.z, 0);
-        icon.Show(0.25f);
+        icon.Show(_scanSpeed);
     }
 }
