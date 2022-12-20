@@ -55,10 +55,10 @@ public class LegController : MonoBehaviour, IPartsModel
     }
     public void ExecuteFixedUpdate(Vector3 dir)
     {
-        _stateContext.ExecuteFixedUpdate(dir, _isJump,_isStep, _groundChecker.IsWalled());
+        _stateContext.ExecuteFixedUpdate(dir, _isJump, _isStep, _groundChecker.IsWalled());
         if (_stateContext.IsFloat == true || _stateContext.IsFall == true)
         {
-            if (Physics.Raycast(transform.position + Vector3.up, Vector3.down,out RaycastHit hit,_effectRange,_effectLayer))
+            if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out RaycastHit hit, _effectRange, _effectLayer))
             {
                 _floatEffect.transform.position = hit.point;
                 _floatEffect.Play();

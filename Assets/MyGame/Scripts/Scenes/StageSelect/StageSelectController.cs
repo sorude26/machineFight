@@ -15,6 +15,8 @@ public class StageSelectController : MonoBehaviour
     private Transform _base = default;
     [SerializeField]
     private string[] StageNames = default;
+    [SerializeField]
+    private StageGuideData[] AllStages = default;
     private string _returnScene = "Home";
     private int _stageMaxNumber = default;
     private int _stageNumber = 0;
@@ -24,11 +26,11 @@ public class StageSelectController : MonoBehaviour
     private float Angle => 360f / _stageMaxNumber;
     private IEnumerator Start()
     {
-        _stageMaxNumber = StageNames.Length;
+        _stageMaxNumber = AllStages.Length;
         for (int i = 0; i < _stageMaxNumber; i++)
         {
             var p = Instantiate(_namePanelPrefab, _base);
-            p.SetPanel($"STAGE:{i + 1}", Quaternion.Euler(0, -Angle * i, 0), _stageMaxNumber);
+            p.SetPanel(AllStages[i], Quaternion.Euler(0, -Angle * i, 0), _stageMaxNumber);
         }
         transform.position = Vector3.forward * _stageMaxNumber * 2 - Vector3.forward * 5 + Vector3.up * 2;
         _buttonOn = true;
@@ -123,8 +125,8 @@ public class StageSelectController : MonoBehaviour
         {
             target = 0;
         }
-        var message = new PopUpData(middle: $"STAGE:{target + 1}へ出撃",sub: "〇：OK",cancel: "×:Cancel");
-        PopUpMessage.CreatePopUp(message, submitAction: () => SceneChange(StageNames[target]), cancelAction: () => { _buttonOn = false; });
+        var message = new PopUpData(middle: $"{AllStages[target].StageName}へ出撃",sub: "〇：OK",cancel: "×:Cancel");
+        PopUpMessage.CreatePopUp(message, submitAction: () => SceneChange(AllStages[target].TargetSceneName), cancelAction: () => { _buttonOn = false; });
     }
     private void SceneChange(string target)
     {
