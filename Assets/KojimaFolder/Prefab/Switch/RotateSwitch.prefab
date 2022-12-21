@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1650041802952171251}
   - component: {fileID: 1650041802952171254}
   - component: {fileID: 1650041802952171249}
-  - component: {fileID: 1650041802952171248}
   m_Layer: 0
   m_Name: obj
   m_TagString: Untagged
@@ -83,19 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1650041802952171248
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650041802952171250}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1650041803483031859
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacf552aea97ea847a32b2a37652faa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _holdType: 0
   _holdPosition: {fileID: 1650041803754572564}
   _holdRotation: {fileID: 1650041803754572564}
   _poseOnHold: {fileID: 11400000, guid: b0a9442b56c7be04ca5a24fd9373199e, type: 2}
@@ -385,7 +370,6 @@ GameObject:
   - component: {fileID: 1650041804933706193}
   - component: {fileID: 1650041804933706197}
   - component: {fileID: 1650041804933706196}
-  - component: {fileID: 1650041804933706199}
   - component: {fileID: 7230105314171193625}
   m_Layer: 0
   m_Name: Body
@@ -457,19 +441,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1650041804933706199
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650041804933706192}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7230105314171193625
 MonoBehaviour:
   m_ObjectHideFlags: 0

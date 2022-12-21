@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6295597247123841443}
   - component: {fileID: 3194465720008060394}
   - component: {fileID: 2082363381047481136}
-  - component: {fileID: 5792064714661542576}
   m_Layer: 0
   m_Name: box
   m_TagString: Untagged
@@ -82,19 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5792064714661542576
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 613597783755024919}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &997186081602237517
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +332,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c03cd29cedb425c419f264dade6f56b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _holdType: 1
   _holdPosition: {fileID: 8879522611091642322}
   _holdRotation: {fileID: 8879522611091642322}
   _poseOnHold: {fileID: 11400000, guid: 56c05635d19a9c24782c72554ec456dd, type: 2}
@@ -358,8 +343,6 @@ MonoBehaviour:
   _minPosition: {fileID: 1327189004485562912}
   _maxPosition: {fileID: 8061816259991145399}
   _leverBody: {fileID: 2507829901452827857}
-  _clickPoints:
-  - 0.5
 --- !u!82 &5564623818215279456
 AudioSource:
   m_ObjectHideFlags: 0

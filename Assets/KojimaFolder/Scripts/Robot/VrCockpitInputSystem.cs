@@ -120,7 +120,6 @@ public class VrCockpitInputSystem : InputDevice, IInputUpdateCallbackReceiver
 
 public struct CockpitInputState : IInputStateTypeInfo
 {
-    //メモリ上での識別を高速化するためのものらしい、任意の四文字を指定可能
     public FourCC format => new FourCC('V', 'R', 'C', 'K');
 
 
@@ -133,14 +132,9 @@ public struct CockpitInputState : IInputStateTypeInfo
     [InputControl(name = VrCockpitInputSystem.CHANGETARGET  , layout = "Button", bit = VrCockpitInputSystem.CHANGETARGET_BIT)]
     public ushort buttons;//16bit
 
-    //軸
     [InputControl(name = VrCockpitInputSystem.MOVEAXIS, layout = "Vector2")]
-    [InputControl(name = "moveAxis/x", defaultState = 0.0f, format = "FLT", parameters = "normalize,normalizeMin=-1,normalizeMax=1,normalizeZero=0.0,clamp=2,clampMin=-1,clampMax=1")]
-    [InputControl(name = "moveAxis/y", defaultState = 0.0f, format = "FLT", parameters = "normalize,normalizeMin=-1,normalizeMax=1,normalizeZero=0.0,clamp=2,clampMin=-1,clampMax=1")]
     public Vector2 MoveAxis;
 
     [InputControl(name = VrCockpitInputSystem.CAMERAAXIS, layout = "Vector2")]
-    [InputControl(name = "cameraAxis/x", defaultState = 0.0f, format = "FLT", parameters = "normalize,normalizeMin=-1,normalizeMax=1,normalizeZero=0.0,clamp=2,clampMin=-1,clampMax=1")]
-    [InputControl(name = "cameraAxis/y", defaultState = 0.0f, format = "FLT", parameters = "normalize,normalizeMin=-1,normalizeMax=1,normalizeZero=0.0,clamp=2,clampMin=-1,clampMax=1")]
     public Vector2 CameraAxis;
 }
