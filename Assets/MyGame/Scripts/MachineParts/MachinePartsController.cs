@@ -86,6 +86,19 @@ namespace MyGame
                 _legController.ChangeFloat();
             }
         }
+
+        public void TryFloat()
+        {
+            if (_legController.IsFloat) return;
+            _legController.ChangeFloat();
+        }
+
+        public void TryGround()
+        {
+            if (!_legController.IsFloat) return;
+            _legController.ChangeFloat();
+        }
+
         public void ShotLeft()
         {
             _bodyController.ShotLeft();

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class Switch : MonoBehaviour
+public abstract class Switch : MonoBehaviour
 {
     const float VIBE_SPEED = 0.05f;
     const float VIBE_POWER = 0.5f;
@@ -18,11 +18,12 @@ public class Switch : MonoBehaviour
     {
         Pinch,
         Grab,
+
+        //親指弾き入力用の特別なもの
+        Thumb,
     }
     static List<Switch> _switches = new List<Switch>();
 
-    [SerializeField]
-    protected HoldTypes _holdType;
     [SerializeField]
     protected Transform _holdPosition;
     [SerializeField]
@@ -42,9 +43,9 @@ public class Switch : MonoBehaviour
     [SerializeField, Range(0.0f, 1.0f)]
     protected float _rotateLockZ = 0f;
     [SerializeField]
-    AudioClip _audioClip;
+    protected AudioClip _audioClip;
 
-    AudioSource _audioSource;
+    protected AudioSource _audioSource;
     protected Vector3 _handMove = Vector3.zero;
     protected Quaternion _currentHandRotate = Quaternion.identity;
     
@@ -60,11 +61,68 @@ public class Switch : MonoBehaviour
     /// スイッチの状態、基本的には0～1
     /// </summary>
     public virtual float Value => _value;
-    public HoldTypes HoldType => _holdType;
+    public abstract HoldTypes HoldType { get; }
     public Transform HoldPosition => _holdPosition;
 
     public static IEnumerable<Switch> SwitchList => _switches;
-    public HandPoseWeights GetPose() => _poseOnHold;
+    public virtual HandPoseWeights GetPose() => _poseOnHold;
+
+    #region HAND_INPUT
+    //フライトスティックや、スロットルレバーにおいて握った上に入力があるかチェックする時に使用
+    public bool GetTriggerInput(bool down)
+    {
+        if (_lockinHand == null) return false;
+        if (down)
+        {
+            return OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, _lockinHand.ControllerType);
+        }
+        else
+        {
+            return OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, _lockinHand.ControllerType);
+        }
+    }
+    public bool GetUpperButtonInput(bool down)
+    {
+        if (_lockinHand == null) return false;
+        if (down)
+        {
+            return OVRInput.GetDown(OVRInput.Button.Two, _lockinHand.ControllerType);
+        }
+        else
+        {
+            return OVRInput.Get(OVRInput.Button.Two, _lockinHand.ControllerType);
+        }
+    }
+    public bool GetLowerButtonInput(bool down)
+    {
+        if (_lockinHand == null) return false;
+        if (down)
+        {
+            return OVRInput.GetDown(OVRInput.Button.One, _lockinHand.ControllerType);
+        }
+        else
+        {
+            return OVRInput.Get(OVRInput.Button.One, _lockinHand.ControllerType);
+        }
+    }
+    public bool GetThumbstickButtonInput(bool down)
+    {
+        if (_lockinHand == null) return false;
+        if (down)
+        {
+            return OVRInput.GetDown(OVRInput.Button.PrimaryThumbstick, _lockinHand.ControllerType);
+        }
+        else
+        {
+            return OVRInput.Get(OVRInput.Button.PrimaryThumbstick, _lockinHand.ControllerType);
+        }
+    }
+    public Vector2 GetThumbstickInput()
+    {
+        if (_lockinHand == null) return Vector2.zero;
+        return OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick, _lockinHand.ControllerType);
+    }
+    #endregion
 
     public void Touch(SwitchCtrlHand from)
     {
@@ -137,7 +195,7 @@ public class Switch : MonoBehaviour
         //rotate
         _currentHandRotate = from.transform.rotation;
         //move
-        _handMove = from.HoldPosition(_holdType) - this.transform.position;
+        _handMove = from.HoldPosition(HoldType) - this.transform.position;
     }
     protected virtual void Free()
     {
@@ -149,7 +207,7 @@ public class Switch : MonoBehaviour
         //すでにlockInされている場合は何も処理しない
         if (_lockinHand != null) return;
         //つかみ入力があればLockIn
-        if (GetHoldInInput(from, _holdType))
+        if (GetHoldInInput(from, HoldType))
         {
             LockIn(from);
         }
@@ -157,7 +215,7 @@ public class Switch : MonoBehaviour
     protected virtual void LockInUpdateImple()
     {
         //離れる判定を取りFree
-        if (GetFreeInput(_lockinHand, _holdType) || !this.gameObject.activeInHierarchy)
+        if (GetFreeInput(_lockinHand, HoldType) || !this.gameObject.activeInHierarchy)
         {
             Free();
             return;
@@ -181,7 +239,7 @@ public class Switch : MonoBehaviour
         //rotate
         Quaternion myRotate = GetMyHoldRotation();
         //スイッチ位置からの相対的な回転を切り出し、各軸にWeightをかける
-        Vector3 currentHandRotateEuler = (Quaternion.Inverse(myRotate) * _lockinHand.transform.parent.rotation).eulerAngles.NomalizeRotate();
+        Vector3 currentHandRotateEuler = (Quaternion.Inverse(myRotate) * _lockinHand.transform.parent.rotation).eulerAngles.NomalizeRotate180();
         currentHandRotateEuler.x = SetWeight(currentHandRotateEuler.x, _rotateLockX);
         currentHandRotateEuler.y = SetWeight(currentHandRotateEuler.y, _rotateLockY);
         currentHandRotateEuler.z = SetWeight(currentHandRotateEuler.z, _rotateLockZ);
@@ -202,7 +260,7 @@ public class Switch : MonoBehaviour
         //move
         //move
         _handMove = Vector3.Lerp(_handMove, _holdPosition.position - this.transform.position, MOVE_LERP_SPEED);
-        _lockinHand.transform.position = _handMove + _lockinHand.transform.position - _lockinHand.HoldPosition(_holdType) + this.transform.position;
+        _lockinHand.transform.position = _handMove + _lockinHand.transform.position - _lockinHand.HoldPosition(HoldType) + this.transform.position;
     }
 
     protected Quaternion GetMyHoldRotation()
@@ -217,12 +275,12 @@ public class Switch : MonoBehaviour
         return myRotate;
     }
 
-    private void Vibrate()
+    protected void Vibrate()
     {
         ControllerVibrator.Vibrate(VIBE_SPEED, VIBE_POWER, VIBE_TIME, _lockinHand?.ControllerType ?? OVRInput.Controller.None);
     }
 
-    bool GetHoldInInput(SwitchCtrlHand from, HoldTypes hold)
+    protected virtual bool GetHoldInInput(SwitchCtrlHand from, HoldTypes hold)
     {
         switch (hold)
         {
@@ -230,13 +288,15 @@ public class Switch : MonoBehaviour
                 return OculusGameInput.GetPinchIn(from.ControllerType);
             case HoldTypes.Grab:
                 return OculusGameInput.GetGrabIn(from.ControllerType);
+            case HoldTypes.Thumb:
+                return OculusGameInput.GetThumbIn(from.ControllerType);
             default:
                 Debug.LogError("入力が取れません");
                 return false;
         }
     }
 
-    bool GetFreeInput(SwitchCtrlHand from, HoldTypes hold)
+    protected virtual bool GetFreeInput(SwitchCtrlHand from, HoldTypes hold)
     {
         switch (hold)
         {
@@ -244,6 +304,8 @@ public class Switch : MonoBehaviour
                 return OculusGameInput.GetPinchOut(from.ControllerType);
             case HoldTypes.Grab:
                 return OculusGameInput.GetGrabOut(from.ControllerType);
+            case HoldTypes.Thumb:
+                return OculusGameInput.GetThumbOut(from.ControllerType);
             default:
                 Debug.LogError("入力が取れません");
                 return false;

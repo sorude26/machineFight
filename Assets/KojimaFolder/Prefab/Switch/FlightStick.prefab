@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d34332ffb7f1cc4594aed51e15b9479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _holdType: 1
   _holdPosition: {fileID: 9042501767734541209}
   _holdRotation: {fileID: 9042501767734541209}
   _poseOnHold: {fileID: 11400000, guid: 986e1540b1436ff4b9c4229cdf27a86a, type: 2}
@@ -210,7 +209,6 @@ GameObject:
   - component: {fileID: 8949188523875313247}
   - component: {fileID: 3754864564827629180}
   - component: {fileID: 377777624846653849}
-  - component: {fileID: 7370252713101646904}
   m_Layer: 0
   m_Name: Stick
   m_TagString: Untagged
@@ -281,16 +279,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7370252713101646904
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6371393204389919966}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

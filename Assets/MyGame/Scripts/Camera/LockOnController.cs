@@ -25,6 +25,7 @@ public class LockOnController : MonoBehaviour
     public float LockOnRange { get; set; } = 500;
     /// <summary> ƒƒbƒNƒIƒ“‘ÎÛ </summary>
     private List<LockOnTarget> _lockOnTargets = new List<LockOnTarget>();
+    public IReadOnlyCollection<LockOnTarget> LockOnTargets => _lockOnTargets;
     private int _targetNum = 0;
     private void Awake()
     {

@@ -1,14 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
 /// レバーの位置によってvalueが0～1に変化
-/// 複数個のクリックポイント(レバーを上げ下げするときに抵抗を感じるポイント)を設定できる
+/// 複数個のクリックポイント(レバーを上げ下げするときに抵抗を感じるポイント)を外部から設定できる
+/// OnExitZoneとOnEnterZoneコールバックを外部から登録可能
 /// </summary>
 public class ThrottleLever : Switch
 {
     const float LEVER_LEAP_SPEED = 0.2f;
+    const float CLICK_FORCE = 0.02f;
     [SerializeField]
     Transform _minPosition;
     [SerializeField]
@@ -16,16 +20,163 @@ public class ThrottleLever : Switch
     [SerializeField]
     Transform _leverBody;
 
+    //昇順
+    List<float> _clickPoints = new List<float>();
+    float _valueByZone = 0;
+    int _currentZone = 0;
+
     protected override void Awake()
     {
         base.Awake();
         //レバー本体を移動させる
         _leverBody.position = Vector3.Lerp(_minPosition.position, _maxPosition.position, _value);
+        //ゾーンの値を初期化
+        ChangeValue(_value);
+        OnValueChanged?.Invoke(_currentZone);
     }
 
-    public float GetValueByZone(int zone)
+    /// <summary>
+    /// 引数のゾーンから離れたときに呼ばれる
+    /// </summary>
+    public event Action<int> OnExitZone;
+    /// <summary>
+    /// 引数のゾーンに入ったときに呼ばれる
+    /// </summary>
+    public event Action<int> OnEnterZone;
+    /// <summary>
+    /// 値に変更があったときに呼ばれる、引数は現在のゾーン
+    /// </summary>
+    public event Action<int> OnValueChanged;
+
+    public override HoldTypes HoldType => HoldTypes.Grab;
+    public int ZoneCount => _clickPoints.Count + 1;
+    public int CurrentZone => _currentZone;
+    public float ValueByZone(int zone)
     {
-        return _value;
+        if (zone == _currentZone) return _valueByZone;
+        return zone > _currentZone ? 0 : 1;
+    }
+   
+    /// <summary>
+    /// レバーを上げ下げするときに抵抗を感じるポイントを設定する
+    /// </summary>
+    /// <param name="points">0～1の範囲内で設定されるポイントの位置</param>
+    public void SetClickPointsAsNew(float[] points)
+    {
+        //昇順に並び替えて保管
+        _clickPoints = points.Where(p => p < 1f && p > 0f).OrderBy(p => p).ToList();
+        //ゾーン計算
+        ChangeValue(_value);
+        OnValueChanged?.Invoke(_currentZone);
+    }
+
+
+    private void SetValueByZone(float value)
+    {
+        float r = value;
+        float min = 0;
+        if (_currentZone != 0)
+        {
+            min = _clickPoints[_currentZone - 1];
+        }
+        float max = 1;
+        if (_currentZone != _clickPoints.Count)
+        {
+            max = _clickPoints[_currentZone];
+        }
+
+        r -= min;
+        r /= (max - min);
+        _valueByZone = r;
+    }
+
+
+
+    private int GetZone(float value)
+    {
+        int zone =  0;
+        foreach (var point in _clickPoints)
+        {
+            if (point > value)
+            {
+                return zone;
+            }
+            ++zone;
+        }
+        return zone;
+    }
+
+    private void ChangeValue(float value)
+    {
+        if (_clickPoints.Count == 0)
+        {
+            //区分けされているゾーンが存在しないならばそのまま値を適用して終了
+            _value = value;
+            _valueByZone = value;
+            return;
+        }
+
+
+        int current = _currentZone;
+        int newZone = GetZone(value);
+        if (current == newZone)
+        {
+            //ゾーンを変える必要がないためそのまま値を適用して終了する
+            _value = value;
+            //ValueByZone適用
+            SetValueByZone(value);
+            return;
+        }
+
+        if (current < newZone)
+        {
+            //レバーが上に行っているとき
+            float max = _clickPoints[current];
+            //敷居より上へ行った場合はゾーン変更
+            if (max < value - CLICK_FORCE)
+            {
+                //ゾーン変更適用
+                ChangeZone(value, newZone);
+                //ValueByZone適用
+                SetValueByZone(value);
+                return;
+            }
+            _value = max;
+            _valueByZone = 1;
+            return;
+        }
+        else
+        {
+            //レバーが下に行っているとき
+            float min = _clickPoints[current - 1];
+            //敷居より下へ行った場合はゾーン変更
+            if (min > value + CLICK_FORCE)
+            {
+                //ゾーン変更適用
+                ChangeZone(value, newZone);
+                //ValueByZone適用
+                SetValueByZone(value);
+                return;
+            }
+            _value = min;
+            _valueByZone = 0;
+            return;
+        }
+    }
+    private void ChangeZone(float value, int newZone)
+    {
+        _value = value;
+        //ゾーンが変わっていない場合はここから下の処理は不要
+        if (_currentZone == newZone) return;
+
+        //ゾーン変更時のコールバック実行
+        OnExitZone?.Invoke(_currentZone);
+        OnEnterZone?.Invoke(newZone);
+        //ゾーン変更
+        _currentZone = newZone;
+        //エフェクト処理
+        Vibrate();
+        _audioSource?.PlayOneShot(_audioClip);
     }
 
     protected override void SwitchUpdateOnLockIn()
@@ -55,10 +206,11 @@ public class ThrottleLever : Switch
         value = Mathf.Max(0, value);
         value = Mathf.Min(1, value);
         //値を適用
-        _value = value;
+        ChangeValue(value);
+        OnValueChanged?.Invoke(_currentZone);
 
         //レバー本体を移動させる
-        _leverBody.position = minPos + minToMax * value;
+        _leverBody.position = minPos + minToMax * _value;
     }
 
     protected override void LockIn(SwitchCtrlHand from)
@@ -68,7 +220,7 @@ public class ThrottleLever : Switch
         //rotate
         _currentHandRotate = from.transform.rotation;
         //move(改変部)
-        _handMove = from.HoldPosition(_holdType) - _holdPosition.transform.position;
+        _handMove = from.HoldPosition(HoldType) - _holdPosition.transform.position;
     }
 
     protected override void MoveRotateUpdateOnLockIn()
@@ -76,7 +228,7 @@ public class ThrottleLever : Switch
         //rotate
         Quaternion myRotate = GetMyHoldRotation();
         //スイッチ位置からの相対的な回転を切り出し、各軸にWeightをかける
-        Vector3 currentHandRotateEuler = (Quaternion.Inverse(myRotate) * _lockinHand.transform.parent.rotation).eulerAngles.NomalizeRotate();
+        Vector3 currentHandRotateEuler = (Quaternion.Inverse(myRotate) * _lockinHand.transform.parent.rotation).eulerAngles.NomalizeRotate180();
         currentHandRotateEuler.x = SetWeight(currentHandRotateEuler.x, _rotateLockX);
         currentHandRotateEuler.y = SetWeight(currentHandRotateEuler.y, _rotateLockY);
         currentHandRotateEuler.z = SetWeight(currentHandRotateEuler.z, _rotateLockZ);
@@ -96,6 +248,6 @@ public class ThrottleLever : Switch
 
         //move(改変部)
         _handMove = Vector3.Lerp(_handMove, Vector3.zero, MOVE_LERP_SPEED);
-        _lockinHand.transform.position = _handMove + _lockinHand.transform.position - _lockinHand.HoldPosition(_holdType) + _holdPosition.position;
+        _lockinHand.transform.position = _handMove + _lockinHand.transform.position - _lockinHand.HoldPosition(HoldType) + _holdPosition.position;
     }
 }

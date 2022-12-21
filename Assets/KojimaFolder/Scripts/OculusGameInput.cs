@@ -38,4 +38,14 @@ public static class OculusGameInput
         return !OVRInput.Get(OVRInput.Button.PrimaryHandTrigger, controller);
 
     }
+
+    public static bool GetThumbIn(OVRInput.Controller controller)
+    {
+        return OVRInput.GetDown(OVRInput.Button.Two, controller);
+    }
+    public static bool GetThumbOut(OVRInput.Controller controller)
+    {
+        return !OVRInput.Get(OVRInput.Button.Two, controller);
+
+    }
 }

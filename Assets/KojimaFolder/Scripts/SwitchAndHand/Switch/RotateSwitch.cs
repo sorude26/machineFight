@@ -14,6 +14,8 @@ public class RotateSwitch : Switch
     [SerializeField]
     float _holdRotateOffset;
 
+    public override HoldTypes HoldType => HoldTypes.Pinch;
+
     public override void TurnOn(bool isInit = false)
     {
         base.TurnOn(isInit);
@@ -51,7 +53,7 @@ public class RotateSwitch : Switch
     protected override void SwitchUpdateOnLockIn()
     {
         base.SwitchUpdateOnLockIn();
-        Vector3 local = (Quaternion.Inverse(this.transform.rotation) * _lockinHand.transform.parent.rotation).eulerAngles.NomalizeRotate();
+        Vector3 local = (Quaternion.Inverse(this.transform.rotation) * _lockinHand.transform.parent.rotation).eulerAngles.NomalizeRotate180();
         if (local.z < 0)
         {
             TurnOn();
