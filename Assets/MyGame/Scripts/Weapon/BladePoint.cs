@@ -71,11 +71,10 @@ public class BladePoint : MonoBehaviour
         {
             target.AddlyDamage(_power);
         }
-        HitBlade(transform.position);
-    }
-    private void HitBlade(Vector3 pos)
-    {
-        PlayHitEffect(pos);
+        if (_count == 0)
+        {
+            PlayHitEffect(transform.position);
+        }
     }
     private void OnDrawGizmosSelected() 
     {
