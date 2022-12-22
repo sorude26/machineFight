@@ -140,8 +140,11 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.1
+  _seReloadID: 32
+  _seReloadVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -5725,10 +5728,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 7018357406306533421}
   _playerLock: {fileID: 7018357405370431932}
   _lockBody: {fileID: 7018357406894510801}
   _lockSpeed: 8
+  _cameraController: {fileID: 0}
 --- !u!114 &7018357406306533422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5745,7 +5752,7 @@ MonoBehaviour:
   _naviPower: 5
   _wallLayer:
     serializedVersion: 2
-    m_Bits: 3840
+    m_Bits: 769
   _wallRayRange: 5
   _diffusivity: 0.5
   _transSpeed: 5
