@@ -13,7 +13,7 @@ public class SoundPlayer : MonoBehaviour
 
     private void Awake()
     {
-        _callback.AddListener(() => DisActive(gameObject));
+        _callback.AddListener(() => Deactivate(gameObject));
     }
 
     /// <summary>
@@ -42,11 +42,44 @@ public class SoundPlayer : MonoBehaviour
     }
 
     /// <summary>
+    /// ターゲットに追従しながらSEを再生する
+    /// </summary>
+    /// <param name="audioClip"></param>
+    /// <param name="target"></param>
+    /// <param name="volume"></param>
+    /// <param name="group"></param>
+    public void PlaySE(AudioClip audioClip, GameObject target, float volume = 1f, SoundManager.AudioMixerGroup group = SoundManager.AudioMixerGroup.SE)
+    {
+        _audioSource.loop = false;
+        _audioSource.outputAudioMixerGroup = AudioMixerManager.Instance.GetAudioMixerGroup(group);
+        StartCoroutine(FollowTarget(target));
+        StartCoroutine(_audioSource.PlayWithCompCallback(audioClip, volume, _callback));
+    }
+
+    /// <summary>
+    /// ターゲットがアクティブの間追従する
+    /// </summary>
+    /// <param name="target"></param>
+    /// <returns></returns>
+    private IEnumerator FollowTarget(GameObject target)
+    {
+        while(true)
+        {
+            if (!target.activeSelf)
+            {
+                Deactivate(gameObject);
+            }
+            transform.position = target.transform.position;
+            yield return null;
+        }
+    }
+
+    /// <summary>
     /// 再生終了後自身を非アクティブ化する
     /// Eventに登録しておく
     /// </summary>
     /// <param name="gameObject"></param>
-    private void DisActive(GameObject gameObject)
+    private void Deactivate(GameObject gameObject)
     {
         gameObject.SetActive(false);
     }
