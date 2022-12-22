@@ -32,6 +32,7 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     public int MaxHp { get => _maxHp; }
     public int CurrentHp { get => _hp; }
     public bool AddTarget { get => _addCount || _isMarkTarget; }
+    public bool BossTarget { get => _addCount; }
     public int TotalDamage { get; private set; }
     public UnityEvent OnDamageEvent;
     public UnityEvent OnRecoveryEvent;

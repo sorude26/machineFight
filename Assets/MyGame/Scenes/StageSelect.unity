@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5824853, g: 0.63271797, b: 0.7775048, a: 1}
+  m_IndirectSpecularColor: {r: 0.30314592, g: 0.36816618, b: 0.59056205, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -391,6 +391,47 @@ MonoBehaviour:
   - Stage2
   - Stage3
   - Stage4
+  AllStages:
+  - StageName: "\u6E2F\u306E\u5236\u5727"
+    Level: 0
+    StageImage: {fileID: 21300000, guid: cc31ce3c9b283664dbcca4f1f0fb1162, type: 3}
+    Mission: Level:1
+    TargetSceneName: BayAreaStage
+  - StageName: "\u6E2F\u306E\u79FB\u52D5\u7832\u53F0"
+    Level: 1
+    StageImage: {fileID: 21300000, guid: cc31ce3c9b283664dbcca4f1f0fb1162, type: 3}
+    Mission: Level:2
+    TargetSceneName: BayAreaStage
+  - StageName: "\u8352\u91CE\u306E\u90E8\u968A"
+    Level: 0
+    StageImage: {fileID: 21300000, guid: 8388f0e64b6e23e43b28f7ad2f98a4d8, type: 3}
+    Mission: Level:2
+    TargetSceneName: Stage5
+  - StageName: "\u9AD8\u67B6\u4E0A\u306E\u90E8\u968A"
+    Level: 0
+    StageImage: {fileID: 21300000, guid: dbf855787a15d3944baa79f8483eb7c6, type: 3}
+    Mission: Level:2
+    TargetSceneName: BridgeAreaStage
+  - StageName: "\u8352\u91CE\u306E\u96F7"
+    Level: 0
+    StageImage: {fileID: 21300000, guid: 8388f0e64b6e23e43b28f7ad2f98a4d8, type: 3}
+    Mission: Level:3
+    TargetSceneName: DesertArea
+  - StageName: "\u6D77\u4E0A\u306E\u6C7A\u6226"
+    Level: 0
+    StageImage: {fileID: 21300000, guid: e0573e372f16e2c4a80602ae33cf0ad2, type: 3}
+    Mission: Level:EX
+    TargetSceneName: Stage2
+  - StageName: "\u8352\u91CE\u306E\u6C7A\u6226"
+    Level: 1
+    StageImage: {fileID: 21300000, guid: 11f352f132c8c7f46bdc76be5724642c, type: 3}
+    Mission: Level:EX
+    TargetSceneName: DesertArea
+  - StageName: "\u6700\u7D42\u6C7A\u6226"
+    Level: 0
+    StageImage: {fileID: 21300000, guid: 521b6eef19905cc4eb30e90d644afe5e, type: 3}
+    Mission: Level:EX
+    TargetSceneName: FortificationStage
 --- !u!4 &819326209
 Transform:
   m_ObjectHideFlags: 0
@@ -455,7 +496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5225625, g: 0.032075405, b: 1, a: 1}
+  m_Color: {r: 0.35441792, g: 0, b: 0.9056604, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -497,7 +538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1090874442
 RectTransform:
   m_ObjectHideFlags: 0

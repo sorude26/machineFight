@@ -25,6 +25,8 @@ public class AutoAttacker : MonoBehaviour
     [SerializeField]
     private UnityEvent _onAttackEvent = default;
     [SerializeField]
+    private UnityEvent _initializeEvent = default;
+    [SerializeField]
     private Transform _attackerMoveBody = default;
     [SerializeField]
     private Transform _playerLock = default;
@@ -40,6 +42,7 @@ public class AutoAttacker : MonoBehaviour
     private void Start()
     {
         _player = NavigationManager.Instance.Target;
+        _initializeEvent?.Invoke();
     }
     private void FixedUpdate()
     {

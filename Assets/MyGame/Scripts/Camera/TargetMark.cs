@@ -17,6 +17,8 @@ public class TargetMark : MonoBehaviour
     private Image _hpGauge = default;
     [SerializeField]
     private GameObject _targetMessage = default;
+    [SerializeField]
+    private GameObject _bossMessage = default;
     public LockOnTarget Target;
     private bool _isActive = false;
 
@@ -27,6 +29,7 @@ public class TargetMark : MonoBehaviour
             _isActive = false;
             _rect.gameObject.SetActive(_isActive);
             _targetMessage.SetActive(false);
+            _bossMessage.SetActive(false);
             return;
         }       
         else if (Target == null)
@@ -45,5 +48,6 @@ public class TargetMark : MonoBehaviour
         ajust -= new Vector2(MainCameraLocator.MainCamera.pixelWidth / 2, MainCameraLocator.MainCamera.pixelHeight / 2);
         _rect.anchoredPosition = ajust;
         _targetMessage.SetActive(Target.DamageChecker.AddTarget);
+        _bossMessage.SetActive(Target.DamageChecker.BossTarget);
     }
 }

@@ -19,6 +19,8 @@ public class StageManager : MonoBehaviour
     private int _gameOverbgmIDNum = 42;
     [SerializeField]
     private float _bgmVolume = 0.1f;
+    [SerializeField]
+    private GameObject[] _enemySet = default;
     private int _targetCount = 0;
     private int _totalCount = 0;
     private bool _gameOver = false;
@@ -31,6 +33,10 @@ public class StageManager : MonoBehaviour
     }
     private void Start()
     {
+        if (_enemySet != null && StageData.StageLevel < _enemySet.Length)
+        {
+            _enemySet[StageData.StageLevel].SetActive(true);
+        }
         PlayerInput.ChangeInputMode(InputMode.InGame);
         if (SoundManager.Instance != null)
         {
