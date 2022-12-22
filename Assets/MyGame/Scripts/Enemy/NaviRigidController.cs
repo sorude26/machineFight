@@ -43,10 +43,12 @@ public class NaviRigidController : MonoBehaviour
             _body.forward = Vector3.Lerp(_body.forward, _currentDir, _transSpeed * Time.fixedDeltaTime);
             _controller.GVelocityMove(_body.forward * _moveSpeed);
         }
-        var velo = _rb.velocity;
-        var g = velo.y;
-        velo *= _moveDiffusivity;
-        velo.y = g;
-        _rb.velocity = velo;
+        _controller.MoveDecelerate(_moveDiffusivity);
+    }
+    public void LockTarget()
+    {
+        var dir = NavigationManager.Instance.Target.position - _body.position;
+        dir.y = 0;
+        _currentDir = dir.normalized;
     }
 }
