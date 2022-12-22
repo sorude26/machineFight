@@ -22,6 +22,14 @@ public class ShotWeapon : WeaponBase
     protected float _shotInterval = 0.2f;
     [SerializeField]
     protected float _diffusivity = 0.01f;
+    [SerializeField]
+    private int _shotSEID = 3;
+    [SerializeField]
+    private float _shotSEVolume = 0.1f;
+    [SerializeField]
+    private int _setSEShotCount = -1;
+
+    private int _seCount = 0;
    
     private bool _isTrigerOn = false;
     public override void Initialize()
@@ -37,12 +45,22 @@ public class ShotWeapon : WeaponBase
     }
     protected void Shot(Transform target = null)
     {
+        
         var bullet = ShotBulletPool.GetObject(_bullet);
         bullet.transform.position = _muzzle.position;
         _bulletParam.Dir = Diffusivity(_muzzle.forward);
         _bulletParam.Power = _power;
         _bulletParam.Speed = _speed;
         bullet.Shot(_bulletParam, target);
+        if (_setSEShotCount >= 0)
+        {
+            _seCount++;
+            if (_seCount > _setSEShotCount)
+            {
+                _seCount = 0;
+                SoundManager.Instance.PlaySE(_shotSEID, bullet.gameObject, _shotSEVolume);
+            }
+        }
         PlayShake();        
     }
     protected Vector3 Diffusivity(Vector3 target)

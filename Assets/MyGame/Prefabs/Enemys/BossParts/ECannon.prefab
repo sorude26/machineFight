@@ -140,8 +140,11 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.05
+  _seReloadID: 32
+  _seReloadVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -165,6 +168,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &1247655558504612285
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,10 +778,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 4546535790694014292}
   _playerLock: {fileID: 8117156996407399164}
   _lockBody: {fileID: 8759826977064421978}
   _lockSpeed: 8
+  _cameraController: {fileID: 0}
 --- !u!1 &5144058010129548760
 GameObject:
   m_ObjectHideFlags: 0
@@ -15918,10 +15928,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 8934769014932046448}
   _playerLock: {fileID: 8934769015391292836}
   _lockBody: {fileID: 8934769015736490749}
   _lockSpeed: 1
+  _cameraController: {fileID: 0}
 --- !u!1 &8934769014970944115
 GameObject:
   m_ObjectHideFlags: 0
@@ -20958,8 +20972,11 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 9
   _seFireVolume: 0.04
+  _seReloadID: 32
+  _seReloadVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -20983,6 +21000,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.01
   _diffusivity: 0
+  _shotSEID: 8
+  _shotSEVolume: 0.5
+  _setSEShotCount: 2
 --- !u!1 &8934769015058938586
 GameObject:
   m_ObjectHideFlags: 0
@@ -21205,8 +21225,11 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 9
   _seFireVolume: 0.04
+  _seReloadID: 32
+  _seReloadVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -21230,6 +21253,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.01
   _diffusivity: 0
+  _shotSEID: 8
+  _shotSEVolume: 0.5
+  _setSEShotCount: 2
 --- !u!1 &8934769015191221945
 GameObject:
   m_ObjectHideFlags: 0
@@ -26224,10 +26250,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 8934769015245084662}
   _playerLock: {fileID: 8934769015238781463}
   _lockBody: {fileID: 8934769014982581344}
   _lockSpeed: 8
+  _cameraController: {fileID: 0}
 --- !u!1 &8934769015250221743
 GameObject:
   m_ObjectHideFlags: 0
@@ -41033,10 +41063,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 8934769015422629814}
   _playerLock: {fileID: 8934769016116172960}
   _lockBody: {fileID: 8934769015290901780}
   _lockSpeed: 8
+  _cameraController: {fileID: 0}
 --- !u!1 &8934769015452588959
 GameObject:
   m_ObjectHideFlags: 0
@@ -45983,8 +46017,11 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.05
+  _seReloadID: 32
+  _seReloadVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -46008,6 +46045,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &8934769015613470152
 GameObject:
   m_ObjectHideFlags: 0
@@ -51680,8 +51720,11 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
+  _seReloadID: 32
+  _seReloadVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -51705,6 +51748,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.2
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &8934769016356463460
 GameObject:
   m_ObjectHideFlags: 0
