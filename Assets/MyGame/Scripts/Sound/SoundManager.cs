@@ -90,6 +90,23 @@ public class SoundManager : MonoBehaviour
         soundPlayer.transform.position = pos;
         soundPlayer.PlaySE(audioClip, volume, mixerGroup);
     }
+    
+    /// <summary>
+    /// ターゲットに追従しながらSEを再生する
+    /// </summary>
+    /// <param name="soundId"></param>
+    /// <param name="target"></param>
+    /// <param name="volume"></param>
+    /// <param name="mixerGroup"></param>
+    public void PlaySE(int soundId, GameObject target, float volume = 1f, AudioMixerGroup mixerGroup = AudioMixerGroup.SE)
+    {
+        AudioClip audioClip = _soundList.GetAudioClip(soundId);
+        if (audioClip == null) return;
+
+        SoundPlayer soundPlayer = GetSound3DPlayer();
+        soundPlayer.gameObject.SetActive(true);
+        soundPlayer.PlaySE(audioClip, target, volume, mixerGroup);
+    }
 
 
     /// <summary>
