@@ -338,9 +338,13 @@ MonoBehaviour:
     LWeapon: 0
     RWeapon: 2
     ColorId: 0
+  _buildSet: []
+  _randamSet: 0
   _bodyTarget: {fileID: 7633314310021058521}
   _deadEffct: {fileID: 5285524602227699168, guid: df5f695c72ecae540933096803ca70b6, type: 3}
-  _explosionTime: 3
+  _deadSEID: 11
+  _seVolume: 1
+  _explosionTime: 1
   _exParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 50
@@ -409,10 +413,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 7633314310609263824}
   _playerLock: {fileID: 7633314311662574896}
   _lockBody: {fileID: 7633314310533338935}
   _lockSpeed: 5
+  _cameraController: {fileID: 0}
 --- !u!1 &7633314310303774873
 GameObject:
   m_ObjectHideFlags: 0
