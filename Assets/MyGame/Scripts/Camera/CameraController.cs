@@ -35,8 +35,8 @@ public class CameraController : MonoBehaviour
     }
     public void ResetLock()
     {
-        _cameraRot = Quaternion.identity;
-        _forwardRot = Quaternion.identity;
+        _cameraRot = _cameraTarget.localRotation;
+        _forwardRot = _forwardTarget.localRotation;
     }
     private Quaternion ClampRotationX(Quaternion angle)
     {
