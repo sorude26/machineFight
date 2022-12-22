@@ -4,6 +4,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.SceneManagement;
+using Oculus.Platform.Models;
+using System.Reflection;
+using UnityEditor;
 
 [System.Serializable]
 public class PlayerData : MonoBehaviour
@@ -24,6 +27,18 @@ public class PlayerData : MonoBehaviour
     }
 
     private ModelBuilder _modelBuilder = default;
+    private TotalParam _totalParam = default;
+    public TotalParam Totalparam
+    {
+        get
+        {
+            return _totalParam;
+        }
+        set
+        {
+            _totalParam = value;
+        }
+    }
 
     [SerializeField] 
     private List<PartsHeadData> _getsHeadParts = new List<PartsHeadData>();
@@ -40,12 +55,14 @@ public class PlayerData : MonoBehaviour
     [SerializeField] 
     private List<PartsWeaponData> _getsWeaponParts = new List<PartsWeaponData>();
 
+    private PlayerPartsParamSet _paramSet = default;
+
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(this);
             instance.PresetLoad();
             instance._modelBuilder = new ModelBuilder();
             PartsManager.Instance.LoadData();
@@ -59,7 +76,7 @@ public class PlayerData : MonoBehaviour
 
     private void Start()
     {
-        instance.Build();
+        //instance.Build();
     }
     //JsonÇ…èëÇ´çûÇ›
     public void PresetSave()
@@ -84,6 +101,7 @@ public class PlayerData : MonoBehaviour
             buildData.RWeapon = 0;
             buildData.ColorId = 0;
             PlayerData.instance._buildPreset = buildData;
+
             Debug.Log("èââÒ");
         }
         else
@@ -115,6 +133,7 @@ public class PlayerData : MonoBehaviour
     public void Build()
     {
         _modelBuilder.ViewModel(BuildPreset);
+        ParamSet();
     }
 
     /// <summary>
@@ -261,5 +280,24 @@ public class PlayerData : MonoBehaviour
             instance.Build();
             PresetSave();
         }
+    }
+
+    public void ParamSet()
+    {
+        _totalParam = new TotalParam(
+            PartsManager.Instance.AllParamData.GetPartsBody(_buildPreset.Body),
+            PartsManager.Instance.AllParamData.GetPartsHead(_buildPreset.Head),
+            PartsManager.Instance.AllParamData.GetPartsHand(_buildPreset.RHand),
+            PartsManager.Instance.AllParamData.GetPartsHand(_buildPreset.LHand),
+            PartsManager.Instance.AllParamData.GetPartsLeg(_buildPreset.Leg),
+            PartsManager.Instance.AllParamData.GetPartsBack(_buildPreset.Booster),
+            PartsManager.Instance.AllParamData.GetPartsWeapon(_buildPreset.RWeapon),
+            PartsManager.Instance.AllParamData.GetPartsWeapon(_buildPreset.LWeapon)
+            );
+        if (_paramSet == null)
+        {
+            _paramSet = this.gameObject.GetComponent<PlayerPartsParamSet>();
+        }
+        _paramSet.ParamSet(_totalParam);
     }
 }

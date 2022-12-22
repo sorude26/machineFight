@@ -30,10 +30,6 @@ public class CustomizeMenu : MonoBehaviour
     private void Start()
     {
         _playerData = PlayerData.instance;
-        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Fire2, CategoryChangeNext);
-        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Fire1, CategoryChangePre);
-        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Cancel, EndCustomize);
-        PlayerInput.ChangeInputMode(InputMode.Menu);
         //ButtonInstantiate(_category, 0);
         this.gameObject.SetActive(false);
         _currentButtonProperty.Value = (GameObject)ButtonSelectController.OnGetCurrentButton();
@@ -48,6 +44,17 @@ public class CustomizeMenu : MonoBehaviour
         {
             ButtonSelectController.OnButtonFirstSelect(_content);
         }
+        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Fire2, CategoryChangeNext);
+        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Fire1, CategoryChangePre);
+        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Cancel, EndCustomize);
+        PlayerInput.ChangeInputMode(InputMode.Menu);
+    }
+
+    private void OnDisable()
+    {
+        PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Fire2, CategoryChangeNext);
+        PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Fire1, CategoryChangePre);
+        PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Cancel, EndCustomize);
     }
 
     private void Update()

@@ -27,8 +27,11 @@ public static class Json
         reader.Close();
         Debug.Log("DATALOAD");
         JsonUtility.FromJsonOverwrite(jsonData, PlayerData.instance);
-        PartsBuildParam Data = JsonUtility.FromJson<PartsBuildParam>(buildData);
-        PlayerData.instance.BuildPreset = Data;
+        if (buildData != "")
+        {
+            PartsBuildParam Data = JsonUtility.FromJson<PartsBuildParam>(buildData);
+            PlayerData.instance.BuildPreset = Data;
+        }
         if (jsonData == "")
         {
             return false;

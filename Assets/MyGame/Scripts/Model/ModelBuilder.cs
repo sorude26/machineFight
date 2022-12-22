@@ -45,6 +45,7 @@ public class ModelBuilder : MonoBehaviour
         modelID.Booster = PartsManager.Instance.AllParamData.GetPartsBack(buildPattern.Booster).ModelID;
         modelID.LWeapon = PartsManager.Instance.AllParamData.GetPartsWeapon(buildPattern.LWeapon).ModelID;
         modelID.RWeapon = PartsManager.Instance.AllParamData.GetPartsWeapon(buildPattern.RWeapon).ModelID;
+        modelID.ColorId = buildPattern.ColorId;
         Build(modelID);
     }
     /// <summary>
