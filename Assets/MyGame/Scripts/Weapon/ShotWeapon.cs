@@ -75,7 +75,7 @@ public class ShotWeapon : WeaponBase
     }
     public override void Fire(Transform target)
     {
-        if (IsFire == true || IsWait == true || _isTrigerOn == true)
+        if (IsFire == true || IsWait == true || _isTrigerOn == true || gameObject.activeInHierarchy == false)
         {
             return;
         }
