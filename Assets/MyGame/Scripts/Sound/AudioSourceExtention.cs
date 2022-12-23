@@ -34,4 +34,44 @@ public static class AudioSourceExtention
         
         yield break;
     }
+
+    /// <summary>
+    /// フェードイン再生
+    /// </summary>
+    /// <param name="audioSource"></param>
+    /// <param name="audioClip"></param>
+    /// <param name="volume"></param>
+    /// <param name="fadeTime"></param>
+    /// <returns></returns>
+    public static IEnumerator PlayWithFadeIn(this AudioSource audioSource, AudioClip audioClip, float volume = 1f, float fadeTime = 0.1f)
+    {
+        audioSource.Play(audioClip, 0f);
+
+        while (audioSource.volume < volume)
+        {
+            float setVolume = audioSource.volume + (Time.deltaTime / fadeTime);
+            if (setVolume > volume)
+            {
+                audioSource.volume = volume;
+            }
+            audioSource.volume = setVolume;
+            yield return null;
+        }
+    }
+
+    /// <summary>
+    /// フェードアウト再生停止
+    /// </summary>
+    /// <param name="audioSource"></param>
+    /// <param name="fadeTime"></param>
+    /// <returns></returns>
+    public static IEnumerator StopWithFadeOut(this AudioSource audioSource, float fadeTime = 0.1f)
+    {
+        while (audioSource.volume > 0f)
+        {
+            audioSource.volume -= Time.deltaTime / fadeTime;
+            yield return null;
+        }
+        audioSource.Stop();
+    }
 }
