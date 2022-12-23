@@ -62,15 +62,15 @@ public class SoundManager : MonoBehaviour
     /// BGMをクロスフェード再生する
     /// </summary>
     /// <param name="soundId"></param>
-    /// <param name="volume"></param>
     /// <param name="fadeTime"></param>
-    public void PlayBGM(int soundId, float volume = 1f, float fadeTime = 1f)
+    /// <param name="volume"></param>
+    public void PlayBGMWithCrossFade(int soundId, float fadeTime, float volume = 1f)
     {
         AudioClip audioClip = _soundList.GetAudioClip(soundId);
         if (audioClip == null) return;
 
         StartCoroutine(_bgmAudioSource.StopWithFadeOut(fadeTime));
-        StartCoroutine(_deactiveAudioSource.PlayWithFadeIn(audioClip, volume, fadeTime));
+        StartCoroutine(_deactiveAudioSource.PlayWithFadeIn(audioClip, fadeTime, volume));
         (_bgmAudioSource, _deactiveAudioSource) = (_deactiveAudioSource, _bgmAudioSource);
     }
 

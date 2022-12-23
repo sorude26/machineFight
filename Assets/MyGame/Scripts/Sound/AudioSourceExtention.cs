@@ -43,7 +43,7 @@ public static class AudioSourceExtention
     /// <param name="volume"></param>
     /// <param name="fadeTime"></param>
     /// <returns></returns>
-    public static IEnumerator PlayWithFadeIn(this AudioSource audioSource, AudioClip audioClip, float volume = 1f, float fadeTime = 0.1f)
+    public static IEnumerator PlayWithFadeIn(this AudioSource audioSource, AudioClip audioClip, float fadeTime, float volume = 1f)
     {
         audioSource.Play(audioClip, 0f);
 
@@ -65,7 +65,7 @@ public static class AudioSourceExtention
     /// <param name="audioSource"></param>
     /// <param name="fadeTime"></param>
     /// <returns></returns>
-    public static IEnumerator StopWithFadeOut(this AudioSource audioSource, float fadeTime = 0.1f)
+    public static IEnumerator StopWithFadeOut(this AudioSource audioSource, float fadeTime)
     {
         while (audioSource.volume > 0f)
         {
