@@ -18,6 +18,9 @@ public class SoundManager : MonoBehaviour
     /// <summary>BGM用のAudioSource</summary>
     [SerializeField]
     private AudioSource _bgmAudioSource;
+    /// <summary>AudioSource</summary>
+    [SerializeField]
+    private AudioSource _deactiveAudioSource;
     /// <summary>サウンド再生有効距離</summary>
     [SerializeField]
     float _playSoundDistance = 100f;
@@ -53,6 +56,22 @@ public class SoundManager : MonoBehaviour
         if (audioClip == null) return;
 
         _bgmAudioSource.Play(audioClip, volume);
+    }
+
+    /// <summary>
+    /// BGMをクロスフェード再生する
+    /// </summary>
+    /// <param name="soundId"></param>
+    /// <param name="fadeTime"></param>
+    /// <param name="volume"></param>
+    public void PlayBGMWithCrossFade(int soundId, float fadeTime, float volume = 1f)
+    {
+        AudioClip audioClip = _soundList.GetAudioClip(soundId);
+        if (audioClip == null) return;
+
+        StartCoroutine(_bgmAudioSource.StopWithFadeOut(fadeTime));
+        StartCoroutine(_deactiveAudioSource.PlayWithFadeIn(audioClip, fadeTime, volume));
+        (_bgmAudioSource, _deactiveAudioSource) = (_deactiveAudioSource, _bgmAudioSource);
     }
 
     /// <summary>
@@ -107,7 +126,6 @@ public class SoundManager : MonoBehaviour
         soundPlayer.gameObject.SetActive(true);
         soundPlayer.PlaySE(audioClip, target, volume, mixerGroup);
     }
-
 
     /// <summary>
     /// プールからSoundPlayerを取得する
