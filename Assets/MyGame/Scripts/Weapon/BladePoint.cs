@@ -26,6 +26,7 @@ public class BladePoint : MonoBehaviour
     private int _seCount = 5;
     private float _timer = 0;
     private int _count = 0;
+    [SerializeField]
     private ShakeParam _shake = default;
     private void FixedUpdate()
     {
