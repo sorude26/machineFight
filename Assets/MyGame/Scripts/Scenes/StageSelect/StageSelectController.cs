@@ -127,6 +127,7 @@ public class StageSelectController : MonoBehaviour
         }
         var message = new PopUpData(middle: $"{AllStages[target].StageName}へ出撃",sub: "〇：OK",cancel: "×:Cancel");
         StageData.StageLevel = AllStages[target].Level;
+        StageData.StageName = AllStages[target].StageName;
         PopUpMessage.CreatePopUp(message, submitAction: () => SceneChange(AllStages[target].TargetSceneName), cancelAction: () => { _buttonOn = false; });
     }
     private void SceneChange(string target)
