@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class ResultSceneController : MonoBehaviour
 {
-    //[SerializeField]
-    //private string _targetScene = default;
+    [SerializeField]
+    private Text _stageName = default;
     [SerializeField]
     private Text _totalDamage = default;
     [SerializeField]
@@ -21,6 +21,7 @@ public class ResultSceneController : MonoBehaviour
     private GameObject _gameOverMessage = default;
     private void Start()
     {
+        _stageName.text = $"{StageData.StageName}";
         _gameOverMessage.SetActive(!ResultData.IsStageClear);
         _clearMessage.SetActive(ResultData.IsStageClear);
         _countTotal.text = $"{ResultData.TotalCount}";

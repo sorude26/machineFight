@@ -20,6 +20,14 @@ public class StageManager : MonoBehaviour
     [SerializeField]
     private float _bgmVolume = 0.1f;
     [SerializeField]
+    private int _changeBgmIDNum = 0;
+    [SerializeField]
+    private float _changeBgmSpeed = 1f;
+    [SerializeField]
+    private int _alarmSEID = 47;
+    [SerializeField]
+    private float _alarmVolume = 0.5f;
+    [SerializeField]
     private GameObject[] _enemySet = default;
     private int _targetCount = 0;
     private int _totalCount = 0;
@@ -41,6 +49,20 @@ public class StageManager : MonoBehaviour
         if (SoundManager.Instance != null)
         {
             SoundManager.Instance.PlayBGM(_bgmIDNum, _bgmVolume);
+        }
+    }
+    public void ChangeBGM()
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayBGMWithCrossFade(_changeBgmIDNum, _changeBgmSpeed, _bgmVolume);
+        }
+    }
+    public void PlayAlarm()
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySE(_alarmSEID, _alarmVolume);
         }
     }
     public void AddBossCount(int count = 1)

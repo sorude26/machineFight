@@ -45,7 +45,6 @@ public class ShotWeapon : WeaponBase
     }
     protected void Shot(Transform target = null)
     {
-        
         var bullet = ShotBulletPool.GetObject(_bullet);
         bullet.transform.position = _muzzle.position;
         _bulletParam.Dir = Diffusivity(_muzzle.forward);
