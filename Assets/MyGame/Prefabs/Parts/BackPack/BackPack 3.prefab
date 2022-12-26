@@ -56,6 +56,14 @@ MonoBehaviour:
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
   _partsColorChanger: {fileID: 0}
+  _weaponFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _fireDelay: 0
+  _seFireID: 3
+  _seFireVolume: 0.2
+  _seReloadID: 32
+  _seReloadVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -68,7 +76,7 @@ MonoBehaviour:
     Speed: 200
     Power: 60
     ExplosionPower: 50
-    ExplosionCount: 1
+    ExplosionCount: 2
     Radius: 15
     HomingSpeed: 0
     HomingStartTime: 0
@@ -79,6 +87,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.01
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &1934429956360558908
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,9 +305,17 @@ MonoBehaviour:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
     Time: 0
-  _maxAmmunitionCapacity: 20
+  _maxAmmunitionCapacity: 150
   _magazineCount: -1
   _partsColorChanger: {fileID: 0}
+  _weaponFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _fireDelay: 0
+  _seFireID: 3
+  _seFireVolume: 0.2
+  _seReloadID: 32
+  _seReloadVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -305,7 +324,7 @@ MonoBehaviour:
   _weapons:
   - {fileID: 2506497750336498661}
   - {fileID: 3400280240460156731}
-  _triggerInterval: 1.5
+  _triggerInterval: 1
 --- !u!1 &4149287290368194028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5301,7 +5320,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 6cf0a1b6a58f9714cb13bf82c9750fc9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5382,7 +5401,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 6cf0a1b6a58f9714cb13bf82c9750fc9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5565,7 +5584,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _backPackWeapon: {fileID: 7991276006298840308}
-  _partsColorChanger: {fileID: 0}
+  _partsColorChanger: {fileID: -8739186568607841092}
   CameraLock: {fileID: 0}
 --- !u!114 &1963577440719883629
 MonoBehaviour:
@@ -5579,7 +5598,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b126583716b91459c548988ec66d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: 0
   _mainBoosters:
   - {fileID: 1691640473166196244}
   - {fileID: 8613859774331708705}
@@ -5611,7 +5629,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _armors: []
   _eyes: []
-  _covers: []
+  _covers:
+  - {fileID: 2089560244544498068}
+  - {fileID: 94122054291625985}
+  _startColorSetMode: 0
+  _startColorID: 0
 --- !u!1 &7341457327253291903
 GameObject:
   m_ObjectHideFlags: 0
@@ -5830,6 +5852,14 @@ MonoBehaviour:
   _maxAmmunitionCapacity: -1
   _magazineCount: -1
   _partsColorChanger: {fileID: 0}
+  _weaponFireEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _fireDelay: 0
+  _seFireID: 3
+  _seFireVolume: 0.2
+  _seReloadID: 32
+  _seReloadVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -5842,7 +5872,7 @@ MonoBehaviour:
     Speed: 200
     Power: 60
     ExplosionPower: 50
-    ExplosionCount: 1
+    ExplosionCount: 2
     Radius: 15
     HomingSpeed: 0
     HomingStartTime: 0
@@ -5853,6 +5883,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.01
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &8699515386479341357
 GameObject:
   m_ObjectHideFlags: 0

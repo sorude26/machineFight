@@ -194,7 +194,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b126583716b91459c548988ec66d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: 1
   _mainBoosters:
   - {fileID: 7892765276776435002}
   - {fileID: 487306374730133047}
@@ -851,11 +850,13 @@ MonoBehaviour:
   - {fileID: 4870021204593329491}
   - {fileID: 4870021205605920983}
   - {fileID: 4769597992129016806}
-  - {fileID: 6945869675210794065}
-  - {fileID: 4870021204422227770}
   - {fileID: 711315684050010227}
+  - {fileID: 4870021204422227770}
   _eyes: []
-  _covers: []
+  _covers:
+  - {fileID: 6945869675210794065}
+  _startColorSetMode: 0
+  _startColorID: 0
 --- !u!1 &4870021205482334912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,6 +1194,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _playSEID: 31
+  _shakeSEVolume: 0.05
+  _strongSEVolume: 0.2
   _shakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
@@ -1201,6 +1205,7 @@ MonoBehaviour:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
     Time: 0
+  _shakeEffect: {fileID: 0}
 --- !u!1 &7191393237036280589
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,7 +1218,7 @@ GameObject:
   - component: {fileID: 1059286858815663313}
   - component: {fileID: 6945869675210794065}
   m_Layer: 0
-  m_Name: ArmorShoulder (2)
+  m_Name: CoverShoulder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1260,7 +1265,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fd2efd973630f6548b84601f4dda00c1, type: 2}
+  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
