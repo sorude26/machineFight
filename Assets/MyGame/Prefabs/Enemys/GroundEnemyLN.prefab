@@ -687,11 +687,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2560
   _rayWide: 1
-  LockOnRange: 700
+  LockOnRange: 300
   _attackMaxInterval: 9
   _attackIntervalDiffusivity: 2
   _weapon: {fileID: 2179146126888081809}
   _onAttackEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _initializeEvent:
     m_PersistentCalls:
       m_Calls: []
   _attackerMoveBody: {fileID: 3597126624224554343}

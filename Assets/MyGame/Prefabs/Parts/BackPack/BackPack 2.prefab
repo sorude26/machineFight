@@ -181,7 +181,7 @@ MonoBehaviour:
   _count: 0
   IsFire: 0
   IsWait: 0
-  _bullet: {fileID: 8661921769014990206, guid: 0862e289ee8c9524db087c08c9ae4b6b, type: 3}
+  _bullet: {fileID: 8661921769014990206, guid: b556d487697629945a47b2723c0dfde9, type: 3}
   _muzzleFlashEffect: {fileID: 7546327374656079643}
   _muzzle: {fileID: 4491090342611173470}
   _bulletParam:
@@ -194,10 +194,10 @@ MonoBehaviour:
     HomingStartTime: 0
     HomingEndTime: 0
     Dir: {x: 0, y: 0, z: 0}
-  _shotCount: 60
+  _shotCount: 50
   _subCount: 0
   _triggerInterval: 0.1
-  _shotInterval: 0.02
+  _shotInterval: 0.025
   _diffusivity: 0.02
   _shotSEID: 3
   _shotSEVolume: 0.1
@@ -848,7 +848,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
