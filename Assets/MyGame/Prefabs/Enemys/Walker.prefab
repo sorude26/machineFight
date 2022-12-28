@@ -12806,7 +12806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 370c006a94b7a6143bf3bd5777789ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lockOnWide: 0.2
+  _lockOnWide: -1
   _bodyTrans: {fileID: 1958008585183981406}
   _wallLayer:
     serializedVersion: 2
@@ -35150,7 +35150,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
-  _fireDelay: 0
+  _fireDelay: 1
   _seFireID: 3
   _seFireVolume: 0.02
   _seReloadID: 32
@@ -35173,10 +35173,10 @@ MonoBehaviour:
     HomingStartTime: 0
     HomingEndTime: 0
     Dir: {x: 0, y: 0, z: 0}
-  _shotCount: 100
+  _shotCount: 50
   _subCount: 2
   _triggerInterval: 0.1
-  _shotInterval: 0.02
+  _shotInterval: 0.03
   _diffusivity: 0.04
   _shotSEID: 3
   _shotSEVolume: 0.1
