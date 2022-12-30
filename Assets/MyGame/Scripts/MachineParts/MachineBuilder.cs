@@ -100,16 +100,17 @@ public class MachineBuilder : MonoBehaviour
     }
     private void SetParam()
     {
-        var boosterData = PartsManager.Instance.AllParamData.GetPartsBack(_buildData.Booster);
-        var bodyData = PartsManager.Instance.AllParamData.GetPartsBody(_buildData.Body);
-        var headData = PartsManager.Instance.AllParamData.GetPartsHead(_buildData.Head);
-        var handDataL = PartsManager.Instance.AllParamData.GetPartsHand(_buildData.LHand);
-        var handDataR = PartsManager.Instance.AllParamData.GetPartsHand(_buildData.RHand);
-        var legData = PartsManager.Instance.AllParamData.GetPartsLeg(_buildData.Leg);
-        var lWeapon = PartsManager.Instance.AllParamData.GetPartsWeapon(_buildData.LWeapon);
-        var rWeapon = PartsManager.Instance.AllParamData.GetPartsWeapon(_buildData.RWeapon);
+        var boosterData = PartsManager.Instance.AllParamData.GetPartsBack(_buildParam.Booster);
+        var bodyData = PartsManager.Instance.AllParamData.GetPartsBody(_buildParam.Body);
+        var headData = PartsManager.Instance.AllParamData.GetPartsHead(_buildParam.Head);
+        var handDataL = PartsManager.Instance.AllParamData.GetPartsHand(_buildParam.LHand);
+        var handDataR = PartsManager.Instance.AllParamData.GetPartsHand(_buildParam.RHand);
+        var legData = PartsManager.Instance.AllParamData.GetPartsLeg(_buildParam.Leg);
+        var lWeapon = PartsManager.Instance.AllParamData.GetPartsWeapon(_buildParam.LWeapon);
+        var rWeapon = PartsManager.Instance.AllParamData.GetPartsWeapon(_buildParam.RWeapon);
         TotalParam param = new TotalParam(bodyData, headData, handDataR, handDataL, legData, boosterData, rWeapon, lWeapon);
         var bodyParam = boosterData.Param;
+        bodyParam.UpPower += legData.Param.BoostUpPower;
         BoosterConsumption = boosterData.UseGeneratorPower;
         EnergyConsumption = param.EnergyConsumption;
         MaxBooster = bodyData.Generator;
