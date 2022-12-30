@@ -1052,7 +1052,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 15
+      value: 9
       mode: 0
       spread: 0
       speed:
@@ -10080,7 +10080,7 @@ Transform:
   m_GameObject: {fileID: 408809975038095306}
   m_LocalRotation: {x: 0, y: 0.9848078, z: 0.17364825, w: 0}
   m_LocalPosition: {x: -0.01, y: -1.19, z: -0.51}
-  m_LocalScale: {x: 1, y: 1, z: 1.2}
+  m_LocalScale: {x: 1.5, y: 1, z: 1.2}
   m_Children: []
   m_Father: {fileID: 4565955296172564196}
   m_RootOrder: 4
@@ -11521,7 +11521,7 @@ Transform:
   m_GameObject: {fileID: 703428762341244160}
   m_LocalRotation: {x: 0, y: 0.9848078, z: 0.17364825, w: 0}
   m_LocalPosition: {x: 0.01, y: -1.19, z: -0.51}
-  m_LocalScale: {x: 1, y: 1, z: 1.2}
+  m_LocalScale: {x: 1.5, y: 1, z: 1.2}
   m_Children: []
   m_Father: {fileID: 4565955297935949853}
   m_RootOrder: 4
@@ -11915,7 +11915,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -12084,7 +12084,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -17671,8 +17671,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059702188073242236}
   m_LocalRotation: {x: -0.17364825, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0.1, y: -0.9, z: 0.8}
-  m_LocalScale: {x: 1, y: 1, z: 1.2}
+  m_LocalPosition: {x: 0.15, y: -0.9, z: 0.8}
+  m_LocalScale: {x: 1.5, y: 1, z: 1.2}
   m_Children: []
   m_Father: {fileID: 4565955297935949853}
   m_RootOrder: 5
@@ -18091,7 +18091,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 8
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -22726,7 +22726,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -22895,7 +22895,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 4
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -34323,7 +34323,7 @@ MonoBehaviour:
     UseGeneratorPower: 1
     EnergyConsumption: 0
     UpPower: 38
-    JetPower: 280
+    JetPower: 180
     JetTime: 0.1
   _lHand: {fileID: 5004611308144316520}
   _rHand: {fileID: 673390036157343433}
@@ -35013,7 +35013,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 11
+      scalar: 6
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -39970,7 +39970,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 5
   _weaponType: 0
-  _power: 9
+  _power: 18
   _speed: 999
   _fireShakeParam:
     Pos: {x: 0, y: 0, z: 0}
@@ -55024,7 +55024,7 @@ Transform:
   m_GameObject: {fileID: 4565955296399359584}
   m_LocalRotation: {x: 0, y: 0, z: 0.043619405, w: 0.9990483}
   m_LocalPosition: {x: 0.1, y: -1.1, z: -0.29}
-  m_LocalScale: {x: 0.4, y: 2.5, z: 1}
+  m_LocalScale: {x: 0.7, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4565955298131559694}
   m_RootOrder: 2
@@ -55799,6 +55799,9 @@ MonoBehaviour:
     WalkSpeed: 6
     WalkTurnSpeed: 3
     JumpPower: 65
+    BoostMoveSpeed: 0
+    BoostUpPower: 0
+    BoostJetPower: 0
     StepUpPower: 20
     DotSub: 0.6
     AnimeChangeSpeed: 0.3
@@ -55874,7 +55877,7 @@ Transform:
   m_GameObject: {fileID: 4565955297048563624}
   m_LocalRotation: {x: 0, y: 0, z: -0.043619405, w: 0.9990483}
   m_LocalPosition: {x: -0.1, y: -1.1, z: -0.29}
-  m_LocalScale: {x: 0.4, y: 2.5, z: 1}
+  m_LocalScale: {x: 0.7, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4565955296364456113}
   m_RootOrder: 2
@@ -56500,8 +56503,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4565955297613799747}
   m_LocalRotation: {x: -0.17364825, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: -0.1, y: -0.9, z: 0.8}
-  m_LocalScale: {x: 1, y: 1, z: 1.2}
+  m_LocalPosition: {x: -0.15, y: -0.9, z: 0.8}
+  m_LocalScale: {x: 1.5, y: 1, z: 1.2}
   m_Children: []
   m_Father: {fileID: 4565955297935949853}
   m_RootOrder: 2
@@ -56852,8 +56855,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4565955297899162042}
   m_LocalRotation: {x: -0.17364825, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: -0.1, y: -0.9, z: 0.8}
-  m_LocalScale: {x: 1, y: 1, z: 1.2}
+  m_LocalPosition: {x: -0.15, y: -0.9, z: 0.8}
+  m_LocalScale: {x: 1.5, y: 1, z: 1.2}
   m_Children: []
   m_Father: {fileID: 4565955296172564196}
   m_RootOrder: 2
@@ -57783,7 +57786,7 @@ Transform:
   m_GameObject: {fileID: 5815408371664634755}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 5815408372062698750}
   - {fileID: 3629923896613391479}
@@ -58228,7 +58231,7 @@ Transform:
   m_GameObject: {fileID: 6164360964474195240}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6164360965954787233}
   - {fileID: 4565955296255714164}
@@ -58288,7 +58291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 370c006a94b7a6143bf3bd5777789ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lockOnWide: 0.1
+  _lockOnWide: -2
   _bodyTrans: {fileID: 6164360965838947277}
   _wallLayer:
     serializedVersion: 2
@@ -69631,7 +69634,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 10
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -74398,7 +74401,7 @@ Transform:
   m_GameObject: {fileID: 8002369462285947083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.3}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 8002369463623992777}
   - {fileID: 7635847358763450400}
@@ -74420,7 +74423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 5
   _weaponType: 0
-  _power: 9
+  _power: 18
   _speed: 999
   _fireShakeParam:
     Pos: {x: 0, y: 0, z: 0}
@@ -79913,7 +79916,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8479844606750998478}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.355, z: 1.485}
+  m_LocalPosition: {x: 0, y: 0.88, z: 3.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3422818086781885784}
@@ -80099,8 +80102,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8908639831433007168}
   m_LocalRotation: {x: -0.17364825, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0.1, y: -0.9, z: 0.8}
-  m_LocalScale: {x: 1, y: 1, z: 1.2}
+  m_LocalPosition: {x: 0.15, y: -0.9, z: 0.8}
+  m_LocalScale: {x: 1.5, y: 1, z: 1.2}
   m_Children: []
   m_Father: {fileID: 4565955296172564196}
   m_RootOrder: 5

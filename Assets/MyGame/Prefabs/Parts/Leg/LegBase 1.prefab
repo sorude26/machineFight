@@ -5034,12 +5034,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3267661294123333635}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.8, z: -0.1}
+  m_LocalRotation: {x: -0.92387956, y: -0, z: -0, w: 0.38268343}
+  m_LocalPosition: {x: 0.01999998, y: 0.86417365, z: -0.18413347}
   m_LocalScale: {x: 0.6, y: 1, z: 0.6}
   m_Children: []
-  m_Father: {fileID: 5096686314503454909}
-  m_RootOrder: 8
+  m_Father: {fileID: 8463866171746523204}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -25, y: 0, z: 0}
 --- !u!33 &13021665578102916
 MeshFilter:
@@ -10501,6 +10501,9 @@ MonoBehaviour:
     WalkSpeed: 6
     WalkTurnSpeed: 3
     JumpPower: 25
+    BoostMoveSpeed: 0
+    BoostUpPower: 0
+    BoostJetPower: 0
     StepUpPower: 3
     DotSub: 0.6
     AnimeChangeSpeed: 0.3
@@ -10729,7 +10732,6 @@ Transform:
   - {fileID: 7869025500600023328}
   - {fileID: 8591501359504469405}
   - {fileID: 8463866171746523204}
-  - {fileID: 3450411340996776738}
   m_Father: {fileID: 5096686316129325707}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
