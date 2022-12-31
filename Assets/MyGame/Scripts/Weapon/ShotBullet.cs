@@ -24,6 +24,8 @@ public class ShotBullet : MonoBehaviour
     protected int _seHitID = 12;
     [SerializeField]
     protected float _seHitVolume = 0.01f;
+    [SerializeField]
+    protected bool _explosionEnd = false;
     protected float _timer = 0f;
     protected float _speed = 5f;
     protected int _power = 1;
@@ -83,6 +85,11 @@ public class ShotBullet : MonoBehaviour
         _timer -= Time.fixedDeltaTime;
         if (_timer <= 0)
         {
+            if (_explosionEnd == true)
+            {
+                HitBullet(transform.position);
+                return;
+            }
             ActiveEnd();
         }
     }
