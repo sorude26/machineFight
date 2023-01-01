@@ -12,7 +12,7 @@ public class ShotWeapon : WeaponBase
     private Transform _muzzle = default;
     [SerializeField]
     private BulletParam _bulletParam = default;
-    [SerializeField,Range(1,100)]
+    [SerializeField, Range(1, 100)]
     private int _shotCount = 1;
     [SerializeField, Range(0, 30)]
     private int _subCount = 0;
@@ -30,8 +30,15 @@ public class ShotWeapon : WeaponBase
     private int _setSEShotCount = -1;
 
     private int _seCount = 0;
-   
+
     private bool _isTrigerOn = false;
+    protected override void OnEnableReset()
+    {
+        IsFire = false;
+        IsWait = false;
+        _isTrigerOn = false;
+    }
+
     public override void Initialize()
     {
         if (_maxAmmunitionCapacity > 0)
@@ -60,7 +67,7 @@ public class ShotWeapon : WeaponBase
                 SoundManager.Instance.PlaySE(_shotSEID, bullet.gameObject, _shotSEVolume);
             }
         }
-        PlayShake();        
+        PlayShake();
     }
     protected Vector3 Diffusivity(Vector3 target)
     {
@@ -92,7 +99,7 @@ public class ShotWeapon : WeaponBase
         {
             if (SoundManager.Instance != null)
             {
-                SoundManager.Instance.PlaySE(_seFireID,_muzzle.position, _seFireVolume);
+                SoundManager.Instance.PlaySE(_seFireID, _muzzle.position, _seFireVolume);
             }
             if (_muzzleFlashEffect != null)
             {
