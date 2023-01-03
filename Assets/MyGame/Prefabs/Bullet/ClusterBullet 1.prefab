@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3886392944337874810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.92}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4150081288109270318}
   m_Father: {fileID: 8661921769014990194}
@@ -4833,7 +4833,7 @@ Transform:
   m_GameObject: {fileID: 6168537189335232594}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 298411377424440003}
   m_RootOrder: 0
@@ -9660,13 +9660,14 @@ MonoBehaviour:
   _hitLayer:
     serializedVersion: 2
     m_Bits: 769
+  _damageType: 1
   _hitEffect: {fileID: 2973265136740629150, guid: 71cf720c9f8edce42a1e49924ad1bbd4, type: 3}
   _penetrate: 0
   _radius: 1
   _hitShakeParam:
     Pos: {x: 0, y: 0, z: 0}
-    Power: 3
-    Time: 0.05
+    Power: 20
+    Time: 0.2
   _gravity: 0
   _seHitID: 12
   _seHitVolume: 0.01
