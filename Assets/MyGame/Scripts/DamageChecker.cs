@@ -10,6 +10,8 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     [SerializeField]
     private int _severelyDamage = 50;
     [SerializeField]
+    private DamageRate[] _damageRateData = default;
+    [SerializeField]
     private UnityEvent _onDeadEvent = default;
     [SerializeField]
     private UnityEvent _onSeverelyDamagedEvent = default;
@@ -43,9 +45,16 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     public void StartSet()
     {
         _hp = _maxHp;
-        if (_isMarkTarget == true && StageManager.Instance != null)
+        if (StageManager.Instance != null)
         {
-            StageManager.Instance.SetTargetCount();
+            if (_isMarkTarget == true)
+            {
+                StageManager.Instance.SetTargetCount();
+            }
+            if (_addCount == true)
+            {
+                StageManager.Instance.SetBossCount();
+            }
         }
     }
     public void SetHp(int hp,float severely = 0.8f)
@@ -63,6 +72,22 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
             _hp = _maxHp;
         }
         OnRecoveryEvent?.Invoke();
+    }
+    public void AddlyDamage(int damage ,DamageType damageType)
+    {
+        if (_damageRateData == null)
+        {
+            AddlyDamage(damage);
+            return;
+        }
+        for (int i = 0; i < _damageRateData.Length; i++)
+        {
+            if (damageType == _damageRateData[i].Type)
+            {
+                damage = (int)(damage * _damageRateData[i].ChangeRate);
+            }
+        }
+        AddlyDamage(damage);
     }
     public void AddlyDamage(int damage)
     {

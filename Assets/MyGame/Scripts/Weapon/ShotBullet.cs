@@ -11,6 +11,8 @@ public class ShotBullet : MonoBehaviour
     [SerializeField]
     protected LayerMask _hitLayer = default;
     [SerializeField]
+    private DamageType _damageType = DamageType.Shot;
+    [SerializeField]
     protected GameObject _hitEffect = default;
     [SerializeField]
     protected bool _penetrate = default;
@@ -119,7 +121,7 @@ public class ShotBullet : MonoBehaviour
     {
         if (hit.collider.TryGetComponent(out IDamageApplicable target))
         {
-            target.AddlyDamage(_power);
+            target.AddlyDamage(_power,_damageType);
         }
         HitBullet(hit.point);
     }

@@ -13,6 +13,8 @@ public class BladePoint : MonoBehaviour
     [SerializeField]
     private LayerMask _hitLayer = default;
     [SerializeField]
+    private DamageType _damageType = DamageType.Melee;
+    [SerializeField]
     private GameObject _hitEffect = default;
     [SerializeField]
     private ParticleSystem _onEffect = default;
@@ -70,7 +72,7 @@ public class BladePoint : MonoBehaviour
     {
         if (hit.TryGetComponent(out IDamageApplicable target))
         {
-            target.AddlyDamage(_power);
+            target.AddlyDamage(_power,_damageType);
         }
         if (_count == 0)
         {
