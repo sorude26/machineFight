@@ -34,11 +34,19 @@ namespace MyGame
         }
         private void PlayDeadEvent()
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             PowerDownMachine();
             _onDeadEvent.Invoke();
         }
         public void ExecuteFixedUpdate(Vector3 dir)
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             if (_legController != null)
             {
                 _legController.ExecuteFixedUpdate(dir);
@@ -51,10 +59,18 @@ namespace MyGame
         }
         public void SetLockOn(Transform target)
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             _bodyController.AttackTarget = target;
         }
         public void ExecuteJump()
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             if (_legController != null && _legController.IsFall == false && _legController.IsFloat == false)
             {
                 _legController.Jump();
@@ -66,6 +82,10 @@ namespace MyGame
         }
         public void ExecuteJet(Vector3 dir)
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             if (_legController != null && _legController.IsFall == false)
             {
                 _legController.Step();
@@ -77,6 +97,10 @@ namespace MyGame
         }
         public void ExecuteBurst()
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             if (_bodyController.BackPack.BackPackWeapon != null)
             {
                 _bodyController.BackPackBurst();
@@ -89,26 +113,46 @@ namespace MyGame
 
         public void TryFloat()
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             if (_legController.IsFloat) return;
             _legController.ChangeFloat();
         }
 
         public void TryGround()
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             if (!_legController.IsFloat) return;
             _legController.ChangeFloat();
         }
 
         public void ShotLeft()
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             _bodyController.ShotLeft();
         }
         public void ShotRight()
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             _bodyController.ShotRight();
         }
         public void AttackLeg()
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             _legController.Attack();
         }
         public void PowerDownMachine()
@@ -120,6 +164,13 @@ namespace MyGame
             _isDown = true;
             _bodyController.IsDown = true;
             _legController.PowerDown();
+        }
+        public void StartUpMachine()
+        {
+            _isDown = false;
+            _bodyController.IsDown = false;
+            _legController.StartUpLeg();
+            _bodyController.StartUpBody();
         }
     }
 }
