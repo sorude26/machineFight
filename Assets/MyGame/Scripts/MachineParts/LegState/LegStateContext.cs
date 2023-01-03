@@ -65,6 +65,10 @@ public partial class LegStateContext
     {
         ChangeState(_attackState);
     }
+    public void ChangeIdle()
+    {
+        ChangeState(_groundState);
+    }
     public void ChangeFloatMode()
     {
         if (IsFloat == false)

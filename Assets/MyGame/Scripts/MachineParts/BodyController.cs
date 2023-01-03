@@ -429,6 +429,11 @@ public class BodyController : MonoBehaviour, IPartsModel
         OnBodyDestroy?.Invoke();
         StopBooster();
     }
+    public void StartUpBody()
+    {
+        BodyBase.localRotation = Quaternion.identity;
+        Lock.localRotation = Quaternion.identity;
+    }
 }
 
 [Serializable]
