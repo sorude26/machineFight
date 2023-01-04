@@ -10107,7 +10107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4298049354121460665}
   - component: {fileID: 7458350332943177454}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wall (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15414,7 +15414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6492540126331296556}
   - component: {fileID: 296357330684555314}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wall (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15580,6 +15580,7 @@ MonoBehaviour:
   _gateWll: {fileID: 8651818058116881155}
   _gate: {fileID: 5076127703393569280}
   _openName: OpenGate
+  _closeName: CloseGate
 --- !u!95 &5076127703393569280
 Animator:
   serializedVersion: 3
@@ -15609,7 +15610,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4355224050713875229}
   - component: {fileID: 2447445415173088610}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Wall (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40921,6 +40922,7 @@ MonoBehaviour:
   _gateWll: {fileID: 4933116504791163248}
   _gate: {fileID: 5792875883154142954}
   _openName: OpenGate
+  _closeName: CloseGate
 --- !u!95 &5792875883154142954
 Animator:
   serializedVersion: 3
@@ -45884,7 +45886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2184337793564513794}
   - component: {fileID: 6400684220326846460}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wall (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51068,6 +51070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 100
   _severelyDamage: 50
+  _damageRateData: []
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls:
@@ -51095,6 +51098,7 @@ MonoBehaviour:
   _isMarkTarget: 0
   _count: 0
   _deadSEID: 26
+  _seVolume: 1
   OnDamageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -51459,7 +51463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3989265064499242980}
   - component: {fileID: 3989265064499242985}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Wall (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57613,7 +57617,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3989265065673894701}
   - component: {fileID: 3989265065673894702}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wall (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63465,7 +63469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8993386944091399608}
   - component: {fileID: 5346331826719136553}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Wall (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132728,6 +132732,7 @@ MonoBehaviour:
   _gateWll: {fileID: 766295768092810846}
   _gate: {fileID: 221521197621977700}
   _openName: OpenGate
+  _closeName: CloseGate
 --- !u!95 &221521197621977700
 Animator:
   serializedVersion: 3
@@ -137796,7 +137801,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1032217305927697576}
   - component: {fileID: 48378243740213379}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Wall (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143462,6 +143467,7 @@ MonoBehaviour:
   _gateWll: {fileID: 3989265065751174620}
   _gate: {fileID: 1318530625725580931}
   _openName: OpenGate
+  _closeName: CloseGate
 --- !u!95 &1318530625725580931
 Animator:
   serializedVersion: 3
