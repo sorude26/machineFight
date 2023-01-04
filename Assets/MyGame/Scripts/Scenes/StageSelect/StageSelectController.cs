@@ -14,8 +14,6 @@ public class StageSelectController : MonoBehaviour
     [SerializeField]
     private Transform _base = default;
     [SerializeField]
-    private string[] StageNames = default;
-    [SerializeField]
     private StageGuideData[] AllStages = default;
     private string _returnScene = "Home";
     private int _stageMaxNumber = default;
@@ -128,7 +126,9 @@ public class StageSelectController : MonoBehaviour
         var message = new PopUpData(middle: $"{AllStages[target].StageName}へ出撃",sub: "〇：OK",cancel: "×:Cancel");
         StageData.StageLevel = AllStages[target].Level;
         StageData.StageName = AllStages[target].StageName;
-        PopUpMessage.CreatePopUp(message, submitAction: () => SceneChange(AllStages[target].TargetSceneName), cancelAction: () => { _buttonOn = false; });
+        PopUpMessage.CreatePopUp(message,
+            submitAction: () => SceneChange(AllStages[target].TargetSceneName),
+            cancelAction: () => { _buttonOn = false; });
     }
     private void SceneChange(string target)
     {
