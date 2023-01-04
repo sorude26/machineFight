@@ -386,11 +386,6 @@ MonoBehaviour:
   _namePanelPrefab: {fileID: 1379249640782706592, guid: 7b55cb6226ac29a4687ebc1c1e638e9b, type: 3}
   _waitTime: 1
   _base: {fileID: 692099424}
-  StageNames:
-  - Stage1
-  - Stage2
-  - Stage3
-  - Stage4
   AllStages:
   - StageName: "\u6E2F\u306E\u5236\u5727"
     Level: 0
@@ -414,7 +409,7 @@ MonoBehaviour:
     TargetSceneName: BridgeAreaStage
   - StageName: "\u6C7A\u6226\u6D77\u4E0A\u8266\u968A"
     Level: 1
-    StageImage: {fileID: 21300000, guid: f59d9a4e349b7d9429850ddf91fe2385, type: 3}
+    StageImage: {fileID: 21300000, guid: 366cad11fb3d5cb4b8e86821b1d20a42, type: 3}
     Mission: Level:5
     TargetSceneName: Stage2
   - StageName: "\u6D77\u4E0A\u306E\u6C7A\u6226"
@@ -447,6 +442,16 @@ MonoBehaviour:
     StageImage: {fileID: 21300000, guid: 11f352f132c8c7f46bdc76be5724642c, type: 3}
     Mission: "Level:EX\uFF0B"
     TargetSceneName: DesertArea
+  - StageName: "\u8981\u585E\u306E\u5236\u5727"
+    Level: 0
+    StageImage: {fileID: 21300000, guid: eda72480d31872d43b7584b1a005f776, type: 3}
+    Mission: Level:2
+    TargetSceneName: FortificationStage1
+  - StageName: "\u8981\u585E\u306E\u5965\u306B\u6F5C\u3080\u8005"
+    Level: 1
+    StageImage: {fileID: 21300000, guid: eda72480d31872d43b7584b1a005f776, type: 3}
+    Mission: Level:3
+    TargetSceneName: FortificationStage1
   - StageName: "\u6700\u7D42\u6C7A\u6226"
     Level: 0
     StageImage: {fileID: 21300000, guid: 09447841dc5f6cf499c7d3d9d2488603, type: 3}
