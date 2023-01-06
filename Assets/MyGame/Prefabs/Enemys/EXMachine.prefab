@@ -10581,6 +10581,22 @@ MonoBehaviour:
   _anSetWeapon: 0
   _shoulderBoosters: {fileID: 8499067988851254743}
   _partsColorChanger: {fileID: 326874992513532311}
+  _handWeaponParam:
+    Power: 0
+    Speed: 0
+    MaxAmmunitionCapacity: 0
+    MagazineCount: 0
+    ShotCount: 0
+    SubCount: 0
+    TriggerInterval: 0
+    ShotInterval: 0
+    Diffusivity: 0
+    ExPower: 0
+    ExCount: 0
+    ExRadius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
   PartsRotaionSpeed: 6
   ReloadSpeed: 1
   ReloadTime: 1.5
@@ -17233,6 +17249,22 @@ MonoBehaviour:
   _anSetWeapon: 0
   _shoulderBoosters: {fileID: 6003820658988353404}
   _partsColorChanger: {fileID: 586514093714170537}
+  _handWeaponParam:
+    Power: 0
+    Speed: 0
+    MaxAmmunitionCapacity: 0
+    MagazineCount: 0
+    ShotCount: 0
+    SubCount: 0
+    TriggerInterval: 0
+    ShotInterval: 0
+    Diffusivity: 0
+    ExPower: 0
+    ExCount: 0
+    ExRadius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
   PartsRotaionSpeed: 6
   ReloadSpeed: 1
   ReloadTime: 1.5
@@ -35013,7 +35045,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 6
+      scalar: 16
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -58231,7 +58263,7 @@ Transform:
   m_GameObject: {fileID: 6164360964474195240}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 6164360965954787233}
   - {fileID: 4565955296255714164}
@@ -69634,7 +69666,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 30
       minScalar: 5
       maxCurve:
         serializedVersion: 2

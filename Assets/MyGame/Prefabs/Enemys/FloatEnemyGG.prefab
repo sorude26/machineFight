@@ -829,7 +829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _body: {fileID: 7018357406306533421}
-  _naviPower: 5
+  _naviPower: 10
   _wallLayer:
     serializedVersion: 2
     m_Bits: 769
@@ -839,6 +839,7 @@ MonoBehaviour:
   _moveSpeed: 1
   _naviInterval: 3
   _minYLevel: 3
+  _maxYLevel: 500
 --- !u!114 &2984526895331830430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -905,6 +906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 30
   _severelyDamage: 50
+  _damageRateData: []
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls:
