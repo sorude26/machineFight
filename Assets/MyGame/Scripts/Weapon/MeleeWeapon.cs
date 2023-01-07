@@ -27,10 +27,15 @@ public class MeleeWeapon : WeaponBase
         {
             _animator.Play(_attackName);
         }
-        _weaponFireEvent?.Invoke();
+        StartCoroutine(EventDelay());
         if (SoundManager.Instance != null)
         {
             SoundManager.Instance.PlaySE(_seFireID,transform.position, _seFireVolume);
         }
+    }
+    private IEnumerator EventDelay()
+    {
+        yield return WaitTime(_fireDelay);
+        _weaponFireEvent?.Invoke();
     }
 }
