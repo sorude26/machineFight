@@ -91,11 +91,14 @@ public class PopUpMessage : MonoBehaviour
     }
     public void ClosePopUp()
     {
+        Destroy(this.gameObject);
+    }
+    private void OnDisable()
+    {
         PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Submit, Submit);
         PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Cancel, Cancel);
         PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Submit, Other);
         PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Cancel, Other);
-        Destroy(this.gameObject);
     }
 }
 public struct PopUpData
