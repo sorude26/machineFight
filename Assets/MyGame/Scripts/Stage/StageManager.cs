@@ -29,6 +29,8 @@ public class StageManager : MonoBehaviour
     [SerializeField]
     private float _alarmVolume = 0.5f;
     [SerializeField]
+    private float _moveTime = 10f;
+    [SerializeField]
     private GameObject[] _enemySet = default;
     private int _targetCount = 0;
     private int _totalCount = 0;
@@ -118,6 +120,13 @@ public class StageManager : MonoBehaviour
             Instance = null;
             SceneControl.ChangeTargetScene("Result");
         });
+        StartCoroutine(MoveResultImpl());
+    }
+    private IEnumerator MoveResultImpl()
+    {
+        yield return new WaitForSeconds(_moveTime);
+        Instance = null;
+        SceneControl.ChangeTargetScene("Result");
     }
     private void ViewClearPop()
     {
