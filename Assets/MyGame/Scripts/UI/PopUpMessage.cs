@@ -8,6 +8,12 @@ using UnityEngine.UI;
 public class PopUpMessage : MonoBehaviour
 {
     [SerializeField]
+    private int _submitSEID = 25;
+    [SerializeField]
+    private int _cancelSEID = 25;
+    [SerializeField]
+    private float _seVolume = 0.2f;
+    [SerializeField]
     private Text _topText = default;
     [SerializeField]
     private Text _centerText = default;
@@ -39,7 +45,11 @@ public class PopUpMessage : MonoBehaviour
         if (cancelAction != null)
         {
             _cancelText.text = data.Cancel;
-            _cancelButton.onClick.AddListener(() => { cancelAction?.Invoke(); });
+            _cancelButton.onClick.AddListener(() => 
+            {
+                PlaySE(_cancelSEID);
+                cancelAction?.Invoke(); 
+            });
             _cancelDel = cancelAction;
             _cancelButton.gameObject.SetActive(true);
         }
@@ -50,7 +60,11 @@ public class PopUpMessage : MonoBehaviour
         if (submitAction != null)
         {
             _submitText.text = data.Submit;
-            _submitButton.onClick.AddListener(() => { submitAction?.Invoke(); });
+            _submitButton.onClick.AddListener(() =>
+            {
+                PlaySE(_submitSEID);
+                submitAction?.Invoke(); 
+            });
             _submitDel = submitAction;
             _submitButton.gameObject.SetActive(true);
         }
@@ -60,7 +74,11 @@ public class PopUpMessage : MonoBehaviour
         }
         if (otherAction != null)
         {
-            _otherButton.onClick.AddListener(() => { otherAction?.Invoke(); });
+            _otherButton.onClick.AddListener(() =>
+            {
+                PlaySE(_submitSEID);
+                otherAction?.Invoke();
+            });
             _otherDel = otherAction;
             _otherButton.gameObject.SetActive(true);
         }
@@ -78,6 +96,13 @@ public class PopUpMessage : MonoBehaviour
     {
         _submitDel?.Invoke();
         ClosePopUp();
+    }
+    private void PlaySE(int seID)
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySE(seID, _seVolume);
+        }
     }
     private void Cancel()
     {
