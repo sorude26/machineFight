@@ -131,6 +131,9 @@ namespace MyGame
                 SoundManager.Instance.PlaySE(_deadSEID, _body.position, _seVolume);
             }
             gameObject.SetActive(false);
+            _machineController.transform.localPosition = Vector3.zero;
+            _machineController.transform.localRotation = Quaternion.identity;
+            _machineController.StartUpMachine();
         }
     }
 }

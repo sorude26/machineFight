@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -140,7 +140,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -221,7 +221,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -302,7 +302,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
+  - {fileID: 2100000, guid: 914258560e271904f9ff181e8a247aaa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -449,6 +449,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 200
   _severelyDamage: 150
+  _damageRateData:
+  - Type: 3
+    Rate: -1
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls:
@@ -687,11 +690,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2560
   _rayWide: 1
-  LockOnRange: 700
+  LockOnRange: 300
   _attackMaxInterval: 9
   _attackIntervalDiffusivity: 2
   _weapon: {fileID: 2179146126888081809}
   _onAttackEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _initializeEvent:
     m_PersistentCalls:
       m_Calls: []
   _attackerMoveBody: {fileID: 3597126624224554343}
@@ -713,7 +719,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 3597126624224554343}
   _rb: {fileID: 3597126624224554337}
-  _naviPower: 0
+  _naviPower: 10
   _diffusivity: 0.2
   _moveDiffusivity: 0.9
   _transSpeed: 3
@@ -1561,6 +1567,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4814649521919940073, guid: 64b58a793ad7e2d4fb65dc96d8e56f00, type: 3}
+      propertyPath: _fireDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4814649521919940073, guid: 64b58a793ad7e2d4fb65dc96d8e56f00, type: 3}
+      propertyPath: _weapons.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4814649521919940073, guid: 64b58a793ad7e2d4fb65dc96d8e56f00, type: 3}
+      propertyPath: _weapons.Array.data[2]
+      value: 
+      objectReference: {fileID: 6695994889538594818}
     - target: {fileID: 4814649521919940079, guid: 64b58a793ad7e2d4fb65dc96d8e56f00, type: 3}
       propertyPath: m_Name
       value: Launcher (1)
@@ -1652,6 +1670,17 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4814649522921385592, guid: 64b58a793ad7e2d4fb65dc96d8e56f00, type: 3}
   m_PrefabInstance: {fileID: 2179146125726585355}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6695994889538594818 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4814649521673697801, guid: 64b58a793ad7e2d4fb65dc96d8e56f00, type: 3}
+  m_PrefabInstance: {fileID: 2179146125726585355}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34361d772bb814b4399b1628e48f7722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2179146127343874257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1731,6 +1760,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4814649521919940073, guid: 64b58a793ad7e2d4fb65dc96d8e56f00, type: 3}
+      propertyPath: _weapons.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4814649521919940073, guid: 64b58a793ad7e2d4fb65dc96d8e56f00, type: 3}
+      propertyPath: _weapons.Array.data[2]
+      value: 
+      objectReference: {fileID: 6695994891146791640}
     - target: {fileID: 4814649521919940079, guid: 64b58a793ad7e2d4fb65dc96d8e56f00, type: 3}
       propertyPath: m_Name
       value: Launcher
@@ -1801,6 +1838,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64b58a793ad7e2d4fb65dc96d8e56f00, type: 3}
+--- !u!114 &6695994891146791640 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4814649521673697801, guid: 64b58a793ad7e2d4fb65dc96d8e56f00, type: 3}
+  m_PrefabInstance: {fileID: 2179146127343874257}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34361d772bb814b4399b1628e48f7722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &6695994889697779369 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4814649522921385592, guid: 64b58a793ad7e2d4fb65dc96d8e56f00, type: 3}

@@ -32,6 +32,9 @@ public struct LegActionParam
     public float WalkSpeed;
     public float WalkTurnSpeed;
     public float JumpPower;
+    public float BoostMoveSpeed;
+    public float BoostUpPower;
+    public float BoostJetPower;
     public float StepUpPower;
     public float DotSub;
     public float AnimeChangeSpeed;

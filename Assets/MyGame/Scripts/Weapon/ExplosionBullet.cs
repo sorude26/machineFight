@@ -5,6 +5,7 @@ using UnityEngine;
 public class ExplosionBullet
 {
     private const float INTERVAL_TIME = 0.1f;
+    private const DamageType DAMAGE_TYPE = DamageType.Explosion;
     private readonly WaitForSeconds WAIT_SECONDS = new WaitForSeconds(INTERVAL_TIME);
     public IEnumerator ExplosionImpl(Vector3 center, int damage,int count,float radius,LayerMask layer)
     {
@@ -21,7 +22,7 @@ public class ExplosionBullet
         {
             if (col.TryGetComponent<IDamageApplicable>(out var hit))
             {
-                hit.AddlyDamage(damage);
+                hit.AddlyDamage(damage, DAMAGE_TYPE);
             }
         }
     }

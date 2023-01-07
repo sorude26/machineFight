@@ -23,6 +23,8 @@ public class NaviMoveController : MonoBehaviour
     private float _naviInterval = 1f;
     [SerializeField]
     private float _minYLevel = 1f;
+    [SerializeField]
+    private float _maxYLevel = 500f;
     private float _timer = 0f;
     private Vector3 _currentDir = Vector3.zero;
     private void FixedUpdate()
@@ -45,6 +47,10 @@ public class NaviMoveController : MonoBehaviour
             if (_body.position.y <= _minYLevel)
             {
                 _currentDir = Vector3.up;
+            }
+            if (_body.position.y >= _maxYLevel)
+            {
+                _currentDir = Vector3.down;
             }
             _body.forward = Vector3.Lerp(_body.forward, _currentDir, _transSpeed * Time.fixedDeltaTime);
             _body.position = Vector3.Lerp(_body.position, _body.position + _body.forward * _moveSpeed, _transSpeed * Time.fixedDeltaTime);

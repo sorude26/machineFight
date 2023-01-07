@@ -99,6 +99,13 @@ public class LegController : MonoBehaviour, IPartsModel
     {
         _stateContext.ChangeToDown();
     }
+    public void StartUpLeg()
+    {
+        LegBase.localRotation = Quaternion.identity;
+        LockTrans.localRotation = Quaternion.identity;
+        BaseTrans.localRotation = Quaternion.identity;
+        _stateContext.ChangeIdle();
+    }
     public void ChangeFloat()
     {
         _stateContext.ChangeFloatMode();

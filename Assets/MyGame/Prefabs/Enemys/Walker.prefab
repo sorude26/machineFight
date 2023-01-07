@@ -5858,7 +5858,7 @@ MonoBehaviour:
   _count: 0
   IsFire: 0
   IsWait: 0
-  _bullet: {fileID: 1233709711767816154, guid: e4209df2afbe3a249bfd84c82b49406a, type: 3}
+  _bullet: {fileID: 1233709711767816154, guid: 3bd5cbba453ec514d8094542c8440f75, type: 3}
   _muzzleFlashEffect: {fileID: 1958008586463170611}
   _muzzle: {fileID: 1958008585752973524}
   _bulletParam:
@@ -5876,6 +5876,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.02
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &1958008584608230205
 GameObject:
   m_ObjectHideFlags: 0
@@ -11836,7 +11839,7 @@ MonoBehaviour:
   _count: 0
   IsFire: 0
   IsWait: 0
-  _bullet: {fileID: 8661921769014990206, guid: 39db53a3d59e45145977d37637cfba41, type: 3}
+  _bullet: {fileID: 8661921769014990206, guid: b556d487697629945a47b2723c0dfde9, type: 3}
   _muzzleFlashEffect: {fileID: 1958008586308140939}
   _muzzle: {fileID: 1958008584468102077}
   _bulletParam:
@@ -11854,6 +11857,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.05
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &1958008585384119382
 GameObject:
   m_ObjectHideFlags: 0
@@ -12528,7 +12534,7 @@ MonoBehaviour:
   _count: 0
   IsFire: 0
   IsWait: 0
-  _bullet: {fileID: 8661921769014990206, guid: 39db53a3d59e45145977d37637cfba41, type: 3}
+  _bullet: {fileID: 8661921769014990206, guid: b556d487697629945a47b2723c0dfde9, type: 3}
   _muzzleFlashEffect: {fileID: 1958008586415090075}
   _muzzle: {fileID: 1958008584763949069}
   _bulletParam:
@@ -12546,6 +12552,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.05
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &1958008585931871055
 GameObject:
   m_ObjectHideFlags: 0
@@ -12797,7 +12806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 370c006a94b7a6143bf3bd5777789ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lockOnWide: 0.2
+  _lockOnWide: -1
   _bodyTrans: {fileID: 1958008585183981406}
   _wallLayer:
     serializedVersion: 2
@@ -12846,10 +12855,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 1958008584679572408}
   _playerLock: {fileID: 1958008584992229790}
   _lockBody: {fileID: 1958008585183981406}
   _lockSpeed: 3
+  _cameraController: {fileID: 0}
 --- !u!114 &1958008586036044221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18406,6 +18419,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.02
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &1958008586350004769
 GameObject:
   m_ObjectHideFlags: 0
@@ -35134,7 +35150,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
-  _fireDelay: 0
+  _fireDelay: 1
   _seFireID: 3
   _seFireVolume: 0.02
   _seReloadID: 32
@@ -35144,7 +35160,7 @@ MonoBehaviour:
   _count: 0
   IsFire: 0
   IsWait: 0
-  _bullet: {fileID: 8661921769014990206, guid: 0862e289ee8c9524db087c08c9ae4b6b, type: 3}
+  _bullet: {fileID: 8661921769014990206, guid: b556d487697629945a47b2723c0dfde9, type: 3}
   _muzzleFlashEffect: {fileID: 355285564687368340}
   _muzzle: {fileID: 5909923696804071377}
   _bulletParam:
@@ -35157,11 +35173,14 @@ MonoBehaviour:
     HomingStartTime: 0
     HomingEndTime: 0
     Dir: {x: 0, y: 0, z: 0}
-  _shotCount: 100
+  _shotCount: 50
   _subCount: 2
   _triggerInterval: 0.1
-  _shotInterval: 0.02
+  _shotInterval: 0.03
   _diffusivity: 0.04
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &6682018196545782065
 GameObject:
   m_ObjectHideFlags: 0

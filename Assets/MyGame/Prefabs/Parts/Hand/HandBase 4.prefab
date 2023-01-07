@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2336778062267483207}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0.071, y: 0.165, z: -0.14999999}
-  m_LocalScale: {x: 0.3, y: 0.45, z: 0.3}
+  m_LocalPosition: {x: 0.052573, y: 0.18072, z: -0.14999999}
+  m_LocalScale: {x: 0.3, y: 0.5139, z: 0.37932003}
   m_Children: []
   m_Father: {fileID: 8636736397253272341}
   m_RootOrder: 2
@@ -217,6 +217,8 @@ MonoBehaviour:
   _addCount: 0
   _isMarkTarget: 0
   _count: 0
+  _deadSEID: 8
+  _seVolume: 1
   OnDamageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -280,8 +282,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2870937081085389497}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.08, y: 0.034856, z: 0}
+  m_LocalScale: {x: 1.1627, y: 1.2087, z: 1}
   m_Children:
   - {fileID: 1542439805634811433}
   - {fileID: 6755167245038500489}
@@ -548,8 +550,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4870021204422227768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 0.1, z: -0.14999999}
-  m_LocalScale: {x: 0.7, y: 0.4, z: 1}
+  m_LocalPosition: {x: 0.02859, y: 0.098529, z: -0.14999999}
+  m_LocalScale: {x: 0.7994, y: 0.50576, z: 1}
   m_Children: []
   m_Father: {fileID: 8636736397253272341}
   m_RootOrder: 1
@@ -630,7 +632,7 @@ Transform:
   m_GameObject: {fileID: 4870021204593329489}
   m_LocalRotation: {x: -0.7071068, y: 1.5434638e-10, z: 1.5434638e-10, w: 0.7071068}
   m_LocalPosition: {x: 0.019456647, y: 0, z: 0.45}
-  m_LocalScale: {x: 0.9, y: 1.15, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.15, z: 1.4}
   m_Children: []
   m_Father: {fileID: 4870021205269312248}
   m_RootOrder: 0
@@ -992,6 +994,8 @@ MonoBehaviour:
   _eyes: []
   _covers:
   - {fileID: 6364406591848330467}
+  _startColorSetMode: 0
+  _startColorID: 0
 --- !u!1 &4870021205482334912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,7 +1084,7 @@ Transform:
   m_GameObject: {fileID: 4870021205605920981}
   m_LocalRotation: {x: -2.3283067e-10, y: 3.2311747e-27, z: 2.1827874e-10, w: 1}
   m_LocalPosition: {x: 0, y: -0.23, z: -0.10220784}
-  m_LocalScale: {x: 1, y: 1, z: 0.85}
+  m_LocalScale: {x: 1.3, y: 1, z: 0.85}
   m_Children: []
   m_Father: {fileID: 4870021204159776492}
   m_RootOrder: 2
@@ -1317,6 +1321,9 @@ MonoBehaviour:
   _playEvent:
     m_PersistentCalls:
       m_Calls: []
+  _playSEID: 31
+  _shakeSEVolume: 0.05
+  _strongSEVolume: 0.2
   _shakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
@@ -1325,6 +1332,7 @@ MonoBehaviour:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
     Time: 0
+  _shakeEffect: {fileID: 0}
 --- !u!1 &9004292694645064698
 GameObject:
   m_ObjectHideFlags: 0

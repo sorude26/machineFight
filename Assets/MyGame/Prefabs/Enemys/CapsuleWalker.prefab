@@ -2814,6 +2814,22 @@ MonoBehaviour:
   _anSetWeapon: 0
   _shoulderBoosters: {fileID: 3723925093122829473}
   _partsColorChanger: {fileID: 0}
+  _handWeaponParam:
+    Power: 0
+    Speed: 0
+    MaxAmmunitionCapacity: 0
+    MagazineCount: 0
+    ShotCount: 0
+    SubCount: 0
+    TriggerInterval: 0
+    ShotInterval: 0
+    Diffusivity: 0
+    ExPower: 0
+    ExCount: 0
+    ExRadius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
   PartsRotaionSpeed: 1
   ReloadSpeed: 1
   ReloadTime: 2
@@ -3193,7 +3209,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5693842687347434764}
   m_LocalRotation: {x: -0.7071068, y: 2.2847856e-27, z: -3.5936568e-20, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 1.1000003}
+  m_LocalPosition: {x: -0, y: -0, z: 0.862}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5693842686826013067}
@@ -11699,6 +11715,9 @@ MonoBehaviour:
     WalkSpeed: 15
     WalkTurnSpeed: 6
     JumpPower: 200
+    BoostMoveSpeed: 0
+    BoostUpPower: 0
+    BoostJetPower: 0
     StepUpPower: 50
     DotSub: 0.6
     AnimeChangeSpeed: 0.3
@@ -12277,6 +12296,22 @@ MonoBehaviour:
   _anSetWeapon: 0
   _shoulderBoosters: {fileID: 7882287213753108549}
   _partsColorChanger: {fileID: 0}
+  _handWeaponParam:
+    Power: 0
+    Speed: 0
+    MaxAmmunitionCapacity: 0
+    MagazineCount: 0
+    ShotCount: 0
+    SubCount: 0
+    TriggerInterval: 0
+    ShotInterval: 0
+    Diffusivity: 0
+    ExPower: 0
+    ExCount: 0
+    ExRadius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
   PartsRotaionSpeed: 1
   ReloadSpeed: 1
   ReloadTime: 2
@@ -17859,7 +17894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 3
   _weaponType: 0
-  _power: 3
+  _power: 30
   _speed: 900
   _fireShakeParam:
     Pos: {x: 0, y: 0, z: 0}
@@ -17881,7 +17916,7 @@ MonoBehaviour:
   _count: 0
   IsFire: 0
   IsWait: 0
-  _bullet: {fileID: 8661921769014990206, guid: 39db53a3d59e45145977d37637cfba41, type: 3}
+  _bullet: {fileID: 8661921769014990206, guid: b556d487697629945a47b2723c0dfde9, type: 3}
   _muzzleFlashEffect: {fileID: 7882287213465504391}
   _muzzle: {fileID: 7882287211958100753}
   _bulletParam:
@@ -17899,6 +17934,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.07
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &7882287213031613316
 GameObject:
   m_ObjectHideFlags: 0
@@ -18102,7 +18140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 370c006a94b7a6143bf3bd5777789ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lockOnWide: 0.2
+  _lockOnWide: -1
   _bodyTrans: {fileID: 7882287212913937474}
   _wallLayer:
     serializedVersion: 2
@@ -18151,6 +18189,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 7882287212264775844}
   _playerLock: {fileID: 7882287212052097666}
   _lockBody: {fileID: 7882287212913937474}
@@ -23926,6 +23967,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.2
   _diffusivity: 0.07
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &7882287213936598103
 GameObject:
   m_ObjectHideFlags: 0
@@ -36255,7 +36299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
       propertyPath: _maxHp
-      value: 5000
+      value: 4500
       objectReference: {fileID: 0}
     - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
       propertyPath: _addCount
@@ -36271,7 +36315,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
       propertyPath: _severelyDamage
-      value: 4000
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
+      propertyPath: _damageRateData.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
+      propertyPath: _damageRateData.Array.data[0].Rate
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
+      propertyPath: _damageRateData.Array.data[0].Type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
       propertyPath: _onDeadEvent.m_PersistentCalls.m_Calls.Array.size

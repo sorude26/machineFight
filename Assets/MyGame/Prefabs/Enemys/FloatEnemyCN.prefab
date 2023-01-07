@@ -168,6 +168,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.04
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &1131160592875507443
 GameObject:
   m_ObjectHideFlags: 0
@@ -5709,7 +5712,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2560
   _rayWide: 1
-  LockOnRange: 500
+  LockOnRange: 200
   _attackMaxInterval: 6
   _attackIntervalDiffusivity: 2
   _weapon: {fileID: 0}

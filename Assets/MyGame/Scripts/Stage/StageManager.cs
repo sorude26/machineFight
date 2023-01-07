@@ -7,10 +7,11 @@ using System;
 public class StageManager : MonoBehaviour
 {
     public static StageManager Instance { get; private set; }
-    private int _breakBossCount;
-    private int _breakTargetCount;
+    private int _breakBossCount = 0;
+    private int _breakTargetCount = 0;
+    private int _clearBossCount = 0;
     [SerializeField]
-    private int _clearBossCount = 1;
+    private int _defaultBossCount = 0;
     [SerializeField]
     private int _bgmIDNum = 29;
     [SerializeField]
@@ -28,6 +29,8 @@ public class StageManager : MonoBehaviour
     [SerializeField]
     private float _alarmVolume = 0.5f;
     [SerializeField]
+    private float _moveTime = 10f;
+    [SerializeField]
     private GameObject[] _enemySet = default;
     private int _targetCount = 0;
     private int _totalCount = 0;
@@ -38,6 +41,7 @@ public class StageManager : MonoBehaviour
     {
         Instance = this;
         PartsManager.Instance.LoadData();
+        _clearBossCount = _defaultBossCount;
     }
     private void Start()
     {
@@ -81,6 +85,14 @@ public class StageManager : MonoBehaviour
     {
         _targetCount += count;
     }
+    public void SetBossCount(int count = 1)
+    {
+        if (_defaultBossCount > 0)
+        {
+            return;
+        }
+        _clearBossCount += count;
+    }
     public void AddTargetCount(int count = 1)
     {
         if (_gameOver == true)
@@ -108,6 +120,13 @@ public class StageManager : MonoBehaviour
             Instance = null;
             SceneControl.ChangeTargetScene("Result");
         });
+        StartCoroutine(MoveResultImpl());
+    }
+    private IEnumerator MoveResultImpl()
+    {
+        yield return new WaitForSeconds(_moveTime);
+        Instance = null;
+        SceneControl.ChangeTargetScene("Result");
     }
     private void ViewClearPop()
     {

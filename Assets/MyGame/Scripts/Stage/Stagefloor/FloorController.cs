@@ -42,16 +42,16 @@ public class FloorController : MonoBehaviour
         }
         _walls[(int)direction].OpenGate();
     }
-    public void SetGete(bool north, bool south, bool east, bool weast)
+    public void SetGete(FloorGateSet gateSet)
     {
         if (_isInitialize == false)
         {
             InitializeWall();
         }
-        SetGate(FloorDirection.North, north);
-        SetGate(FloorDirection.South, south);
-        SetGate(FloorDirection.East, east);
-        SetGate(FloorDirection.West, weast);
+        SetGate(FloorDirection.North, gateSet.North);
+        SetGate(FloorDirection.South, gateSet.South);
+        SetGate(FloorDirection.East, gateSet.East);
+        SetGate(FloorDirection.West, gateSet.Weast);
     }
     public void SetGate(FloorDirection direction, bool isGate = false)
     {
@@ -83,4 +83,29 @@ public class FloorController : MonoBehaviour
             wall.CloseGate();
         }
     }
+}
+[System.Serializable]
+public struct FloorGateSet
+{
+    [Header("North")]
+    public bool North;
+    [Header("South")]
+    public bool South;
+    [Header("East")]
+    public bool East;
+    [Header("Weast")]
+    public bool Weast;
+    public FloorGateSet(bool north, bool south, bool east, bool weast)
+    {
+        North = north;
+        South = south;
+        East = east;
+        Weast = weast;
+    }
+}
+[System.Serializable]
+public struct FloorPattern
+{
+    public FloorGateSet[] FloorGateSets;
+    public int[] KeyFloor;
 }

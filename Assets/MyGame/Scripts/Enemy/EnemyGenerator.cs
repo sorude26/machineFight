@@ -21,6 +21,7 @@ public class EnemyGenerator : MonoBehaviour
     private int _enemyIndex = 0;
     private int _pointIndex = 0;
     private int _count = 0;
+    private bool _active = false;
     private GeneratorEnemyContoroller[] _allEnemys = default;
     private IEnumerator Start()
     {
@@ -34,6 +35,7 @@ public class EnemyGenerator : MonoBehaviour
             }
         }
         yield return null;
+        _active = true;
         ShufflePoints();
         ShuffleEnemys();
         for (int i = 0; i < _startSpwanCount; i++)
@@ -43,6 +45,10 @@ public class EnemyGenerator : MonoBehaviour
     }
     public void Spwan()
     {
+        if (_active == false)
+        {
+            return;
+        }
         _count++;
         if (_count >= _spwanPoints.Length)
         {
@@ -54,6 +60,10 @@ public class EnemyGenerator : MonoBehaviour
     }
     private void SpwanEnemys()
     {
+        if (_active == false)
+        {
+            return;
+        }
         for (int i = 0; i < _enemySpwanCount; i++)
         {
             NextPoint();
@@ -69,6 +79,10 @@ public class EnemyGenerator : MonoBehaviour
     }
     private void ShufflePoints()
     {
+        if (_active == false)
+        {
+            return;
+        }
         for (int i = 0; i < _spwanPoints.Length; i++)
         {
             int r = Random.Range(0,_spwanPoints.Length);
@@ -79,6 +93,10 @@ public class EnemyGenerator : MonoBehaviour
     }
     private void ShuffleEnemys()
     {
+        if (_active == false)
+        {
+            return;
+        }
         for (int i = 0; i < _allEnemys.Length; i++)
         {
             int r = Random.Range(0, _allEnemys.Length);
@@ -89,6 +107,10 @@ public class EnemyGenerator : MonoBehaviour
     }
     private void SpwanEnemy(Transform pos)
     {
+        if (_active == false)
+        {
+            return;
+        }
         NextEnemy();
         if (_allEnemys[_enemyIndex].IsActive == false)
         {
@@ -103,6 +125,10 @@ public class EnemyGenerator : MonoBehaviour
     }
     private void NextEnemy()
     {
+        if (_active == false)
+        {
+            return;
+        }
         for (int i = 0; i < _allEnemys.Length; i++)
         {
             if (_allEnemys[_enemyIndex].IsActive == false)
@@ -118,6 +144,10 @@ public class EnemyGenerator : MonoBehaviour
     }
     private void NextPoint()
     {
+        if (_active == false)
+        {
+            return;
+        }
         for (int i = 0; i < _spwanPoints.Length; i++)
         {
             _pointIndex++;
