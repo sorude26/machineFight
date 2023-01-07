@@ -689,6 +689,7 @@ MonoBehaviour:
   _changeBgmSpeed: 1
   _alarmSEID: 47
   _alarmVolume: 0.5
+  _moveTime: 10
   _enemySet:
   - {fileID: 155394377}
   - {fileID: 625290959}
@@ -932,6 +933,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e94741cbd19654a940d7d50cf505f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &650775788 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5356225295787531925, guid: a202a4441e62fe84892afcc97893dd93, type: 3}
+  m_PrefabInstance: {fileID: 650775784}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &651698646
 GameObject:
   m_ObjectHideFlags: 0
@@ -1947,7 +1953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mapCreater: {fileID: 1780231477}
   _updateIntervalTime: 1
-  _target: {fileID: 785175815}
+  _target: {fileID: 650775788}
   _range: 20
   _obstacleLayer:
     serializedVersion: 2
