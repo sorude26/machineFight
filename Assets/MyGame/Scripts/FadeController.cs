@@ -133,5 +133,6 @@ public class FadeController : MonoBehaviour
             _fadeImage.color = currentColor;
             yield return null;
         }
+        _fadeImage.color = _startColor;
     }
 }
