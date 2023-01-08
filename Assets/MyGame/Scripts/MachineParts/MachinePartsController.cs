@@ -13,6 +13,10 @@ namespace MyGame
         private MachineBuilder _builder = default;
         [SerializeField]
         public UnityEvent _onDeadEvent = default;
+        [SerializeField]
+        private string _defaultLayerName = "MoveObj";
+        [SerializeField]
+        private string _deadLayerName = "AnHitMoveObj";
         private BodyController _bodyController = default;
         private LegController _legController = default;
         private MoveController _moveController = default;
@@ -39,7 +43,8 @@ namespace MyGame
                 return;
             }
             PowerDownMachine();
-            _onDeadEvent.Invoke();
+            _onDeadEvent?.Invoke();
+            this.gameObject.layer = LayerMask.NameToLayer(_deadLayerName);
         }
         public void ExecuteFixedUpdate(Vector3 dir)
         {
@@ -171,6 +176,7 @@ namespace MyGame
             _bodyController.IsDown = false;
             _legController.StartUpLeg();
             _bodyController.StartUpBody();
+            this.gameObject.layer = LayerMask.NameToLayer(_defaultLayerName);
         }
     }
 }
