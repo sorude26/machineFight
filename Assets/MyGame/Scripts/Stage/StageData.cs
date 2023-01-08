@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class StageData
 {
+    public static int StageID { get; set; }
     public static int StageLevel { get; set; }
     public static string StageName { get; set; }
 }

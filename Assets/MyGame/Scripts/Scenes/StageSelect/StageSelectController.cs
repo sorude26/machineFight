@@ -12,13 +12,18 @@ public class StageSelectController : MonoBehaviour
     [SerializeField]
     private float _waitTime = 1f;
     [SerializeField]
+    private float _changetime = 1f;
+    [SerializeField]
     private Transform _base = default;
+    [SerializeField]
+    private int _changeSEID = 27;
+    [SerializeField]
+    private float _seVolume = 0.2f;
     [SerializeField]
     private StageGuideData[] AllStages = default;
     private string _returnScene = "Home";
     private int _stageMaxNumber = default;
     private int _stageNumber = 0;
-    private float _changetime = 1f;
     private bool _inputStop = false;
     private bool _buttonOn = false;
     private float Angle => 360f / _stageMaxNumber;
@@ -32,6 +37,8 @@ public class StageSelectController : MonoBehaviour
         }
         transform.position = Vector3.forward * _stageMaxNumber * 2 - Vector3.forward * 5 + Vector3.up * 2;
         _buttonOn = true;
+        _stageNumber = StageData.StageID;        
+        ChangeStage(_stageNumber);
         yield return new WaitForSeconds(_waitTime);
         _buttonOn = false;
         PlayerInput.Instance.InitializeInput();
@@ -124,6 +131,7 @@ public class StageSelectController : MonoBehaviour
             target = 0;
         }
         var message = new PopUpData(middle: $"{AllStages[target].StageName}へ出撃",sub: "〇：OK",cancel: "×:Cancel");
+        StageData.StageID = _stageNumber;
         StageData.StageLevel = AllStages[target].Level;
         StageData.StageName = AllStages[target].StageName;
         PopUpMessage.CreatePopUp(message,
@@ -142,12 +150,17 @@ public class StageSelectController : MonoBehaviour
             return;
         }
         _buttonOn = true;
+        StageData.StageID = _stageNumber;
         PlayerInput.Instance.InitializeInput();
         SceneControl.ChangeTargetScene(_returnScene);
     }
     private void ChangeStage(int target)
     {
         transform.rotation = Quaternion.Euler(0, -Angle * target, 0);
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySE(_changeSEID,_seVolume);
+        }
     }
     private void ChangeSelectTarget(int value)
     {
