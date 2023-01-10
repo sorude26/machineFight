@@ -31,6 +31,7 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     private float _seVolume = 1f;
     private int _hp = 1;
     private bool _isSeverelyDamaged = false;
+    private bool _isCountSet = false;
     public int MaxHp { get => _maxHp; }
     public int CurrentHp { get => _hp; }
     public bool AddTarget { get => _addCount || _isMarkTarget; }
@@ -45,15 +46,21 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     public void StartSet()
     {
         _hp = _maxHp;
+        if (_isCountSet == true)
+        {
+            return;
+        }
+        _isCountSet = true;
         if (StageManager.Instance != null)
         {
-            if (_isMarkTarget == true)
-            {
-                StageManager.Instance.SetTargetCount();
-            }
             if (_addCount == true)
             {
                 StageManager.Instance.SetBossCount();
+                return;
+            }
+            if (_isMarkTarget == true)
+            {
+                StageManager.Instance.SetTargetCount();
             }
         }
     }
@@ -131,7 +138,21 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     }
     public void ChangeBoss()
     {
+        if (_addCount == true)
+        {
+            return;
+        }
         _addCount = true;
+        if (StageManager.Instance != null)
+        {
+            StageManager.Instance.SetBossCount();
+            if (_isMarkTarget == true && _isCountSet == true)
+            {
+                StageManager.Instance.SetTargetCount(-1);
+                _isMarkTarget = false;
+            }
+            _isCountSet = true;
+        }
     }
     public void PlayEffect()
     {

@@ -29,6 +29,8 @@ namespace MyGame
         [SerializeField]
         private LockOnTarget _bodyTarget = default;
         [SerializeField]
+        private bool _setBoss = default;
+        [SerializeField]
         private GameObject _deadEffct = default;
         [SerializeField]
         private int _deadSEID = 11;
@@ -44,6 +46,10 @@ namespace MyGame
         {
             SetRandamBuildDat();
             _machineController.Initialize(_buildParam);
+            if (_setBoss == true)
+            {
+                _machineController.DamageChecker.ChangeBoss();
+            }
             _bodyTarget.SetChecker(_machineController.DamageChecker);
             _machineController.BodyController.LeftHand.WeaponBase.AnLimitAmmunition();
             _machineController.BodyController.RightHand.WeaponBase.AnLimitAmmunition();
