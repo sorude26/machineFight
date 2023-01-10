@@ -7,6 +7,8 @@ using static UnityEngine.GraphicsBuffer;
 public class StageSelectController : MonoBehaviour
 {
     private const float INPUT_SENSITIVITY = 0.8f;
+    private const float SIDE_RANGE = 2f;
+    private const float FORWARD_RANGE = 5f;
     [SerializeField]
     private StageNamePanel _namePanelPrefab = default;
     [SerializeField]
@@ -35,7 +37,7 @@ public class StageSelectController : MonoBehaviour
             var p = Instantiate(_namePanelPrefab, _base);
             p.SetPanel(AllStages[i], Quaternion.Euler(0, -Angle * i, 0), _stageMaxNumber);
         }
-        transform.position = Vector3.forward * _stageMaxNumber * 2 - Vector3.forward * 5 + Vector3.up * 2;
+        transform.position = Vector3.forward * _stageMaxNumber * SIDE_RANGE - Vector3.forward * FORWARD_RANGE + Vector3.up * SIDE_RANGE;
         _buttonOn = true;
         _stageNumber = StageData.StageID;        
         ChangeStage(_stageNumber);
