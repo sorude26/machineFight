@@ -1070,7 +1070,7 @@ GameObject:
   - component: {fileID: 71009309316690821}
   - component: {fileID: 3231090664014160402}
   - component: {fileID: 6630485790165696429}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: ArmorBody (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1167,6 +1167,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 2000
   _severelyDamage: 50
+  _damageRateData:
+  - Type: 3
+    Rate: 0.5
+  - Type: 1
+    Rate: 0.5
+  - Type: 2
+    Rate: 0.5
+  - Type: 4
+    Rate: -0.5
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls:

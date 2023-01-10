@@ -886,6 +886,22 @@ MonoBehaviour:
   _anSetWeapon: 0
   _shoulderBoosters: {fileID: 4557457684506568681}
   _partsColorChanger: {fileID: -8672870561505857913}
+  _handWeaponParam:
+    Power: 0
+    Speed: 0
+    MaxAmmunitionCapacity: 0
+    MagazineCount: 0
+    ShotCount: 0
+    SubCount: 0
+    TriggerInterval: 0
+    ShotInterval: 0
+    Diffusivity: 0
+    ExPower: 0
+    ExCount: 0
+    ExRadius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
   PartsRotaionSpeed: 6
   ReloadSpeed: 1
   ReloadTime: 1.5
@@ -915,6 +931,8 @@ MonoBehaviour:
   - {fileID: 4870021204593329491}
   - {fileID: 4870021205605920983}
   - {fileID: 5749471530474815481}
+  _startColorSetMode: 0
+  _startColorID: 0
 --- !u!1 &4870021205482334912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,6 +1269,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _playSEID: 31
+  _shakeSEVolume: 0.05
+  _strongSEVolume: 0.2
   _shakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
@@ -1259,6 +1280,7 @@ MonoBehaviour:
     Pos: {x: 0, y: 0, z: 0}
     Power: 0
     Time: 0
+  _shakeEffect: {fileID: 0}
 --- !u!1 &5655910882065223272
 GameObject:
   m_ObjectHideFlags: 0
@@ -1514,7 +1536,7 @@ GameObject:
   - component: {fileID: 1966548905207761601}
   - component: {fileID: 6342042142904028838}
   - component: {fileID: 5647722192849012045}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: ArmorShoulder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

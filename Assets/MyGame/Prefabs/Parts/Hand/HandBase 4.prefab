@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8936402945081384410}
   - component: {fileID: 3040049634873654849}
   - component: {fileID: 7291775666885262436}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: ArmorShoulder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,6 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 1000
   _severelyDamage: 50
+  _damageRateData: []
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls:
@@ -267,7 +268,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3193224919786297736}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Armors (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -969,6 +970,22 @@ MonoBehaviour:
   _anSetWeapon: 0
   _shoulderBoosters: {fileID: 4557457684506568681}
   _partsColorChanger: {fileID: 1719136669584095955}
+  _handWeaponParam:
+    Power: 0
+    Speed: 0
+    MaxAmmunitionCapacity: 0
+    MagazineCount: 0
+    ShotCount: 0
+    SubCount: 0
+    TriggerInterval: 0
+    ShotInterval: 0
+    Diffusivity: 0
+    ExPower: 0
+    ExCount: 0
+    ExRadius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
   PartsRotaionSpeed: 6
   ReloadSpeed: 1
   ReloadTime: 1.5
@@ -1344,7 +1361,7 @@ GameObject:
   - component: {fileID: 1542439805634811433}
   - component: {fileID: 8002548866222929091}
   - component: {fileID: 5757537604109622905}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: ArmorShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
