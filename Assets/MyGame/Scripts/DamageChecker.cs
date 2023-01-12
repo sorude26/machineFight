@@ -56,6 +56,7 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
             if (_addCount == true)
             {
                 StageManager.Instance.SetBossCount();
+                _isMarkTarget = false;
                 return;
             }
             if (_isMarkTarget == true)
@@ -110,17 +111,20 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
         {
             _hp = 0;
             _onDeadEvent?.Invoke();
-            if (_addCount == true && StageManager.Instance != null)
+            if (StageManager.Instance != null)
             {
-                StageManager.Instance.AddBossCount();
-            }
-            if (_isMarkTarget == true && StageManager.Instance != null)
-            {
-                StageManager.Instance.AddTargetCount();
-            }
-            if (_count == true && StageManager.Instance != null)
-            {
-                StageManager.Instance.AddCount();
+                if (_addCount == true)
+                {
+                    StageManager.Instance.AddBossCount();
+                }
+                else if (_isMarkTarget == true)
+                {
+                    StageManager.Instance.AddTargetCount();
+                }
+                if (_count == true)
+                {
+                    StageManager.Instance.AddCount();
+                }
             }
         }
         OnDamageEvent?.Invoke();
