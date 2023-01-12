@@ -10,12 +10,15 @@ public abstract class ItemBase : MonoBehaviour
     protected float _seVolume = 0.02f;
     [SerializeField]
     private float _itemLifeTime = 20f;
+    [SerializeField]
+    protected float _energyValue = 2f;
     private float _timer = 0;
     public abstract void CatchItem(ItemCatcher catcher);
     public virtual void CatchAction(ItemCatcher catcher)
     {
         CatchItem(catcher);
         catcher.PlayCatchEffect(_catchSEID,_seVolume);
+        catcher.Player.RecoveryEnergy(_energyValue);
         _timer = 0;
         gameObject.SetActive(false);
     }
