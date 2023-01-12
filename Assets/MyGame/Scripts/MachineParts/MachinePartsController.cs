@@ -21,6 +21,7 @@ namespace MyGame
         private LegController _legController = default;
         private MoveController _moveController = default;
         private bool _isDown = false;
+        public bool IsFloat { get => _legController.IsFloat; }
         public bool IsInitalized { get; private set; }
         public DamageChecker DamageChecker { get => _bodyController.DamageChecker; }
         public BodyController BodyController { get => _bodyController; }

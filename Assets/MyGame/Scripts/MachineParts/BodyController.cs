@@ -58,6 +58,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     public bool IsDown = false;
     public event Action UseBooster = default;
     public int ID { get => _id; }
+    public float FloatSpeed { get => _floatSpeed; }
     public Transform HeadJoint { get => _headJoint; }
     public DamageChecker DamageChecker { get => _damageChecker; }
     public BackPackController BackPack { get => _backPack; }
