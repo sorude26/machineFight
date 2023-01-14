@@ -37,7 +37,7 @@ namespace MyGame
             _bodyController.OnBodyDestroy += PlayDeadEvent;
             IsInitalized = true;
         }
-        private void PlayDeadEvent()
+        public void PlayDeadEvent()
         {
             if (IsInitalized == false)
             {
