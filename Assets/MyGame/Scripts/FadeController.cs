@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -96,7 +97,9 @@ public class FadeController : MonoBehaviour
     {
         _fadeImage.gameObject.SetActive(true);
         yield return FadeOut();
+        yield return null;
         outAction?.Invoke();
+        yield return null;
         yield return FadeIn();
         inAction?.Invoke();
         _fadeImage.gameObject.SetActive(false);

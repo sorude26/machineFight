@@ -9899,6 +9899,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 5
   _seFireVolume: 0.1
   _seReloadID: 32
@@ -9908,7 +9909,7 @@ MonoBehaviour:
   _count: 0
   IsFire: 0
   IsWait: 0
-  _bullet: {fileID: 8661921769014990206, guid: 7accf031041bd064ca21bdf119907be1, type: 3}
+  _bullet: {fileID: 8661921769014990206, guid: b556d487697629945a47b2723c0dfde9, type: 3}
   _muzzleFlashEffect: {fileID: 4052949859152166964}
   _muzzle: {fileID: 7986155857372268401}
   _bulletParam:
@@ -9926,6 +9927,9 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.02
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &7986155858764926498
 GameObject:
   m_ObjectHideFlags: 0

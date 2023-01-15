@@ -5332,6 +5332,7 @@ MonoBehaviour:
   _moveSpeed: 2
   _naviInterval: 3
   _minYLevel: 1
+  _maxYLevel: 500
 --- !u!114 &6098190686559260975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5640,6 +5641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 30
   _severelyDamage: 50
+  _damageRateData: []
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls:
@@ -5728,9 +5730,11 @@ MonoBehaviour:
   - {fileID: 1351174841993859409, guid: b15ec99a961eb2d4599e2898ae001aac, type: 3}
   - {fileID: 1351174841993859409, guid: b15ec99a961eb2d4599e2898ae001aac, type: 3}
   - {fileID: 1351174841993859409, guid: ab908356eec1a4e438d305a8e2d27020, type: 3}
-  - {fileID: 1234321730564965865, guid: b72018ba32c20f64eb6dd9eee453fd91, type: 3}
+  - {fileID: 1234321730564965865, guid: 1657a7d37c6936348a8064010ae0c292, type: 3}
   - {fileID: 1351174841993859409, guid: ab908356eec1a4e438d305a8e2d27020, type: 3}
   _count: 3
+  _defItem: {fileID: 1234321730564965865, guid: b72018ba32c20f64eb6dd9eee453fd91, type: 3}
+  _defItemCount: 8
 --- !u!1 &7236611973521958428
 GameObject:
   m_ObjectHideFlags: 0
