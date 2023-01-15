@@ -147,7 +147,7 @@ public class PlayerMachineController : MonoBehaviour
             if (_currentEnergy <= 0)
             {
                 LiftInput();
-                _machineController.PowerDownMachine();
+                _machineController.PlayDeadEvent();
             }
             _stageUI.EnergyUpdate(_currentEnergy, _maxEnergy);
         }
