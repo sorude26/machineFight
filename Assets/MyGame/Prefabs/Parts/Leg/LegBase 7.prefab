@@ -6381,7 +6381,7 @@ GameObject:
   - component: {fileID: 5096686314346645097}
   - component: {fileID: 5096686314346645096}
   m_Layer: 0
-  m_Name: ArmorLegTop
+  m_Name: CoverLegTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6428,7 +6428,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fd2efd973630f6548b84601f4dda00c1, type: 2}
+  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6523,6 +6523,9 @@ MonoBehaviour:
     WalkSpeed: 6
     WalkTurnSpeed: 3
     JumpPower: 25
+    BoostMoveSpeed: 0
+    BoostUpPower: 0
+    BoostJetPower: 0
     StepUpPower: 3
     DotSub: 0.6
     AnimeChangeSpeed: 0.3
@@ -6552,7 +6555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _armors:
-  - {fileID: 5096686314346645096}
+  - {fileID: 6641158191465665049}
   - {fileID: 5622153722540706057}
   - {fileID: 5096686315587325585}
   - {fileID: 2616233071375461987}
@@ -6568,7 +6571,6 @@ MonoBehaviour:
   - {fileID: 5814227077578441464}
   - {fileID: 2708950338681234403}
   - {fileID: 1056387748933409816}
-  - {fileID: 6641158191465665049}
   _eyes: []
   _covers:
   - {fileID: 5096686315388580143}
@@ -6583,6 +6585,7 @@ MonoBehaviour:
   - {fileID: 7166913421469229838}
   - {fileID: 4660262779687825432}
   - {fileID: 242612250227473256}
+  - {fileID: 5096686314346645096}
   _startColorSetMode: 0
   _startColorID: 0
 --- !u!1 &5096686314411365425
