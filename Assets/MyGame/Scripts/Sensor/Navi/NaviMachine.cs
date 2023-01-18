@@ -39,6 +39,8 @@ namespace MyGame
         [SerializeField]
         private float _explosionTime = 3f;
         [SerializeField]
+        private float _activeTime = 0.5f;
+        [SerializeField]
         private ShakeParam _exParam = default;
         [SerializeField]
         private PopController[] _popControllers = default;
@@ -136,6 +138,7 @@ namespace MyGame
             {
                 SoundManager.Instance.PlaySE(_deadSEID, _body.position, _seVolume);
             }
+            yield return new WaitForSeconds(_activeTime);
             gameObject.SetActive(false);
             _machineController.transform.localPosition = Vector3.zero;
             _machineController.transform.localRotation = Quaternion.identity;
