@@ -10076,10 +10076,11 @@ MonoBehaviour:
   _buildSet: []
   _randamSet: 0
   _bodyTarget: {fileID: 4498953300159271965}
+  _setBoss: 0
   _deadEffct: {fileID: 5285524602227699168, guid: 13820972174337440960fa1dc6f4f234, type: 3}
   _deadSEID: 11
   _seVolume: 1
-  _explosionTime: 3
+  _explosionTime: 2
   _exParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 150
@@ -10163,7 +10164,7 @@ MonoBehaviour:
   - {fileID: 627188196374498576}
   - {fileID: 2748335903304042163}
   _startColorSetMode: 1
-  _startColorID: 2
+  _startColorID: 18
 --- !u!114 &240623412559684248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10494,12 +10495,8 @@ MonoBehaviour:
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls: []
-  _defaultLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  _deadLayer:
-    serializedVersion: 2
-    m_Bits: 8192
+  _defaultLayerName: MoveObj
+  _deadLayerName: AnHitMoveObj
 --- !u!54 &240623414593927190
 Rigidbody:
   m_ObjectHideFlags: 0
