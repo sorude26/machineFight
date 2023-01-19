@@ -7,6 +7,7 @@ using System;
 public class StageManager : MonoBehaviour
 {
     public static StageManager Instance { get; private set; }
+    public static bool InStage { get; private set; }
     private int _breakBossCount = 0;
     private int _breakTargetCount = 0;
     private int _clearBossCount = 0;
@@ -54,6 +55,7 @@ public class StageManager : MonoBehaviour
         {
             SoundManager.Instance.PlayBGM(_bgmIDNum, _bgmVolume);
         }
+        InStage = true;
     }
     public void ChangeBGM()
     {
@@ -107,6 +109,7 @@ public class StageManager : MonoBehaviour
     }
     private void MoveResult(PopUpData massage)
     {
+        InStage = false;
         PlayerInput.Instance.InitializeInput();
         _gameOver = true;
         ResultData.TotalTargetCount = _breakTargetCount;
