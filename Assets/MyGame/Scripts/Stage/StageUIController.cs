@@ -24,6 +24,8 @@ public class StageUIController : MonoBehaviour
     [SerializeField]
     private Image _energySubGauge = default;
     [SerializeField]
+    private Image[] _energyImages = default;
+    [SerializeField]
     private Text _energyText = default;
     [SerializeField]
     private Color _energyNormalColor = default;
@@ -39,6 +41,8 @@ public class StageUIController : MonoBehaviour
     private Text _maxHpText = default;
     [SerializeField]
     private Image _hpGauge = default;
+    [SerializeField]
+    private Image[] _frameImages = default;
     [SerializeField]
     private Color _hpNormalColor = default;
     [SerializeField]
@@ -92,7 +96,7 @@ public class StageUIController : MonoBehaviour
         }
         if (level < LESS_LINE)
         {
-            _hpGauge.color = _hpLessColor;
+            SetHpColor(_hpLessColor);
             if (currentHp == 0)
             {
                 _hpText.text = "";
@@ -100,15 +104,31 @@ public class StageUIController : MonoBehaviour
         }
         else if (level < HALF_LINE)
         {
-            _hpGauge.color = _hpHalfColor;
+            SetHpColor(_hpHalfColor);
         }
         else if (level < NORMAL_LINE)
         {
-            _hpGauge.color = _hpNormalColor;
+            SetHpColor(_hpNormalColor);
         }
         else
         {
-            _hpGauge.color = _startHpColor;
+            SetHpColor(_startHpColor);
+        }
+    }
+    private void SetHpColor(Color color)
+    {
+        _hpGauge.color = color;
+        foreach (var frame in _frameImages)
+        {
+            frame.color = color;
+        }
+    }
+    private void SetEnergyColor(Color color)
+    {
+        _energyGauge.color = color;
+        foreach (var frame in _energyImages)
+        {
+            frame.color = color;
         }
     }
     public void DamagePlayer()
@@ -130,19 +150,19 @@ public class StageUIController : MonoBehaviour
         }
         if (level < LESS_LINE)
         {
-            _energyGauge.color = _energyLessColor;
+            SetEnergyColor(_energyLessColor);
         }
         else if (level < HALF_LINE)
         {
-            _energyGauge.color = _energyHalfColor;
+            SetEnergyColor(_energyHalfColor);
         }
         else if (level < NORMAL_LINE)
         {
-            _energyGauge.color = _energyNormalColor;
+            SetEnergyColor(_energyNormalColor);
         }
         else
         {
-            _energyGauge.color = _startEnergyColor;
+            SetEnergyColor(_startEnergyColor);
         }
     }
 }
