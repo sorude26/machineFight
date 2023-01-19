@@ -12,6 +12,7 @@ namespace MyGame
         private const float DEFAULT_DECELERATE = 0.99f;
         private const float BRAKE_DECELERATE = 0.3f;
         private const float GRAVITYE = -0.2f;
+        private const float INERTIA_RANGE = 0.5f;
         private Rigidbody _rb = default;
         public MoveController(Rigidbody rigidbody)
         {
@@ -19,6 +20,9 @@ namespace MyGame
         }
         public void VelocityMove(Vector3 dir)
         {
+            var current = _rb.velocity;
+            dir += current;
+            dir *= INERTIA_RANGE;
             _rb.velocity = dir;
         }
         public void GVelocityMove(Vector3 dir)
