@@ -2267,6 +2267,10 @@ MonoBehaviour:
   _minDis: 5
   _normalPos: {x: 0, y: 0, z: 0}
   _changePos: {x: 0, y: 0, z: 0}
+  _maxRange: 20
+  _mineRange: 0.2
+  _maxSpeed: 50
+  _minSpeed: 0.2
 --- !u!1 &5096686315147285592
 GameObject:
   m_ObjectHideFlags: 0
@@ -2896,6 +2900,10 @@ MonoBehaviour:
   _minDis: 5
   _normalPos: {x: 0, y: 0, z: 0}
   _changePos: {x: 0, y: 0, z: 0}
+  _maxRange: 20
+  _mineRange: 0.2
+  _maxSpeed: 50
+  _minSpeed: 0.2
 --- !u!1 &5096686315587325599
 GameObject:
   m_ObjectHideFlags: 0
@@ -14687,15 +14695,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _power
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _radius
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: _shake.Time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _onBladeTime
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: _shake.Power
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866349, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: m_RootOrder
