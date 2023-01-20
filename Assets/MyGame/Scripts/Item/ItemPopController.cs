@@ -12,7 +12,6 @@ public class ItemPopController : PopController
     private ItemBase _defItem = default;
     [SerializeField]
     private int _defItemCount = 8;
-    private float _diffusivity = 0.1f;
     public override void PopItem()
     {
         if (_defItem != null)
@@ -32,14 +31,5 @@ public class ItemPopController : PopController
             item.SetActive(true);
         }
     }
-    private Vector3 Diffusivity(Vector3 target)
-    {
-        if (_diffusivity > 0)
-        {
-            target.x += Random.Range(-_diffusivity, _diffusivity);
-            target.y += Random.Range(-_diffusivity, _diffusivity);
-            target.z += Random.Range(-_diffusivity, _diffusivity);
-        }
-        return target;
-    }
+    
 }
