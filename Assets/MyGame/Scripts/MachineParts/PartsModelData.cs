@@ -21,7 +21,7 @@ public class PartsModelData : ScriptableObject
     private WeaponBase[] _allWeaponParts = default;
     [SerializeField]
     private ColorSetData[] _allColorSetData = default;
-    public HeadController GetPartsHead(int id) 
+    public HeadController GetPartsHead(int id)
     {
         return _allHeadParts.Where(parts => parts.ID == id).FirstOrDefault();
     }
@@ -72,7 +72,7 @@ public struct PartsBuildParam
     public static readonly int PARTS_TYPE_NUM = Enum.GetValues(typeof(PartsType)).Length;
     public int this[PartsType type]
     {
-        get 
+        get
         {
             switch (type)
             {
@@ -95,7 +95,7 @@ public struct PartsBuildParam
                 default:
                     break;
             }
-            return -1; 
+            return -1;
         }
         set
         {
@@ -133,12 +133,12 @@ public struct PartsBuildParam
 }
 public enum PartsType
 {
-    Head,
-    Body,
-    LHand,
-    RHand,
-    Leg,
-    BackPack,
-    LWeapon,
-    RWeapon,
+    Head = 0,
+    Body = 1,
+    LHand = 2,
+    RHand = 3,
+    Leg = 4,
+    BackPack = 5,
+    LWeapon = 6,
+    RWeapon = 7,
 }

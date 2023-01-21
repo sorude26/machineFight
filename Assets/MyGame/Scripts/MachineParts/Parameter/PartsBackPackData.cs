@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="Parts/BackPack")]
-public class PartsBackPackData : ScriptableObject
+public class PartsBackPackData : ScriptableObject , IPartsData
 {
     public int ID;
     public string Name;
@@ -14,4 +14,8 @@ public class PartsBackPackData : ScriptableObject
     public float UseGeneratorPower;
     public int AttackPower;
     public int Ammunition;
+
+    public int PartsID => ID;
+    public string PartName => Name;
+    public int Model => ModelID;
 }
