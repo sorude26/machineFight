@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Parts/Body")]
-public class PartsBodyData : ScriptableObject
+public class PartsBodyData : ScriptableObject,IPartsData
 {
     public int ID;
     public string Name;
@@ -12,4 +12,7 @@ public class PartsBodyData : ScriptableObject
     public float Energy;
     public float Generator;
     public float GeneratorRecoverySpeed;
+    public int PartsID => ID;
+    public string PartName => Name;
+    public int Model => ModelID;
 }

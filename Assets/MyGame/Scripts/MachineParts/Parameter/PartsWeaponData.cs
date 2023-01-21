@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class PartsWeaponData : ScriptableObject
+public class PartsWeaponData : ScriptableObject,IPartsData
 {
     public int ID;
     public string Name;
@@ -11,6 +11,9 @@ public class PartsWeaponData : ScriptableObject
     public WeaponParam Param;
     public float AttackPower;
     public float EnergyConsumption;
+    public int PartsID => ID;
+    public string PartName => Name;
+    public int Model => ModelID;
 }
 
 [System.Serializable]
