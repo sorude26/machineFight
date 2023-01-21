@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
 {
+    static bool _noneLerp = false;
+
     [SerializeField]
     Transform _followTarget = default;
     [SerializeField]
@@ -12,8 +14,6 @@ public class FollowCamera : MonoBehaviour
     float _followSpeed = 1f;
     [SerializeField]
     float _rotationSpeed = 1f;
-    [SerializeField]
-    bool _noneLerp = false;
     [SerializeField]
     Transform _lookTarget = default;
     [SerializeField]
@@ -73,5 +73,14 @@ public class FollowCamera : MonoBehaviour
     public void ChangeMode()
     {
         _noneLerp = !_noneLerp;
+    }
+
+    public static void ChangeToVrCamera()
+    {
+        _noneLerp = true;
+    }
+    public static void ChangeToDesctopCamera()
+    {
+        _noneLerp = false;
     }
 }
