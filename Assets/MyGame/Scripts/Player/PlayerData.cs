@@ -11,6 +11,7 @@ public class PlayerData : MonoBehaviour
     public static PlayerData instance;
     
     private PartsBuildParam _buildPreset = default;
+    private SaveDataReader saveDataReader = new SaveDataReader();
     public PartsBuildParam BuildPreset
     {
         get
@@ -46,9 +47,9 @@ public class PlayerData : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             instance.PresetLoad();
-            //instance._modelBuilder = new ModelBuilder();
             PartsManager.Instance.LoadData();
             SceneManager.activeSceneChanged += ActiveSceneChanged;
+            saveDataReader.ReadData();
         }
         else
         {
@@ -63,7 +64,9 @@ public class PlayerData : MonoBehaviour
     //JsonÇ…èëÇ´çûÇ›
     public void PresetSave()
     {
-        Json.JsonSave(this);
+        //Json.JsonSave(this);
+        Json.SavePreset(_buildPreset);
+        saveDataReader.SetData();
     }
 
     //JsonÇ©ÇÁì«Ç›çûÇ›
@@ -96,15 +99,15 @@ public class PlayerData : MonoBehaviour
     /// </summary>
     public void PartsLog()
     {
-        Debug.Log("Head:" + BuildPreset.Head);
-        Debug.Log("Body:" + BuildPreset.Body);
-        Debug.Log("LHand:" + BuildPreset.LHand);
-        Debug.Log("RHand:" + BuildPreset.RHand);
-        Debug.Log("Leg:" + BuildPreset.Leg);
-        Debug.Log("Booster:" + BuildPreset.Booster);
-        Debug.Log("LWeapon:" + BuildPreset.LWeapon);
-        Debug.Log("RWeapon:" + BuildPreset.RWeapon);
-        Debug.Log("Color:" + BuildPreset.ColorId);
+        //Debug.Log("Head:" + BuildPreset.Head);
+        //Debug.Log("Body:" + BuildPreset.Body);
+        //Debug.Log("LHand:" + BuildPreset.LHand);
+        //Debug.Log("RHand:" + BuildPreset.RHand);
+        //Debug.Log("Leg:" + BuildPreset.Leg);
+        //Debug.Log("Booster:" + BuildPreset.Booster);
+        //Debug.Log("LWeapon:" + BuildPreset.LWeapon);
+        //Debug.Log("RWeapon:" + BuildPreset.RWeapon);
+        //Debug.Log("Color:" + BuildPreset.ColorId);
     }
 
     /// <summary>
@@ -263,6 +266,35 @@ public class PlayerData : MonoBehaviour
         {
             instance.Build();
             PresetSave();
+        }
+    }
+
+    public IPartsData[] this[PartsType type]
+    {
+        get
+        {
+            switch (type)
+            {
+                case PartsType.Head:
+                    return GetObtainPartsHead();
+                case PartsType.Body:
+                    return GetObtainPartsBody();
+                case PartsType.LHand:
+                    return GetObtainPartsLHand();
+                case PartsType.RHand:
+                    return GetObtainPartsRHand();
+                case PartsType.Leg:
+                    return GetObtainPartsLeg();
+                case PartsType.BackPack:
+                    return GetObtainPartsBack();
+                case PartsType.LWeapon:
+                    return GetObtainPartsWeapon();
+                case PartsType.RWeapon:
+                    return GetObtainPartsWeapon();
+                default:
+                    break;
+            }
+            return null;
         }
     }
 }
