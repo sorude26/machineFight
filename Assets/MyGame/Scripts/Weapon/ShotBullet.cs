@@ -59,6 +59,10 @@ public class ShotBullet : MonoBehaviour
     }
     protected void PlayShake()
     {
+        if (StageManager.InStage == false)
+        {
+            return;
+        }
         StageShakeController.PlayShake(transform.position + _hitShakeParam.Pos, _hitShakeParam.Power, _hitShakeParam.Time);
         if (SoundManager.Instance != null)
         {
