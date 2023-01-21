@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerMachineController : MonoBehaviour
 {
+    const int VR_COLOR = 20;
     [SerializeField]
     private float _useEnergySpeed = 5f;
     [SerializeField]
@@ -45,6 +46,11 @@ public class PlayerMachineController : MonoBehaviour
         if (PlayerData.instance != null)
         {
             _buildParam = PlayerData.instance.BuildPreset;
+        }
+        if (OVRManager.isHmdPresent || (PlayerVrCockpit.Instance?.IsDebagVR ?? false))
+        {
+            //VRモードの場合は機体カラーを透明にする
+            _buildParam.ColorId = VR_COLOR;
         }
         _machineController.Initialize(_buildParam);
         _machineController.DamageChecker.OnDamageEvent.AddListener(DamagePlayer);

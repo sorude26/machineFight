@@ -146,6 +146,7 @@ public class PlayerVrCockpit : MonoBehaviour
         }
         else
         {
+            //ˆêlÌØ‚è‘Ö‚¦
             FollowCamera.ChangeToVrCamera();
         }
     }
