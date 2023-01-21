@@ -77,7 +77,7 @@ public class PlayerVrCockpit : MonoBehaviour
     /// <returns></returns>
     public static bool Jump()
     {
-        return Instance._throttleLever.GetUpperButtonInput(false);
+        return Instance._throttleLever.GetTriggerInput(false);
     }
     /// <summary>
     /// ステップ
@@ -85,7 +85,7 @@ public class PlayerVrCockpit : MonoBehaviour
     /// <returns></returns>
     public static bool JetBoost()
     {
-        return Instance._throttleLever.GetTriggerInput(false);
+        return Instance._throttleLever.GetUpperButtonInput(false);
     }
     /// <summary>
     /// ターゲット切り替え

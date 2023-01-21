@@ -16,7 +16,7 @@ public partial class LegStateContext
     }
     private class GroundMoveState : ILegState
     {
-        
+        private readonly float STEP_SQRMAGNITUDE = 0.2f;
         private readonly float decelerate = 0.8f;
         private LegAngle _currentAngle = default;
         private float _turnSpeed = default;
@@ -89,7 +89,7 @@ public partial class LegStateContext
                 context.ChangeAnimation(context.AnimeName.Walk);
             }
             //à⁄ìÆèàóù
-            context._moveController.GVelocityMove(moveDir * _walkSpeed);
+            context._moveController.GVelocityMove(moveDir * context._moveDir.magnitude * _walkSpeed);
         }
 
         /// <summary>
@@ -131,7 +131,12 @@ public partial class LegStateContext
             }
             if (context._stepInput == true)
             {
+                if (context._moveDir.sqrMagnitude < STEP_SQRMAGNITUDE)
+                {
+                    context._moveDir = Vector3.forward;
+                }
                 context.ChangeState(context._stepState);
+                return;
             }
             LegMove(context);
         }
