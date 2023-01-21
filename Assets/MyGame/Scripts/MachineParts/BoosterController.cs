@@ -14,6 +14,8 @@ public class BoosterController : MonoBehaviour
     private ParticleSystem[] _leftBoosters = default;
     [SerializeField]
     private ParticleSystem[] _rightBoosters = default;
+    [SerializeField]
+    private ParticleSystem[] _froatBoosters = default;
     public bool IsBoost { get; private set; }
 
     public void StartBooster()
@@ -58,6 +60,20 @@ public class BoosterController : MonoBehaviour
         foreach (var booster in _rightBoosters)
         {
             booster.Play();
+        }
+    }
+    public void FloatBoost()
+    {
+        foreach (var booster in _froatBoosters)
+        {
+            booster.Play();
+        }
+    }
+    public void StopFloatBoost()
+    {
+        foreach (var booster in _froatBoosters)
+        {
+            booster.Stop();
         }
     }
 }

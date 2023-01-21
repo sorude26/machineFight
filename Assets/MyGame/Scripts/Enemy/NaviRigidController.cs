@@ -38,9 +38,18 @@ public class NaviRigidController : MonoBehaviour
         }
         if (_currentDir != Vector3.zero)
         {
+            if (OperationalRangeManager.Instance != null)
+            {
+                var ope = OperationalRangeManager.Instance.transform.position;
+                if (Vector3.Distance(ope, transform.position) > OperationalRangeManager.Instance.DetachmentRange)
+                {
+                    _currentDir = ope - transform.position;
+                    _currentDir.y = 0;
+                }
+            }
             _currentDir.x += Random.Range(-_diffusivity, _diffusivity);
             _currentDir.z += Random.Range(-_diffusivity, _diffusivity);
-            _body.forward = Vector3.Lerp(_body.forward, _currentDir, _transSpeed * Time.fixedDeltaTime);
+            _body.forward = Vector3.Lerp(_body.forward, _currentDir.normalized, _transSpeed * Time.fixedDeltaTime);
             _controller.GVelocityMove(_body.forward * _moveSpeed);
         }
         _controller.MoveDecelerate(_moveDiffusivity);

@@ -22,8 +22,7 @@ public class PlayerData : MonoBehaviour
             _buildPreset = value;
         }
     }
-
-    private ModelBuilder _modelBuilder = default;
+    //private ModelBuilder _modelBuilder = default;
 
     [SerializeField] 
     private List<PartsHeadData> _getsHeadParts = new List<PartsHeadData>();
@@ -47,7 +46,7 @@ public class PlayerData : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             instance.PresetLoad();
-            instance._modelBuilder = new ModelBuilder();
+            //instance._modelBuilder = new ModelBuilder();
             PartsManager.Instance.LoadData();
             SceneManager.activeSceneChanged += ActiveSceneChanged;
         }
@@ -106,7 +105,6 @@ public class PlayerData : MonoBehaviour
         Debug.Log("LWeapon:" + BuildPreset.LWeapon);
         Debug.Log("RWeapon:" + BuildPreset.RWeapon);
         Debug.Log("Color:" + BuildPreset.ColorId);
-
     }
 
     /// <summary>
@@ -114,7 +112,12 @@ public class PlayerData : MonoBehaviour
     /// </summary>
     public void Build()
     {
-        _modelBuilder.ViewModel(BuildPreset);
+        if (HomeUIController.Instance == null)
+        {
+            return;
+        }
+        HomeUIController.Instance.BuildModel();
+        //_modelBuilder.ViewModel(BuildPreset);
     }
 
     /// <summary>

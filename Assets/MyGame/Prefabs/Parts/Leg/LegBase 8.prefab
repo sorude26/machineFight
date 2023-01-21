@@ -5801,6 +5801,9 @@ MonoBehaviour:
     WalkSpeed: 6
     WalkTurnSpeed: 3
     JumpPower: 25
+    BoostMoveSpeed: 0
+    BoostUpPower: 0
+    BoostJetPower: 0
     StepUpPower: 3
     DotSub: 0.6
     AnimeChangeSpeed: 0.3
@@ -13912,8 +13915,16 @@ PrefabInstance:
       value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: _shake.Time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _onBladeTime
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: _shake.Power
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866349, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: m_RootOrder

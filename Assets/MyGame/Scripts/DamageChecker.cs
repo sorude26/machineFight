@@ -83,6 +83,10 @@ public class DamageChecker : MonoBehaviour, IDamageApplicable
     }
     public void AddlyDamage(int damage ,DamageType damageType)
     {
+        if (StageManager.InStage == false)
+        {
+            return;
+        }
         if (_damageRateData == null)
         {
             AddlyDamage(damage);

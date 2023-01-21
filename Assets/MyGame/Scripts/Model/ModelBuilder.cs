@@ -1,32 +1,77 @@
+using MyGame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ModelBuilder : MonoBehaviour
 {
+    [SerializeField]
+    private MachineDataView _dataView = default;
+    [SerializeField]
+    private Transform _viewPoint = default;
+    [SerializeField]
+    private float _maxZ = 3f;
+    [SerializeField]
+    private float _minZ = -1f;
+    [SerializeField]
+    private float _rotationSpeed = 0.1f;
+    [SerializeField]
+    private float _moveSpeed = 0.1f;
+    [SerializeField]
+    private float _inputThreshold = 0.3f;
     private GameObject _modelBase = default;
+    private Quaternion _currentR = default;
+    private void FixedUpdate()
+    {
+        if (_modelBase != null)
+        {
+            if (Mathf.Abs(PlayerInput.CameraDir.x) > _inputThreshold)
+            {
+                _modelBase.transform.rotation *= Quaternion.Euler(0, _rotationSpeed * PlayerInput.CameraDir.x, 0);
+            }
+            if (Mathf.Abs(PlayerInput.CameraDir.y) > _inputThreshold)
+            {
+                if (PlayerInput.CameraDir.y < 0 && transform.position.z > _minZ)
+                {
+                    transform.position += Vector3.back * _moveSpeed;
+                }
+                else if(PlayerInput.CameraDir.y > 0 && transform.position.z < _maxZ)
+                {
+                    transform.position += Vector3.forward * _moveSpeed;
+                }
+            }
+        }
+    }
     /// <summary>
     /// データを受け取りModelを表示する
     /// </summary>
     /// <param name="buildData"></param>
     public void ViewModel(PartsBuildParam buildData)
     {
+        transform.position = Vector3.zero;
         if (_modelBase != null)
         {
             DeleteModelBase();
+            CreateModelBase();
+            _modelBase.transform.rotation = _currentR;
         }
-        CreateModelBase();
+        else
+        {
+            CreateModelBase();
+        }
         SetBuildPattern(buildData);
     }
     private void CreateModelBase()
     {
         var baseObj = new GameObject("ModelBase");
-        baseObj.transform.position = new Vector3(6, -3, 0);
-        baseObj.transform.rotation = Quaternion.Euler(0, 200, 0);
+        baseObj.transform.position = _viewPoint.position;
+        baseObj.transform.rotation = _viewPoint.rotation;
+        baseObj.transform.SetParent(transform, false);
         _modelBase = baseObj;
     }
     private void DeleteModelBase()
     {
+        _currentR = _modelBase.transform.rotation;
         Destroy(_modelBase);
         _modelBase = null;
     }
@@ -45,7 +90,21 @@ public class ModelBuilder : MonoBehaviour
         modelID.Booster = PartsManager.Instance.AllParamData.GetPartsBack(buildPattern.Booster).ModelID;
         modelID.LWeapon = PartsManager.Instance.AllParamData.GetPartsWeapon(buildPattern.LWeapon).ModelID;
         modelID.RWeapon = PartsManager.Instance.AllParamData.GetPartsWeapon(buildPattern.RWeapon).ModelID;
+        modelID.ColorId = buildPattern.ColorId;
         Build(modelID);
+        if (_dataView != null)
+        {
+            var boosterData = PartsManager.Instance.AllParamData.GetPartsBack(buildPattern.Booster);
+            var bodyData = PartsManager.Instance.AllParamData.GetPartsBody(buildPattern.Body);
+            var headData = PartsManager.Instance.AllParamData.GetPartsHead(buildPattern.Head);
+            var handDataL = PartsManager.Instance.AllParamData.GetPartsHand(buildPattern.LHand);
+            var handDataR = PartsManager.Instance.AllParamData.GetPartsHand(buildPattern.RHand);
+            var legData = PartsManager.Instance.AllParamData.GetPartsLeg(buildPattern.Leg);
+            var lWeapon = PartsManager.Instance.AllParamData.GetPartsWeapon(buildPattern.LWeapon);
+            var rWeapon = PartsManager.Instance.AllParamData.GetPartsWeapon(buildPattern.RWeapon);
+            TotalParam param = new TotalParam(bodyData, headData, handDataR, handDataL, legData, boosterData, rWeapon, lWeapon);
+            _dataView.ViewData(param);
+        }
     }
     /// <summary>
     /// 組み立て処理

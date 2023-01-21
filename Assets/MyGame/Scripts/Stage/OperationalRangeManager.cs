@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class OperationalRangeManager : MonoBehaviour
 {
+    public static OperationalRangeManager Instance { get; private set; }
     [SerializeField]
     private Transform _centerPos = default;
     [SerializeField]
@@ -31,9 +32,17 @@ public class OperationalRangeManager : MonoBehaviour
     private bool _inStage = false;
     private float _inTime = 1f;
     private float _inTimer = 0f;
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         _player = NavigationManager.Instance.Target;
+    }
+    private void OnDisable()
+    {
+        Instance = null;
     }
     private void OnDrawGizmosSelected()
     {
@@ -82,7 +91,10 @@ public class OperationalRangeManager : MonoBehaviour
             return;
         }
         IsInDetachment = true;
-        StageManager.Instance.ViewOutStage();
+        if (StageManager.Instance != null)
+        {
+            StageManager.Instance.ViewOutStage();
+        }
     }
     private void CheckLevel()
     {
@@ -105,6 +117,9 @@ public class OperationalRangeManager : MonoBehaviour
             return;
         }
         IsInDetachment = true;
-        StageManager.Instance.ViewOutStage();
+        if (StageManager.Instance != null)
+        {
+            StageManager.Instance.ViewOutStage();
+        }
     }
 }
