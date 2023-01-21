@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MainCameraLocator : MonoBehaviour
 {
-    public static Camera _mainCamera;
+    static Camera _mainCamera;
     public static Camera MainCamera => _mainCamera;
 
     private void Awake()
