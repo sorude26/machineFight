@@ -326,6 +326,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""9dc56c3b-1765-47b8-a730-8f1e5e7873eb"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""6e495f14-c7fb-4795-ad9e-93738326934f"",
                     ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
@@ -526,6 +537,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""0491bb48-a239-49de-8a9d-e615533a7f6e"",
                     ""path"": ""<VrCockpit>/changeTarget"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""46939fb0-897b-4223-a5eb-3e332633dbf0"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
