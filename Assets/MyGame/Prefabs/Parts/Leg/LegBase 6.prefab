@@ -5801,6 +5801,9 @@ MonoBehaviour:
     WalkSpeed: 6
     WalkTurnSpeed: 3
     JumpPower: 25
+    BoostMoveSpeed: 0
+    BoostUpPower: 0
+    BoostJetPower: 0
     StepUpPower: 3
     DotSub: 0.6
     AnimeChangeSpeed: 0.3
@@ -5832,7 +5835,7 @@ MonoBehaviour:
   _armors:
   - {fileID: 4610173856979382241}
   - {fileID: 5096686314346645096}
-  - {fileID: 5622153722540706057}
+  - {fileID: 5096686314273903017}
   - {fileID: 5096686315587325585}
   - {fileID: 5096686314298697871}
   - {fileID: 5096686314579812562}
@@ -5840,7 +5843,6 @@ MonoBehaviour:
   - {fileID: 5096686315872683672}
   - {fileID: 4287419963931839391}
   - {fileID: 5096686314938997063}
-  - {fileID: 5096686314273903017}
   _eyes: []
   _covers:
   - {fileID: 5622153722540706057}
@@ -13906,15 +13908,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _power
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _radius
       value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: _shake.Time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _onBladeTime
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: _shake.Power
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866349, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: m_RootOrder

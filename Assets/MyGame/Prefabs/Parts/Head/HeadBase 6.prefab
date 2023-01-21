@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3251917023231408440}
   - component: {fileID: 1705110925537095268}
   m_Layer: 0
-  m_Name: ArmorHead (2)
+  m_Name: CoverHead (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fd2efd973630f6548b84601f4dda00c1, type: 2}
+  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -189,7 +189,7 @@ Transform:
   m_GameObject: {fileID: 3975796896852269872}
   m_LocalRotation: {x: -0, y: 3.85186e-34, z: 7.523165e-37, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 3975796897653650774}
   - {fileID: 3975796898122047568}
@@ -230,12 +230,12 @@ MonoBehaviour:
   _armors:
   - {fileID: 3975796897904381353}
   - {fileID: 7162437683406050500}
-  - {fileID: 1705110925537095268}
   - {fileID: 4835615456092433808}
   _eyes:
   - {fileID: 3975796898122047569}
   - {fileID: 8671405085421267782}
-  _covers: []
+  _covers:
+  - {fileID: 1705110925537095268}
   _startColorSetMode: 0
   _startColorID: 0
 --- !u!1 &3975796897653650769

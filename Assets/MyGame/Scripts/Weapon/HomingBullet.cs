@@ -32,6 +32,11 @@ public class HomingBullet : ShotBullet
         _homingTimer += Time.fixedDeltaTime;
         if (_timer <= 0)
         {
+            if (_explosionEnd == true)
+            {
+                HitBullet(transform.position);
+                return;
+            }
             ActiveEnd();
         }
     }

@@ -13,6 +13,8 @@ public class BladePoint : MonoBehaviour
     [SerializeField]
     private LayerMask _hitLayer = default;
     [SerializeField]
+    private DamageType _damageType = DamageType.Melee;
+    [SerializeField]
     private GameObject _hitEffect = default;
     [SerializeField]
     private ParticleSystem _onEffect = default;
@@ -26,6 +28,7 @@ public class BladePoint : MonoBehaviour
     private int _seCount = 5;
     private float _timer = 0;
     private int _count = 0;
+    [SerializeField]
     private ShakeParam _shake = default;
     private void FixedUpdate()
     {
@@ -69,13 +72,12 @@ public class BladePoint : MonoBehaviour
     {
         if (hit.TryGetComponent(out IDamageApplicable target))
         {
-            target.AddlyDamage(_power);
+            target.AddlyDamage(_power,_damageType);
         }
-        HitBlade(transform.position);
-    }
-    private void HitBlade(Vector3 pos)
-    {
-        PlayHitEffect(pos);
+        if (_count == 0)
+        {
+            PlayHitEffect(transform.position);
+        }
     }
     private void OnDrawGizmosSelected() 
     {

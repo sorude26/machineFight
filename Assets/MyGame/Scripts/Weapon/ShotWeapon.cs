@@ -12,7 +12,7 @@ public class ShotWeapon : WeaponBase
     private Transform _muzzle = default;
     [SerializeField]
     private BulletParam _bulletParam = default;
-    [SerializeField,Range(1,100)]
+    [SerializeField, Range(1, 100)]
     private int _shotCount = 1;
     [SerializeField, Range(0, 30)]
     private int _subCount = 0;
@@ -22,8 +22,23 @@ public class ShotWeapon : WeaponBase
     protected float _shotInterval = 0.2f;
     [SerializeField]
     protected float _diffusivity = 0.01f;
-   
+    [SerializeField]
+    private int _shotSEID = 3;
+    [SerializeField]
+    private float _shotSEVolume = 0.1f;
+    [SerializeField]
+    private int _setSEShotCount = -1;
+
+    private int _seCount = 0;
+
     private bool _isTrigerOn = false;
+    protected override void OnEnableReset()
+    {
+        IsFire = false;
+        IsWait = false;
+        _isTrigerOn = false;
+    }
+
     public override void Initialize()
     {
         if (_maxAmmunitionCapacity > 0)
@@ -43,7 +58,16 @@ public class ShotWeapon : WeaponBase
         _bulletParam.Power = _power;
         _bulletParam.Speed = _speed;
         bullet.Shot(_bulletParam, target);
-        PlayShake();        
+        if (_setSEShotCount >= 0)
+        {
+            _seCount++;
+            if (_seCount > _setSEShotCount)
+            {
+                _seCount = 0;
+                SoundManager.Instance.PlaySE(_shotSEID, bullet.gameObject, _shotSEVolume);
+            }
+        }
+        PlayShake();
     }
     protected Vector3 Diffusivity(Vector3 target)
     {
@@ -57,7 +81,7 @@ public class ShotWeapon : WeaponBase
     }
     public override void Fire(Transform target)
     {
-        if (IsFire == true || IsWait == true || _isTrigerOn == true)
+        if (IsFire == true || IsWait == true || _isTrigerOn == true || gameObject.activeInHierarchy == false)
         {
             return;
         }
@@ -75,7 +99,7 @@ public class ShotWeapon : WeaponBase
         {
             if (SoundManager.Instance != null)
             {
-                SoundManager.Instance.PlaySE(_seFireID,_muzzle.position, _seFireVolume);
+                SoundManager.Instance.PlaySE(_seFireID, _muzzle.position, _seFireVolume);
             }
             if (_muzzleFlashEffect != null)
             {

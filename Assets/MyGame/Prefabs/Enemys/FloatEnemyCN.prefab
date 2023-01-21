@@ -140,8 +140,11 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.05
+  _seReloadID: 32
+  _seReloadVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
@@ -165,6 +168,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.04
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &1131160592875507443
 GameObject:
   m_ObjectHideFlags: 0
@@ -5706,7 +5712,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2560
   _rayWide: 1
-  LockOnRange: 500
+  LockOnRange: 200
   _attackMaxInterval: 6
   _attackIntervalDiffusivity: 2
   _weapon: {fileID: 0}
@@ -5725,10 +5731,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 7018357406306533421}
   _playerLock: {fileID: 7018357405370431932}
   _lockBody: {fileID: 7018357406894510801}
   _lockSpeed: 8
+  _cameraController: {fileID: 0}
 --- !u!114 &7018357406306533422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5745,13 +5755,14 @@ MonoBehaviour:
   _naviPower: 5
   _wallLayer:
     serializedVersion: 2
-    m_Bits: 3840
+    m_Bits: 769
   _wallRayRange: 5
   _diffusivity: 0.5
   _transSpeed: 5
   _moveSpeed: 2
   _naviInterval: 3
   _minYLevel: 1
+  _maxYLevel: 500
 --- !u!114 &-3338703610236240453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5898,6 +5909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 20
   _severelyDamage: 50
+  _damageRateData: []
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls:
@@ -5986,8 +5998,10 @@ MonoBehaviour:
   - {fileID: 1351174841993859409, guid: b15ec99a961eb2d4599e2898ae001aac, type: 3}
   - {fileID: 1351174841993859409, guid: b15ec99a961eb2d4599e2898ae001aac, type: 3}
   - {fileID: 1351174841993859409, guid: ab908356eec1a4e438d305a8e2d27020, type: 3}
-  - {fileID: 1234321730564965865, guid: b72018ba32c20f64eb6dd9eee453fd91, type: 3}
+  - {fileID: 1234321730564965865, guid: 1657a7d37c6936348a8064010ae0c292, type: 3}
   _count: 2
+  _defItem: {fileID: 1234321730564965865, guid: b72018ba32c20f64eb6dd9eee453fd91, type: 3}
+  _defItemCount: 8
 --- !u!1 &7018357406923311752
 GameObject:
   m_ObjectHideFlags: 0

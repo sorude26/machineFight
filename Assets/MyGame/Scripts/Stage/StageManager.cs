@@ -7,10 +7,12 @@ using System;
 public class StageManager : MonoBehaviour
 {
     public static StageManager Instance { get; private set; }
-    private int _breakBossCount;
-    private int _breakTargetCount;
+    public static bool InStage { get; private set; }
+    private int _breakBossCount = 0;
+    private int _breakTargetCount = 0;
+    private int _clearBossCount = 0;
     [SerializeField]
-    private int _clearBossCount = 1;
+    private int _defaultBossCount = 0;
     [SerializeField]
     private int _bgmIDNum = 29;
     [SerializeField]
@@ -19,6 +21,16 @@ public class StageManager : MonoBehaviour
     private int _gameOverbgmIDNum = 42;
     [SerializeField]
     private float _bgmVolume = 0.1f;
+    [SerializeField]
+    private int _changeBgmIDNum = 0;
+    [SerializeField]
+    private float _changeBgmSpeed = 1f;
+    [SerializeField]
+    private int _alarmSEID = 47;
+    [SerializeField]
+    private float _alarmVolume = 0.5f;
+    [SerializeField]
+    private float _moveTime = 10f;
     [SerializeField]
     private GameObject[] _enemySet = default;
     private int _targetCount = 0;
@@ -30,6 +42,7 @@ public class StageManager : MonoBehaviour
     {
         Instance = this;
         PartsManager.Instance.LoadData();
+        _clearBossCount = _defaultBossCount;
     }
     private void Start()
     {
@@ -41,6 +54,21 @@ public class StageManager : MonoBehaviour
         if (SoundManager.Instance != null)
         {
             SoundManager.Instance.PlayBGM(_bgmIDNum, _bgmVolume);
+        }
+        InStage = true;
+    }
+    public void ChangeBGM()
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayBGMWithCrossFade(_changeBgmIDNum, _changeBgmSpeed, _bgmVolume);
+        }
+    }
+    public void PlayAlarm()
+    {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySE(_alarmSEID, _alarmVolume);
         }
     }
     public void AddBossCount(int count = 1)
@@ -59,6 +87,14 @@ public class StageManager : MonoBehaviour
     {
         _targetCount += count;
     }
+    public void SetBossCount(int count = 1)
+    {
+        if (_defaultBossCount > 0)
+        {
+            return;
+        }
+        _clearBossCount += count;
+    }
     public void AddTargetCount(int count = 1)
     {
         if (_gameOver == true)
@@ -73,6 +109,7 @@ public class StageManager : MonoBehaviour
     }
     private void MoveResult(PopUpData massage)
     {
+        InStage = false;
         PlayerInput.Instance.InitializeInput();
         _gameOver = true;
         ResultData.TotalTargetCount = _breakTargetCount;
@@ -86,6 +123,13 @@ public class StageManager : MonoBehaviour
             Instance = null;
             SceneControl.ChangeTargetScene("Result");
         });
+        StartCoroutine(MoveResultImpl());
+    }
+    private IEnumerator MoveResultImpl()
+    {
+        yield return new WaitForSeconds(_moveTime);
+        Instance = null;
+        SceneControl.ChangeTargetScene("Result");
     }
     private void ViewClearPop()
     {

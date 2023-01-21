@@ -41,9 +41,9 @@ public struct TotalParam
         Energy = bodyData.Energy + boosterData.AdditionEnergy;
         Recovery = bodyData.GeneratorRecoverySpeed;
         FlySpeed = boosterData.Param.BoostMoveSpeed;
-        FlySpeed += handDataR.AdditionalBooster + handDataL.AdditionalBooster;
+        FlySpeed += handDataR.AdditionalBooster + handDataL.AdditionalBooster + legData.Param.BoostMoveSpeed;
         JetSpeed = boosterData.Param.JetPower;
-        JetSpeed += handDataR.AdditionalBooster + handDataL.AdditionalBooster;
+        JetSpeed += handDataR.AdditionalBooster + handDataL.AdditionalBooster + legData.Param.BoostJetPower;
         AttackPower = boosterData.AttackPower;
         AttackPower += handDataL.AttackPower;
         AttackPower += handDataR.AttackPower;

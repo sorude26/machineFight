@@ -56,6 +56,15 @@ public abstract class WeaponBase : MonoBehaviour, IPartsModel
     public int ID { get => _id; }
     public float Speed { get => _speed; }
     public WeaponType Type { get => _weaponType; }
+    private void OnEnable()
+    {
+        OnEnableReset();
+    }
+    protected virtual void OnEnableReset()
+    {
+        IsFire = false;
+        IsWait = false;
+    }
     protected void PlayShake()
     {
         StageShakeController.PlayShake(transform.position + _fireShakeParam.Pos, _fireShakeParam.Power, _fireShakeParam.Time);

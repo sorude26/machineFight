@@ -18,6 +18,9 @@ public class SoundManager : MonoBehaviour
     /// <summary>BGM用のAudioSource</summary>
     [SerializeField]
     private AudioSource _bgmAudioSource;
+    /// <summary>AudioSource</summary>
+    [SerializeField]
+    private AudioSource _deactiveAudioSource;
     /// <summary>サウンド再生有効距離</summary>
     [SerializeField]
     float _playSoundDistance = 100f;
@@ -56,6 +59,22 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
+    /// BGMをクロスフェード再生する
+    /// </summary>
+    /// <param name="soundId"></param>
+    /// <param name="fadeTime"></param>
+    /// <param name="volume"></param>
+    public void PlayBGMWithCrossFade(int soundId, float fadeTime, float volume = 1f)
+    {
+        AudioClip audioClip = _soundList.GetAudioClip(soundId);
+        if (audioClip == null) return;
+
+        StartCoroutine(_bgmAudioSource.StopWithFadeOut(fadeTime));
+        StartCoroutine(_deactiveAudioSource.PlayWithFadeIn(audioClip, fadeTime, volume));
+        (_bgmAudioSource, _deactiveAudioSource) = (_deactiveAudioSource, _bgmAudioSource);
+    }
+
+    /// <summary>
     /// SEを再生する
     /// </summary>
     /// <param name="soundId"></param>
@@ -90,7 +109,23 @@ public class SoundManager : MonoBehaviour
         soundPlayer.transform.position = pos;
         soundPlayer.PlaySE(audioClip, volume, mixerGroup);
     }
+    
+    /// <summary>
+    /// ターゲットに追従しながらSEを再生する
+    /// </summary>
+    /// <param name="soundId"></param>
+    /// <param name="target"></param>
+    /// <param name="volume"></param>
+    /// <param name="mixerGroup"></param>
+    public void PlaySE(int soundId, GameObject target, float volume = 1f, AudioMixerGroup mixerGroup = AudioMixerGroup.SE)
+    {
+        AudioClip audioClip = _soundList.GetAudioClip(soundId);
+        if (audioClip == null) return;
 
+        SoundPlayer soundPlayer = GetSound3DPlayer();
+        soundPlayer.gameObject.SetActive(true);
+        soundPlayer.PlaySE(audioClip, target, volume, mixerGroup);
+    }
 
     /// <summary>
     /// プールからSoundPlayerを取得する

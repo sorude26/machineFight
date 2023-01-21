@@ -7,16 +7,24 @@ namespace MyGame
 {
     public class MachinePartsController : MonoBehaviour
     {
+        private const float BOOSTER_POWER = 2f;
+        private const float UP_POWER = 0.2f;
         [SerializeField]
         private Rigidbody _moveRb = default;
         [SerializeField]
         private MachineBuilder _builder = default;
         [SerializeField]
         public UnityEvent _onDeadEvent = default;
+        [SerializeField]
+        private string _defaultLayerName = "MoveObj";
+        [SerializeField]
+        private string _deadLayerName = "AnHitMoveObj";
         private BodyController _bodyController = default;
         private LegController _legController = default;
         private MoveController _moveController = default;
         private bool _isDown = false;
+        public bool IsFloat { get => _legController.IsFloat; }
+        public bool IsFall { get => _legController.IsFall; }
         public bool IsInitalized { get; private set; }
         public DamageChecker DamageChecker { get => _bodyController.DamageChecker; }
         public BodyController BodyController { get => _bodyController; }
@@ -32,13 +40,22 @@ namespace MyGame
             _bodyController.OnBodyDestroy += PlayDeadEvent;
             IsInitalized = true;
         }
-        private void PlayDeadEvent()
+        public void PlayDeadEvent()
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             PowerDownMachine();
-            _onDeadEvent.Invoke();
+            _onDeadEvent?.Invoke();
+            this.gameObject.layer = LayerMask.NameToLayer(_deadLayerName);
         }
         public void ExecuteFixedUpdate(Vector3 dir)
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             if (_legController != null)
             {
                 _legController.ExecuteFixedUpdate(dir);
@@ -51,10 +68,18 @@ namespace MyGame
         }
         public void SetLockOn(Transform target)
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             _bodyController.AttackTarget = target;
         }
         public void ExecuteJump()
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             if (_legController != null && _legController.IsFall == false && _legController.IsFloat == false)
             {
                 _legController.Jump();
@@ -66,6 +91,10 @@ namespace MyGame
         }
         public void ExecuteJet(Vector3 dir)
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             if (_legController != null && _legController.IsFall == false)
             {
                 _legController.Step();
@@ -77,39 +106,74 @@ namespace MyGame
         }
         public void ExecuteBurst()
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             if (_bodyController.BackPack.BackPackWeapon != null)
             {
                 _bodyController.BackPackBurst();
             }
             else
             {
-                _legController.ChangeFloat();
+                if (_legController.IsFall)
+                {
+                    _bodyController.MeleeAttackMove(BOOSTER_POWER);
+                }
+                else
+                {
+                    _bodyController.MeleeAttackMove(0, Vector3.up * UP_POWER);
+                }
+                //_legController.ChangeFloat();
             }
         }
 
         public void TryFloat()
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             if (_legController.IsFloat) return;
             _legController.ChangeFloat();
+            _bodyController.StartFloatBoosters();
         }
 
         public void TryGround()
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             if (!_legController.IsFloat) return;
             _legController.ChangeFloat();
+            _bodyController.StopFloatBoosters();
         }
 
         public void ShotLeft()
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             _bodyController.ShotLeft();
         }
         public void ShotRight()
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             _bodyController.ShotRight();
         }
         public void AttackLeg()
         {
+            if (IsInitalized == false)
+            {
+                return;
+            }
             _legController.Attack();
+            _bodyController.MeleeAttackMove(UP_POWER);
         }
         public void PowerDownMachine()
         {
@@ -120,6 +184,14 @@ namespace MyGame
             _isDown = true;
             _bodyController.IsDown = true;
             _legController.PowerDown();
+        }
+        public void StartUpMachine()
+        {
+            _isDown = false;
+            _bodyController.IsDown = false;
+            _legController.StartUpLeg();
+            _bodyController.StartUpBody();
+            this.gameObject.layer = LayerMask.NameToLayer(_defaultLayerName);
         }
     }
 }

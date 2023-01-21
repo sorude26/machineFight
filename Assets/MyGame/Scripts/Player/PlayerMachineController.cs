@@ -8,6 +8,12 @@ using UnityEngine.UI;
 public class PlayerMachineController : MonoBehaviour
 {
     [SerializeField]
+    private float _useEnergySpeed = 5f;
+    [SerializeField]
+    private float _useFlyEnergy = 0.5f;
+    [SerializeField]
+    private float _useFloatEnergy = 5f;
+    [SerializeField]
     private CameraController _playerCamera = default;
     [SerializeField]
     private MachinePartsController _machineController = default;
@@ -59,6 +65,7 @@ public class PlayerMachineController : MonoBehaviour
         LockOnController.Instance.LockOnSpeed = PartsManager.Instance.AllParamData.GetPartsHead(_buildParam.Head).LockOnSpeed;
         SetParam();
         _machineController.BodyController.UseBooster += UseBooster;
+        _machineController.BodyController.OnDirSet += _playerCamera.SetLockDir;
         _machineController.DamageChecker.ChangeAnTarget();
         StageManager.Instance.OnGameEnd += SetTotalDamage;
         _headTrans.SetParent(_machineController.BodyController.HeadJoint.transform);
@@ -66,6 +73,7 @@ public class PlayerMachineController : MonoBehaviour
         {
             _machineController.BodyController.StartJetBoosters();
         }
+        _currentBooster = _maxBooster;
     }
     private void FixedUpdate()
     {
@@ -95,7 +103,8 @@ public class PlayerMachineController : MonoBehaviour
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.Fire4, _machineController.AttackLeg);
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.Booster, JetBoost);
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.ChangeTarget, ChangeTarget);
-        PlayerInput.SetEnterInput(InputMode.InGame, InputType.ChangeMode, _camera.ChangeMode);
+        //PlayerInput.SetEnterInput(InputMode.InGame, InputType.ChangeMode, _camera.ChangeMode);
+        PlayerInput.SetEnterInput(InputMode.InGame, InputType.ChangeMode, ChangeFloatMode);
     }
     private void LiftInput()
     {
@@ -106,7 +115,8 @@ public class PlayerMachineController : MonoBehaviour
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.Fire4, _machineController.AttackLeg);
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.Booster, JetBoost);
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.ChangeTarget, ChangeTarget);
-        PlayerInput.LiftEnterInput(InputMode.InGame, InputType.ChangeMode, _camera.ChangeMode);
+        //PlayerInput.LiftEnterInput(InputMode.InGame, InputType.ChangeMode, _camera.ChangeMode);
+        PlayerInput.LiftEnterInput(InputMode.InGame, InputType.ChangeMode, ChangeFloatMode);
     }
     private void SetParam()
     {
@@ -127,6 +137,7 @@ public class PlayerMachineController : MonoBehaviour
             {
                 _currentBooster = _maxBooster;
             }
+            _machineController.BodyController.IsBoosterStop = _currentBooster < _boosterConsumption;
             _stageUI.BoosterUpdate(_currentBooster, _maxBooster);
         }
     }
@@ -134,10 +145,20 @@ public class PlayerMachineController : MonoBehaviour
     {
         if (_currentEnergy > 0)
         {
-            _currentEnergy -= _energyConsumption * Time.fixedDeltaTime;
+            float useEnergy = _energyConsumption * _useEnergySpeed * Time.fixedDeltaTime;
+            if (_machineController.IsFall)
+            {
+                useEnergy += useEnergy * _useFlyEnergy;
+            }
+            if (_machineController.IsFloat)
+            {
+                useEnergy += useEnergy * _useFloatEnergy * _machineController.BodyController.FloatSpeed;
+            }
+            _currentEnergy -= useEnergy;
             if (_currentEnergy <= 0)
             {
                 LiftInput();
+                _machineController.PlayDeadEvent();
             }
             _stageUI.EnergyUpdate(_currentEnergy, _maxEnergy);
         }
@@ -182,10 +203,22 @@ public class PlayerMachineController : MonoBehaviour
     public void UseBooster()
     {
         _currentBooster -= _boosterConsumption;
+        _currentEnergy -= _energyConsumption * _useEnergySpeed;
     }
     public void ChangeTarget()
     {
         LockOnController.Instance.ChangeTargetNum();
+    }
+    public void ChangeFloatMode()
+    {
+        if (_machineController.IsFloat)
+        {
+            _machineController.TryGround();
+        }
+        else
+        {
+            _machineController.TryFloat();
+        }
     }
     public void RefillAmmunition(float percent = 0.05f)
     {
@@ -199,6 +232,18 @@ public class PlayerMachineController : MonoBehaviour
     public void RecoveryHp(int point)
     {
         _machineController.DamageChecker.RecoveryHp(point);
+    }
+    public void RecoveryEnergy(float point)
+    {
+        if (_currentEnergy <= 0)
+        {
+            return;
+        }
+        _currentEnergy += point;
+        if (_currentEnergy > _maxEnergy)
+        {
+            _currentEnergy = _maxEnergy;
+        }
     }
     public void EndWaitMode()
     {

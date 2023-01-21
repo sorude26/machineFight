@@ -4758,7 +4758,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 21441683cbeb1e146bdde836b5421d8e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4853,8 +4853,9 @@ MonoBehaviour:
   _rayFrame: 1
   _hitLayer:
     serializedVersion: 2
-    m_Bits: 769
-  _hitEffect: {fileID: 305568019755204397, guid: 1fb6977599568a54b88227de8671b68f, type: 3}
+    m_Bits: 131841
+  _damageType: 1
+  _hitEffect: {fileID: 305568019755204397, guid: 4c30fe1d294b91f4a9f5f34f98de749b, type: 3}
   _penetrate: 0
   _radius: 1
   _hitShakeParam:
@@ -4864,6 +4865,7 @@ MonoBehaviour:
   _gravity: 0
   _seHitID: 8
   _seHitVolume: 0.1
+  _explosionEnd: 0
   _targetlocker: {fileID: 2719698659938529172}
   _homingSpeed: 2
   _homingStartTime: 0.1

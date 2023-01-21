@@ -33,10 +33,17 @@ public class CameraController : MonoBehaviour
         _forwardRot *= Quaternion.Euler(-dir.y * _upSpeed, 0, 0);
         _forwardRot = ClampRotationX(_forwardRot);
     }
+    public void SetLockDir(Vector3 dir)
+    {
+        dir += _cameraTarget.forward;
+        dir.y = 0;
+        _cameraRot = Quaternion.LookRotation(dir);
+        //_cameraTarget.forward = dir;
+    }
     public void ResetLock()
     {
-        _cameraRot = Quaternion.identity;
-        _forwardRot = Quaternion.identity;
+        _cameraRot = _cameraTarget.localRotation;
+        _forwardRot = _forwardTarget.localRotation;
     }
     private Quaternion ClampRotationX(Quaternion angle)
     {

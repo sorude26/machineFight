@@ -14613,14 +14613,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7986155857372268400}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.061048605, y: 0, z: 0, w: 0.99813485}
   m_LocalPosition: {x: 0, y: 0.28, z: 1.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4052949859152166963}
   m_Father: {fileID: 7986155857963883299}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -7, y: 0, z: 0}
 --- !u!1 &7986155857963883297
 GameObject:
   m_ObjectHideFlags: 0
@@ -14680,14 +14680,17 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 7
   _seFireVolume: 0.2
+  _seReloadID: 32
+  _seReloadVolume: 0.2
   _currentAmmunition: 0
   _currentMagazine: 0
   _count: 0
   IsFire: 0
   IsWait: 0
-  _bullet: {fileID: 1233709711767816154, guid: 21422f45a42a25b48be65d96690eb91c, type: 3}
+  _bullet: {fileID: 1233709711767816154, guid: 3bd5cbba453ec514d8094542c8440f75, type: 3}
   _muzzleFlashEffect: {fileID: 4052949859152166964}
   _muzzle: {fileID: 7986155857372268401}
   _bulletParam:
@@ -14705,6 +14708,9 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.02
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &7986155858764926498
 GameObject:
   m_ObjectHideFlags: 0

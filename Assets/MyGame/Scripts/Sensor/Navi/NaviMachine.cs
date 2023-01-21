@@ -29,6 +29,8 @@ namespace MyGame
         [SerializeField]
         private LockOnTarget _bodyTarget = default;
         [SerializeField]
+        private bool _setBoss = default;
+        [SerializeField]
         private GameObject _deadEffct = default;
         [SerializeField]
         private int _deadSEID = 11;
@@ -37,6 +39,8 @@ namespace MyGame
         [SerializeField]
         private float _explosionTime = 3f;
         [SerializeField]
+        private float _activeTime = 0.5f;
+        [SerializeField]
         private ShakeParam _exParam = default;
         [SerializeField]
         private PopController[] _popControllers = default;
@@ -44,6 +48,10 @@ namespace MyGame
         {
             SetRandamBuildDat();
             _machineController.Initialize(_buildParam);
+            if (_setBoss == true)
+            {
+                _machineController.DamageChecker.ChangeBoss();
+            }
             _bodyTarget.SetChecker(_machineController.DamageChecker);
             _machineController.BodyController.LeftHand.WeaponBase.AnLimitAmmunition();
             _machineController.BodyController.RightHand.WeaponBase.AnLimitAmmunition();
@@ -65,6 +73,15 @@ namespace MyGame
             {
                 _timer = 0;
                 _currentDir = NavigationManager.Instance.GetMoveDir(_body, _naviPower);
+            }
+            if (OperationalRangeManager.Instance != null)
+            {
+                var ope = OperationalRangeManager.Instance.transform.position;
+                if (Vector3.Distance(ope, transform.position) > OperationalRangeManager.Instance.DetachmentRange)
+                {
+                    _currentDir = ope - transform.position;
+                    _currentDir.y = 0;
+                }
             }
             Vector3 dir = Vector3.zero;
             if (_currentDir != Vector3.zero)
@@ -130,7 +147,11 @@ namespace MyGame
             {
                 SoundManager.Instance.PlaySE(_deadSEID, _body.position, _seVolume);
             }
+            yield return new WaitForSeconds(_activeTime);
             gameObject.SetActive(false);
+            _machineController.transform.localPosition = Vector3.zero;
+            _machineController.transform.localRotation = Quaternion.identity;
+            _machineController.StartUpMachine();
         }
     }
 }

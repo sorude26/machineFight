@@ -42,12 +42,15 @@ public class TargetMark : MonoBehaviour
             _rect.gameObject.SetActive(_isActive); 
         }
         _rangeText.text = Vector3.Distance(Camera.main.transform.position,Target.transform.position).ToString("F2");
-        _hpText.text = Target.DamageChecker.CurrentHp.ToString();
-        _hpGauge.fillAmount = (float)Target.DamageChecker.CurrentHp / Target.DamageChecker.MaxHp;
-        var ajust = RectTransformUtility.WorldToScreenPoint(MainCameraLocator.MainCamera, Target.transform.position);
-        ajust -= new Vector2(MainCameraLocator.MainCamera.pixelWidth / 2, MainCameraLocator.MainCamera.pixelHeight / 2);
-        _rect.anchoredPosition = ajust;
-        _targetMessage.SetActive(Target.DamageChecker.AddTarget);
-        _bossMessage.SetActive(Target.DamageChecker.BossTarget);
+        if (Target.DamageChecker != null)
+        {
+            _hpText.text = Target.DamageChecker.CurrentHp.ToString();
+            _hpGauge.fillAmount = (float)Target.DamageChecker.CurrentHp / Target.DamageChecker.MaxHp;
+            var ajust = RectTransformUtility.WorldToScreenPoint(MainCameraLocator.MainCamera, Target.transform.position);
+            ajust -= new Vector2(MainCameraLocator.MainCamera.pixelWidth / 2, MainCameraLocator.MainCamera.pixelHeight / 2);
+            _rect.anchoredPosition = ajust;
+            _targetMessage.SetActive(Target.DamageChecker.AddTarget);
+            _bossMessage.SetActive(Target.DamageChecker.BossTarget);
+        }
     }
 }

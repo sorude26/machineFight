@@ -29,6 +29,8 @@ public class LegController : MonoBehaviour, IPartsModel
     [SerializeField]
     private float _effectRange = default;
     [SerializeField]
+    private float _legAttackInterval = 1f;
+    [SerializeField]
     private LayerMask _effectLayer = default;
     public Transform LegBase = default;
     public Transform LockTrans = default;
@@ -37,6 +39,7 @@ public class LegController : MonoBehaviour, IPartsModel
     private LegStateContext _stateContext = default;
     private bool _isJump = false;
     private bool _isStep = false;
+    private float _attackIntervalTimer = 0;
     public bool IsFall { get => _stateContext.IsFall; }
     public bool IsFloat { get => _stateContext.IsFloat; }
     public int ID { get => _id; }
@@ -63,6 +66,10 @@ public class LegController : MonoBehaviour, IPartsModel
                 _floatEffect.transform.position = hit.point;
                 _floatEffect.Play();
             }
+        }
+        if (_attackIntervalTimer > 0)
+        {
+            _attackIntervalTimer -= Time.fixedDeltaTime;
         }
         _isJump = false;
         _isStep = false;
@@ -93,11 +100,23 @@ public class LegController : MonoBehaviour, IPartsModel
     }
     public void Attack()
     {
+        if (_attackIntervalTimer > 0)
+        {
+            return;
+        }
+        _attackIntervalTimer = _legAttackInterval;
         _stateContext.Attack();
     }
     public void PowerDown()
     {
         _stateContext.ChangeToDown();
+    }
+    public void StartUpLeg()
+    {
+        LegBase.localRotation = Quaternion.identity;
+        LockTrans.localRotation = Quaternion.identity;
+        BaseTrans.localRotation = Quaternion.identity;
+        _stateContext.ChangeIdle();
     }
     public void ChangeFloat()
     {

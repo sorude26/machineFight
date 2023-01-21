@@ -7,20 +7,25 @@ using static UnityEngine.GraphicsBuffer;
 public class StageSelectController : MonoBehaviour
 {
     private const float INPUT_SENSITIVITY = 0.8f;
+    private const float SIDE_RANGE = 2f;
+    private const float FORWARD_RANGE = 5f;
     [SerializeField]
     private StageNamePanel _namePanelPrefab = default;
     [SerializeField]
     private float _waitTime = 1f;
     [SerializeField]
+    private float _changetime = 1f;
+    [SerializeField]
     private Transform _base = default;
     [SerializeField]
-    private string[] StageNames = default;
+    private int _changeSEID = 27;
+    [SerializeField]
+    private float _seVolume = 0.2f;
     [SerializeField]
     private StageGuideData[] AllStages = default;
     private string _returnScene = "Home";
     private int _stageMaxNumber = default;
     private int _stageNumber = 0;
-    private float _changetime = 1f;
     private bool _inputStop = false;
     private bool _buttonOn = false;
     private float Angle => 360f / _stageMaxNumber;
@@ -32,8 +37,10 @@ public class StageSelectController : MonoBehaviour
             var p = Instantiate(_namePanelPrefab, _base);
             p.SetPanel(AllStages[i], Quaternion.Euler(0, -Angle * i, 0), _stageMaxNumber);
         }
-        transform.position = Vector3.forward * _stageMaxNumber * 2 - Vector3.forward * 5 + Vector3.up * 2;
+        transform.position = Vector3.forward * _stageMaxNumber * SIDE_RANGE - Vector3.forward * FORWARD_RANGE + Vector3.up * SIDE_RANGE;
         _buttonOn = true;
+        _stageNumber = StageData.StageID;        
+        ChangeStage(_stageNumber);
         yield return new WaitForSeconds(_waitTime);
         _buttonOn = false;
         PlayerInput.Instance.InitializeInput();
@@ -126,8 +133,12 @@ public class StageSelectController : MonoBehaviour
             target = 0;
         }
         var message = new PopUpData(middle: $"{AllStages[target].StageName}へ出撃",sub: "〇：OK",cancel: "×:Cancel");
+        StageData.StageID = _stageNumber;
         StageData.StageLevel = AllStages[target].Level;
-        PopUpMessage.CreatePopUp(message, submitAction: () => SceneChange(AllStages[target].TargetSceneName), cancelAction: () => { _buttonOn = false; });
+        StageData.StageName = AllStages[target].StageName;
+        PopUpMessage.CreatePopUp(message,
+            submitAction: () => SceneChange(AllStages[target].TargetSceneName),
+            cancelAction: () => { _buttonOn = false; });
     }
     private void SceneChange(string target)
     {
@@ -141,12 +152,17 @@ public class StageSelectController : MonoBehaviour
             return;
         }
         _buttonOn = true;
+        StageData.StageID = _stageNumber;
         PlayerInput.Instance.InitializeInput();
         SceneControl.ChangeTargetScene(_returnScene);
     }
     private void ChangeStage(int target)
     {
         transform.rotation = Quaternion.Euler(0, -Angle * target, 0);
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySE(_changeSEID,_seVolume);
+        }
     }
     private void ChangeSelectTarget(int value)
     {

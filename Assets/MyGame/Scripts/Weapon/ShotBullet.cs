@@ -11,6 +11,8 @@ public class ShotBullet : MonoBehaviour
     [SerializeField]
     protected LayerMask _hitLayer = default;
     [SerializeField]
+    private DamageType _damageType = DamageType.Shot;
+    [SerializeField]
     protected GameObject _hitEffect = default;
     [SerializeField]
     protected bool _penetrate = default;
@@ -24,6 +26,8 @@ public class ShotBullet : MonoBehaviour
     protected int _seHitID = 12;
     [SerializeField]
     protected float _seHitVolume = 0.01f;
+    [SerializeField]
+    protected bool _explosionEnd = false;
     protected float _timer = 0f;
     protected float _speed = 5f;
     protected int _power = 1;
@@ -55,6 +59,10 @@ public class ShotBullet : MonoBehaviour
     }
     protected void PlayShake()
     {
+        if (StageManager.InStage == false)
+        {
+            return;
+        }
         StageShakeController.PlayShake(transform.position + _hitShakeParam.Pos, _hitShakeParam.Power, _hitShakeParam.Time);
         if (SoundManager.Instance != null)
         {
@@ -83,6 +91,11 @@ public class ShotBullet : MonoBehaviour
         _timer -= Time.fixedDeltaTime;
         if (_timer <= 0)
         {
+            if (_explosionEnd == true)
+            {
+                HitBullet(transform.position);
+                return;
+            }
             ActiveEnd();
         }
     }
@@ -112,7 +125,7 @@ public class ShotBullet : MonoBehaviour
     {
         if (hit.collider.TryGetComponent(out IDamageApplicable target))
         {
-            target.AddlyDamage(_power);
+            target.AddlyDamage(_power,_damageType);
         }
         HitBullet(hit.point);
     }

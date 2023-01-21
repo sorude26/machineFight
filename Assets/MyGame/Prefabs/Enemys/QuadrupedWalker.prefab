@@ -1118,6 +1118,22 @@ MonoBehaviour:
   _anSetWeapon: 0
   _shoulderBoosters: {fileID: 8130038528080731963}
   _partsColorChanger: {fileID: 0}
+  _handWeaponParam:
+    Power: 0
+    Speed: 0
+    MaxAmmunitionCapacity: 0
+    MagazineCount: 0
+    ShotCount: 0
+    SubCount: 0
+    TriggerInterval: 0
+    ShotInterval: 0
+    Diffusivity: 0
+    ExPower: 0
+    ExCount: 0
+    ExRadius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
   PartsRotaionSpeed: 0
   ReloadSpeed: 1
   ReloadTime: 2
@@ -7578,7 +7594,10 @@ MonoBehaviour:
   _actionParam:
     WalkSpeed: 10
     WalkTurnSpeed: 10
-    JumpPower: 650
+    JumpPower: 150
+    BoostMoveSpeed: 0
+    BoostUpPower: 0
+    BoostJetPower: 0
     StepUpPower: 50
     DotSub: 0.6
     AnimeChangeSpeed: 0.3
@@ -14727,6 +14746,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -14754,6 +14774,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.05
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &2300587975629762508
 GameObject:
   m_ObjectHideFlags: 0
@@ -15240,6 +15263,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -15473,6 +15497,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -15500,6 +15525,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.05
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &2300587976271023872
 GameObject:
   m_ObjectHideFlags: 0
@@ -15557,6 +15585,22 @@ MonoBehaviour:
   _anSetWeapon: 0
   _shoulderBoosters: {fileID: 2300587976082321507}
   _partsColorChanger: {fileID: 0}
+  _handWeaponParam:
+    Power: 0
+    Speed: 0
+    MaxAmmunitionCapacity: 0
+    MagazineCount: 0
+    ShotCount: 0
+    SubCount: 0
+    TriggerInterval: 0
+    ShotInterval: 0
+    Diffusivity: 0
+    ExPower: 0
+    ExCount: 0
+    ExRadius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
   PartsRotaionSpeed: 0
   ReloadSpeed: 1
   ReloadTime: 2
@@ -26199,6 +26243,8 @@ MonoBehaviour:
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls: []
+  _defaultLayerName: AnHitMoveObj
+  _deadLayerName: AnHitMoveObj
 --- !u!54 &3323158059778141106
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -26316,6 +26362,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -36532,6 +36579,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -36559,6 +36607,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.05
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &3323158060070684333
 GameObject:
   m_ObjectHideFlags: 0
@@ -36791,10 +36842,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 3323158060113915658}
   _playerLock: {fileID: 3323158059898377643}
   _lockBody: {fileID: 3323158061160460183}
   _lockSpeed: 8
+  _cameraController: {fileID: 0}
 --- !u!1 &3323158060183020853
 GameObject:
   m_ObjectHideFlags: 0
@@ -42083,6 +42138,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -42110,6 +42166,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.02
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &3323158060354715835
 GameObject:
   m_ObjectHideFlags: 0
@@ -42232,6 +42291,22 @@ MonoBehaviour:
   _anSetWeapon: 0
   _shoulderBoosters: {fileID: 3323158060835912671}
   _partsColorChanger: {fileID: 0}
+  _handWeaponParam:
+    Power: 0
+    Speed: 0
+    MaxAmmunitionCapacity: 0
+    MagazineCount: 0
+    ShotCount: 0
+    SubCount: 0
+    TriggerInterval: 0
+    ShotInterval: 0
+    Diffusivity: 0
+    ExPower: 0
+    ExCount: 0
+    ExRadius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
   PartsRotaionSpeed: 3
   ReloadSpeed: 1
   ReloadTime: 2
@@ -42295,6 +42370,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -42322,6 +42398,9 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &3323158060412968327
 GameObject:
   m_ObjectHideFlags: 0
@@ -47255,10 +47334,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 3323158060437388486}
   _playerLock: {fileID: 3323158060774647805}
   _lockBody: {fileID: 3323158060354715832}
   _lockSpeed: 8
+  _cameraController: {fileID: 0}
 --- !u!1 &3323158060446733089
 GameObject:
   m_ObjectHideFlags: 0
@@ -52550,6 +52633,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -52577,6 +52661,9 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &3323158060609288380
 GameObject:
   m_ObjectHideFlags: 0
@@ -52779,6 +52866,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -52806,6 +52894,9 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &3323158060721339505
 GameObject:
   m_ObjectHideFlags: 0
@@ -58389,6 +58480,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -63568,6 +63660,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -63595,6 +63688,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.02
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &3323158061045258919
 GameObject:
   m_ObjectHideFlags: 0
@@ -63718,6 +63814,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -73584,6 +73681,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -73611,6 +73709,9 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &3323158061173908341
 GameObject:
   m_ObjectHideFlags: 0
@@ -73863,6 +73964,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -73890,6 +73992,9 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &3323158061346586262
 GameObject:
   m_ObjectHideFlags: 0
@@ -78947,6 +79052,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -79222,6 +79328,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -79249,6 +79356,9 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &3323158061543537808
 GameObject:
   m_ObjectHideFlags: 0
@@ -79389,6 +79499,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -79416,6 +79527,9 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &3323158061573487430
 GameObject:
   m_ObjectHideFlags: 0
@@ -89316,6 +89430,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -89343,6 +89458,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.05
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &3323158061647059151
 GameObject:
   m_ObjectHideFlags: 0
@@ -89483,6 +89601,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -89510,6 +89629,9 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &3323158061726695814
 GameObject:
   m_ObjectHideFlags: 0
@@ -89659,10 +89781,12 @@ MonoBehaviour:
   _buildSet: []
   _randamSet: 0
   _bodyTarget: {fileID: 3323158061446483418}
-  _deadEffct: {fileID: 5285524602227699168, guid: 13820972174337440960fa1dc6f4f234, type: 3}
+  _setBoss: 0
+  _deadEffct: {fileID: 5264996940241602765, guid: cccc861267696d94d8c910bf54b5517c, type: 3}
   _deadSEID: 11
   _seVolume: 1
-  _explosionTime: 3
+  _explosionTime: 0.5
+  _activeTime: 2
   _exParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 150
@@ -89686,7 +89810,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2560
   _rayWide: 1.5
-  LockOnRange: 900
+  LockOnRange: 450
   _attackMaxInterval: 3
   _attackIntervalDiffusivity: 2
   _weapon: {fileID: 0}
@@ -89729,10 +89853,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 3323158060446733118}
   _playerLock: {fileID: 3323158060728981784}
   _lockBody: {fileID: 3323158059862523864}
   _lockSpeed: 1
+  _cameraController: {fileID: 0}
 --- !u!114 &3323158061770436923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95396,7 +95524,7 @@ MonoBehaviour:
   _bodyAnime: {fileID: 0}
   _partsColorChanger: {fileID: 0}
   _boosterSEID: 18
-  _boosterVolume: 0.02
+  _boosterSEVolume: 0.1
   BodyBase: {fileID: 1928275496986771795}
   Lock: {fileID: 3323158059862523864}
   AttackTarget: {fileID: 0}
@@ -96946,6 +97074,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -96973,6 +97102,9 @@ MonoBehaviour:
   _triggerInterval: 0.1
   _shotInterval: 0.02
   _diffusivity: 0.04
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &7437202767714785110
 GameObject:
   m_ObjectHideFlags: 0
@@ -99583,6 +99715,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ECannon2 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8274603079834872995, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 8274603080030523976, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: _bullet
       value: 
@@ -99717,6 +99853,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ECannon2 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8274603079834872995, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 8274603080030523976, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: _bullet
       value: 
@@ -99779,9 +99919,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3879943064098298019}
     m_Modifications:
+    - target: {fileID: 34756588678559410, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 34756588678559410, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 34756588678559410, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 940826051444568550, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1289360327987599898, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1289360327987599898, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1289360327987599898, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689357350555939110, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689357350555939110, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1689357350555939110, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1949158812376476620, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: m_Center.z
@@ -99791,6 +99967,50 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2218889582348017085, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218889582348017085, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218889582348017085, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5084306370099877693, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5084306370099877693, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5084306370099877693, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.76295805
+      objectReference: {fileID: 0}
+    - target: {fileID: 5084306370099877693, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5158859141426113247, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5158859141426113247, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5158859141426113247, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.76295805
+      objectReference: {fileID: 0}
+    - target: {fileID: 5158859141426113247, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5910467507140225318, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: m_Size.z
       value: 7.73
@@ -99798,6 +100018,34 @@ PrefabInstance:
     - target: {fileID: 5910467507140225318, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: m_Center.z
       value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5994275412269765659, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5994275412269765659, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5994275412269765659, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.76295805
+      objectReference: {fileID: 0}
+    - target: {fileID: 5994275412269765659, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467758548643676736, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467758548643676736, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467758548643676736, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7893059854869152065, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: m_Enabled
@@ -100003,6 +100251,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 1.9399983
       objectReference: {fileID: 0}
+    - target: {fileID: 8275030468442905362, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275030468442905362, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275030468442905362, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.76295805
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275030468442905362, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
 --- !u!1 &7870074684094754559 stripped
@@ -100188,6 +100452,10 @@ PrefabInstance:
     - target: {fileID: 8274603079834872995, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: m_Name
       value: ECannon2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274603079834872995, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8274603080030523976, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: _bullet
@@ -100572,6 +100840,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ECannon2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8274603079834872995, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 8274603080030523976, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: _bullet
       value: 
@@ -100785,6 +101057,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ECannon2
       objectReference: {fileID: 0}
+    - target: {fileID: 8274603079834872995, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 8274603080030523976, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: _bullet
       value: 
@@ -100918,6 +101194,10 @@ PrefabInstance:
     - target: {fileID: 8274603079834872995, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: m_Name
       value: ECannon2 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274603079834872995, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8274603080030523976, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: _bullet
@@ -101472,6 +101752,18 @@ PrefabInstance:
     - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
       propertyPath: _severelyDamage
       value: 6000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
+      propertyPath: _damageRateData.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
+      propertyPath: _damageRateData.Array.data[0].Rate
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
+      propertyPath: _damageRateData.Array.data[0].Type
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
       propertyPath: _onDeadEvent.m_PersistentCalls.m_Calls.Array.size

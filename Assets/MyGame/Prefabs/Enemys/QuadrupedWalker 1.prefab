@@ -1094,6 +1094,22 @@ MonoBehaviour:
   _anSetWeapon: 0
   _shoulderBoosters: {fileID: 8130038528080731963}
   _partsColorChanger: {fileID: 0}
+  _handWeaponParam:
+    Power: 0
+    Speed: 0
+    MaxAmmunitionCapacity: 0
+    MagazineCount: 0
+    ShotCount: 0
+    SubCount: 0
+    TriggerInterval: 0
+    ShotInterval: 0
+    Diffusivity: 0
+    ExPower: 0
+    ExCount: 0
+    ExRadius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
   PartsRotaionSpeed: 3
   ReloadSpeed: 1
   ReloadTime: 2
@@ -2692,7 +2708,10 @@ MonoBehaviour:
   _actionParam:
     WalkSpeed: 10
     WalkTurnSpeed: 10
-    JumpPower: 650
+    JumpPower: 150
+    BoostMoveSpeed: 0
+    BoostUpPower: 0
+    BoostJetPower: 0
     StepUpPower: 50
     DotSub: 0.6
     AnimeChangeSpeed: 0.3
@@ -9839,6 +9858,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -9866,6 +9886,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.05
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &2300587975629762508
 GameObject:
   m_ObjectHideFlags: 0
@@ -10352,6 +10375,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -10585,6 +10609,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -10612,6 +10637,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.05
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &2300587976271023872
 GameObject:
   m_ObjectHideFlags: 0
@@ -10670,6 +10698,22 @@ MonoBehaviour:
   _anSetWeapon: 0
   _shoulderBoosters: {fileID: 2300587976082321507}
   _partsColorChanger: {fileID: 0}
+  _handWeaponParam:
+    Power: 0
+    Speed: 0
+    MaxAmmunitionCapacity: 0
+    MagazineCount: 0
+    ShotCount: 0
+    SubCount: 0
+    TriggerInterval: 0
+    ShotInterval: 0
+    Diffusivity: 0
+    ExPower: 0
+    ExCount: 0
+    ExRadius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
   PartsRotaionSpeed: 3
   ReloadSpeed: 1
   ReloadTime: 2
@@ -16420,6 +16464,8 @@ MonoBehaviour:
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls: []
+  _defaultLayerName: AnHitMoveObj
+  _deadLayerName: AnHitMoveObj
 --- !u!54 &3323158059778141106
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16537,6 +16583,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -21698,6 +21745,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -21725,6 +21773,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.05
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &3323158060070684333
 GameObject:
   m_ObjectHideFlags: 0
@@ -22119,6 +22170,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -22146,6 +22198,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.02
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &3323158060358764866
 GameObject:
   m_ObjectHideFlags: 0
@@ -22233,6 +22288,22 @@ MonoBehaviour:
   _anSetWeapon: 0
   _shoulderBoosters: {fileID: 3323158060835912671}
   _partsColorChanger: {fileID: 0}
+  _handWeaponParam:
+    Power: 0
+    Speed: 0
+    MaxAmmunitionCapacity: 0
+    MagazineCount: 0
+    ShotCount: 0
+    SubCount: 0
+    TriggerInterval: 0
+    ShotInterval: 0
+    Diffusivity: 0
+    ExPower: 0
+    ExCount: 0
+    ExRadius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
   PartsRotaionSpeed: 3
   ReloadSpeed: 1
   ReloadTime: 2
@@ -23103,6 +23174,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -28120,6 +28192,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -28147,6 +28220,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.02
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &3323158061045258919
 GameObject:
   m_ObjectHideFlags: 0
@@ -38495,6 +38571,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -38522,6 +38599,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.05
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &3323158061726695814
 GameObject:
   m_ObjectHideFlags: 0
@@ -38671,10 +38751,12 @@ MonoBehaviour:
   _buildSet: []
   _randamSet: 0
   _bodyTarget: {fileID: 3323158061446483418}
-  _deadEffct: {fileID: 5285524602227699168, guid: 13820972174337440960fa1dc6f4f234, type: 3}
+  _setBoss: 0
+  _deadEffct: {fileID: 5264996940241602765, guid: cccc861267696d94d8c910bf54b5517c, type: 3}
   _deadSEID: 11
   _seVolume: 1
-  _explosionTime: 3
+  _explosionTime: 0.5
+  _activeTime: 2
   _exParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 150
@@ -38698,7 +38780,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2560
   _rayWide: 1.5
-  LockOnRange: 900
+  LockOnRange: 450
   _attackMaxInterval: 3
   _attackIntervalDiffusivity: 2
   _weapon: {fileID: 0}
@@ -38729,10 +38811,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 3323158060446733118}
   _playerLock: {fileID: 3323158060728981784}
   _lockBody: {fileID: 3323158059862523864}
   _lockSpeed: 1
+  _cameraController: {fileID: 0}
 --- !u!114 &3323158061770436923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44232,7 +44318,7 @@ MonoBehaviour:
   _bodyAnime: {fileID: 0}
   _partsColorChanger: {fileID: 0}
   _boosterSEID: 18
-  _boosterVolume: 0.02
+  _boosterSEVolume: 0.1
   BodyBase: {fileID: 1928275496986771795}
   Lock: {fileID: 3323158059862523864}
   AttackTarget: {fileID: 0}
@@ -44653,6 +44739,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -44680,6 +44767,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &4124484765333968432
 GameObject:
   m_ObjectHideFlags: 0
@@ -44789,6 +44879,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -44816,6 +44907,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &4124484765486518403
 GameObject:
   m_ObjectHideFlags: 0
@@ -44925,6 +45019,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -44952,6 +45047,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &4124484765531224462
 GameObject:
   m_ObjectHideFlags: 0
@@ -45142,6 +45240,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -45169,6 +45268,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &4124484766145943390
 GameObject:
   m_ObjectHideFlags: 0
@@ -45278,6 +45380,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -45305,6 +45408,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &4124484766427653428
 GameObject:
   m_ObjectHideFlags: 0
@@ -45414,6 +45520,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -45441,6 +45548,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &4124484766710809119
 GameObject:
   m_ObjectHideFlags: 0
@@ -45506,6 +45616,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -56191,6 +56302,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -56317,6 +56429,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -56344,6 +56457,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &5945558380627826510
 GameObject:
   m_ObjectHideFlags: 0
@@ -56453,6 +56569,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -56480,6 +56597,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &5945558381003664879
 GameObject:
   m_ObjectHideFlags: 0
@@ -56589,6 +56709,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -56616,6 +56737,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &5945558381119355294
 GameObject:
   m_ObjectHideFlags: 0
@@ -56806,6 +56930,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -56833,6 +56958,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &5945558381425415712
 GameObject:
   m_ObjectHideFlags: 0
@@ -56942,6 +57070,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -56969,6 +57098,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &5945558382061919030
 GameObject:
   m_ObjectHideFlags: 0
@@ -57159,6 +57291,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -57186,6 +57319,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &6769101751502964476
 GameObject:
   m_ObjectHideFlags: 0
@@ -57625,6 +57761,7 @@ MonoBehaviour:
   _weaponFireEvent:
     m_PersistentCalls:
       m_Calls: []
+  _fireDelay: 0
   _seFireID: 3
   _seFireVolume: 0.2
   _seReloadID: 32
@@ -57652,6 +57789,9 @@ MonoBehaviour:
   _triggerInterval: 0.1
   _shotInterval: 0.02
   _diffusivity: 0.04
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &7437202767714785110
 GameObject:
   m_ObjectHideFlags: 0
@@ -60262,6 +60402,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ECannon2 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8274603079834872995, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 8274603080030523976, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: _bullet
       value: 
@@ -60395,6 +60539,10 @@ PrefabInstance:
     - target: {fileID: 8274603079834872995, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: m_Name
       value: ECannon2 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274603079834872995, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8274603080030523976, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: _bullet
@@ -60624,6 +60772,10 @@ PrefabInstance:
     - target: {fileID: 8274603079834872995, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: m_Name
       value: ECannon2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274603079834872995, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8274603080030523976, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: _bullet
@@ -61008,6 +61160,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ECannon2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8274603079834872995, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 8274603080030523976, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: _bullet
       value: 
@@ -61221,6 +61377,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ECannon2
       objectReference: {fileID: 0}
+    - target: {fileID: 8274603079834872995, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 8274603080030523976, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: _bullet
       value: 
@@ -61354,6 +61514,10 @@ PrefabInstance:
     - target: {fileID: 8274603079834872995, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: m_Name
       value: ECannon2 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274603079834872995, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8274603080030523976, guid: 4050a1dcc818157499dfa2c91f848bf7, type: 3}
       propertyPath: _bullet
@@ -61908,6 +62072,18 @@ PrefabInstance:
     - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
       propertyPath: _severelyDamage
       value: 6000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
+      propertyPath: _damageRateData.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
+      propertyPath: _damageRateData.Array.data[0].Rate
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
+      propertyPath: _damageRateData.Array.data[0].Type
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2258402899727191539, guid: 774ddf173fcb4334d9185a6f0785da78, type: 3}
       propertyPath: _onDeadEvent.m_PersistentCalls.m_Calls.Array.size

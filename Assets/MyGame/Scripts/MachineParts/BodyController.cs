@@ -8,6 +8,7 @@ public class BodyController : MonoBehaviour, IPartsModel
 {
     private const float ATTACK_ANGLE = 0.6f;
     private const float FRONT_ANGLE = 0.6f;
+    private const float UP_BOOSTER_TIME = 0.6f;
     private const float FLOAT_SPEED_MIN = 1.5f;
     private const float FLOAT_SPEED_DESKTOP = 2.0f;
     private const float FLOAT_SPEED_MAX = 3.0f;
@@ -47,6 +48,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     private string _rPAttack = "PunchR";
     private float _changeTime = 0.1f;
     private bool _isShoot = false;
+    private bool _isDown = false;
     private bool _isInitialized = false;
     private float _jetTimer = 0;
     private float _floatSpeed = FLOAT_SPEED_DESKTOP;
@@ -57,7 +59,10 @@ public class BodyController : MonoBehaviour, IPartsModel
     public Transform AttackTarget = null;
     public bool IsDown = false;
     public event Action UseBooster = default;
+    public event Action<Vector3> OnDirSet = default;
     public int ID { get => _id; }
+    public bool IsBoosterStop { get; set; }
+    public float FloatSpeed { get => _floatSpeed; }
     public Transform HeadJoint { get => _headJoint; }
     public DamageChecker DamageChecker { get => _damageChecker; }
     public BackPackController BackPack { get => _backPack; }
@@ -239,6 +244,7 @@ public class BodyController : MonoBehaviour, IPartsModel
             return;
         }
         UseBooster?.Invoke();
+        _jetTimer = UP_BOOSTER_TIME;
         if (_boster != null)
         {
             if (_boster.IsBoost == false)
@@ -322,6 +328,15 @@ public class BodyController : MonoBehaviour, IPartsModel
         _lHand.ShoulderBoost.MainBoost();
         _rHand.ShoulderBoost.MainBoost();
     }
+    public void StartFloatBoosters()
+    {
+        foreach (var booster in _boosters)
+        {
+            booster.FloatBoost();
+        }
+        _lHand.ShoulderBoost.FloatBoost();
+        _rHand.ShoulderBoost.FloatBoost();
+    }
     private void StartBackBooster()
     {
         foreach (var booster in _boosters)
@@ -355,6 +370,16 @@ public class BodyController : MonoBehaviour, IPartsModel
         }
         _lHand.ShoulderBoost.StopBooster();
         _rHand.ShoulderBoost.StopBooster();
+        StopFloatBoosters();
+    }
+    public void StopFloatBoosters()
+    {
+        foreach (var booster in _boosters)
+        {
+            booster.StopFloatBoost();
+        }
+        _lHand.ShoulderBoost.StopFloatBoost();
+        _rHand.ShoulderBoost.StopFloatBoost();
     }
     #endregion
     public void BackPackBurst()
@@ -413,21 +438,32 @@ public class BodyController : MonoBehaviour, IPartsModel
             }
         }
     }
-    private void MeleeAttackMove()
+    public void MeleeAttackMove(float value = 1f, Vector3 addDir = default)
     {
+        if (IsBoosterStop == true)
+        {
+            return;
+        }
+        UseBooster?.Invoke();
         StartMainBooster();
         Vector3 dir = Lock.forward;
         if (AttackTarget != null)
         {
             dir = AttackTarget.position - transform.position;
         }
-        _moveController.VelocityMove(dir.normalized * _param.JetPower);
+        OnDirSet?.Invoke(dir);
+        _moveController.VelocityMove(dir.normalized * _param.JetPower * value + addDir * _param.JetPower);
     }
     #endregion
     public void DestroyBody()
     {
         OnBodyDestroy?.Invoke();
         StopBooster();
+    }
+    public void StartUpBody()
+    {
+        BodyBase.localRotation = Quaternion.identity;
+        Lock.localRotation = Quaternion.identity;
     }
 }
 

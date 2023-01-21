@@ -29,6 +29,8 @@ public class HandController : MonoBehaviour, IPartsModel
     private BoosterController _shoulderBoosters = default;
     [SerializeField]
     private PartsColorChanger _partsColorChanger = default;
+    [SerializeField]
+    private WeaponParam _handWeaponParam = default;
     private float _changeTime = 0.1f;
     private string _reloadName = "Reload";
     private string _gholdName = "HandWeaponAim";
@@ -53,12 +55,12 @@ public class HandController : MonoBehaviour, IPartsModel
     public bool IsAttack { get; private set; }
     public WeaponBase WeaponBase { get => _weapon; }
     public BoosterController ShoulderBoost { get => _shoulderBoosters; }
-    public WeaponParam WeaponParam { get; set; }
+    public WeaponParam WeaponParam { get => _handWeaponParam; set => _handWeaponParam = value; }
     public void InitializeHand()
     {
         if (_anSetWeapon == true)
         {
-            _weapon.SetParam(WeaponParam);
+            _weapon.SetParam(_handWeaponParam);
             _weapon.Initialize();
         }
     }
@@ -236,5 +238,18 @@ public class HandController : MonoBehaviour, IPartsModel
         }
         IsAttack = false;
         _isMeleeAttack = false;
+    }
+    private void OnEnable()
+    {
+        if (_weapon != null)
+        {
+            SetHoldAnim();
+        }
+        IsAttack = false;
+        _isMeleeAttack = false;
+        _isShooting = false;
+        _firstShot = false;
+        _isReload = false;
+        ResetAngle();
     }
 }

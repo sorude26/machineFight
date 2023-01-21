@@ -284,7 +284,6 @@ public class CustomizeMenu : MonoBehaviour
     /// <param name="category">変更先のカテゴリー</param>
     public IEnumerator CategoryChange(PartsCategory category)
     {
-
         ButtonSelectController.OnButtonNonSelect();
         ButtonDestory(_content);
         _preButton = null;
@@ -310,6 +309,10 @@ public class CustomizeMenu : MonoBehaviour
     /// </summary>
     public void CategoryChangeNext()
     {
+        if (gameObject.activeInHierarchy == false)
+        {
+            return;
+        }
         int nextcategoryNum = (int)_category + 1;
         if (nextcategoryNum >= Enum.GetValues(typeof(PartsCategory)).Length)
         {
@@ -327,6 +330,10 @@ public class CustomizeMenu : MonoBehaviour
     /// </summary>
     public void CategoryChangePre()
     {
+        if (gameObject.activeInHierarchy == false)
+        {
+            return;
+        }
         int nextcategoryNum = (int)_category - 1;
         if (nextcategoryNum < 0 )
         {

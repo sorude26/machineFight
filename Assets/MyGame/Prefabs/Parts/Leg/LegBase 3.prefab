@@ -10359,7 +10359,7 @@ GameObject:
   - component: {fileID: 5096686314346645097}
   - component: {fileID: 5096686314346645096}
   m_Layer: 0
-  m_Name: ArmorLegTop
+  m_Name: CoverLegTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10406,7 +10406,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fd2efd973630f6548b84601f4dda00c1, type: 2}
+  - {fileID: 2100000, guid: fc1d7b5a95a759e4b88e78a95c4b0f4e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10501,6 +10501,9 @@ MonoBehaviour:
     WalkSpeed: 6
     WalkTurnSpeed: 3
     JumpPower: 25
+    BoostMoveSpeed: 0
+    BoostUpPower: 0
+    BoostJetPower: 0
     StepUpPower: 3
     DotSub: 0.6
     AnimeChangeSpeed: 0.3
@@ -10531,7 +10534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _armors:
   - {fileID: 4610173856979382241}
-  - {fileID: 5096686314346645096}
+  - {fileID: 4287419963931839391}
   - {fileID: 5622153722540706057}
   - {fileID: 5096686315587325585}
   - {fileID: 5096686314298697871}
@@ -10541,9 +10544,9 @@ MonoBehaviour:
   - {fileID: 2366928274815042304}
   - {fileID: 5096686314938997063}
   - {fileID: 5096686314273903017}
-  - {fileID: 4287419963931839391}
   _eyes: []
-  _covers: []
+  _covers:
+  - {fileID: 5096686314346645096}
   _startColorSetMode: 0
   _startColorID: 0
 --- !u!1 &5096686314411365425
@@ -13745,8 +13748,16 @@ PrefabInstance:
       value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: _shake.Time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _onBladeTime
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: _shake.Power
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866349, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: m_RootOrder

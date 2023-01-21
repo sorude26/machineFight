@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 91203420766616681}
   - component: {fileID: 3882718476661444613}
   - component: {fileID: 5527327552995616770}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Shiled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,6 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 3000
   _severelyDamage: 5000
+  _damageRateData: []
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls:
@@ -571,7 +572,7 @@ GameObject:
   - component: {fileID: 5610817230498229333}
   - component: {fileID: 4187164594372896402}
   - component: {fileID: 3983808904328059375}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -733,7 +734,7 @@ GameObject:
   - component: {fileID: 8137913314812724399}
   - component: {fileID: 4174350661315140206}
   - component: {fileID: 4760693363112142194}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -810,9 +811,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2011053484314535579}
     m_Modifications:
+    - target: {fileID: 1214520971805673365, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: m_Name
       value: Blade (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _radius
@@ -895,9 +904,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2011053484314535579}
     m_Modifications:
+    - target: {fileID: 1214520971805673365, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: m_Name
       value: Blade (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _radius
@@ -1156,9 +1173,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2011053484314535579}
     m_Modifications:
+    - target: {fileID: 1214520971805673365, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: m_Name
       value: Blade (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _radius
@@ -1241,9 +1266,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2011053484314535579}
     m_Modifications:
+    - target: {fileID: 1214520971805673365, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: m_Name
       value: Blade
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _radius
@@ -1326,9 +1359,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2011053484314535579}
     m_Modifications:
+    - target: {fileID: 1214520971805673365, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: m_Name
       value: Blade (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _radius
@@ -1411,9 +1452,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2011053484314535579}
     m_Modifications:
+    - target: {fileID: 1214520971805673365, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: m_Name
       value: Blade (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3268215715362866347, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 3268215715362866348, guid: fc73f0001e2b3ca40b5d19a7a5b942b6, type: 3}
       propertyPath: _radius

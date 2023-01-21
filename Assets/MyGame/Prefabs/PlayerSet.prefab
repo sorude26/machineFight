@@ -311,6 +311,9 @@ MonoBehaviour:
   _triggerInterval: 0.1
   _shotInterval: 0.02
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &1402238405019569810
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,6 +1428,9 @@ MonoBehaviour:
     WalkSpeed: 15
     WalkTurnSpeed: 4
     JumpPower: 320
+    BoostMoveSpeed: 0
+    BoostUpPower: 0
+    BoostJetPower: 0
     StepUpPower: 0
     DotSub: 0.6
     AnimeChangeSpeed: 0.3
@@ -1435,6 +1441,7 @@ MonoBehaviour:
   _partsColorChanger: {fileID: 0}
   _floatEffect: {fileID: 0}
   _effectRange: 0
+  _legAttackInterval: 1
   _effectLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -3779,6 +3786,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.1
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &4727604563780735822
 GameObject:
   m_ObjectHideFlags: 0
@@ -9570,6 +9580,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _defaultLayerName: MoveObj
+  _deadLayerName: AnHitMoveObj
 --- !u!114 &5356225296424533023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9591,7 +9603,7 @@ MonoBehaviour:
     Booster: 1
     LWeapon: 0
     RWeapon: 2
-    ColorId: 0
+    ColorId: 3
   _machineBase: {fileID: 5356225296669652152}
   _lockTrans: {fileID: 5356225296124549003}
   _aimTrans: {fileID: 5356225295753385710}
@@ -9947,7 +9959,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.03
+      scalar: 0.07
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -14596,7 +14608,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 0b917f0295411b14fa4e8edcf1ba9b25, type: 2}
-  - {fileID: 2100000, guid: 0b917f0295411b14fa4e8edcf1ba9b25, type: 2}
+  - {fileID: 2100000, guid: ba933ad5fce2a93498a9e027de3d9c68, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14630,13 +14642,13 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 0
+  m_UseCustomVertexStreams: 1
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
-  m_VertexStreams: 00010304
+  m_VertexStreams: 000304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -14666,8 +14678,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5356225296669652153}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1307}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5356225296424532992}
@@ -14687,24 +14699,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e94741cbd19654a940d7d50cf505f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _useEnergySpeed: 5
+  _useFlyEnergy: 1
+  _useFloatEnergy: 3
   _playerCamera: {fileID: 5356225296124549002}
   _machineController: {fileID: 5356225296424533020}
   _targetMark: {fileID: 6392848213848057383}
   _buildParam:
-    Head: 2
+    Head: 6
     Body: 3
-    LHand: 2
-    RHand: 2
-    Leg: 5
-    Booster: 0
+    LHand: 1
+    RHand: 1
+    Leg: 3
+    Booster: 7
     LWeapon: 0
-    RWeapon: 1
-    ColorId: 0
+    RWeapon: 2
+    ColorId: 1
   _stageUI: {fileID: 7591127043324781682}
   _headTrans: {fileID: 5356225295787531925}
   _camera: {fileID: 5356225297005740862}
-  _startWaitMode: 0
-  _machineRB: {fileID: 0}
+  _startWaitMode: 1
+  _machineRB: {fileID: 5356225296424533022}
 --- !u!1 &5356225296720287310
 GameObject:
   m_ObjectHideFlags: 0
@@ -15051,7 +15066,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -19641,7 +19656,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0b917f0295411b14fa4e8edcf1ba9b25, type: 2}
+  - {fileID: 2100000, guid: ba933ad5fce2a93498a9e027de3d9c68, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19746,6 +19761,10 @@ MonoBehaviour:
   _minDis: 2.5
   _normalPos: {x: 0, y: 3, z: -10}
   _changePos: {x: 0, y: 0.5, z: 0.5}
+  _maxRange: 20
+  _mineRange: 0.2
+  _maxSpeed: 50
+  _minSpeed: 0.2
 --- !u!1 &5356225297158101024
 GameObject:
   m_ObjectHideFlags: 0
@@ -19758,7 +19777,8 @@ GameObject:
   - component: {fileID: 5356225297158101026}
   - component: {fileID: 5356225297158101027}
   - component: {fileID: 9028637099264807674}
-  m_Layer: 0
+  - component: {fileID: 881858774}
+  m_Layer: 17
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -19803,16 +19823,16 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 4000
   field of view: 60
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 16151
+    m_Bits: 212759
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 8ecdaca211e75564298267054c27f546, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -19842,6 +19862,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84523ac16136af2408ffbd6088b54af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &881858774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5356225297158101024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 5356225297158101029}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 131072
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &5832666064073581100
 GameObject:
   m_ObjectHideFlags: 0
@@ -20169,6 +20249,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 5970136585654742437}
   _playerLock: {fileID: 5970136584454378548}
   _lockBody: {fileID: 5970136585068117849}
@@ -20810,6 +20893,9 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &6511565433378302928
 GameObject:
   m_ObjectHideFlags: 0
@@ -25760,6 +25846,9 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &6511565433423319385
 GameObject:
   m_ObjectHideFlags: 0
@@ -30825,6 +30914,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.05
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &6511565433471750339
 GameObject:
   m_ObjectHideFlags: 0
@@ -30943,6 +31035,9 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &6511565433482439686
 GameObject:
   m_ObjectHideFlags: 0
@@ -36289,6 +36384,9 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &6511565433778664419
 GameObject:
   m_ObjectHideFlags: 0
@@ -36457,6 +36555,9 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &6511565433830817243
 GameObject:
   m_ObjectHideFlags: 0
@@ -51736,6 +51837,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.01
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &6511565434059772467
 GameObject:
   m_ObjectHideFlags: 0
@@ -52164,6 +52268,7 @@ MonoBehaviour:
   - {fileID: 5947776478910222001}
   - {fileID: 5947776477849896125}
   - {fileID: 5947776478727883710}
+  _froatBoosters: []
 --- !u!1 &6511565434185791338
 GameObject:
   m_ObjectHideFlags: 0
@@ -57459,6 +57564,9 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &6511565434383003292
 GameObject:
   m_ObjectHideFlags: 0
@@ -57853,6 +57961,9 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &6511565434436883866
 GameObject:
   m_ObjectHideFlags: 0
@@ -58147,6 +58258,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 6511565434522790992}
   _playerLock: {fileID: 6511565434185791339}
   _lockBody: {fileID: 6511565434704269358}
@@ -63153,6 +63267,22 @@ MonoBehaviour:
   _anSetWeapon: 0
   _shoulderBoosters: {fileID: 6511565434115877705}
   _partsColorChanger: {fileID: 0}
+  _handWeaponParam:
+    Power: 0
+    Speed: 0
+    MaxAmmunitionCapacity: 0
+    MagazineCount: 0
+    ShotCount: 0
+    SubCount: 0
+    TriggerInterval: 0
+    ShotInterval: 0
+    Diffusivity: 0
+    ExPower: 0
+    ExCount: 0
+    ExRadius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
   PartsRotaionSpeed: 3
   ReloadSpeed: 1
   ReloadTime: 2
@@ -63244,6 +63374,9 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.03
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &6511565434646285585
 GameObject:
   m_ObjectHideFlags: 0
@@ -68392,6 +68525,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.01
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &6511565434711460347
 GameObject:
   m_ObjectHideFlags: 0
@@ -73498,6 +73634,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 6511565434871431068}
   _playerLock: {fileID: 6511565435053393213}
   _lockBody: {fileID: 6511565433900384001}
@@ -73591,6 +73730,9 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.05
+  _shotSEID: 3
+  _shotSEVolume: 0.1
+  _setSEShotCount: -1
 --- !u!1 &6511565434957108795
 GameObject:
   m_ObjectHideFlags: 0
@@ -84024,6 +84166,8 @@ MonoBehaviour:
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls: []
+  _defaultLayerName: MoveObj
+  _deadLayerName: AnHitMoveObj
 --- !u!54 &6511565435205630756
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -89377,6 +89521,7 @@ MonoBehaviour:
   - {fileID: 942410811089639686}
   _rightBoosters:
   - {fileID: 570685294905516819}
+  _froatBoosters: []
 --- !u!1 &8333297943496389566
 GameObject:
   m_ObjectHideFlags: 0
@@ -89499,6 +89644,7 @@ MonoBehaviour:
   - {fileID: 1368972574695012457}
   _rightBoosters:
   - {fileID: 5997733731712706976}
+  _froatBoosters: []
 --- !u!1 &8585731898511828795
 GameObject:
   m_ObjectHideFlags: 0
@@ -90087,6 +90233,22 @@ MonoBehaviour:
   _anSetWeapon: 0
   _shoulderBoosters: {fileID: 328817825971179437}
   _partsColorChanger: {fileID: 0}
+  _handWeaponParam:
+    Power: 0
+    Speed: 0
+    MaxAmmunitionCapacity: 0
+    MagazineCount: 0
+    ShotCount: 0
+    SubCount: 0
+    TriggerInterval: 0
+    ShotInterval: 0
+    Diffusivity: 0
+    ExPower: 0
+    ExCount: 0
+    ExRadius: 0
+    HomingSpeed: 0
+    HomingStartTime: 0
+    HomingEndTime: 0
   PartsRotaionSpeed: 3
   ReloadSpeed: 1
   ReloadTime: 2
@@ -90649,6 +90811,7 @@ MonoBehaviour:
   - {fileID: 7776131211446436510}
   - {fileID: 5825743934572802611}
   - {fileID: 938335192472267731}
+  _froatBoosters: []
 --- !u!1 &9209480691140066331
 GameObject:
   m_ObjectHideFlags: 0
@@ -90725,6 +90888,7 @@ MonoBehaviour:
   - {fileID: 2203640084699428812}
   _rightBoosters:
   - {fileID: 6870044125853230597}
+  _froatBoosters: []
 --- !u!1001 &1814034536569015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -92868,9 +93032,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5356225295753385710}
     m_Modifications:
+    - target: {fileID: 5177210449259655489, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177267438392020421, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5177267438826670394, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
       propertyPath: m_Name
       value: VrSeat
+      objectReference: {fileID: 0}
+    - target: {fileID: 5177267438826670394, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5177267438826670395, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
       propertyPath: m_RootOrder
@@ -93375,6 +93551,14 @@ PrefabInstance:
     - target: {fileID: 2525458726688524115, guid: f28d3b76c0b5a9d41af9dff79ee3564d, type: 3}
       propertyPath: m_Name
       value: InGameUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525458726688524115, guid: f28d3b76c0b5a9d41af9dff79ee3564d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525458726806351782, guid: f28d3b76c0b5a9d41af9dff79ee3564d, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f28d3b76c0b5a9d41af9dff79ee3564d, type: 3}
