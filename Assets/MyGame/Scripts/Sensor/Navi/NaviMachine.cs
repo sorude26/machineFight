@@ -74,6 +74,15 @@ namespace MyGame
                 _timer = 0;
                 _currentDir = NavigationManager.Instance.GetMoveDir(_body, _naviPower);
             }
+            if (OperationalRangeManager.Instance != null)
+            {
+                var ope = OperationalRangeManager.Instance.transform.position;
+                if (Vector3.Distance(ope, transform.position) > OperationalRangeManager.Instance.DetachmentRange)
+                {
+                    _currentDir = ope - transform.position;
+                    _currentDir.y = 0;
+                }
+            }
             Vector3 dir = Vector3.zero;
             if (_currentDir != Vector3.zero)
             {
