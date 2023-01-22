@@ -43,6 +43,7 @@ public class MannedOperationSystem : MonoBehaviour
         _monitorCover.SetActive(true);
     }
 
+    [ContextMenu("SystemStart")]
     private void TrySystemStart()
     {
         //既に起動中ならなにもしない
@@ -65,11 +66,11 @@ public class MannedOperationSystem : MonoBehaviour
         _monitorCover.SetActive(false);
         _systemCanvas.SetActive(true);
         _mainCanvas.SetActive(false);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         //接続開始
         _connectText.text = CONNECTING_MESSAGE;
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(3.0f);
 
         //接続完了
         _connectText.text = CONNECTED_MESSAGE;
@@ -85,6 +86,7 @@ public class MannedOperationSystem : MonoBehaviour
 
         //全UI表示
         _systemCanvas.SetActive(false);
+        _mainCanvas.SetActive(true);
     }
 
     private void ChangeMainUI()
