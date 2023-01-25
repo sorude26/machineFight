@@ -97,7 +97,7 @@ public class UIWeaponView : MonoBehaviour
         else
         {
             //予備弾薬数の表示
-            _weaponAllNum[id].text = _weapons[id]._currentAmmunition.ToString();
+            _weaponAllNum[id].text = (_weapons[id]._currentAmmunition - _weapons[id]._currentMagazine).ToString();
         }
 
         //装填されている弾数の表示
@@ -113,7 +113,7 @@ public class UIWeaponView : MonoBehaviour
         }
 
         //武器状態表示
-        if (_weapons[id]._currentMagazine == 0 && _weapons[id].Type != WeaponType.HandGun)
+        if (_weapons[id]._currentMagazine == 0 && _weapons[id].Type == WeaponType.HandGun)
         {
             //装弾数ゼロのためリロード表示か欠乏表示を行う
             if (_weapons[id]._currentAmmunition == 0)
@@ -124,7 +124,7 @@ public class UIWeaponView : MonoBehaviour
             else
             {
                 //リロード表示
-                _weaponCondition[id].text = READY_TEXT;
+                _weaponCondition[id].text = RELOAD_TEXT;
             }
         }
         else
