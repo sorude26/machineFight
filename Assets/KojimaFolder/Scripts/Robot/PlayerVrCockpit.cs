@@ -34,18 +34,18 @@ public class PlayerVrCockpit : MonoBehaviour
     bool _isDebagVR = false;
     public bool IsDebagVR => _isDebagVR;
 
-    public bool WeaponSwitch(int i)
+    public Switch WeaponSwitch(int i)
     {
         switch (i)
         {
+            case 0:
+                return _weaponRightToggleSwitch;
             case 1:
-                return _weaponRightToggleSwitch.IsOn;
+                return _weaponLeftToggleSwitch;
             case 2:
-                return _weaponLeftToggleSwitch.IsOn;
-            case 3:
-                return _weaponBackToggleSwitch.IsOn;
+                return _weaponBackToggleSwitch;
             default:
-                return false;
+                return null;
         }
     }
 
