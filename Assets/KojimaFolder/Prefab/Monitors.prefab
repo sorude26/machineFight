@@ -3869,6 +3869,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3536267315198191931}
   - component: {fileID: 3308868865666706879}
+  - component: {fileID: 2626043201968506130}
   m_Layer: 15
   m_Name: SubBatteryView
   m_TagString: Untagged
@@ -3912,6 +3913,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: 0, y: 0, z: 0, w: 0}
   m_Softness: {x: 0, y: 0}
+--- !u!114 &2626043201968506130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4541434805768942546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f163babe4fe231f45ae70dd81922a7ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stageUIController: {fileID: 0}
+  _fill: {fileID: 8225228642215957797}
 --- !u!1 &4571728435776794349
 GameObject:
   m_ObjectHideFlags: 0
@@ -6253,6 +6268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9086626158873891120}
   - component: {fileID: 123412132146093675}
+  - component: {fileID: 9182203813080348447}
   m_Layer: 15
   m_Name: EnergyView
   m_TagString: Untagged
@@ -6296,6 +6312,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: 0, y: 0, z: 0, w: 0}
   m_Softness: {x: 0, y: 0}
+--- !u!114 &9182203813080348447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7208696230171422875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c75a9b46b5e746847954913f2b969465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stageUIController: {fileID: 0}
+  _fill: {fileID: 7890026786042893146}
+  _cautionText: {fileID: 6331628600933987598}
 --- !u!1 &7364827960418094552
 GameObject:
   m_ObjectHideFlags: 0
