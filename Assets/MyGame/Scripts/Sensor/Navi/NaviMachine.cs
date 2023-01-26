@@ -13,9 +13,13 @@ namespace MyGame
         [SerializeField]
         private Transform _body = default;
         [SerializeField]
+        private Transform _lockbody = default;
+        [SerializeField]
         private int _naviPower = 0;
         [SerializeField]
         private float _transSpeed = 5f;
+        [SerializeField]
+        private float _lockSpeed = 5f;
         [SerializeField]
         private float _naviInterval = 1f;
         private float _timer = 0f;
@@ -44,6 +48,8 @@ namespace MyGame
         private ShakeParam _exParam = default;
         [SerializeField]
         private PopController[] _popControllers = default;
+        [SerializeField]
+        private float _diffusivity = 0.1f;
         private void Start()
         {
             SetRandamBuildDat();
@@ -77,16 +83,26 @@ namespace MyGame
             if (OperationalRangeManager.Instance != null)
             {
                 var ope = OperationalRangeManager.Instance.transform.position;
-                if (Vector3.Distance(ope, transform.position) > OperationalRangeManager.Instance.DetachmentRange)
+                if (Vector3.Distance(ope, _body.transform.position) > OperationalRangeManager.Instance.DetachmentRange)
                 {
-                    _currentDir = ope - transform.position;
+                    _currentDir = ope - _body.transform.position;
                     _currentDir.y = 0;
+                    if (_lockbody != null)
+                    {
+                        _lockbody.forward = Vector3.Lerp(_lockbody.forward, _lockTrans.forward
+                           + Vector3.right * ChackLR(_currentDir), _lockSpeed * Time.fixedDeltaTime);
+                    }
                 }
             }
             Vector3 dir = Vector3.zero;
             if (_currentDir != Vector3.zero)
             {
                 _lockTrans.forward = Vector3.Lerp(_lockTrans.forward, _currentDir, _transSpeed * Time.fixedDeltaTime);
+                if (_lockbody != null)
+                {
+                    _lockbody.forward = Vector3.Lerp(_lockbody.forward, _lockTrans.forward 
+                       + Vector3.right * ChackLR(_currentDir), _lockSpeed * Time.fixedDeltaTime);
+                }
                 dir = Vector3.forward;
             }
             _machineController.ExecuteFixedUpdate(dir);
@@ -152,6 +168,16 @@ namespace MyGame
             _machineController.transform.localPosition = Vector3.zero;
             _machineController.transform.localRotation = Quaternion.identity;
             _machineController.StartUpMachine();
+        }
+
+        private float ChackLR(Vector3 targetDir)
+        {
+            if (targetDir == Vector3.zero)
+            {
+                return 0;
+            }
+            var angle = Vector3.Dot(targetDir.normalized, _lockTrans.right);
+            return angle;
         }
     }
 }
