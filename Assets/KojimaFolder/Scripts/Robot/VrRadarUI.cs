@@ -7,14 +7,13 @@ using UnityEngine.UI;
 public class VrRadarUI : MonoBehaviour
 {
     const float CANVAS_WIDTH_HEIGHT = 256f;
+    const float CANVAS_WIDTH_HEIGHT_HALF = 150f;
     [SerializeField]
     Image _scanLine;
     [SerializeField]
     float _scanSpeed; //‰½•b‚Åˆê‰ñ“]‚·‚é‚©
     [SerializeField]
     float _scanRange;
-    [SerializeField]
-    Camera _camera;
     [SerializeField]
     VrRadarIconUI _iconPrefab;
 
@@ -44,7 +43,6 @@ public class VrRadarUI : MonoBehaviour
         _scanRotate = newRotate;
         UpdateRadar();
         _scanLine.rectTransform.localEulerAngles = _scanRotate;
-        _camera.Render();
     }
 
     /// <summary>
@@ -81,19 +79,22 @@ public class VrRadarUI : MonoBehaviour
             if (angle < _scanRotate.z || Mathf.Abs(angle - _scanRotate.z) > 45f) continue;
 
             _targets[i].isAlradyShowed = true;
-            ShowIcon(_targets[i].target.transform.position);
+            ShowIcon(_targets[i].target.transform.position, _targets[i].target);
 
         }
     }
 
-    void ShowIcon(Vector3 worldPos)
+    void ShowIcon(Vector3 worldPos, LockOnTarget target)
     {
+        //Ž€‚ñ‚Å‚é‚È‚çreturn
+        if (!target.gameObject.activeInHierarchy) return;
+
         Vector3 player = PlayerVrCockpit.Instance.transform.position;
         Vector3 diff = worldPos - player;
         diff = Quaternion.Inverse(PlayerVrCockpit.Instance.transform.rotation) * diff;
         diff = diff * CANVAS_WIDTH_HEIGHT / _scanRange;
         //UI‰æ–ÊŠO‚Ì‚à‚Ì‚Í•\Ž¦‚µ‚È‚¢
-        if (diff.x > CANVAS_WIDTH_HEIGHT || diff.z > CANVAS_WIDTH_HEIGHT) return;
+        if (diff.x > CANVAS_WIDTH_HEIGHT_HALF || diff.x < -CANVAS_WIDTH_HEIGHT_HALF || diff.z > CANVAS_WIDTH_HEIGHT_HALF || diff.z < -CANVAS_WIDTH_HEIGHT_HALF) return;
             
 
         VrRadarIconUI icon = _icons.Where(a => !a.gameObject.activeSelf).FirstOrDefault();
@@ -102,6 +103,7 @@ public class VrRadarUI : MonoBehaviour
             icon = Instantiate(_iconPrefab, this.transform);
             _icons.Add(icon);
         }
+        icon.transform.SetParent(this.transform);
         icon.transform.localPosition = new Vector3(diff.x, diff.z, 0);
         icon.Show(_scanSpeed);
     }

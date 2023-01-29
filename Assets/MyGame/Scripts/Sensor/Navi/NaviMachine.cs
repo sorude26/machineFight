@@ -13,9 +13,13 @@ namespace MyGame
         [SerializeField]
         private Transform _body = default;
         [SerializeField]
+        private Transform _lockbody = default;
+        [SerializeField]
         private int _naviPower = 0;
         [SerializeField]
         private float _transSpeed = 5f;
+        [SerializeField]
+        private float _lockSpeed = 5f;
         [SerializeField]
         private float _naviInterval = 1f;
         private float _timer = 0f;
@@ -39,9 +43,13 @@ namespace MyGame
         [SerializeField]
         private float _explosionTime = 3f;
         [SerializeField]
+        private float _activeTime = 0.5f;
+        [SerializeField]
         private ShakeParam _exParam = default;
         [SerializeField]
         private PopController[] _popControllers = default;
+        [SerializeField]
+        private float _diffusivity = 0.1f;
         private void Start()
         {
             SetRandamBuildDat();
@@ -72,10 +80,29 @@ namespace MyGame
                 _timer = 0;
                 _currentDir = NavigationManager.Instance.GetMoveDir(_body, _naviPower);
             }
+            if (OperationalRangeManager.Instance != null)
+            {
+                var ope = OperationalRangeManager.Instance.transform.position;
+                if (Vector3.Distance(ope, _body.transform.position) > OperationalRangeManager.Instance.DetachmentRange)
+                {
+                    _currentDir = ope - _body.transform.position;
+                    _currentDir.y = 0;
+                    if (_lockbody != null)
+                    {
+                        _lockbody.forward = Vector3.Lerp(_lockbody.forward, _lockTrans.forward
+                           + Vector3.right * ChackLR(_currentDir), _lockSpeed * Time.fixedDeltaTime);
+                    }
+                }
+            }
             Vector3 dir = Vector3.zero;
             if (_currentDir != Vector3.zero)
             {
                 _lockTrans.forward = Vector3.Lerp(_lockTrans.forward, _currentDir, _transSpeed * Time.fixedDeltaTime);
+                if (_lockbody != null)
+                {
+                    _lockbody.forward = Vector3.Lerp(_lockbody.forward, _lockTrans.forward 
+                       + Vector3.right * ChackLR(_currentDir), _lockSpeed * Time.fixedDeltaTime);
+                }
                 dir = Vector3.forward;
             }
             _machineController.ExecuteFixedUpdate(dir);
@@ -136,10 +163,21 @@ namespace MyGame
             {
                 SoundManager.Instance.PlaySE(_deadSEID, _body.position, _seVolume);
             }
+            yield return new WaitForSeconds(_activeTime);
             gameObject.SetActive(false);
             _machineController.transform.localPosition = Vector3.zero;
             _machineController.transform.localRotation = Quaternion.identity;
             _machineController.StartUpMachine();
+        }
+
+        private float ChackLR(Vector3 targetDir)
+        {
+            if (targetDir == Vector3.zero)
+            {
+                return 0;
+            }
+            var angle = Vector3.Dot(targetDir.normalized, _lockTrans.right);
+            return angle;
         }
     }
 }

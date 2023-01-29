@@ -73035,6 +73035,7 @@ MonoBehaviour:
   _buildSet: []
   _randamSet: 0
   _bodyTarget: {fileID: 2432268472289630198}
+  _setBoss: 0
   _deadEffct: {fileID: 5264996940241602765, guid: 3f8af9d722971ce48a765e5bd9b5b535, type: 3}
   _deadSEID: 11
   _seVolume: 1
@@ -73131,40 +73132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 254b3cc64a645614fa76cb2759f896bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _armors:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _eyes:
-  - {fileID: 0}
-  - {fileID: 0}
+  _armors: []
+  _eyes: []
   _covers: []
   _startColorSetMode: 0
   _startColorID: 3
@@ -73210,7 +73179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 761ec794a76da724a9cba638257b2461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxInterval: 7
+  _maxInterval: 9
   _intervalDiffusivity: 1
   _onActionEvent:
     m_PersistentCalls:
@@ -73240,7 +73209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 761ec794a76da724a9cba638257b2461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxInterval: 12
+  _maxInterval: 16
   _intervalDiffusivity: 10
   _onActionEvent:
     m_PersistentCalls:
@@ -73270,7 +73239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 761ec794a76da724a9cba638257b2461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxInterval: 12
+  _maxInterval: 16
   _intervalDiffusivity: 10
   _onActionEvent:
     m_PersistentCalls:
@@ -73517,12 +73486,8 @@ MonoBehaviour:
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls: []
-  _defaultLayer:
-    serializedVersion: 2
-    m_Bits: 8192
-  _deadLayer:
-    serializedVersion: 2
-    m_Bits: 8192
+  _defaultLayerName: MoveObj
+  _deadLayerName: AnHitMoveObj
 --- !u!54 &6164360965954787239
 Rigidbody:
   m_ObjectHideFlags: 0

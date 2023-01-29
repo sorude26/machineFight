@@ -7,6 +7,8 @@ namespace MyGame
 {
     public class MachinePartsController : MonoBehaviour
     {
+        private const float BOOSTER_POWER = 2f;
+        private const float UP_POWER = 0.2f;
         [SerializeField]
         private Rigidbody _moveRb = default;
         [SerializeField]
@@ -22,6 +24,7 @@ namespace MyGame
         private MoveController _moveController = default;
         private bool _isDown = false;
         public bool IsFloat { get => _legController.IsFloat; }
+        public bool IsFall { get => _legController.IsFall; }
         public bool IsInitalized { get; private set; }
         public DamageChecker DamageChecker { get => _bodyController.DamageChecker; }
         public BodyController BodyController { get => _bodyController; }
@@ -113,7 +116,15 @@ namespace MyGame
             }
             else
             {
-                _legController.ChangeFloat();
+                if (_legController.IsFall)
+                {
+                    _bodyController.MeleeAttackMove(BOOSTER_POWER);
+                }
+                else
+                {
+                    _bodyController.MeleeAttackMove(0, Vector3.up * UP_POWER);
+                }
+                //_legController.ChangeFloat();
             }
         }
 
@@ -125,6 +136,7 @@ namespace MyGame
             }
             if (_legController.IsFloat) return;
             _legController.ChangeFloat();
+            _bodyController.StartFloatBoosters();
         }
 
         public void TryGround()
@@ -135,6 +147,7 @@ namespace MyGame
             }
             if (!_legController.IsFloat) return;
             _legController.ChangeFloat();
+            _bodyController.StopFloatBoosters();
         }
 
         public void ShotLeft()
@@ -160,6 +173,7 @@ namespace MyGame
                 return;
             }
             _legController.Attack();
+            _bodyController.MeleeAttackMove(UP_POWER);
         }
         public void PowerDownMachine()
         {

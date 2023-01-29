@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="Parts/Hand")]
-public class PartsHandData : ScriptableObject
+public class PartsHandData : ScriptableObject,IPartsData
 {
     public int ID;
     public string Name;
@@ -16,4 +16,7 @@ public class PartsHandData : ScriptableObject
     public bool UseWeapon;
     public float AttackPower;
     public WeaponParam WeaponParam;
+    public int PartsID => ID;
+    public string PartName => Name;
+    public int Model => ModelID;
 }

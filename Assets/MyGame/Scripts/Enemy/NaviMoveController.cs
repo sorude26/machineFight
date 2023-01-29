@@ -37,7 +37,7 @@ public class NaviMoveController : MonoBehaviour
             _currentDir.x += Random.Range(-_diffusivity, _diffusivity);
             _currentDir.y += Random.Range(-_diffusivity, _diffusivity);
             _currentDir.z += Random.Range(-_diffusivity, _diffusivity);
-        }
+        }        
         if (_currentDir != Vector3.zero)
         {
             if (Physics.Raycast(_body.position,_currentDir,_wallRayRange,_wallLayer))
@@ -51,6 +51,15 @@ public class NaviMoveController : MonoBehaviour
             if (_body.position.y >= _maxYLevel)
             {
                 _currentDir = Vector3.down;
+            }
+            if (OperationalRangeManager.Instance != null)
+            {
+                var ope = OperationalRangeManager.Instance.transform.position;
+                if (Vector3.Distance(ope, transform.position) > OperationalRangeManager.Instance.DetachmentRange)
+                {
+                    _currentDir = ope - transform.position;
+                    _currentDir.y = 0;
+                }
             }
             _body.forward = Vector3.Lerp(_body.forward, _currentDir, _transSpeed * Time.fixedDeltaTime);
             _body.position = Vector3.Lerp(_body.position, _body.position + _body.forward * _moveSpeed, _transSpeed * Time.fixedDeltaTime);

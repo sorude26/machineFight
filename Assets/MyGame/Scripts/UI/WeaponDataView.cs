@@ -42,7 +42,18 @@ public class WeaponDataView : MonoBehaviour
     {
         if (weapon == null)
         {
-            gameObject.SetActive(false);
+            _total.text = "";
+            _totalBack.text = "";
+            _max.text = "";
+            _maxBack.text = "";
+            _totalGauge.fillAmount = 1; 
+            _current.text = "";
+            _currentBack.text = "";
+            _magazine.text = "";
+            _magazineBack.text = "";
+            _countGauge.fillAmount = 1; 
+            _arrowMark.SetActive(true);
+            _bulletMark.SetActive(false);
             return;
         }
         if (_isStart == false)

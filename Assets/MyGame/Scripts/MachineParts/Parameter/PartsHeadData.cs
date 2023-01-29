@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Parts/Head")]
-public class PartsHeadData : ScriptableObject
+public class PartsHeadData : ScriptableObject,IPartsData
 {
     public int ID;
     public string Name;
@@ -12,4 +12,7 @@ public class PartsHeadData : ScriptableObject
     public float LockOnRange;
     public float LockOnSpeed;
     public float EnergyConsumption;
+    public int PartsID => ID;
+    public string PartName => Name;
+    public int Model => ModelID;
 }

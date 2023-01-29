@@ -30,6 +30,10 @@ public class PlayerVrCockpit : MonoBehaviour
     [SerializeField]
     LayerMask _dontChangeLayer;
 
+    [SerializeField]
+    bool _isDebagVR = false;
+    public bool IsDebagVR => _isDebagVR;
+
     /// <summary>
     /// 右手
     /// </summary>
@@ -77,7 +81,7 @@ public class PlayerVrCockpit : MonoBehaviour
     /// <returns></returns>
     public static bool Jump()
     {
-        return Instance._throttleLever.GetUpperButtonInput(false);
+        return Instance._throttleLever.GetTriggerInput(false);
     }
     /// <summary>
     /// ステップ
@@ -85,7 +89,7 @@ public class PlayerVrCockpit : MonoBehaviour
     /// <returns></returns>
     public static bool JetBoost()
     {
-        return Instance._throttleLever.GetTriggerInput(false);
+        return Instance._throttleLever.GetUpperButtonInput(false);
     }
     /// <summary>
     /// ターゲット切り替え
@@ -131,7 +135,7 @@ public class PlayerVrCockpit : MonoBehaviour
     private void CameraSetup()
     {
         //VR機器が接続されていない場合はデスクトップ用のカメラに切り替え、コックピットを非表示にする。
-        if (!OVRManager.isHmdPresent)
+        if (!OVRManager.isHmdPresent && !_isDebagVR)
         {
             var cameras = FindObjectsOfType<Camera>(true);
             foreach (var item in cameras)
@@ -139,6 +143,11 @@ public class PlayerVrCockpit : MonoBehaviour
                 item.targetTexture = null;
             }
             this.gameObject.SetActive(false);
+        }
+        else
+        {
+            //一人称切り替え
+            FollowCamera.ChangeToVrCamera();
         }
     }
 

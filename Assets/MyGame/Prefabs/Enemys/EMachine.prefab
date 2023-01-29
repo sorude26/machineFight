@@ -46,7 +46,7 @@ MonoBehaviour:
   _items:
   - {fileID: 1351174841993859409, guid: ab908356eec1a4e438d305a8e2d27020, type: 3}
   - {fileID: 1234321730564965865, guid: 6215920cd43c3334b967b1bc5f017da6, type: 3}
-  _count: 3
+  _count: 5
   _defItem: {fileID: 1234321730564965865, guid: b72018ba32c20f64eb6dd9eee453fd91, type: 3}
   _defItemCount: 15
 --- !u!1 &7633314310021058516
@@ -274,6 +274,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _item: {fileID: 3457143520140681576, guid: b1f593892a3be2b42a968140c0798c64, type: 3}
+  _defItem: {fileID: 1351174841993859409, guid: b15ec99a961eb2d4599e2898ae001aac, type: 3}
+  _defItemCount: 3
   _machineBuilder: {fileID: 7633314310045737437}
 --- !u!1 &7633314310087903503
 GameObject:
@@ -323,8 +325,10 @@ MonoBehaviour:
   _machineController: {fileID: 7633314310045737436}
   _lockTrans: {fileID: 7633314310609263824}
   _body: {fileID: 7633314310045737434}
+  _lockbody: {fileID: 7633314310533338935}
   _naviPower: 0
   _transSpeed: 1
+  _lockSpeed: 9
   _naviInterval: 1
   _buildParam:
     Head: 0
@@ -344,6 +348,7 @@ MonoBehaviour:
   _deadSEID: 11
   _seVolume: 1
   _explosionTime: 1
+  _activeTime: 0.5
   _exParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 50
@@ -351,6 +356,7 @@ MonoBehaviour:
   _popControllers:
   - {fileID: 7633314310045737248}
   - {fileID: 881275777431235224}
+  _diffusivity: 0.1
 --- !u!114 &7633314310087903505
 MonoBehaviour:
   m_ObjectHideFlags: 0

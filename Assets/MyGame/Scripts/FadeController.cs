@@ -80,20 +80,24 @@ public class FadeController : MonoBehaviour
     {
         Instance.StartCoroutine(Instance.FadeOutIn(outAction, inAction));
     }
-    IEnumerator FadeIn(Action action)
+    public static void StartFadeOutIn(Action outAction, IEnumerator outEnumerater, Action inAction)
+    {
+        Instance.StartCoroutine(Instance.FadeOutIn(outAction, outEnumerater, inAction));
+    }
+    private IEnumerator FadeIn(Action action)
     {
         _fadeImage.gameObject.SetActive(true);
         yield return FadeIn();
         action?.Invoke();
         _fadeImage.gameObject.SetActive(false);
     }
-    IEnumerator FadeOut(Action action)
+    private IEnumerator FadeOut(Action action)
     {
         _fadeImage.gameObject.SetActive(true);
         yield return FadeOut();
         action?.Invoke();
     }
-    IEnumerator FadeOutIn(Action outAction, Action inAction)
+    private IEnumerator FadeOutIn(Action outAction, Action inAction)
     {
         _fadeImage.gameObject.SetActive(true);
         yield return FadeOut();
@@ -104,7 +108,19 @@ public class FadeController : MonoBehaviour
         inAction?.Invoke();
         _fadeImage.gameObject.SetActive(false);
     }
-    IEnumerator FadeIn()
+    private IEnumerator FadeOutIn(Action outAction, IEnumerator outEnumerator, Action inAction)
+    {
+        _fadeImage.gameObject.SetActive(true);
+        yield return FadeOut();
+        yield return null;
+        outAction?.Invoke();
+        yield return null;
+        yield return outEnumerator;
+        yield return FadeIn();
+        inAction?.Invoke();
+        _fadeImage.gameObject.SetActive(false);
+    }
+    private IEnumerator FadeIn()
     {
         float clearScale = 1f;
         Color currentColor = _startColor;
@@ -121,7 +137,7 @@ public class FadeController : MonoBehaviour
         }
     }
 
-    IEnumerator FadeOut()
+    private IEnumerator FadeOut()
     {
         float clearScale = 0f;
         Color currentColor = _startColor;
