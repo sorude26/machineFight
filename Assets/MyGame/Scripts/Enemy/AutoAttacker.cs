@@ -46,6 +46,7 @@ public class AutoAttacker : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (StageManager.InStage == false) { return; }
         if (_attackTimer > 0)
         {
             _attackTimer -= Time.fixedDeltaTime;

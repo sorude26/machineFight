@@ -30,11 +30,12 @@ public class NaviRigidController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (StageManager.InStage == false) { return; }
         _timer += Time.fixedDeltaTime;
         if (_timer > _naviInterval)
         {
             _timer = 0;
-            _currentDir = NavigationManager.Instance.GetMoveDir(_body,_naviPower);
+            _currentDir = NavigationManager.Instance.GetMoveDir(_body, _naviPower);
         }
         if (_currentDir != Vector3.zero)
         {

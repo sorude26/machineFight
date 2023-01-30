@@ -70,7 +70,7 @@ namespace MyGame
         }
         private void FixedUpdate()
         {
-            if (_machineController.IsInitalized == false)
+            if (_machineController.IsInitalized == false || StageManager.InStage == false)
             {
                 return;
             }
