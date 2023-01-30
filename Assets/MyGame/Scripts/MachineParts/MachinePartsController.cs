@@ -102,6 +102,10 @@ namespace MyGame
             else
             {
                 _bodyController.AngleBoost(dir, _legController.IsFall, _legController.IsFloat);
+                if (dir.sqrMagnitude < UP_POWER && _legController.IsFloat)
+                {
+                    _legController.ChangeFloat();
+                }
             }
         }
         public void ExecuteBurst()
@@ -158,6 +162,14 @@ namespace MyGame
             }
             _bodyController.ShotLeft();
         }
+        public void StopShotLeft()
+        {
+            if (IsInitalized == false)
+            {
+                return;
+            }
+            _bodyController.StopShotLeft();
+        }
         public void ShotRight()
         {
             if (IsInitalized == false)
@@ -165,6 +177,14 @@ namespace MyGame
                 return;
             }
             _bodyController.ShotRight();
+        }
+        public void StopShotRight()
+        {
+            if (IsInitalized == false)
+            {
+                return;
+            }
+            _bodyController.StopShotRight();
         }
         public void AttackLeg()
         {

@@ -48,7 +48,6 @@ public class BodyController : MonoBehaviour, IPartsModel
     private string _rPAttack = "PunchR";
     private float _changeTime = 0.1f;
     private bool _isShoot = false;
-    private bool _isDown = false;
     private bool _isInitialized = false;
     private float _jetTimer = 0;
     private float _floatSpeed = FLOAT_SPEED_DESKTOP;
@@ -227,15 +226,20 @@ public class BodyController : MonoBehaviour, IPartsModel
         {
             dir = Vector3.up * _param.BoostUpPower;
         }
-        if (floatMode == true && dir.x != 0 && dir.z != 0)
+        if (floatMode == true)
         {
-            dir *= _floatSpeed;
-            _moveController.VelocityMove(dir);
+            if (dir.x != 0 && dir.z != 0)
+            {
+                dir *= _floatSpeed;
+                _moveController.VelocityMoveInertia(dir);
+            }
+            else
+            {
+                _moveController.FloatDecelerate();
+            }
+            return;
         }
-        else
-        {
-            _moveController.AddMove(dir);
-        }
+        _moveController.AddMove(dir);
     }
     public void UpBoost()
     {
@@ -412,6 +416,10 @@ public class BodyController : MonoBehaviour, IPartsModel
             }
         }
     }
+    public void StopShotLeft()
+    {
+        _lHand.StopShot();
+    }
     public void ShotRight()
     {
         if (_rHand.WeaponBase.Type == WeaponType.HandGun)
@@ -437,6 +445,10 @@ public class BodyController : MonoBehaviour, IPartsModel
                 MeleeAttackMove();
             }
         }
+    }
+    public void StopShotRight()
+    {
+        _rHand.StopShot();
     }
     public void MeleeAttackMove(float value = 1f, Vector3 addDir = default)
     {

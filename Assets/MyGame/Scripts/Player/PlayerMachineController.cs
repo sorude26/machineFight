@@ -81,6 +81,17 @@ public class PlayerMachineController : MonoBehaviour
         }
         _currentBooster = _maxBooster;
     }
+    private void Update()
+    {
+        if (_machineController.BodyController.LeftHand.WeaponBase.IsFire == true && PlayerInput.GetStayInput(InputType.Fire1) == false)
+        {
+            StopShotLeft();
+        }
+        if (_machineController.BodyController.RightHand.WeaponBase.IsFire == true && PlayerInput.GetStayInput(InputType.Fire2) == false)
+        {
+            StopShotRight();
+        }
+    }
     private void FixedUpdate()
     {
         if (_machineController.IsInitalized == false || _startWaitMode == true) { return; }
@@ -109,7 +120,6 @@ public class PlayerMachineController : MonoBehaviour
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.Fire4, _machineController.AttackLeg);
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.Booster, JetBoost);
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.ChangeTarget, ChangeTarget);
-        //PlayerInput.SetEnterInput(InputMode.InGame, InputType.ChangeMode, _camera.ChangeMode);
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.ChangeMode, ChangeFloatMode);
     }
     private void LiftInput()
@@ -121,7 +131,6 @@ public class PlayerMachineController : MonoBehaviour
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.Fire4, _machineController.AttackLeg);
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.Booster, JetBoost);
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.ChangeTarget, ChangeTarget);
-        //PlayerInput.LiftEnterInput(InputMode.InGame, InputType.ChangeMode, _camera.ChangeMode);
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.ChangeMode, ChangeFloatMode);
     }
     private void SetParam()
@@ -186,9 +195,17 @@ public class PlayerMachineController : MonoBehaviour
     {
         _machineController.ShotLeft();
     }
+    public void StopShotLeft()
+    {
+        _machineController.StopShotLeft();
+    }
     public void ShotRight()
     {
         _machineController.ShotRight();
+    }
+    public void StopShotRight()
+    {
+        _machineController.StopShotRight();
     }
     public void JetBoost()
     {
