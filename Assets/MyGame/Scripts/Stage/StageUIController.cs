@@ -54,6 +54,10 @@ public class StageUIController : MonoBehaviour
     private string _damage = "Damage";
     private Color _startHpColor = default;
     private Color _startEnergyColor = default;
+
+    public Image BoosterGauge => _boosterGauge;
+    public Image EnergyGauge => _energyGauge;
+
     public void StartSet(WeaponBase left, WeaponBase right, WeaponBase back)
     {
         void ShowLeft()
