@@ -9,17 +9,27 @@ namespace MyGame
     /// </summary>
     public class MoveController
     {
+        /// <summary> å∏ë¨íl </summary>
         private const float DEFAULT_DECELERATE = 0.99f;
+        /// <summary> í‚é~å∏ë¨íl </summary>
         private const float BRAKE_DECELERATE = 0.3f;
+        /// <summary> èdóÕíl </summary>
         private const float GRAVITYE = -0.2f;
+        /// <summary> äµê´å∏êä </summary>
         private const float INERTIA_RANGE = 0.1f;
+        /// <summary> äµê´âeãøíl </summary>
         private const float INERTIA_POWER = 9f;
+        /// <summary> äµê´íl </summary>
         private const float INERTIA_HAFE = 0.5f;
         private Rigidbody _rb = default;
         public MoveController(Rigidbody rigidbody)
         {
             _rb = rigidbody;
         }
+        /// <summary>
+        /// äµê´Çã≠Ç≠èÊÇπÇΩääÇÁÇ©Ç»à⁄ìÆ
+        /// </summary>
+        /// <param name="dir"></param>
         public void VelocityMoveInertia(Vector3 dir)
         {
             var current = _rb.velocity;
@@ -27,6 +37,10 @@ namespace MyGame
             dir *= INERTIA_RANGE;
             _rb.velocity = dir;
         }
+        /// <summary>
+        /// äµê´ÇèÊÇπÇΩääÇÁÇ©Ç»à⁄ìÆ
+        /// </summary>
+        /// <param name="dir"></param>
         public void VelocityMove(Vector3 dir)
         {
             var current = _rb.velocity;
@@ -34,23 +48,36 @@ namespace MyGame
             dir *= INERTIA_HAFE;
             _rb.velocity = dir;
         }
+        /// <summary>
+        /// èdóÕÇã≠Ç≠ä|ÇØÇΩà⁄ìÆ
+        /// </summary>
+        /// <param name="dir"></param>
         public void GVelocityMove(Vector3 dir)
         {
             dir.y = _rb.velocity.y + GRAVITYE;
             _rb.velocity = dir;
         }
+        /// <summary>
+        /// Ç‰Ç¡Ç≠ÇËÇ∆óÕÇä|ÇØÇÈà⁄ìÆ
+        /// </summary>
+        /// <param name="dir"></param>
         public void AddMove(Vector3 dir)
         {
             _rb.AddForce(dir, ForceMode.Force);
         }
+        /// <summary>
+        /// ã≠Ç≠óÕÇä|ÇØÇÈà⁄ìÆ
+        /// </summary>
+        /// <param name="dir"></param>
         public void AddImpulse(Vector3 dir)
         {
             _rb.AddForce(dir, ForceMode.Impulse);
         }
-        public void FlyDecelerate(float decelerate = DEFAULT_DECELERATE)
-        {
-            _rb.velocity = _rb.velocity * decelerate;
-        }
+        /// <summary>
+        /// â∫ç~ï˚å¸ÇÃóÕÇã≠Ç≠å∏êäÇ∑ÇÈå∏ë¨
+        /// </summary>
+        /// <param name="decelerate"></param>
+        /// <param name="breakPower"></param>
         public void FloatDecelerate(float decelerate = DEFAULT_DECELERATE, float breakPower = BRAKE_DECELERATE)
         {
             var velocity = _rb.velocity;
@@ -63,6 +90,10 @@ namespace MyGame
             velocity.y = y;
             _rb.velocity = velocity;
         }
+        /// <summary>
+        /// ã≠ÇﬂÇÃå∏ë¨
+        /// </summary>
+        /// <param name="breakPower"></param>
         public void MoveBreak(float breakPower = BRAKE_DECELERATE)
         {
             var velocity = _rb.velocity;
@@ -71,6 +102,10 @@ namespace MyGame
             velocity.y = y;
             _rb.velocity = velocity;
         }
+        /// <summary>
+        /// é„ÇﬂÇÃå∏ë¨
+        /// </summary>
+        /// <param name="decelerate"></param>
         public void MoveDecelerate(float decelerate = DEFAULT_DECELERATE)
         {
             var velocity = _rb.velocity;
