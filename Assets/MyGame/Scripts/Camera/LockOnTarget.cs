@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class LockOnTarget : MonoBehaviour
 {
+    private const float RESET_SPEED = 5f;
     [Tooltip("ƒƒbƒNƒIƒ“‚³‚ê‚é‚Ü‚Å‚ÌŠÔ")]
     [SerializeField]
     private float _lockOnTime = 1;
@@ -76,6 +77,11 @@ public class LockOnTarget : MonoBehaviour
     /// </summary>
     public void LiftLockOn()
     {
+        _timer -= RESET_SPEED * Time.fixedDeltaTime;
+        if (_timer > 0)
+        {
+            return;
+        }
         IsLockOn = false;
         _timer = 0;
         if (_targetMark != null)
