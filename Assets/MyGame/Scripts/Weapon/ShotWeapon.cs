@@ -23,6 +23,8 @@ public class ShotWeapon : WeaponBase
     [SerializeField]
     protected float _diffusivity = 0.01f;
     [SerializeField]
+    protected bool _isFullAuto = false;
+    [SerializeField]
     private int _shotSEID = 3;
     [SerializeField]
     private float _shotSEVolume = 0.1f;
@@ -32,6 +34,7 @@ public class ShotWeapon : WeaponBase
     private int _seCount = 0;
 
     private bool _isTrigerOn = false;
+    private bool _isShotEnd = false;
     protected override void OnEnableReset()
     {
         IsFire = false;
@@ -81,6 +84,7 @@ public class ShotWeapon : WeaponBase
     }
     public override void Fire(Transform target)
     {
+        _isShotEnd = false;
         if (IsFire == true || IsWait == true || _isTrigerOn == true || gameObject.activeInHierarchy == false)
         {
             return;
@@ -95,7 +99,7 @@ public class ShotWeapon : WeaponBase
         IsFire = true;
         _count = 0;
         yield return WaitTime(_fireDelay);
-        while (_count < _shotCount && IsFire)
+        while (ShotEndChack() && IsFire)
         {
             if (SoundManager.Instance != null)
             {
@@ -133,6 +137,17 @@ public class ShotWeapon : WeaponBase
             yield return WaitTime(_shotInterval);
         }
         IsFire = false;
+    }
+    protected bool ShotEndChack()
+    {
+        return _count < _shotCount || _isFullAuto && _isShotEnd == false; 
+    }
+    public override void StopFire()
+    {
+        if (_isFullAuto == true)
+        {
+            _isShotEnd = true;
+        }
     }
     private IEnumerator TriggerWait()
     {
