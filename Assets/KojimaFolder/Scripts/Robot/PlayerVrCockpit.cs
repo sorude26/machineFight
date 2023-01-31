@@ -20,6 +20,8 @@ public class PlayerVrCockpit : MonoBehaviour
     [SerializeField]
     ThrottleLever _throttleLever;
     [SerializeField]
+    Switch _systemStartSwitch;
+    [SerializeField]
     Switch _weaponRightToggleSwitch;
     [SerializeField]
     Switch _weaponLeftToggleSwitch;
@@ -33,6 +35,8 @@ public class PlayerVrCockpit : MonoBehaviour
     [SerializeField]
     bool _isDebagVR = false;
     public bool IsDebagVR => _isDebagVR;
+
+    public Switch SystemStartSwitch => _systemStartSwitch;
 
     public Switch WeaponSwitch(int i)
     {

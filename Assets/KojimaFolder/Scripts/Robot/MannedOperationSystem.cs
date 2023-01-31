@@ -15,8 +15,7 @@ public class MannedOperationSystem : MonoBehaviour
 
     public static MannedOperationSystem Instance { get; private set; }
 
-    [SerializeField]
-    Switch _systemStartSwitch;
+    
     [SerializeField]
     Text _connectText;
     [SerializeField]
@@ -28,6 +27,8 @@ public class MannedOperationSystem : MonoBehaviour
 
     bool _online;
     bool _connectedToDesctopUI;
+
+    Switch SystemStartSwitch => PlayerVrCockpit.Instance.SystemStartSwitch;
     /// <summary>
     /// システムが起動済みか
     /// </summary>
@@ -36,11 +37,20 @@ public class MannedOperationSystem : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        if (_systemStartSwitch != null)
-        {
-            _systemStartSwitch.OnTurnOn += TrySystemStart;
-        }
         _monitorCover.SetActive(true);
+    }
+
+    private IEnumerator Start()
+    {
+        while(PlayerVrCockpit.Instance == null)
+        {
+            yield return null;
+        }
+
+        if (SystemStartSwitch != null)
+        {
+            SystemStartSwitch.OnTurnOn += TrySystemStart;
+        }
     }
 
     [ContextMenu("SystemStart")]
