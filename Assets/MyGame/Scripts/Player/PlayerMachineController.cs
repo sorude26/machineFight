@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class PlayerMachineController : MonoBehaviour
 {
     const int VR_COLOR = 20;
+    private float MIN_ENERGY = 10f;
     [SerializeField]
     private float _useEnergySpeed = 5f;
     [SerializeField]
@@ -172,8 +173,11 @@ public class PlayerMachineController : MonoBehaviour
             _currentEnergy -= useEnergy;
             if (_currentEnergy <= 0)
             {
-                LiftInput();
-                _machineController.PlayDeadEvent();
+                _machineController.IsPowerDown = true;
+                if (_machineController.IsFloat)
+                {
+                    _machineController.TryGround();
+                }
             }
             _stageUI.EnergyUpdate(_currentEnergy, _maxEnergy);
         }
@@ -258,14 +262,14 @@ public class PlayerMachineController : MonoBehaviour
     }
     public void RecoveryEnergy(float point)
     {
-        if (_currentEnergy <= 0)
-        {
-            return;
-        }
         _currentEnergy += point;
         if (_currentEnergy > _maxEnergy)
         {
             _currentEnergy = _maxEnergy;
+        }
+        if (_currentEnergy >= MIN_ENERGY)
+        {
+            _machineController.IsPowerDown = false;
         }
     }
     public void EndWaitMode()

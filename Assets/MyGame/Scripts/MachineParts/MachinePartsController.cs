@@ -26,6 +26,7 @@ namespace MyGame
         public bool IsFloat { get => _legController.IsFloat; }
         public bool IsFall { get => _legController.IsFall; }
         public bool IsInitalized { get; private set; }
+        public bool IsPowerDown { get => _bodyController.IsPowerDown; set => _bodyController.IsPowerDown = value; }
         public DamageChecker DamageChecker { get => _bodyController.DamageChecker; }
         public BodyController BodyController { get => _bodyController; }
         public LegController LegController { get => _legController; }
