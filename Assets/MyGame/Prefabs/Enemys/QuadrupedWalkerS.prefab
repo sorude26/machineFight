@@ -992,6 +992,7 @@ MonoBehaviour:
   _triggerInterval: 0.1
   _shotInterval: 0.02
   _diffusivity: 0.04
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -11236,6 +11237,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -11376,6 +11378,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -11599,6 +11602,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -11820,6 +11824,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -12041,6 +12046,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -12181,6 +12187,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -12268,6 +12275,7 @@ MonoBehaviour:
   _rightBoosters:
   - {fileID: 5140082923763100275}
   - {fileID: 4725454690408116438}
+  _froatBoosters: []
 --- !u!1 &3564372523624438217
 GameObject:
   m_ObjectHideFlags: 0
@@ -13023,6 +13031,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -13163,6 +13172,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -13465,6 +13475,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -13605,6 +13616,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -13828,6 +13840,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -13968,6 +13981,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.3
   _diffusivity: 0.35
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -20072,6 +20086,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.02
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -25869,6 +25884,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.05
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -26159,7 +26175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04d3c09e6200e846bccc6bf6902132e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lockOnTime: 1
+  _lockOnTime: 1.5
   _damageChecker: {fileID: 5278186938296829382}
 --- !u!135 &5978961716165027489
 SphereCollider:
@@ -26465,8 +26481,10 @@ MonoBehaviour:
   _machineController: {fileID: 5978961715815907535}
   _lockTrans: {fileID: 5978961715133691970}
   _body: {fileID: 5978961715815907528}
+  _lockbody: {fileID: 0}
   _naviPower: 0
   _transSpeed: 1
+  _lockSpeed: 5
   _naviInterval: 1
   _buildParam:
     Head: 0
@@ -26486,11 +26504,13 @@ MonoBehaviour:
   _deadSEID: 11
   _seVolume: 1
   _explosionTime: 1
+  _activeTime: 0.5
   _exParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 150
     Time: 2
   _popControllers: []
+  _diffusivity: 0.1
 --- !u!114 &5978961716491196997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26700,6 +26720,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.05
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -27342,6 +27363,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.02
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -32384,6 +32406,7 @@ MonoBehaviour:
   - {fileID: 6498289032955737435}
   - {fileID: 6498289034015571799}
   - {fileID: 6498289032332931156}
+  _froatBoosters: []
 --- !u!1 &5978961716974471177
 GameObject:
   m_ObjectHideFlags: 0
@@ -42944,6 +42967,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.05
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -53878,6 +53902,7 @@ MonoBehaviour:
   - {fileID: 7772616227787401421}
   - {fileID: 7772616227997755200}
   - {fileID: 7772616227703357656}
+  _froatBoosters: []
 --- !u!1 &7136767479738783378
 GameObject:
   m_ObjectHideFlags: 0
@@ -53998,6 +54023,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.05
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -54539,6 +54565,7 @@ MonoBehaviour:
   _partsColorChanger: {fileID: 0}
   _floatEffect: {fileID: 6701517158693168891}
   _effectRange: 5
+  _legAttackInterval: 1
   _effectLayer:
     serializedVersion: 2
     m_Bits: 4865
@@ -57861,6 +57888,7 @@ MonoBehaviour:
   - {fileID: 7155778219972327796}
   - {fileID: 6376256486479464921}
   - {fileID: 405766661735714873}
+  _froatBoosters: []
 --- !u!1 &8545243219081136117
 GameObject:
   m_ObjectHideFlags: 0
@@ -58018,6 +58046,7 @@ MonoBehaviour:
   - {fileID: 1599013956040035366}
   _rightBoosters:
   - {fileID: 6337546505591135727}
+  _froatBoosters: []
 --- !u!1 &8820384779927786045
 GameObject:
   m_ObjectHideFlags: 0
@@ -58230,6 +58259,7 @@ MonoBehaviour:
   - {fileID: 1899288750979548035}
   _rightBoosters:
   - {fileID: 6600037687538192970}
+  _froatBoosters: []
 --- !u!1 &8948887768599950862
 GameObject:
   m_ObjectHideFlags: 0

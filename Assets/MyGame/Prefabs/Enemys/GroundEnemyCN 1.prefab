@@ -10082,11 +10082,12 @@ MonoBehaviour:
     HomingStartTime: 0
     HomingEndTime: 0
     Dir: {x: 0, y: 0, z: 0}
-  _shotCount: 10
+  _shotCount: 6
   _subCount: 0
   _triggerInterval: 0.2
-  _shotInterval: 0.2
+  _shotInterval: 0.4
   _diffusivity: 0.01
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.05
   _setSEShotCount: -1
@@ -10377,7 +10378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04d3c09e6200e846bccc6bf6902132e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lockOnTime: 1
+  _lockOnTime: 1.5
   _damageChecker: {fileID: 4306369018250236235}
 --- !u!136 &4306369016972560375
 CapsuleCollider:
@@ -11181,11 +11182,12 @@ MonoBehaviour:
     HomingStartTime: 0
     HomingEndTime: 0
     Dir: {x: 0, y: 0, z: 0}
-  _shotCount: 10
+  _shotCount: 6
   _subCount: 0
   _triggerInterval: 0.2
-  _shotInterval: 0.2
+  _shotInterval: 0.4
   _diffusivity: 0.01
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.05
   _setSEShotCount: -1
