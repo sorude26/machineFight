@@ -10,6 +10,10 @@ public class UIMonitorAnimator : MonoBehaviour
 {
     const int SWITCH_COUNT = 5;
     const string ANIMATOR_OPEN_KEY = "open";
+    const int SE_MAIN_ID = 55;
+    const float SE_MAIN_VOLUME = 1.0f;
+    const int SE_SUB_ID = 56;
+    const float SE_SUB_VOLUME = 1.0f;
 
     public static UIMonitorAnimator Instance { get; private set; }
 
@@ -72,6 +76,7 @@ public class UIMonitorAnimator : MonoBehaviour
         }
         _monitorOpenCount++;
         animator.SetBool(ANIMATOR_OPEN_KEY, true);
+        SoundManager.Instance.PlaySE(SE_MAIN_ID, this.gameObject, SE_MAIN_VOLUME);
     }
 
     private IEnumerator MonitorOpen(Animator[] animators)
@@ -89,6 +94,7 @@ public class UIMonitorAnimator : MonoBehaviour
         {
             
             item.SetBool(ANIMATOR_OPEN_KEY, true);
+            SoundManager.Instance.PlaySE(SE_SUB_ID, this.gameObject, SE_SUB_VOLUME);
             yield return new WaitForSeconds(0.25f);
         }
     }

@@ -12,6 +12,10 @@ public class MannedOperationSystem : MonoBehaviour
     const string CONNECTED_MESSAGE = "CONNECTED";
     const string ONLINE_MESSAGE = "READY TO GO";
     const string CONNECTED_POPUP_MESSAGE = "拡張機能が接続されました";
+    const int SE_SISTEMSTART_ID = 59;
+    const float SE_SYSTEMSTART_VOLUME = 1.0f;
+    const int SE_AMBIENT_ID = 60;
+    const float SE_AMBIENT_VOLUME = 0.5f;
 
     public static MannedOperationSystem Instance { get; private set; }
 
@@ -76,6 +80,9 @@ public class MannedOperationSystem : MonoBehaviour
         _monitorCover.SetActive(false);
         _systemCanvas.SetActive(true);
         _mainCanvas.SetActive(false);
+        //サウンド再生開始
+        SoundManager.Instance.PlaySE(SE_SISTEMSTART_ID, SE_SYSTEMSTART_VOLUME);
+        SoundManager.Instance.PlaySELoop(SE_AMBIENT_ID, this.gameObject, SE_AMBIENT_VOLUME);
         yield return new WaitForSeconds(2f);
 
         //接続開始

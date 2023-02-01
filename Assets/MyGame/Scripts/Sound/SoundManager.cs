@@ -128,7 +128,7 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ループするSEを再生する
+    /// ループするSEを再生する(立体音響ではない)
     /// </summary>
     /// <param name="soundId"></param>
     /// <param name="target"></param>
@@ -140,7 +140,7 @@ public class SoundManager : MonoBehaviour
         AudioClip audioClip = _soundList.GetAudioClip(soundId);
         if (audioClip == null) return null;
 
-        SoundPlayer soundPlayer = GetSound3DPlayer();
+        SoundPlayer soundPlayer = GetSoundPlayer();
         soundPlayer.gameObject.SetActive(true);
         soundPlayer.PlayLoopSE(audioClip, target, volume, mixerGroup);
         return soundPlayer;
