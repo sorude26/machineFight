@@ -30,6 +30,8 @@ public class MannedOperationSystem : MonoBehaviour
     GameObject _monitorCover;
     [SerializeField]
     Light _cockpitLight;
+    [SerializeField]
+    GameObject[] _disactiveUIObjects;
 
     bool _online;
     bool _connectedToDesctopUI;
@@ -113,6 +115,9 @@ public class MannedOperationSystem : MonoBehaviour
 
     private void ChangeMainUI()
     {
-
+        foreach (var item in _disactiveUIObjects)
+        {
+            item.SetActive(false);
+        }
     }
 }
