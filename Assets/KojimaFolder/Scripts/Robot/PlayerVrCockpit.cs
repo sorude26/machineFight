@@ -203,7 +203,7 @@ public class PlayerVrCockpit : MonoBehaviour
             if (MannedOperationSystem.Instance.IsOnline)
             {
                 _hoverSoundPlayer ??= SoundManager.Instance.PlaySELoop(SE_HOVER_ID, this.gameObject, SE_HOVER_VOLUME);
-                _hoverSoundPlayer.gameObject.SetActive(true);
+                _hoverSoundPlayer.AudioSource.Play();
             }
         }
     }
@@ -215,6 +215,7 @@ public class PlayerVrCockpit : MonoBehaviour
             //スロットルが下がった場合は地上モードに移行
             _machine.MachineController.TryGround();
             _hoverSoundPlayer.gameObject?.SetActive(false);
+            _hoverSoundPlayer.AudioSource.Stop();
         }
     }
 

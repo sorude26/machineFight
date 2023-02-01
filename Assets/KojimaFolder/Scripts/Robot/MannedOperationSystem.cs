@@ -15,7 +15,7 @@ public class MannedOperationSystem : MonoBehaviour
     const int SE_SISTEMSTART_ID = 59;
     const float SE_SYSTEMSTART_VOLUME = 1.0f;
     const int SE_AMBIENT_ID = 60;
-    const float SE_AMBIENT_VOLUME = 0.5f;
+    const float SE_AMBIENT_VOLUME = 0.7f;
 
     public static MannedOperationSystem Instance { get; private set; }
 
