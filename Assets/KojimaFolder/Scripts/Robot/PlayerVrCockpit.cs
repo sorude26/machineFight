@@ -10,6 +10,8 @@ using UnityEngine;
 public class PlayerVrCockpit : MonoBehaviour
 {
     const int ZONE_HOVER = 1;
+    const int SE_HOVER_ID = 57;
+    const float SE_HOVER_VOLUME = 0.5f;
     private static PlayerVrCockpit _instance;
     public static PlayerVrCockpit Instance => _instance;
 
@@ -31,6 +33,8 @@ public class PlayerVrCockpit : MonoBehaviour
     float _groundToHoverThrottle;
     [SerializeField]
     LayerMask _dontChangeLayer;
+
+    SoundPlayer _hoverSoundPlayer;
 
     [SerializeField]
     bool _isDebagVR = false;
@@ -184,7 +188,12 @@ public class PlayerVrCockpit : MonoBehaviour
         {
             //スロットルが上がった場合はホバーモードに移行
             _machine.MachineController.TryFloat();
-            
+            //音声再生
+            if (MannedOperationSystem.Instance.IsOnline)
+            {
+                _hoverSoundPlayer ??= SoundManager.Instance.PlaySELoop(SE_HOVER_ID, this.gameObject, SE_HOVER_VOLUME);
+                _hoverSoundPlayer.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -194,6 +203,7 @@ public class PlayerVrCockpit : MonoBehaviour
         {
             //スロットルが下がった場合は地上モードに移行
             _machine.MachineController.TryGround();
+            _hoverSoundPlayer.gameObject?.SetActive(false);
         }
     }
 
