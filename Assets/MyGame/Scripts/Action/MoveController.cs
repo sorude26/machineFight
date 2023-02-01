@@ -27,7 +27,7 @@ namespace MyGame
             _rb = rigidbody;
         }
         /// <summary>
-        /// Šµ«‚ğ‹­‚­æ‚¹‚½ŠŠ‚ç‚©‚ÈˆÚ“®
+        /// Šµ«‚ğ‹­‚­æ‚¹‚½ŠŠ‚ç‚©‚È•½sˆÚ“®
         /// </summary>
         /// <param name="dir"></param>
         public void VelocityMoveInertia(Vector3 dir)
@@ -35,6 +35,19 @@ namespace MyGame
             var current = _rb.velocity;
             dir += current * INERTIA_POWER;
             dir *= INERTIA_RANGE;
+            _rb.velocity = dir;
+        }
+        /// <summary>
+        /// Šµ«‚ğ‹­‚­æ‚¹‚½ŠŠ‚ç‚©‚ÈˆÚ“®
+        /// </summary>
+        /// <param name="dir"></param>
+        public void GVelocityMoveInertia(Vector3 dir)
+        {
+            var current = _rb.velocity;
+            dir += current * INERTIA_POWER;
+            float y = _rb.velocity.y;
+            dir *= INERTIA_RANGE;
+            dir.y = y;
             _rb.velocity = dir;
         }
         /// <summary>

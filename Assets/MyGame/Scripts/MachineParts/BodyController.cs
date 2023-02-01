@@ -232,20 +232,18 @@ public class BodyController : MonoBehaviour, IPartsModel
         if (IsPowerDown == true)
         {
             dir *= POWER_DOWN;
-            _moveController.VelocityMoveInertia(dir);
+            _moveController.GVelocityMoveInertia(dir);
             return;
         }
-        if (floatMode == true)
+        else if (floatMode == true)
         {
             if (dir.x != 0 && dir.z != 0)
             {
                 dir *= _floatSpeed;
                 _moveController.VelocityMoveInertia(dir);
+                return;
             }
-            else
-            {
-                _moveController.FloatDecelerate();
-            }
+            _moveController.FloatDecelerate();
             return;
         }
         _moveController.AddMove(dir);
