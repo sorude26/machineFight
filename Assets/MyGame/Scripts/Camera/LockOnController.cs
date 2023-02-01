@@ -94,7 +94,7 @@ public class LockOnController : MonoBehaviour
         float range = Vector3.Distance(_cameraTrans.position, target.transform.position);
         if (ChackAngle(targetDir) && !Physics.Raycast(_cameraTrans.position, targetDir, range, _wallLayer))
         {
-            target.SetLockOn(LockOnSpeed);
+            target.SetLockOn(LockOnSpeed * Vector3.Dot(targetDir.normalized, _cameraTrans.forward));
         }
         else if (target.IsLockOn == true)
         {
