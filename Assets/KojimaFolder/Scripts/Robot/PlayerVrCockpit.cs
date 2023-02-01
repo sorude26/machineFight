@@ -12,6 +12,7 @@ public class PlayerVrCockpit : MonoBehaviour
     const int ZONE_HOVER = 1;
     const int SE_HOVER_ID = 57;
     const float SE_HOVER_VOLUME = 0.5f;
+    const float DANGER_HP_RATIO = 0.25f;
     private static PlayerVrCockpit _instance;
     public static PlayerVrCockpit Instance => _instance;
 
@@ -33,6 +34,8 @@ public class PlayerVrCockpit : MonoBehaviour
     float _groundToHoverThrottle;
     [SerializeField]
     LayerMask _dontChangeLayer;
+    [SerializeField]
+    Light _cockpitLight;
 
     SoundPlayer _hoverSoundPlayer;
 
@@ -131,6 +134,14 @@ public class PlayerVrCockpit : MonoBehaviour
     public static Vector2 Camera()
     {
         return Instance._flightStick.GetThumbstickInput();
+    }
+
+    public void HpUpdate(float max, float current)
+    {
+        if ((current / max) < DANGER_HP_RATIO)
+        {
+            _cockpitLight.color = Color.red;
+        }
     }
 
     private void Awake()

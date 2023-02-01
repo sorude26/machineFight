@@ -59,6 +59,7 @@ public class UIMonitorAnimator : MonoBehaviour
     private IEnumerator MainOpen(Animator animator)
     {
         animator.SetBool(ANIMATOR_OPEN_KEY, true);
+        SoundManager.Instance.PlaySE(SE_MAIN_ID, animator.gameObject, SE_MAIN_VOLUME);
         yield return new WaitForSeconds(3.0f);
         _monitorOpenCount++;
         _isMainOpen = true;
@@ -76,7 +77,7 @@ public class UIMonitorAnimator : MonoBehaviour
         }
         _monitorOpenCount++;
         animator.SetBool(ANIMATOR_OPEN_KEY, true);
-        SoundManager.Instance.PlaySE(SE_MAIN_ID, this.gameObject, SE_MAIN_VOLUME);
+        SoundManager.Instance.PlaySE(SE_SUB_ID, animator.gameObject, SE_SUB_VOLUME);
     }
 
     private IEnumerator MonitorOpen(Animator[] animators)
@@ -94,7 +95,7 @@ public class UIMonitorAnimator : MonoBehaviour
         {
             
             item.SetBool(ANIMATOR_OPEN_KEY, true);
-            SoundManager.Instance.PlaySE(SE_SUB_ID, this.gameObject, SE_SUB_VOLUME);
+            SoundManager.Instance.PlaySE(SE_SUB_ID, item.gameObject, SE_SUB_VOLUME);
             yield return new WaitForSeconds(0.25f);
         }
     }

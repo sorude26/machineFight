@@ -172,6 +172,7 @@ public class PlayerMachineController : MonoBehaviour
     private void ShowHpData()
     {
         _stageUI.ShowHpData(_machineController.DamageChecker.CurrentHp, _machineController.DamageChecker.MaxHp);
+        PlayerVrCockpit.Instance?.HpUpdate(_machineController.DamageChecker.MaxHp, _machineController.DamageChecker.CurrentHp);
     }
     private void DamagePlayer()
     {

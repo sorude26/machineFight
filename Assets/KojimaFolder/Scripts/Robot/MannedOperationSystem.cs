@@ -28,6 +28,8 @@ public class MannedOperationSystem : MonoBehaviour
     GameObject _systemCanvas;
     [SerializeField]
     GameObject _monitorCover;
+    [SerializeField]
+    Light _cockpitLight;
 
     bool _online;
     bool _connectedToDesctopUI;
@@ -42,6 +44,7 @@ public class MannedOperationSystem : MonoBehaviour
     {
         Instance = this;
         _monitorCover.SetActive(true);
+        _cockpitLight.color = Color.black;
     }
 
     private IEnumerator Start()
@@ -83,6 +86,8 @@ public class MannedOperationSystem : MonoBehaviour
         //サウンド再生開始
         SoundManager.Instance.PlaySE(SE_SISTEMSTART_ID, SE_SYSTEMSTART_VOLUME);
         SoundManager.Instance.PlaySELoop(SE_AMBIENT_ID, this.gameObject, SE_AMBIENT_VOLUME);
+        //ライト起動
+        _cockpitLight.color = Color.white;
         yield return new WaitForSeconds(2f);
 
         //接続開始
