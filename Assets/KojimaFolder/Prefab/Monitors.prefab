@@ -1833,7 +1833,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8965239845594907045}
   - component: {fileID: 766113177341523656}
-  - component: {fileID: 1918284095833126439}
   - component: {fileID: 4012232668569902392}
   m_Layer: 14
   m_Name: Camera
@@ -1899,14 +1898,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &1918284095833126439
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3183063301539913065}
-  m_Enabled: 1
 --- !u!114 &4012232668569902392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2254,7 +2245,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd86b746558894b46bed9019d4aa5be4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _systemStartSwitch: {fileID: 0}
   _connectText: {fileID: 137742700393422981}
   _mainCanvas: {fileID: 190084588533227169}
   _systemCanvas: {fileID: 6991208063422007297}
@@ -2271,6 +2261,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fd0b3a0ed35c764fa3045b17ede3312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _main: {fileID: 0}
+  _rightDown: []
+  _radar: {fileID: 0}
+  _centerDown: []
+  _leftDown: []
+  _mainSwitch: {fileID: 0}
+  _rightDownSwitch: {fileID: 0}
+  _radarSwitch: {fileID: 0}
+  _centarDownSwitch: {fileID: 0}
+  _leftDownSwitch: {fileID: 0}
 --- !u!1 &3619726519369438464
 GameObject:
   m_ObjectHideFlags: 0

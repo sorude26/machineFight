@@ -10,5 +10,15 @@ public class MainCameraLocator : MonoBehaviour
     private void Awake()
     {
         _mainCamera = GetComponent<Camera>();
+        
+    }
+
+    private void Start()
+    {
+        //VRモードでは目の位置にアーディオリスナーがあるため、メインカメラのリスナーは非アクティブ化する
+        if (OVRManager.isHmdPresent || PlayerVrCockpit.Instance.IsDebagVR)
+        {
+            GetComponent<AudioListener>().enabled = false;
+        }
     }
 }
