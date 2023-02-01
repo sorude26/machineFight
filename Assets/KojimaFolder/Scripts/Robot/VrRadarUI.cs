@@ -103,6 +103,14 @@ public class VrRadarUI : MonoBehaviour
             icon = Instantiate(_iconPrefab, this.transform);
             _icons.Add(icon);
         }
+        if (target.DamageChecker.BossTarget)
+        {
+            icon.SetColorToRed();
+        }
+        else
+        {
+            icon.SetColorToWhite();
+        }
         icon.transform.SetParent(this.transform);
         icon.transform.localPosition = new Vector3(diff.x, diff.z, 0);
         icon.Show(_scanSpeed);
