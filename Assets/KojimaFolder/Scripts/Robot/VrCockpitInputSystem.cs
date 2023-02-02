@@ -89,7 +89,7 @@ public class VrCockpitInputSystem : InputDevice, IInputUpdateCallbackReceiver
             InputSystem.QueueStateEvent(this, state);
             return;
         }
-        if (MannedOperationSystem.Instance?.IsOnline ?? false)
+        if (!MannedOperationSystem.Instance?.IsOnline ?? false)
         {
             //システム起動前なら入力値なしでreturn
             InputSystem.QueueStateEvent(this, state);
@@ -117,7 +117,7 @@ public class VrCockpitInputSystem : InputDevice, IInputUpdateCallbackReceiver
 
    
 
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void InitializeInPlayer()
     {
         //staticコンストラクタを呼び出すための空メソッド
