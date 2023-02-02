@@ -7,6 +7,7 @@ using System.Drawing;
 
 public class NavigationMap
 {
+    private const float MIN_RANGE = 15f;
     private int _power = default;
     private int _maxHorizontalIndex = default;
     private NaviPoint _currentTarget = default;
@@ -39,6 +40,12 @@ public class NavigationMap
     }
     public Vector3 GetMoveDir(Transform user,int power)
     {
+        if (Vector3.Distance(_currentTarget.Pos,user.position) < MIN_RANGE)
+        {
+            var minRangeDir = _currentTarget.Pos - user.position;
+            minRangeDir.y = 0;
+            return minRangeDir;
+        }
         var uPoint = GetNearPoint(user.position);
         if (uPoint == null) { return Vector3.zero; }
         if (uPoint.Footprints <= power)
@@ -47,7 +54,7 @@ public class NavigationMap
         }
         var target = GetNextPoint(user.position, uPoint);
         if (target == null) { return Vector3.zero; }
-        var dir = target.Pos - user.transform.position;
+        var dir = target.Pos - user.position;
         dir.y = 0;
         return dir.normalized;
     }

@@ -87,6 +87,7 @@ public class ToggleSwitch : Switch
     {
         base.SwitchUpdateOnLockIn();
         Vector3 local = transform.InverseTransformPoint(_lockinHand.ReferencePositionWorld);
+        bool _beforeValue = IsOn;
         if (local.y > 0)
         {
             TurnOn();
@@ -94,6 +95,12 @@ public class ToggleSwitch : Switch
         else
         {
             TurnOff();
+        }
+
+        //’e‚«“ü—Í‚Ìê‡‚Í’l‚ª•Ï‚í‚Á‚½‚ÉFree‚·‚é
+        if ((IsOn != _beforeValue) && (_currentAdvancedGrabType != AdvancedGrabType.Nomal))
+        {
+            Free();
         }
     }
 

@@ -20,6 +20,8 @@ public class PlayerVrCockpit : MonoBehaviour
     [SerializeField]
     ThrottleLever _throttleLever;
     [SerializeField]
+    Switch _systemStartSwitch;
+    [SerializeField]
     Switch _weaponRightToggleSwitch;
     [SerializeField]
     Switch _weaponLeftToggleSwitch;
@@ -29,6 +31,27 @@ public class PlayerVrCockpit : MonoBehaviour
     float _groundToHoverThrottle;
     [SerializeField]
     LayerMask _dontChangeLayer;
+
+    [SerializeField]
+    bool _isDebagVR = false;
+    public bool IsDebagVR => _isDebagVR;
+
+    public Switch SystemStartSwitch => _systemStartSwitch;
+
+    public Switch WeaponSwitch(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                return _weaponRightToggleSwitch;
+            case 1:
+                return _weaponLeftToggleSwitch;
+            case 2:
+                return _weaponBackToggleSwitch;
+            default:
+                return null;
+        }
+    }
 
     /// <summary>
     /// 右手
@@ -77,7 +100,7 @@ public class PlayerVrCockpit : MonoBehaviour
     /// <returns></returns>
     public static bool Jump()
     {
-        return Instance._throttleLever.GetUpperButtonInput(false);
+        return Instance._throttleLever.GetTriggerInput(false);
     }
     /// <summary>
     /// ステップ
@@ -85,7 +108,7 @@ public class PlayerVrCockpit : MonoBehaviour
     /// <returns></returns>
     public static bool JetBoost()
     {
-        return Instance._throttleLever.GetTriggerInput(false);
+        return Instance._throttleLever.GetUpperButtonInput(false);
     }
     /// <summary>
     /// ターゲット切り替え
@@ -131,7 +154,7 @@ public class PlayerVrCockpit : MonoBehaviour
     private void CameraSetup()
     {
         //VR機器が接続されていない場合はデスクトップ用のカメラに切り替え、コックピットを非表示にする。
-        if (!OVRManager.isHmdPresent)
+        if (!OVRManager.isHmdPresent && !_isDebagVR)
         {
             var cameras = FindObjectsOfType<Camera>(true);
             foreach (var item in cameras)
@@ -139,6 +162,11 @@ public class PlayerVrCockpit : MonoBehaviour
                 item.targetTexture = null;
             }
             this.gameObject.SetActive(false);
+        }
+        else
+        {
+            //一人称切り替え
+            FollowCamera.ChangeToVrCamera();
         }
     }
 

@@ -19750,7 +19750,6 @@ MonoBehaviour:
   _rotationTarget: {fileID: 5356225295753385710}
   _followSpeed: 0.7
   _rotationSpeed: 50
-  _noneLerp: 0
   _lookTarget: {fileID: 5356225295787531925}
   _lookRotationTarget: {fileID: 5356225295753385710}
   _camera: {fileID: 5356225297158101029}
@@ -19761,10 +19760,6 @@ MonoBehaviour:
   _minDis: 2.5
   _normalPos: {x: 0, y: 3, z: -10}
   _changePos: {x: 0, y: 0.5, z: 0.5}
-  _maxRange: 20
-  _mineRange: 0.2
-  _maxSpeed: 50
-  _minSpeed: 0.2
 --- !u!1 &5356225297158101024
 GameObject:
   m_ObjectHideFlags: 0
@@ -19823,7 +19818,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 4000
+  far clip plane: 10000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -19832,7 +19827,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 212759
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 8ecdaca211e75564298267054c27f546, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -93032,6 +93027,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5356225295753385710}
     m_Modifications:
+    - target: {fileID: 1004621585060064967, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
+      propertyPath: _transform
+      value: 
+      objectReference: {fileID: 5356225295753385710}
+    - target: {fileID: 2567569118368439267, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
+      propertyPath: _stageUIController
+      value: 
+      objectReference: {fileID: 7591127043324781682}
+    - target: {fileID: 2887657867544112277, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
+      propertyPath: _machine
+      value: 
+      objectReference: {fileID: 5356225296669652155}
     - target: {fileID: 5177210449259655489, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -93043,10 +93050,6 @@ PrefabInstance:
     - target: {fileID: 5177267438826670394, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
       propertyPath: m_Name
       value: VrSeat
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177267438826670394, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5177267438826670395, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
       propertyPath: m_RootOrder
@@ -93096,6 +93099,22 @@ PrefabInstance:
       propertyPath: _machine
       value: 
       objectReference: {fileID: 5356225296669652155}
+    - target: {fileID: 6544242009984800801, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
+      propertyPath: _groundToHoverThrottle
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467641933701224662, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
+      propertyPath: _machine
+      value: 
+      objectReference: {fileID: 5356225296669652155}
+    - target: {fileID: 8467641933701224662, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
+      propertyPath: _looktransform
+      value: 
+      objectReference: {fileID: 5356225296124549003}
+    - target: {fileID: 8700390797755853294, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
+      propertyPath: _stageUIController
+      value: 
+      objectReference: {fileID: 7591127043324781682}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
 --- !u!4 &6374517030983873856 stripped
@@ -93559,7 +93578,7 @@ PrefabInstance:
     - target: {fileID: 2525458726806351782, guid: f28d3b76c0b5a9d41af9dff79ee3564d, type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8400000, guid: 8ecdaca211e75564298267054c27f546, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f28d3b76c0b5a9d41af9dff79ee3564d, type: 3}
 --- !u!20 &7591127044010921093 stripped

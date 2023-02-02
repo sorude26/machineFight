@@ -15,16 +15,28 @@ public class MachineCarrier : MonoBehaviour
     [SerializeField]
     private ParticleSystem[] _effects = default;
     private bool _isCarrier = true;
+    private Animator _animator;
+
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
     private void Start()
     {
         _machineTrans.SetParent(_baseTrans);
         _machineTrans.localPosition = Vector3.zero;
+        _animator.speed = 0;
     }
     private void LateUpdate()
     {
         if(_isCarrier == false)
         {
             return;
+        }
+        if(!PlayerVrCockpit.Instance.gameObject.activeInHierarchy || MannedOperationSystem.Instance.IsOnline)
+        {
+            //VRモードでは起動完了までキャリアーを動かさない
+            _animator.speed = 1;
         }
         _machineTrans.localPosition = Vector3.zero;
     }

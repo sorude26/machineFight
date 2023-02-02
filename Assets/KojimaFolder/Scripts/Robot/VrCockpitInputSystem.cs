@@ -89,6 +89,12 @@ public class VrCockpitInputSystem : InputDevice, IInputUpdateCallbackReceiver
             InputSystem.QueueStateEvent(this, state);
             return;
         }
+        if (!MannedOperationSystem.Instance?.IsOnline ?? false)
+        {
+            //システム起動前なら入力値なしでreturn
+            InputSystem.QueueStateEvent(this, state);
+            return;
+        }
         //ビット演算関数
         void SetButtonBit(bool isButton, int bit)
         {
