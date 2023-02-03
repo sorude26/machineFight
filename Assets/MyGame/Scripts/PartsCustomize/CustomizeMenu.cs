@@ -30,15 +30,10 @@ public class CustomizeMenu : MonoBehaviour
     private void Start()
     {
         _playerData = PlayerData.instance;
-        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Fire2, CategoryChangeNext);
-        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Fire1, CategoryChangePre);
-        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Cancel, EndCustomize);
-        PlayerInput.ChangeInputMode(InputMode.Menu);
         //ButtonInstantiate(_category, 0);
         this.gameObject.SetActive(false);
         _currentButtonProperty.Value = (GameObject)ButtonSelectController.OnGetCurrentButton();
         _currentButtonProperty.Skip(1).Subscribe(_ => Scroll()).AddTo(this);
-        _selectedIndex = 0;
         //ButtonSelectController.OnButtonFirstSelect(_content);
     }
 
@@ -48,6 +43,19 @@ public class CustomizeMenu : MonoBehaviour
         {
             ButtonSelectController.OnButtonFirstSelect(_content);
         }
+        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Fire2, CategoryChangeNext);
+        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Fire1, CategoryChangePre);
+        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Cancel, EndCustomize);
+        PlayerInput.ChangeInputMode(InputMode.Menu);
+        _selectedIndex = 0;
+        _content.transform.position = new Vector3(0, 0, 0);
+    }
+
+    private void OnDisable()
+    {
+        PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Fire2, CategoryChangeNext);
+        PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Fire1, CategoryChangePre);
+        PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Cancel, EndCustomize);
     }
 
     private void Update()
@@ -285,7 +293,7 @@ public class CustomizeMenu : MonoBehaviour
         ButtonSelectController.OnButtonFirstSelect(_content);
         _selectedIndex = 0;
     }
-
+        
     /// <summary>
     /// É{É^ÉìÇÇ∑Ç◊ÇƒçÌèúÇ∑ÇÈ
     /// </summary>
@@ -367,21 +375,21 @@ public class CustomizeMenu : MonoBehaviour
                 _selectedIndex -= 1;
                 if (_selectedIndex < 0)
                 {
-                    _content.transform.position = new Vector3(_content.transform.position.x, _content.transform.position.y - 105, _content.transform.position.z);
+                    _content.transform.position = new Vector3(_content.transform.position.x, _content.transform.position.y - 76.5f, _content.transform.position.z);
                     _selectedIndex = 0;
                 }
             }
             else if (_currentButtonProperty.Value.transform.localPosition.y < _preButton.transform.localPosition.y)
             {
                 _selectedIndex += 1;
-                if (_selectedIndex > 8)
+                if (_selectedIndex > 9)
                 {
-                    _content.transform.position = new Vector3(_content.transform.position.x, _content.transform.position.y + 105, _content.transform.position.z);
-                    _selectedIndex = 8;
+                    _content.transform.position = new Vector3(_content.transform.position.x, _content.transform.position.y + 76.5f, _content.transform.position.z);
+                    _selectedIndex = 9;
                 }
             }
         }
         _preButton = _currentButtonProperty.Value;
-        Debug.Log(_selectedIndex);
+        //Debug.Log(_selectedIndex);
     }
 }
