@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7676980705927460331}
   - component: {fileID: 7676980705927460329}
   - component: {fileID: 5920042004892685096}
+  - component: {fileID: 136436203638043457}
+  - component: {fileID: 1365544400761589805}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -46,11 +48,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _soundList: {fileID: 398824329000574496, guid: bfaa70d726eaef94c847ee124faf467d, type: 3}
-  _soundPlayer: {fileID: 6529036545984033786, guid: 18e5b5c0bd32cac4e8198e973d5321a6, type: 3}
-  _sound3DPlayer: {fileID: 45473426757602599, guid: 59bf071db1b9e0841960a8edb8002b9f, type: 3}
   _bgmAudioSource: {fileID: 7676980705927460329}
   _deactiveAudioSource: {fileID: 5920042004892685096}
   _playSoundDistance: 100
+  _soundObjectManager: {fileID: 1365544400761589805}
+  _sePlayManager: {fileID: 136436203638043457}
 --- !u!82 &7676980705927460329
 AudioSource:
   m_ObjectHideFlags: 0
@@ -243,3 +245,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &136436203638043457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7676980705927460330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c79481cbf02e79944b8715c6114a14c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _delayFrameCount: 15
+  _registrationMax: 4
+  _soundObjectManager: {fileID: 1365544400761589805}
+--- !u!114 &1365544400761589805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7676980705927460330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0542b41d67b65174fae4b5f8104cb89f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _soundPlayer: {fileID: 6529036545984033786, guid: 18e5b5c0bd32cac4e8198e973d5321a6, type: 3}
+  _sound3DPlayer: {fileID: 45473426757602599, guid: 59bf071db1b9e0841960a8edb8002b9f, type: 3}
