@@ -9,12 +9,6 @@ public class SoundManager : MonoBehaviour
     /// <summary>サウンドリスト</summary>
     [SerializeField]
     private SoundClipList _soundList;
-    /// <summary>通常サウンド再生機能</summary>
-    [SerializeField]
-    private SoundPlayer _soundPlayer;
-    /// <summary>立体音響サウンド再生機能</summary>
-    [SerializeField]
-    private SoundPlayer _sound3DPlayer;
     /// <summary>BGM用のAudioSource</summary>
     [SerializeField]
     private AudioSource _bgmAudioSource;
@@ -24,7 +18,13 @@ public class SoundManager : MonoBehaviour
     /// <summary>サウンド再生有効距離</summary>
     [SerializeField]
     float _playSoundDistance = 100f;
-
+    /// <summary>再生オブジェクト供給クラス</summary>
+    [SerializeField]
+    private SoundObjectManager _soundObjectManager;
+    /// <summary>SE再生管理クラス</summary>
+    [SerializeField]
+    private SEPlayManager _sePlayManager;
+    
     public enum AudioMixerGroup
     {
         BGM,
@@ -85,7 +85,7 @@ public class SoundManager : MonoBehaviour
         AudioClip audioClip = _soundList.GetAudioClip(soundId);
         if (audioClip == null) return;
 
-        SoundPlayer soundPlayer = GetSoundPlayer();
+        SoundPlayer soundPlayer = _soundObjectManager.GetSoundPlayer();
         soundPlayer.gameObject.SetActive(true);
         soundPlayer.PlaySE(audioClip, volume, mixerGroup);
     }
@@ -103,11 +103,8 @@ public class SoundManager : MonoBehaviour
         if (audioClip == null) return;
         
         if (!DistanceCheck(pos)) return;
-        
-        SoundPlayer soundPlayer = GetSound3DPlayer();
-        soundPlayer.gameObject.SetActive(true);
-        soundPlayer.transform.position = pos;
-        soundPlayer.PlaySE(audioClip, volume, mixerGroup);
+
+        _sePlayManager.PlaySE(audioClip, volume, mixerGroup, pos);
     }
     
     /// <summary>
@@ -122,27 +119,9 @@ public class SoundManager : MonoBehaviour
         AudioClip audioClip = _soundList.GetAudioClip(soundId);
         if (audioClip == null) return;
 
-        SoundPlayer soundPlayer = GetSound3DPlayer();
+        SoundPlayer soundPlayer = _soundObjectManager.GetSound3DPlayer();
         soundPlayer.gameObject.SetActive(true);
         soundPlayer.PlaySE(audioClip, target, volume, mixerGroup);
-    }
-
-    /// <summary>
-    /// プールからSoundPlayerを取得する
-    /// </summary>
-    /// <returns>SoundPlayer</returns>
-    private SoundPlayer GetSoundPlayer()
-    {
-        return AudioSourcePool.GetObject(_soundPlayer);
-    }
-
-    /// <summary>
-    /// プールから3D用のSoundPlayerを取得する
-    /// </summary>
-    /// <returns>SoundPlayer for 3D</returns>
-    private SoundPlayer GetSound3DPlayer()
-    {
-        return AudioSource3DPool.GetObject(_sound3DPlayer);
     }
 
     /// <summary>
