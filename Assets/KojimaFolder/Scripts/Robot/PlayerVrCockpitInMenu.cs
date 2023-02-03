@@ -11,7 +11,8 @@ public class PlayerVrCockpitInMenu : PlayerVrCockpit
     /// <returns></returns>
     protected override bool Attack1Virtual()
     {
-        return _flightStick.GetThumbstickInput().x > BORDER;
+        //return _flightStick.GetThumbstickInput().x > BORDER;
+        return false;
     }
     /// <summary>
     /// メニューでは左方向へのセレクトに使用されるためカメラAxisを使用
@@ -19,7 +20,8 @@ public class PlayerVrCockpitInMenu : PlayerVrCockpit
     /// <returns></returns>
     protected override bool Attack2Virtual()
     {
-        return _flightStick.GetThumbstickInput().x < -BORDER;
+        //return _flightStick.GetThumbstickInput().x < -BORDER;
+        return false;
     }
 
     /// <summary>
