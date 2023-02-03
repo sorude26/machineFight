@@ -72,7 +72,7 @@ public class UIMonitorAnimator : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         _monitorOpenCount++;
         _isMainOpen = true;
-        //各モニターを起動させる
+        //各モニターを起動させるアイコンを表示
         VRTutorialManager.Instance.MakeIcon(_rightDownSwitch.transform);
         VRTutorialManager.Instance.MakeIcon(_radarSwitch.transform);
         VRTutorialManager.Instance.MakeIcon(_centarDownSwitch.transform);

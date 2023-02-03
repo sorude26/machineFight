@@ -10,6 +10,11 @@ public class VRTutorialManager : MonoBehaviour
 
     private Dictionary<Transform, GameObject> icons = new Dictionary<Transform, GameObject>();
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     /// <summary>
     /// メインモニタ、レーダーを開けてチュートリアルを表示できるようにする
     /// </summary>
