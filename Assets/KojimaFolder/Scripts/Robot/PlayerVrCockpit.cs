@@ -36,6 +36,8 @@ public class PlayerVrCockpit : MonoBehaviour
     LayerMask _dontChangeLayer;
     [SerializeField]
     Light _cockpitLight;
+    [SerializeField]
+    RenderTexture _mainTexture;
 
     SoundPlayer _hoverSoundPlayer;
 
@@ -173,7 +175,7 @@ public class PlayerVrCockpit : MonoBehaviour
         _instance = this;
         var layer = this.gameObject.layer;
         SetLayerToChildlen(layer, this.transform);
-        CameraSetup();
+        StartCoroutine(CameraSetup());
         ThrottleLeverSetUp();
     }
 
@@ -190,7 +192,7 @@ public class PlayerVrCockpit : MonoBehaviour
         }
     }
 
-    private void CameraSetup()
+    IEnumerator CameraSetup()
     {
         //VR機器が接続されていない場合はデスクトップ用のカメラに切り替え、コックピットを非表示にする。
         if (!OVRManager.isHmdPresent && !_isDebagVR)
@@ -204,9 +206,13 @@ public class PlayerVrCockpit : MonoBehaviour
         }
         else
         {
+            yield return null;
             //一人称切り替え
             FollowCamera.ChangeToVrCamera();
+            //メインカメラをモニターに映るよう設定
+            MainCameraLocator.MainCamera.targetTexture = _mainTexture;
         }
+        yield return null;
     }
 
     private void ThrottleLeverSetUp()

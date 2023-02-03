@@ -32,6 +32,8 @@ public class VrRadarUI : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!(MannedOperationSystem.Instance?.IsOnline ?? false)) return;
+
         var newRotate = _scanRotate;
         //ŽžŒv‰ñ‚è
         newRotate.z -= Time.fixedDeltaTime / _speed;

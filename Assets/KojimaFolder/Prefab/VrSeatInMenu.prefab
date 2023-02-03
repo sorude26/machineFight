@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1004621585060064967, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
+      propertyPath: _transform
+      value: 
+      objectReference: {fileID: 3546977238720383850}
     - target: {fileID: 5177267438826670394, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
       propertyPath: m_Name
       value: VrSeatInMenu
@@ -103,6 +107,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 1.168
       objectReference: {fileID: 0}
+    - target: {fileID: 8467641933701224662, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
+      propertyPath: _looktransform
+      value: 
+      objectReference: {fileID: 6052564396219940078}
     m_RemovedComponents:
     - {fileID: 6544242009984800801, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
@@ -136,6 +144,16 @@ MonoBehaviour:
 --- !u!108 &6130087235678411920 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 6998055090864057930, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
+  m_PrefabInstance: {fileID: 3750486782627836634}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &3546977238720383850 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 375209279701350832, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
+  m_PrefabInstance: {fileID: 3750486782627836634}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &6052564396219940078 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7490436827263389236, guid: 1ce3dab2f11a3a14c9ab2ee2656247e4, type: 3}
   m_PrefabInstance: {fileID: 3750486782627836634}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &9023343640804186524 stripped
@@ -206,4 +224,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 32768
   _cockpitLight: {fileID: 6130087235678411920}
+  _mainTexture: {fileID: 8400000, guid: 8ecdaca211e75564298267054c27f546, type: 2}
   _isDebagVR: 0
