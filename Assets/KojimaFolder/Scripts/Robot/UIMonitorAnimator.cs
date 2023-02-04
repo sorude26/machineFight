@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 /// <summary>
 /// VR操縦時のコックピット内のモニターの開閉動作等を管理するクラス
