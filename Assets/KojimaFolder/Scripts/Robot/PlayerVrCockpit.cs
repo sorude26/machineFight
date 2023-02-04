@@ -249,7 +249,6 @@ public class PlayerVrCockpit : MonoBehaviour
         {
             //スロットルが下がった場合は地上モードに移行
             _machine?.MachineController.TryGround();
-            _hoverSoundPlayer.gameObject?.SetActive(false);
             _hoverSoundPlayer.AudioSource.volume = 0;
         }
     }
