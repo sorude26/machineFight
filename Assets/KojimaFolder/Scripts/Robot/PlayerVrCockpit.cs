@@ -10,6 +10,9 @@ using UnityEngine;
 public class PlayerVrCockpit : MonoBehaviour
 {
     const int ZONE_HOVER = 1;
+    const int SE_HOVER_ID = 57;
+    const float SE_HOVER_VOLUME = 0.5f;
+    const float DANGER_HP_RATIO = 0.25f;
     private static PlayerVrCockpit _instance;
     public static PlayerVrCockpit Instance => _instance;
 
@@ -31,6 +34,10 @@ public class PlayerVrCockpit : MonoBehaviour
     float _groundToHoverThrottle;
     [SerializeField]
     LayerMask _dontChangeLayer;
+    [SerializeField]
+    Light _cockpitLight;
+
+    SoundPlayer _hoverSoundPlayer;
 
     [SerializeField]
     bool _isDebagVR = false;
@@ -129,6 +136,14 @@ public class PlayerVrCockpit : MonoBehaviour
         return Instance._flightStick.GetThumbstickInput();
     }
 
+    public void HpUpdate(float max, float current)
+    {
+        if ((current / max) < DANGER_HP_RATIO)
+        {
+            _cockpitLight.color = Color.red;
+        }
+    }
+
     private void Awake()
     {
         _instance = this;
@@ -184,7 +199,12 @@ public class PlayerVrCockpit : MonoBehaviour
         {
             //スロットルが上がった場合はホバーモードに移行
             _machine.MachineController.TryFloat();
-            
+            //音声再生
+            if (MannedOperationSystem.Instance.IsOnline)
+            {
+                _hoverSoundPlayer ??= SoundManager.Instance.PlaySELoop(SE_HOVER_ID, this.gameObject, SE_HOVER_VOLUME);
+                _hoverSoundPlayer.AudioSource.volume = SE_HOVER_VOLUME;
+            }
         }
     }
 
@@ -194,6 +214,8 @@ public class PlayerVrCockpit : MonoBehaviour
         {
             //スロットルが下がった場合は地上モードに移行
             _machine.MachineController.TryGround();
+            _hoverSoundPlayer.gameObject?.SetActive(false);
+            _hoverSoundPlayer.AudioSource.volume = 0;
         }
     }
 

@@ -12,6 +12,10 @@ public class MannedOperationSystem : MonoBehaviour
     const string CONNECTED_MESSAGE = "CONNECTED";
     const string ONLINE_MESSAGE = "READY TO GO";
     const string CONNECTED_POPUP_MESSAGE = "拡張機能が接続されました";
+    const int SE_SISTEMSTART_ID = 59;
+    const float SE_SYSTEMSTART_VOLUME = 1.0f;
+    const int SE_AMBIENT_ID = 60;
+    const float SE_AMBIENT_VOLUME = 0.7f;
 
     public static MannedOperationSystem Instance { get; private set; }
 
@@ -24,6 +28,10 @@ public class MannedOperationSystem : MonoBehaviour
     GameObject _systemCanvas;
     [SerializeField]
     GameObject _monitorCover;
+    [SerializeField]
+    Light _cockpitLight;
+    [SerializeField]
+    GameObject[] _disactiveUIObjects;
 
     bool _online;
     bool _connectedToDesctopUI;
@@ -38,6 +46,7 @@ public class MannedOperationSystem : MonoBehaviour
     {
         Instance = this;
         _monitorCover.SetActive(true);
+        _cockpitLight.color = Color.black;
     }
 
     private IEnumerator Start()
@@ -76,6 +85,11 @@ public class MannedOperationSystem : MonoBehaviour
         _monitorCover.SetActive(false);
         _systemCanvas.SetActive(true);
         _mainCanvas.SetActive(false);
+        //サウンド再生開始
+        SoundManager.Instance.PlaySE(SE_SISTEMSTART_ID, SE_SYSTEMSTART_VOLUME);
+        SoundManager.Instance.PlaySELoop(SE_AMBIENT_ID, this.gameObject, SE_AMBIENT_VOLUME);
+        //ライト起動
+        _cockpitLight.color = Color.white;
         yield return new WaitForSeconds(2f);
 
         //接続開始
@@ -101,6 +115,9 @@ public class MannedOperationSystem : MonoBehaviour
 
     private void ChangeMainUI()
     {
-
+        foreach (var item in _disactiveUIObjects)
+        {
+            item.SetActive(false);
+        }
     }
 }

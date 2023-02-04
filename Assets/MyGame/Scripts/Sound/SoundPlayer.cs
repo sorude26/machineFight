@@ -11,6 +11,8 @@ public class SoundPlayer : MonoBehaviour
     private AudioSource _audioSource = default;
     private UnityEvent _callback = new UnityEvent();
 
+    public AudioSource AudioSource => _audioSource;
+
     private void Awake()
     {
         _callback.AddListener(() => Deactivate(gameObject));
@@ -54,6 +56,14 @@ public class SoundPlayer : MonoBehaviour
         _audioSource.outputAudioMixerGroup = AudioMixerManager.Instance.GetAudioMixerGroup(group);
         StartCoroutine(FollowTarget(target));
         StartCoroutine(_audioSource.PlayWithCompCallback(audioClip, volume, _callback));
+    }
+
+    public void PlayLoopSE(AudioClip audioClip, GameObject target, float volume = 1f, SoundManager.AudioMixerGroup group = SoundManager.AudioMixerGroup.SE)
+    {
+        _audioSource.loop = true;
+        _audioSource.outputAudioMixerGroup = AudioMixerManager.Instance.GetAudioMixerGroup(group);
+        StartCoroutine(FollowTarget(target));
+        _audioSource.Play(audioClip, volume);
     }
 
     /// <summary>

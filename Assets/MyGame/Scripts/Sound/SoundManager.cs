@@ -125,6 +125,25 @@ public class SoundManager : MonoBehaviour
     }
 
     /// <summary>
+    /// ループするSEを再生する(3D音響ではない)
+    /// </summary>
+    /// <param name="soundId"></param>
+    /// <param name="target"></param>
+    /// <param name="volume"></param>
+    /// <param name="mixerGroup"></param>
+    /// <returns></returns>
+    public SoundPlayer PlaySELoop(int soundId, GameObject target, float volume = 1f, AudioMixerGroup mixerGroup = AudioMixerGroup.SE)
+    {
+        AudioClip audioClip = _soundList.GetAudioClip(soundId);
+        if (audioClip == null) return null;
+
+        SoundPlayer soundPlayer = _soundObjectManager.GetSound3DPlayer();
+        soundPlayer.gameObject.SetActive(true);
+        soundPlayer.PlayLoopSE(audioClip, target, volume, mixerGroup);
+        return soundPlayer;
+    }
+
+    /// <summary>
     /// サウンドの再生距離判定
     /// </summary>
     /// <param name="targetPos"></param>
