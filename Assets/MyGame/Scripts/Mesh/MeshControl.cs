@@ -43,7 +43,7 @@ namespace MyGame
             foreach (KeyValuePair<string, List<MeshFilter>> filterList in meshFilterDic)
             {
                 //結合メッシュの土台を生成
-                var obj = new GameObject($"(Comb:{ filterList.Key})");
+                var obj = new GameObject($"(Comb:{filterList.Key})");
                 obj.transform.SetParent(target);
                 obj.transform.localPosition = Vector3.zero;
                 //描画用コンポーネントを追加

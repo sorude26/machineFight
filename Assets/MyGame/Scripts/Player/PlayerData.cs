@@ -135,96 +135,96 @@ public class PlayerData : MonoBehaviour
             case PartsType.Head:
                 if (_getsHeadParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
                 {
-                    Debug.Log("“üèÏ‚İ");
+                    //Debug.Log("“üèÏ‚İ");
                     break;
                 }
                 else
                 {
-                    Debug.Log("“üè");
+                    //Debug.Log("“üè");
                     _getsHeadParts.Add(PartsManager.Instance.AllParamData.GetPartsHead(partsId));
                 }
                 break;
             case PartsType.Body:
                 if (_getsBodyParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
                 {
-                    Debug.Log("“üèÏ‚İ");
+                    //Debug.Log("“üèÏ‚İ");
                     break;
                 }
                 else
                 {
-                    Debug.Log("“üè");
+                    //Debug.Log("“üè");
                     _getsBodyParts.Add(PartsManager.Instance.AllParamData.GetPartsBody(partsId));
                 }
                 break;
             case PartsType.LHand:
                 if (_getsLHandParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
                 {
-                    Debug.Log("“üèÏ‚İ");
+                    //Debug.Log("“üèÏ‚İ");
                     break;
                 }
                 else
                 {
-                    Debug.Log("“üè");
+                    //Debug.Log("“üè");
                     _getsLHandParts.Add(PartsManager.Instance.AllParamData.GetPartsHand(partsId));
                 }
                 break;
             case PartsType.RHand:
                 if (_getsRHandParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
                 {
-                    Debug.Log("“üèÏ‚İ");
+                    //Debug.Log("“üèÏ‚İ");
                     break;
                 }
                 else
                 {
-                    Debug.Log("“üè");
+                    //Debug.Log("“üè");
                     _getsRHandParts.Add(PartsManager.Instance.AllParamData.GetPartsHand(partsId));
                 }
                 break;
             case PartsType.BackPack:
                 if (_getsBackPackParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
                 {
-                    Debug.Log("“üèÏ‚İ");
+                    //Debug.Log("“üèÏ‚İ");
                     break;
                 }
                 else
                 {
-                    Debug.Log("“üè");
+                    //Debug.Log("“üè");
                     _getsBackPackParts.Add(PartsManager.Instance.AllParamData.GetPartsBack(partsId));
                 }
                 break;
             case PartsType.Leg:
                 if (_getsLegParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
                 {
-                    Debug.Log("“üèÏ‚İ");
+                    //Debug.Log("“üèÏ‚İ");
                     break;
                 }
                 else
                 {
-                    Debug.Log("“üè");
+                    //Debug.Log("“üè");
                     _getsLegParts.Add(PartsManager.Instance.AllParamData.GetPartsLeg(partsId));
                 }
                 break;
             case PartsType.LWeapon:
                 if (_getsWeaponParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
                 {
-                    Debug.Log("“üèÏ‚İ");
+                    //Debug.Log("“üèÏ‚İ");
                     break;
                 }
                 else
                 {
-                    Debug.Log("“üè");
+                    //Debug.Log("“üè");
                     _getsWeaponParts.Add(PartsManager.Instance.AllParamData.GetPartsWeapon(partsId));
                 }
                 break;
             case PartsType.RWeapon:
                 if (_getsWeaponParts.Where(data => data.ID == partsId).FirstOrDefault() != null)
                 {
-                    Debug.Log("“üèÏ‚İ");
+                    //Debug.Log("“üèÏ‚İ");
                     break;
                 }
                 else
                 {
-                    Debug.Log("“üè");
+                    //Debug.Log("“üè");
                     _getsWeaponParts.Add(PartsManager.Instance.AllParamData.GetPartsWeapon(partsId));
                 }
                 break;

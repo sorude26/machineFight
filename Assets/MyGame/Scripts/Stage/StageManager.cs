@@ -43,8 +43,9 @@ public class StageManager : MonoBehaviour
         Instance = this;
         PartsManager.Instance.LoadData();
         _clearBossCount = _defaultBossCount;
+        InStage = false;
     }
-    private void Start()
+    private IEnumerator Start()
     {
         if (_enemySet != null && StageData.StageLevel < _enemySet.Length)
         {
@@ -55,6 +56,7 @@ public class StageManager : MonoBehaviour
         {
             SoundManager.Instance.PlayBGM(_bgmIDNum, _bgmVolume);
         }
+        yield return null;
         InStage = true;
     }
     public void ChangeBGM()

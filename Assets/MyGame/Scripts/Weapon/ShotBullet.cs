@@ -54,7 +54,7 @@ public class ShotBullet : MonoBehaviour
     protected virtual void HitBullet(Vector3 hitPos)
     {
         PlayHitEffect(hitPos);
-        if (_penetrate == true || gameObject.activeInHierarchy == false) { return; }
+        if (gameObject.activeInHierarchy == false) { return; }
         StartCoroutine(HitActionImpl());
     }
     protected void PlayShake()
