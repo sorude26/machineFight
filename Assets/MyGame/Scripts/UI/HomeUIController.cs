@@ -9,6 +9,8 @@ public class HomeUIController : MonoBehaviour
     private GameObject _menuPanel = default;
     [SerializeField]
     private ModelBuilder _modelBuilder = default;
+    [SerializeField]
+    private Canvas _canvas = null;
     private void Awake()
     {
         Instance = this;
@@ -16,6 +18,10 @@ public class HomeUIController : MonoBehaviour
     private void Start()
     {
         ButtonSelectController.OnButtonFirstSelect(_menuPanel);
+        if (OVRManager.isHmdPresent == false && PlayerVrCockpit.Instance.IsDebagVR == false)
+        {
+            _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        }
     }
     public void BuildModel()
     {
