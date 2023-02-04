@@ -19,7 +19,7 @@ public class PlayerVrCockpit : MonoBehaviour
     [SerializeField]
     PlayerMachineController _machine;
     [SerializeField]
-    FlightStick _flightStick;
+    protected FlightStick _flightStick;
     [SerializeField]
     ThrottleLever _throttleLever;
     [SerializeField]
@@ -36,6 +36,8 @@ public class PlayerVrCockpit : MonoBehaviour
     LayerMask _dontChangeLayer;
     [SerializeField]
     Light _cockpitLight;
+    [SerializeField]
+    RenderTexture _mainTexture;
 
     SoundPlayer _hoverSoundPlayer;
 
@@ -66,18 +68,28 @@ public class PlayerVrCockpit : MonoBehaviour
     /// <returns></returns>
     public static bool Attack1()
     {
-        if (!Instance._weaponRightToggleSwitch.IsOn) return false;
-        return Instance._flightStick.GetTriggerInput(false);
+        return Instance?.Attack1Virtual() ?? false;
     }
+    protected virtual bool Attack1Virtual()
+    {
+        if (_weaponRightToggleSwitch.IsOn) return false;
+        return _flightStick.GetTriggerInput(false);
+    }
+
     /// <summary>
     /// 左手
     /// </summary>
     /// <returns></returns>
     public static bool Attack2()
     {
-        if (!Instance._weaponLeftToggleSwitch.IsOn) return false;
-        return Instance._flightStick.GetTriggerInput(false);
+        return Instance?.Attack2Virtual() ?? false;
     }
+    protected virtual bool Attack2Virtual()
+    {
+        if (_weaponLeftToggleSwitch.IsOn) return false;
+        return _flightStick.GetTriggerInput(false);
+    }
+
     /// <summary>
     /// バックウェポンorホバー
     /// </summary>
@@ -126,7 +138,21 @@ public class PlayerVrCockpit : MonoBehaviour
         return Instance._flightStick.GetThumbstickButtonInput(false);
     }
 
+    public static bool Submit()
+    {
+        return Instance._flightStick.GetTriggerInput(false);
+    }
+
+    public static bool Cancel()
+    {
+        return Instance._flightStick.GetUpperButtonInput(false) || Instance._throttleLever.GetLowerButtonInput(false);
+    }
+
     public static Vector2 Move()
+    {
+        return Instance.MoveVirtual();
+    }
+    protected virtual Vector2 MoveVirtual()
     {
         return Instance._flightStick.GetStickBodyInput();
     }
@@ -149,7 +175,7 @@ public class PlayerVrCockpit : MonoBehaviour
         _instance = this;
         var layer = this.gameObject.layer;
         SetLayerToChildlen(layer, this.transform);
-        CameraSetup();
+        StartCoroutine(CameraSetup());
         ThrottleLeverSetUp();
     }
 
@@ -166,7 +192,7 @@ public class PlayerVrCockpit : MonoBehaviour
         }
     }
 
-    private void CameraSetup()
+    IEnumerator CameraSetup()
     {
         //VR機器が接続されていない場合はデスクトップ用のカメラに切り替え、コックピットを非表示にする。
         if (!OVRManager.isHmdPresent && !_isDebagVR)
@@ -180,9 +206,13 @@ public class PlayerVrCockpit : MonoBehaviour
         }
         else
         {
+            yield return null;
             //一人称切り替え
             FollowCamera.ChangeToVrCamera();
+            //メインカメラをモニターに映るよう設定
+            MainCameraLocator.MainCamera.targetTexture = _mainTexture;
         }
+        yield return null;
     }
 
     private void ThrottleLeverSetUp()
@@ -198,7 +228,7 @@ public class PlayerVrCockpit : MonoBehaviour
         if (zone == ZONE_HOVER)
         {
             //スロットルが上がった場合はホバーモードに移行
-            _machine.MachineController.TryFloat();
+            _machine?.MachineController.TryFloat();
             //音声再生
             if (MannedOperationSystem.Instance.IsOnline)
             {
@@ -213,7 +243,7 @@ public class PlayerVrCockpit : MonoBehaviour
         if (zone == ZONE_HOVER)
         {
             //スロットルが下がった場合は地上モードに移行
-            _machine.MachineController.TryGround();
+            _machine?.MachineController.TryGround();
             _hoverSoundPlayer.gameObject?.SetActive(false);
             _hoverSoundPlayer.AudioSource.volume = 0;
         }
@@ -224,7 +254,7 @@ public class PlayerVrCockpit : MonoBehaviour
         if (zone == ZONE_HOVER)
         {
             //ホバー時の速度を登録
-            _machine.MachineController.BodyController.SetFloatSpeed(ZONE_HOVER);
+            _machine?.MachineController.BodyController.SetFloatSpeed(ZONE_HOVER);
         }
     }
 }

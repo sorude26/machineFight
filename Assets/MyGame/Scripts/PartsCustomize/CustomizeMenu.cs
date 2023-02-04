@@ -48,7 +48,7 @@ public class CustomizeMenu : MonoBehaviour
         PlayerInput.SetEnterInput(InputMode.Menu, InputType.Cancel, EndCustomize);
         PlayerInput.ChangeInputMode(InputMode.Menu);
         _selectedIndex = 0;
-        _content.transform.position = new Vector3(0, 0, 0);
+        _content.transform.localPosition = new Vector3(0, 0, 0);
     }
 
     private void OnDisable()
@@ -84,6 +84,7 @@ public class CustomizeMenu : MonoBehaviour
                     foreach (var parts in headParts)
                     {
                         Button button = Instantiate(_partsButton);
+                        Vector2 buttonScale = button.transform.localScale;
                         button.gameObject.AddComponent<PartsButton>();
                         //button.gameObject.AddComponent<EventTrigger>();
                         PartsButton _ = button.GetComponent<PartsButton>();
@@ -92,6 +93,8 @@ public class CustomizeMenu : MonoBehaviour
                         button.onClick.AddListener(() => _.Customize());
                         button.transform.parent = _content.transform;
                         button.GetComponentInChildren<Text>().text = parts.Name;
+                        button.transform.localScale = buttonScale;
+                        button.transform.localPosition = Vector3.zero;
                     }
                 }
                 
@@ -107,6 +110,7 @@ public class CustomizeMenu : MonoBehaviour
                     foreach (var parts in bodyParts)
                     {
                         Button button = Instantiate(_partsButton);
+                        Vector2 buttonScale = button.transform.localScale;
                         button.gameObject.AddComponent<PartsButton>();
                         //button.gameObject.AddComponent<EventTrigger>();
                         PartsButton _ = button.GetComponent<PartsButton>();
@@ -115,6 +119,8 @@ public class CustomizeMenu : MonoBehaviour
                         button.onClick.AddListener(() => _.Customize());
                         button.transform.parent = _content.transform;
                         button.GetComponentInChildren<Text>().text = parts.Name;
+                        button.transform.localScale = buttonScale;
+                        button.transform.localPosition = Vector3.zero;
                     }
                 }
                 break;
@@ -129,6 +135,7 @@ public class CustomizeMenu : MonoBehaviour
                     foreach (var parts in lhandParts)
                     {
                         Button button = Instantiate(_partsButton);
+                        Vector2 buttonScale = button.transform.localScale;
                         button.gameObject.AddComponent<PartsButton>();
                         //button.gameObject.AddComponent<EventTrigger>();
                         PartsButton _ = button.GetComponent<PartsButton>();
@@ -137,6 +144,8 @@ public class CustomizeMenu : MonoBehaviour
                         button.onClick.AddListener(() => _.Customize());
                         button.transform.parent = _content.transform;
                         button.GetComponentInChildren<Text>().text = parts.Name;
+                        button.transform.localScale = buttonScale;
+                        button.transform.localPosition = Vector3.zero;
                     }
                 }
                 break;
@@ -151,6 +160,7 @@ public class CustomizeMenu : MonoBehaviour
                     foreach (var parts in rhandParts)
                     {
                         Button button = Instantiate(_partsButton);
+                        Vector2 buttonScale = button.transform.localScale;
                         button.gameObject.AddComponent<PartsButton>();
                         //button.gameObject.AddComponent<EventTrigger>();
                         PartsButton _ = button.GetComponent<PartsButton>();
@@ -159,6 +169,8 @@ public class CustomizeMenu : MonoBehaviour
                         button.onClick.AddListener(() => _.Customize());
                         button.transform.parent = _content.transform;
                         button.GetComponentInChildren<Text>().text = parts.Name;
+                        button.transform.localScale = buttonScale;
+                        button.transform.localPosition = Vector3.zero;
                     }
                 }
                 break;
@@ -173,6 +185,7 @@ public class CustomizeMenu : MonoBehaviour
                     foreach (var parts in legParts)
                     {
                         Button button = Instantiate(_partsButton);
+                        Vector2 buttonScale = button.transform.localScale;
                         button.gameObject.AddComponent<PartsButton>();
                         //button.gameObject.AddComponent<EventTrigger>();
                         PartsButton _ = button.GetComponent<PartsButton>();
@@ -181,6 +194,8 @@ public class CustomizeMenu : MonoBehaviour
                         button.onClick.AddListener(() => _.Customize());
                         button.transform.parent = _content.transform;
                         button.GetComponentInChildren<Text>().text = parts.Name;
+                        button.transform.localScale = buttonScale;
+                        button.transform.localPosition = Vector3.zero;
                     }
                 }
                 break;
@@ -195,6 +210,7 @@ public class CustomizeMenu : MonoBehaviour
                     foreach (var parts in boosterParts)
                     {
                         Button button = Instantiate(_partsButton);
+                        Vector2 buttonScale = button.transform.localScale;
                         button.gameObject.AddComponent<PartsButton>();
                         //button.gameObject.AddComponent<EventTrigger>();
                         PartsButton _ = button.GetComponent<PartsButton>();
@@ -203,6 +219,8 @@ public class CustomizeMenu : MonoBehaviour
                         button.onClick.AddListener(() => _.Customize());
                         button.transform.parent = _content.transform;
                         button.GetComponentInChildren<Text>().text = parts.Name;
+                        button.transform.localScale = buttonScale;
+                        button.transform.localPosition = Vector3.zero;
                     }
                 }
                 break;
@@ -217,6 +235,7 @@ public class CustomizeMenu : MonoBehaviour
                     foreach (var parts in lweaponParts)
                     {
                         Button button = Instantiate(_partsButton);
+                        Vector2 buttonScale = button.transform.localScale;
                         button.gameObject.AddComponent<PartsButton>();
                         //button.gameObject.AddComponent<EventTrigger>();
                         PartsButton _ = button.GetComponent<PartsButton>();
@@ -225,6 +244,8 @@ public class CustomizeMenu : MonoBehaviour
                         button.onClick.AddListener(() => _.Customize());
                         button.transform.parent = _content.transform;
                         button.GetComponentInChildren<Text>().text = parts.Name;
+                        button.transform.localScale = buttonScale;
+                        button.transform.localPosition = Vector3.zero;
                     }
                 }
                 break;
@@ -239,6 +260,7 @@ public class CustomizeMenu : MonoBehaviour
                     foreach (var parts in rweaponParts)
                     {
                         Button button = Instantiate(_partsButton);
+                        Vector2 buttonScale = button.transform.localScale;
                         button.gameObject.AddComponent<PartsButton>();
                         //button.gameObject.AddComponent<EventTrigger>();
                         PartsButton _ = button.GetComponent<PartsButton>();
@@ -247,6 +269,8 @@ public class CustomizeMenu : MonoBehaviour
                         button.onClick.AddListener(() => _.Customize());
                         button.transform.parent = _content.transform;
                         button.GetComponentInChildren<Text>().text = parts.Name;
+                        button.transform.localScale = buttonScale;
+                        button.transform.localPosition = Vector3.zero;
                     }
                 }
                 break;
@@ -256,6 +280,7 @@ public class CustomizeMenu : MonoBehaviour
                 {
                     var color = PartsManager.Instance.AllModelData.GetColor(id);
                     Button button = Instantiate(_partsButton);
+                    Vector2 buttonScale = button.transform.localScale;
                     button.gameObject.AddComponent<PartsButton>();
                     //button.gameObject.AddComponent<EventTrigger>();
                     PartsButton _ = button.GetComponent<PartsButton>();
@@ -265,6 +290,8 @@ public class CustomizeMenu : MonoBehaviour
                     button.transform.parent = _content.transform;
                     button.GetComponentInChildren<Text>().text = color.ColorSetName;
                     id++;
+                    button.transform.localScale = buttonScale;
+                    button.transform.localPosition = Vector3.zero;
                 }
                 
                 break;
@@ -375,7 +402,7 @@ public class CustomizeMenu : MonoBehaviour
                 _selectedIndex -= 1;
                 if (_selectedIndex < 0)
                 {
-                    _content.transform.position = new Vector3(_content.transform.position.x, _content.transform.position.y - 76.5f, _content.transform.position.z);
+                    _content.transform.localPosition = new Vector3(_content.transform.localPosition.x, _content.transform.localPosition.y - 76.5f, _content.transform.localPosition.z);
                     _selectedIndex = 0;
                 }
             }
@@ -384,7 +411,7 @@ public class CustomizeMenu : MonoBehaviour
                 _selectedIndex += 1;
                 if (_selectedIndex > 9)
                 {
-                    _content.transform.position = new Vector3(_content.transform.position.x, _content.transform.position.y + 76.5f, _content.transform.position.z);
+                    _content.transform.localPosition = new Vector3(_content.transform.localPosition.x, _content.transform.localPosition.y + 76.5f, _content.transform.localPosition.z);
                     _selectedIndex = 9;
                 }
             }

@@ -612,6 +612,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""16372b94-cfa0-4fc7-960b-dd2a7d665019"",
+                    ""path"": ""<VrCockpit>/submit"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Submit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""318589b0-2019-43bc-802a-9815f1188f35"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
@@ -625,6 +636,17 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""938c3535-d339-4920-af04-9e22767e5171"",
                     ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7de3eef2-408f-45bf-ba87-bb1d50aab64f"",
+                    ""path"": ""<VrCockpit>/cancel"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
