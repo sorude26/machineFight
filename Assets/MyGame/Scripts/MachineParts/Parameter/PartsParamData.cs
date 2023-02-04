@@ -18,7 +18,12 @@ public class PartsParamData : ScriptableObject
     private PartsBackPackData[] _backData;
     [SerializeField]
     private PartsWeaponData[] _weaponData;
-
+    [SerializeField]
+    private PartsBuildParam[] _rank0PopParts;
+    [SerializeField]
+    private PartsBuildParam[] _rank1PopParts;
+    [SerializeField]
+    private PartsBuildParam[] _rank2PopParts;
     public PartsBodyData GetPartsBody(int id)
     {
         return _bodyData.Where(data => data.ID == id).FirstOrDefault();
@@ -67,5 +72,17 @@ public class PartsParamData : ScriptableObject
                 break;
         }
         return 0;
+    }
+    public int GetRandamPartsId(PartsType type, int rank)
+    {
+        if (rank == 1)
+        {
+            return _rank1PopParts[Random.Range(0, _rank0PopParts.Length)][type];
+        }
+        else if (rank == 2)
+        {
+            return _rank2PopParts[Random.Range(0, _rank0PopParts.Length)][type];
+        }
+        return _rank0PopParts[Random.Range(0, _rank0PopParts.Length)][type];
     }
 }
