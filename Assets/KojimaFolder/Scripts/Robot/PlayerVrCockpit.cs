@@ -72,7 +72,7 @@ public class PlayerVrCockpit : MonoBehaviour
     }
     protected virtual bool Attack1Virtual()
     {
-        if (_weaponRightToggleSwitch.IsOn) return false;
+        if (!_weaponRightToggleSwitch.IsOn) return false;
         return _flightStick.GetTriggerInput(false);
     }
 
@@ -86,7 +86,7 @@ public class PlayerVrCockpit : MonoBehaviour
     }
     protected virtual bool Attack2Virtual()
     {
-        if (_weaponLeftToggleSwitch.IsOn) return false;
+        if (!_weaponLeftToggleSwitch.IsOn) return false;
         return _flightStick.GetTriggerInput(false);
     }
 
