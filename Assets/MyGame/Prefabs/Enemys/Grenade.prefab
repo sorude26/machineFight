@@ -283,8 +283,10 @@ MonoBehaviour:
   _machineController: {fileID: 240623414593927191}
   _lockTrans: {fileID: 240623413921120410}
   _body: {fileID: 240623414593927184}
+  _lockbody: {fileID: 0}
   _naviPower: 0
   _transSpeed: 8
+  _lockSpeed: 5
   _naviInterval: 1
   _buildParam:
     Head: 0
@@ -310,6 +312,7 @@ MonoBehaviour:
     Power: 150
     Time: 2
   _popControllers: []
+  _diffusivity: 0.1
 --- !u!114 &240623412559684253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10671,6 +10674,7 @@ MonoBehaviour:
   _triggerInterval: 0.1
   _shotInterval: 0.07
   _diffusivity: 0.02
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -16724,6 +16728,7 @@ MonoBehaviour:
   - {fileID: 458471311508928551}
   - {fileID: 4426963837031057546}
   - {fileID: 6967963605684392298}
+  _froatBoosters: []
 --- !u!1 &1725917582474845626
 GameObject:
   m_ObjectHideFlags: 0
@@ -16772,6 +16777,7 @@ MonoBehaviour:
   _backBoosters: []
   _leftBoosters: []
   _rightBoosters: []
+  _froatBoosters: []
 --- !u!1 &1743826636545197179
 GameObject:
   m_ObjectHideFlags: 0
@@ -17837,6 +17843,7 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.02
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -22904,6 +22911,7 @@ MonoBehaviour:
   - {fileID: 5160985536264254718}
   _rightBoosters:
   - {fileID: 458288819286451511}
+  _froatBoosters: []
 --- !u!1 &2945586545952488208
 GameObject:
   m_ObjectHideFlags: 0
@@ -23161,6 +23169,7 @@ MonoBehaviour:
   - {fileID: 5473270711715183451}
   _rightBoosters:
   - {fileID: 736159276782496402}
+  _froatBoosters: []
 --- !u!1 &3327529379372606473
 GameObject:
   m_ObjectHideFlags: 0
@@ -23619,7 +23628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04d3c09e6200e846bccc6bf6902132e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lockOnTime: 1
+  _lockOnTime: 1.5
   _damageChecker: {fileID: 1770113351495925022}
 --- !u!136 &4498953300159271964
 CapsuleCollider:
@@ -23916,6 +23925,7 @@ MonoBehaviour:
   _triggerInterval: 0.5
   _shotInterval: 0.5
   _diffusivity: 0.02
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -29825,6 +29835,7 @@ MonoBehaviour:
   _partsColorChanger: {fileID: 5274921087652610820}
   _floatEffect: {fileID: 8917718092902593452}
   _effectRange: 20
+  _legAttackInterval: 1
   _effectLayer:
     serializedVersion: 2
     m_Bits: 4865
@@ -45351,6 +45362,7 @@ MonoBehaviour:
   - {fileID: 3633670314317499067}
   - {fileID: 3517695240656558510}
   - {fileID: 2172142353583203095}
+  _froatBoosters: []
 --- !u!1 &8893131903216200848
 GameObject:
   m_ObjectHideFlags: 0

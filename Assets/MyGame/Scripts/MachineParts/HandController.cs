@@ -159,6 +159,10 @@ public class HandController : MonoBehaviour, IPartsModel
         _firstShot = false;
         ResetAngle();
     }
+    public void StopShot()
+    {
+        _weapon.StopFire();
+    }
     public void PartsMotion()
     {
         _shoulder.localRotation = Quaternion.Lerp(_shoulder.localRotation, _topRotaion, PartsRotaionSpeed * Time.fixedDeltaTime);

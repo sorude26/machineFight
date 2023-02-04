@@ -9,6 +9,7 @@ using UnityEngine.InputSystem.UI;
 
 public class CustomizeMenu : MonoBehaviour
 {
+    private static readonly int VR_COLOR = 20;
     [SerializeField] GameObject _partsSelectPanel = default;
     [SerializeField] Text _partsName = default;
     [SerializeField] Button _partsButton = default;
@@ -278,6 +279,11 @@ public class CustomizeMenu : MonoBehaviour
                 int id = 0;
                 while(PartsManager.Instance.AllModelData.GetColor(id) != null)
                 {
+                    if (id == VR_COLOR)
+                    {
+                        id++;
+                        continue;
+                    }
                     var color = PartsManager.Instance.AllModelData.GetColor(id);
                     Button button = Instantiate(_partsButton);
                     Vector2 buttonScale = button.transform.localScale;

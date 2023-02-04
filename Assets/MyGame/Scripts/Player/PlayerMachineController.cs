@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class PlayerMachineController : MonoBehaviour
 {
     const int VR_COLOR = 20;
+    private float MIN_ENERGY = 10f;
     [SerializeField]
     private float _useEnergySpeed = 5f;
     [SerializeField]
@@ -26,8 +27,6 @@ public class PlayerMachineController : MonoBehaviour
     private StageUIController _stageUI = default;
     [SerializeField]
     private Transform _headTrans = default;
-    [SerializeField]
-    private FollowCamera _camera = default;
     [SerializeField]
     private bool _startWaitMode = false;
     [SerializeField]
@@ -81,6 +80,17 @@ public class PlayerMachineController : MonoBehaviour
         }
         _currentBooster = _maxBooster;
     }
+    private void Update()
+    {
+        if (_machineController.BodyController.LeftHand.WeaponBase.IsFire == true && PlayerInput.GetStayInput(InputType.Fire1) == false)
+        {
+            StopShotLeft();
+        }
+        if (_machineController.BodyController.RightHand.WeaponBase.IsFire == true && PlayerInput.GetStayInput(InputType.Fire2) == false)
+        {
+            StopShotRight();
+        }
+    }
     private void FixedUpdate()
     {
         if (_machineController.IsInitalized == false || _startWaitMode == true) { return; }
@@ -109,7 +119,6 @@ public class PlayerMachineController : MonoBehaviour
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.Fire4, _machineController.AttackLeg);
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.Booster, JetBoost);
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.ChangeTarget, ChangeTarget);
-        //PlayerInput.SetEnterInput(InputMode.InGame, InputType.ChangeMode, _camera.ChangeMode);
         PlayerInput.SetEnterInput(InputMode.InGame, InputType.ChangeMode, ChangeFloatMode);
     }
     private void LiftInput()
@@ -121,7 +130,6 @@ public class PlayerMachineController : MonoBehaviour
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.Fire4, _machineController.AttackLeg);
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.Booster, JetBoost);
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.ChangeTarget, ChangeTarget);
-        //PlayerInput.LiftEnterInput(InputMode.InGame, InputType.ChangeMode, _camera.ChangeMode);
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.ChangeMode, ChangeFloatMode);
     }
     private void SetParam()
@@ -163,8 +171,11 @@ public class PlayerMachineController : MonoBehaviour
             _currentEnergy -= useEnergy;
             if (_currentEnergy <= 0)
             {
-                LiftInput();
-                _machineController.PlayDeadEvent();
+                _machineController.IsPowerDown = true;
+                if (_machineController.IsFloat)
+                {
+                    _machineController.TryGround();
+                }
             }
             _stageUI.EnergyUpdate(_currentEnergy, _maxEnergy);
         }
@@ -187,9 +198,17 @@ public class PlayerMachineController : MonoBehaviour
     {
         _machineController.ShotLeft();
     }
+    public void StopShotLeft()
+    {
+        _machineController.StopShotLeft();
+    }
     public void ShotRight()
     {
         _machineController.ShotRight();
+    }
+    public void StopShotRight()
+    {
+        _machineController.StopShotRight();
     }
     public void JetBoost()
     {
@@ -242,14 +261,14 @@ public class PlayerMachineController : MonoBehaviour
     }
     public void RecoveryEnergy(float point)
     {
-        if (_currentEnergy <= 0)
-        {
-            return;
-        }
         _currentEnergy += point;
         if (_currentEnergy > _maxEnergy)
         {
             _currentEnergy = _maxEnergy;
+        }
+        if (_currentEnergy >= MIN_ENERGY)
+        {
+            _machineController.IsPowerDown = false;
         }
     }
     public void EndWaitMode()

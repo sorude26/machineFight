@@ -2,8 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static System.Collections.Specialized.BitVector32;
 
 namespace MyGame
 {
@@ -79,6 +77,7 @@ namespace MyGame
                 return instance;
             }
         }
+        
         /// <summary>
         /// 初期化を行う
         /// </summary>
@@ -86,7 +85,7 @@ namespace MyGame
         {
             var obj = new GameObject("PlayerInput");
             instance = obj.AddComponent<PlayerInput>();
-            instance._controls = new InputControls();
+            instance._controls = new InputControls(); 
             instance._controls.Enable();
             instance.InitializeInput();
             instance._controls.InputMap.Move.performed += context => { instance._moveDir = context.ReadValue<Vector2>(); };
@@ -278,6 +277,54 @@ namespace MyGame
                     break;
                 case InputMode.Menu:
                     instance._onEnterInputDic[type] -= action;
+                    break;
+                default:
+                    break;
+            }
+        }
+        /// <summary>
+        /// 指定モードでの特定入力で行うActionを登録する
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="type"></param>
+        /// <param name="action"></param>
+        public static void SetExitInput(InputMode mode, InputType type, Action action)
+        {
+            if (isInstanced == false)
+            {
+                Initialize();
+            }
+            switch (mode)
+            {
+                case InputMode.InGame:
+                    instance._onExitInputDicInGame[type] += action;
+                    break;
+                case InputMode.Menu:
+                    instance._onExitInputDic[type] += action;
+                    break;
+                default:
+                    break;
+            }
+        }
+        /// <summary>
+        /// 指定モードでの特定入力で行うActionを登録解除する
+        /// </summary>
+        /// <param name="mode"></param>
+        /// <param name="type"></param>
+        /// <param name="action"></param>
+        public static void LiftExitInput(InputMode mode, InputType type, Action action)
+        {
+            if (isInstanced == false)
+            {
+                Initialize();
+            }
+            switch (mode)
+            {
+                case InputMode.InGame:
+                    instance._onExitInputDicInGame[type] -= action;
+                    break;
+                case InputMode.Menu:
+                    instance._onExitInputDic[type] -= action;
                     break;
                 default:
                     break;

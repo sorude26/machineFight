@@ -8,6 +8,7 @@ public class BodyController : MonoBehaviour, IPartsModel
 {
     private const float ATTACK_ANGLE = 0.6f;
     private const float FRONT_ANGLE = 0.6f;
+    private const float POWER_DOWN = 0.2f;
     private const float UP_BOOSTER_TIME = 0.6f;
     private const float FLOAT_SPEED_MIN = 1.5f;
     private const float FLOAT_SPEED_DESKTOP = 2.0f;
@@ -48,7 +49,6 @@ public class BodyController : MonoBehaviour, IPartsModel
     private string _rPAttack = "PunchR";
     private float _changeTime = 0.1f;
     private bool _isShoot = false;
-    private bool _isDown = false;
     private bool _isInitialized = false;
     private float _jetTimer = 0;
     private float _floatSpeed = FLOAT_SPEED_DESKTOP;
@@ -57,10 +57,11 @@ public class BodyController : MonoBehaviour, IPartsModel
     public Transform BodyBase = null;
     public Transform Lock = null;
     public Transform AttackTarget = null;
-    public bool IsDown = false;
     public event Action UseBooster = default;
     public event Action<Vector3> OnDirSet = default;
     public int ID { get => _id; }
+    public bool IsDown { get; set; } = false;
+    public bool IsPowerDown { get; set; } = false;
     public bool IsBoosterStop { get; set; }
     public float FloatSpeed { get => _floatSpeed; }
     public Transform HeadJoint { get => _headJoint; }
@@ -148,7 +149,7 @@ public class BodyController : MonoBehaviour, IPartsModel
         _lHand?.PartsMotion();
         _rHand?.PartsMotion();
         _backPack.ExecuteFixedUpdate(AttackTarget);
-        if (AttackTarget != null && IsDown == false)
+        if (AttackTarget != null && IsDown == false && IsPowerDown == false)
         {
             Vector3 targetDir = AttackTarget.position - transform.position;
             targetDir.y = 0.0f;
@@ -176,9 +177,10 @@ public class BodyController : MonoBehaviour, IPartsModel
         }
         if (_boster != null && _boster.IsBoost == true)
         {
-            if (isFall == false || IsDown == true)
+            if (isFall == false || IsDown == true || IsPowerDown == true)
             {
                 StopBooster();
+                StopFloatBoosters();
             }
         }
         if (_jetTimer > 0)
@@ -209,7 +211,7 @@ public class BodyController : MonoBehaviour, IPartsModel
             return;
         }
         _moveController.MoveDecelerate();
-        if (_boster != null && _boster.IsBoost == false)
+        if (_boster != null && _boster.IsBoost == false && IsPowerDown == false)
         {
             StartJetBoosters();
             PlayBoosterSE();
@@ -227,19 +229,28 @@ public class BodyController : MonoBehaviour, IPartsModel
         {
             dir = Vector3.up * _param.BoostUpPower;
         }
-        if (floatMode == true && dir.x != 0 && dir.z != 0)
+        if (IsPowerDown == true)
         {
-            dir *= _floatSpeed;
-            _moveController.VelocityMove(dir);
+            dir *= POWER_DOWN;
+            _moveController.GVelocityMoveInertia(dir);
+            return;
         }
-        else
+        else if (floatMode == true)
         {
-            _moveController.AddMove(dir);
+            if (dir.x != 0 && dir.z != 0)
+            {
+                dir *= _floatSpeed;
+                _moveController.VelocityMoveInertia(dir);
+                return;
+            }
+            _moveController.FloatDecelerate();
+            return;
         }
+        _moveController.AddMove(dir);
     }
     public void UpBoost()
     {
-        if (IsDown == true)
+        if (IsDown == true || IsPowerDown == true)
         {
             return;
         }
@@ -259,7 +270,7 @@ public class BodyController : MonoBehaviour, IPartsModel
     }
     public void AngleBoost(Vector3 dir, bool isFall, bool isFloat)
     {
-        if (isFall == false || IsDown == true)
+        if (isFall == false || IsDown == true || IsPowerDown)
         {
             return;
         }
@@ -330,6 +341,10 @@ public class BodyController : MonoBehaviour, IPartsModel
     }
     public void StartFloatBoosters()
     {
+        if (IsPowerDown == true)
+        {
+            return;
+        }
         foreach (var booster in _boosters)
         {
             booster.FloatBoost();
@@ -412,6 +427,10 @@ public class BodyController : MonoBehaviour, IPartsModel
             }
         }
     }
+    public void StopShotLeft()
+    {
+        _lHand.StopShot();
+    }
     public void ShotRight()
     {
         if (_rHand.WeaponBase.Type == WeaponType.HandGun)
@@ -438,9 +457,13 @@ public class BodyController : MonoBehaviour, IPartsModel
             }
         }
     }
+    public void StopShotRight()
+    {
+        _rHand.StopShot();
+    }
     public void MeleeAttackMove(float value = 1f, Vector3 addDir = default)
     {
-        if (IsBoosterStop == true)
+        if (IsBoosterStop == true || IsDown == true || IsPowerDown == true)
         {
             return;
         }

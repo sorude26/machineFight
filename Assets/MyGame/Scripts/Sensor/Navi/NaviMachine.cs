@@ -48,8 +48,6 @@ namespace MyGame
         private ShakeParam _exParam = default;
         [SerializeField]
         private PopController[] _popControllers = default;
-        [SerializeField]
-        private float _diffusivity = 0.1f;
         private void Start()
         {
             SetRandamBuildDat();
@@ -70,7 +68,7 @@ namespace MyGame
         }
         private void FixedUpdate()
         {
-            if (_machineController.IsInitalized == false)
+            if (_machineController.IsInitalized == false || StageManager.InStage == false)
             {
                 return;
             }
