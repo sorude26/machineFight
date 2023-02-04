@@ -42,8 +42,16 @@ public class VrCockpitInputSystem : InputDevice, IInputUpdateCallbackReceiver
     public const string CHANGETARGET    = "changeTarget";
     public const int    CHANGETARGET_BIT= 6;
 
+    public const string SUBMIT          = "submit";
+    public const int    SUBMIT_BIT      = 7;
+
+    public const string CANCEL          = "cancel";
+    public const int    CANCEL_BIT      = 8;
+
     public const string MOVEAXIS = "moveAxis";
     public const string CAMERAAXIS = "cameraAxis";
+
+    
 
     public ButtonControl attack1 { get; private set; }
     public ButtonControl attack2 { get; private set; }
@@ -110,6 +118,8 @@ public class VrCockpitInputSystem : InputDevice, IInputUpdateCallbackReceiver
         SetButtonBit(PlayerVrCockpit.Jump(), JUMP_BIT);
         SetButtonBit(PlayerVrCockpit.JetBoost(), JETBOOST_BIT);
         SetButtonBit(PlayerVrCockpit.ChangeTarget(), CHANGETARGET_BIT);
+        SetButtonBit(PlayerVrCockpit.Submit(), SUBMIT_BIT);
+        SetButtonBit(PlayerVrCockpit.Cancel(), CANCEL_BIT);
         state.MoveAxis = PlayerVrCockpit.Move();
         state.CameraAxis = PlayerVrCockpit.Camera();
         InputSystem.QueueStateEvent(this, state);
@@ -136,6 +146,8 @@ public struct CockpitInputState : IInputStateTypeInfo
     [InputControl(name = VrCockpitInputSystem.JUMP          , layout = "Button", bit = VrCockpitInputSystem.JUMP_BIT)]
     [InputControl(name = VrCockpitInputSystem.JETBOOST      , layout = "Button", bit = VrCockpitInputSystem.JETBOOST_BIT)]
     [InputControl(name = VrCockpitInputSystem.CHANGETARGET  , layout = "Button", bit = VrCockpitInputSystem.CHANGETARGET_BIT)]
+    [InputControl(name = VrCockpitInputSystem.SUBMIT        , layout = "Button", bit = VrCockpitInputSystem.SUBMIT_BIT)]
+    [InputControl(name = VrCockpitInputSystem.CANCEL        , layout = "Button", bit = VrCockpitInputSystem.CANCEL_BIT)]
     public ushort buttons;//16bit
 
     [InputControl(name = VrCockpitInputSystem.MOVEAXIS, layout = "Vector2")]

@@ -33,8 +33,9 @@ public class MannedOperationSystem : MonoBehaviour
     [SerializeField]
     GameObject[] _disactiveUIObjects;
 
-    bool _online;
-    bool _connectedToDesctopUI;
+    bool _online = false;
+    bool _connectedToDesctopUI = false;
+    bool _iconMaked = false;
 
     Switch SystemStartSwitch => PlayerVrCockpit.Instance.SystemStartSwitch;
     /// <summary>
@@ -47,6 +48,16 @@ public class MannedOperationSystem : MonoBehaviour
         Instance = this;
         _monitorCover.SetActive(true);
         _cockpitLight.color = Color.black;
+    }
+
+    private void Update()
+    {
+        if (!_iconMaked && (UIMonitorAnimator.Instance?.IsAllOpen ?? false))
+        {
+            //チュートリアルアイコン表示
+            VRTutorialManager.Instance.MakeIcon(SystemStartSwitch.transform);
+            _iconMaked = true;
+        }
     }
 
     private IEnumerator Start()
@@ -75,6 +86,8 @@ public class MannedOperationSystem : MonoBehaviour
     private void SystemStart()
     {
         _online = true;
+        //チュートリアルアイコン削除
+        VRTutorialManager.Instance.DeleteIcon(SystemStartSwitch.transform);
         StartCoroutine(SystemStartSequence());
     }
 

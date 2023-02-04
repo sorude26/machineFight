@@ -14,6 +14,8 @@ public class MachineCarrier : MonoBehaviour
     private Transform _baseTrans = default;
     [SerializeField]
     private ParticleSystem[] _effects = default;
+    [SerializeField]
+    private Camera _camera;
     private bool _isCarrier = true;
     private Animator _animator;
 
@@ -37,6 +39,10 @@ public class MachineCarrier : MonoBehaviour
         {
             //VRモードでは起動完了までキャリアーを動かさない
             _animator.speed = 1;
+        }
+        if (PlayerVrCockpit.Instance.gameObject.activeInHierarchy)
+        {
+            _camera.enabled = false;
         }
         _machineTrans.localPosition = Vector3.zero;
     }
