@@ -28,8 +28,6 @@ public class PlayerMachineController : MonoBehaviour
     [SerializeField]
     private Transform _headTrans = default;
     [SerializeField]
-    private FollowCamera _camera = default;
-    [SerializeField]
     private bool _startWaitMode = false;
     [SerializeField]
     private Rigidbody _machineRB = default;

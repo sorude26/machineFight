@@ -48,8 +48,6 @@ namespace MyGame
         private ShakeParam _exParam = default;
         [SerializeField]
         private PopController[] _popControllers = default;
-        [SerializeField]
-        private float _diffusivity = 0.1f;
         private void Start()
         {
             SetRandamBuildDat();

@@ -40,6 +40,10 @@ public class NavigationMap
     }
     public Vector3 GetMoveDir(Transform user,int power)
     {
+        if (_currentTarget == null)
+        {
+            return Vector3.zero;
+        }
         if (Vector3.Distance(_currentTarget.Pos,user.position) < MIN_RANGE)
         {
             var minRangeDir = _currentTarget.Pos - user.position;
@@ -78,7 +82,7 @@ public class NavigationMap
     private NaviPoint GetNextPoint(Vector3 pos, NaviPoint point)
     {
         float minDis = float.MaxValue;
-        float range = 0;
+        float range;
         NaviPoint nearPoint = null;
         foreach (var naviPoint in point.ConnectPoint)
         {
