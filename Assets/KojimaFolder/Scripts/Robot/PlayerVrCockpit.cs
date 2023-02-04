@@ -159,6 +159,11 @@ public class PlayerVrCockpit : MonoBehaviour
 
     public static Vector2 Camera()
     {
+        return Instance.CameraVirtual();
+    }
+
+    protected virtual Vector2 CameraVirtual()
+    {
         return Instance._flightStick.GetThumbstickInput();
     }
 

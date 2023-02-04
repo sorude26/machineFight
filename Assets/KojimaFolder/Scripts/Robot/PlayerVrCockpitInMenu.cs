@@ -32,4 +32,13 @@ public class PlayerVrCockpitInMenu : PlayerVrCockpit
     {
         return _flightStick.GetThumbstickInput();
     }
+
+    /// <summary>
+    /// フライトスティック本体の傾きをコントローラーの右スティックの役割とする
+    /// </summary>
+    /// <returns></returns>
+    protected override Vector2 CameraVirtual()
+    {
+        return _flightStick.GetStickBodyInput();
+    }
 }
