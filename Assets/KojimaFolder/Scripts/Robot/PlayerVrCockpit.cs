@@ -96,7 +96,7 @@ public class PlayerVrCockpit : MonoBehaviour
     /// <returns></returns>
     public static bool Attack3()
     {
-        if (Instance._machine.MachineController.BodyController.BackPack.BackPackWeapon == null)
+        if (Instance._machine?.MachineController.BodyController.BackPack.BackPackWeapon == null)
         {
             //バックウェポンを装備していない場合は入力を渡さない
             return false;
