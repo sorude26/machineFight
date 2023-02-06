@@ -8,7 +8,7 @@ public abstract class Switch : MonoBehaviour
 {
     const float VIBE_SPEED = 0.05f;
     const float VIBE_POWER = 0.5f;
-    const float VIBE_TIME = 0.05f;
+    const float VIBE_TIME = 0.1f;
     protected const float SWITCH_VALUE_MAX = 1;
     protected const float SWITCH_VALUE_MIN = 0;
     protected const float SWITCH_VALUE_MID = 0.5f;
