@@ -132,10 +132,19 @@ public abstract class Switch : MonoBehaviour
     {
         LockInUpdateImple();
     }
+    /// <summary>
+    /// ŠO•”‚©‚ç‚Â‚©‚İó‹µ‚ğ§Œä‚·‚é
+    /// </summary>
+    /// <param name="hand"></param>
+    public void LockInFromOutside(SwitchCtrlHand hand)
+    {
+        LockIn(hand);
+    }
     public void Init()
     {
         TurnOff(true);
     }
+    [ContextMenu("TurnOn")]
     public virtual void TurnOn(bool isInit = false)
     {
         if (IsOn && !isInit) return;//‚·‚Å‚Éon‚Ìê‡‚Í‰½‚à‚µ‚È‚¢;
@@ -143,6 +152,7 @@ public abstract class Switch : MonoBehaviour
         if (!isInit) OnTurnOn?.Invoke();
         else OnInit?.Invoke();
     }
+    [ContextMenu("TurnOff")]
     public virtual void TurnOff(bool isInit = false)
     {
         if (!IsOn && !isInit) return;//‚·‚Å‚Éoff‚Ìê‡‚Í‰½‚à‚µ‚È‚¢;

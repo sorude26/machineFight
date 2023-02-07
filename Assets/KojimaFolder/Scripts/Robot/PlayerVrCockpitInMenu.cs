@@ -5,6 +5,17 @@ using UnityEngine;
 public class PlayerVrCockpitInMenu : PlayerVrCockpit
 {
     const float BORDER = 0.85f;
+
+
+
+    private void Start()
+    {
+        _flightStick.LockInFromOutside(SwitchCtrlHand.RightHand);
+    }
+
+
+
+
     /// <summary>
     /// メニューでは右方向へのセレクトに使用されるためカメラAxisを使用
     /// </summary>
