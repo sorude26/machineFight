@@ -59,6 +59,17 @@ public class ToggleSwitch : Switch
         }
     }
 
+    [ContextMenu("TurnOn")]
+    void TurnOnTest()
+    {
+        TurnOn();
+    }
+    [ContextMenu("TurnOff")]
+    void TurnOffTest()
+    {
+        TurnOff();
+    }
+
     public override void TurnOn(bool isInit = false)
     {
         base.TurnOn(isInit);
@@ -67,6 +78,7 @@ public class ToggleSwitch : Switch
         _switchMovablePartObject.transform.localRotation = Quaternion.identity;
     }
 
+    
     public override void TurnOff(bool isInit = false)
     {
         base.TurnOff(isInit);
