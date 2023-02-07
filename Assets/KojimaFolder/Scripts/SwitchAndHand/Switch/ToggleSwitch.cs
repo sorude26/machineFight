@@ -97,6 +97,10 @@ public class ToggleSwitch : Switch
             TurnOff();
         }
 
+        if (base.GetHoldInInput(_lockinHand, HoldTypes.Pinch))
+        {
+            _currentAdvancedGrabType = AdvancedGrabType.Nomal;
+        }
         //’e‚«“ü—Í‚Ìê‡‚Í’l‚ª•Ï‚í‚Á‚½‚ÉFree‚·‚é
         if ((IsOn != _beforeValue) && (_currentAdvancedGrabType != AdvancedGrabType.Nomal))
         {
