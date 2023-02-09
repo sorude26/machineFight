@@ -49,6 +49,7 @@ MonoBehaviour:
   _hitLayer:
     serializedVersion: 2
     m_Bits: 1
+  _damageType: 2
   _hitEffect: {fileID: 2973265136740629150, guid: 71cf720c9f8edce42a1e49924ad1bbd4, type: 3}
   _onEffect: {fileID: 0}
   _anSleepBlade: 1
@@ -9953,6 +9954,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.01
   _diffusivity: 0
+  _isFullAuto: 0
   _shotSEID: 8
   _shotSEVolume: 0.5
   _setSEShotCount: 2
@@ -10036,6 +10038,7 @@ MonoBehaviour:
   _hitLayer:
     serializedVersion: 2
     m_Bits: 1
+  _damageType: 2
   _hitEffect: {fileID: 2973265136740629150, guid: 71cf720c9f8edce42a1e49924ad1bbd4, type: 3}
   _onEffect: {fileID: 0}
   _anSleepBlade: 1
@@ -15062,6 +15065,7 @@ MonoBehaviour:
   _hitLayer:
     serializedVersion: 2
     m_Bits: 1
+  _damageType: 2
   _hitEffect: {fileID: 2973265136740629150, guid: 71cf720c9f8edce42a1e49924ad1bbd4, type: 3}
   _onEffect: {fileID: 0}
   _anSleepBlade: 1
@@ -15232,6 +15236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 2000
   _severelyDamage: 500
+  _damageRateData: []
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls:
@@ -15475,6 +15480,7 @@ MonoBehaviour:
   _moveSpeed: 2
   _naviInterval: 1
   _minYLevel: 1
+  _maxYLevel: 500
 --- !u!1 &3237878469756177023
 GameObject:
   m_ObjectHideFlags: 0
@@ -16185,6 +16191,7 @@ MonoBehaviour:
   _moveSpeed: 2
   _naviInterval: 1
   _minYLevel: 1
+  _maxYLevel: 500
 --- !u!1 &3237878470274935239
 GameObject:
   m_ObjectHideFlags: 0
@@ -16396,6 +16403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 2000
   _severelyDamage: 500
+  _damageRateData: []
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls:
@@ -16616,6 +16624,7 @@ MonoBehaviour:
   _hitLayer:
     serializedVersion: 2
     m_Bits: 1
+  _damageType: 2
   _hitEffect: {fileID: 2973265136740629150, guid: 71cf720c9f8edce42a1e49924ad1bbd4, type: 3}
   _onEffect: {fileID: 0}
   _anSleepBlade: 1
@@ -16675,6 +16684,7 @@ MonoBehaviour:
   _hitLayer:
     serializedVersion: 2
     m_Bits: 1
+  _damageType: 2
   _hitEffect: {fileID: 2973265136740629150, guid: 71cf720c9f8edce42a1e49924ad1bbd4, type: 3}
   _onEffect: {fileID: 0}
   _anSleepBlade: 1
@@ -16896,6 +16906,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.05
   _diffusivity: 0.03
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -16998,6 +17009,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.5
   _diffusivity: 0.2
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -17286,6 +17298,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.2
   _diffusivity: 0.01
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -27410,6 +27423,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.2
   _diffusivity: 0.05
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -27735,6 +27749,7 @@ MonoBehaviour:
   _moveSpeed: 2
   _naviInterval: 1
   _minYLevel: 1
+  _maxYLevel: 500
 --- !u!1 &5587128411201251244
 GameObject:
   m_ObjectHideFlags: 0
@@ -28103,6 +28118,7 @@ MonoBehaviour:
   _moveSpeed: 2
   _naviInterval: 1
   _minYLevel: 1
+  _maxYLevel: 500
 --- !u!1 &5587128411476589061
 GameObject:
   m_ObjectHideFlags: 0
@@ -33138,7 +33154,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 2100000, guid: 103e38f16d197a443ba77e25087b17b6, type: 2}
+  - {fileID: 2100000, guid: 0b917f0295411b14fa4e8edcf1ba9b25, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33331,6 +33347,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.2
   _diffusivity: 0.05
+  _isFullAuto: 0
   _shotSEID: 3
   _shotSEVolume: 0.1
   _setSEShotCount: -1
@@ -33500,6 +33517,7 @@ MonoBehaviour:
   _moveSpeed: 2
   _naviInterval: 1
   _minYLevel: 1
+  _maxYLevel: 500
 --- !u!1 &5587128411847135988
 GameObject:
   m_ObjectHideFlags: 0
@@ -58434,7 +58452,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 2100000, guid: 103e38f16d197a443ba77e25087b17b6, type: 2}
+  - {fileID: 2100000, guid: 0b917f0295411b14fa4e8edcf1ba9b25, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -63838,6 +63856,7 @@ MonoBehaviour:
   _triggerInterval: 0.2
   _shotInterval: 0.01
   _diffusivity: 0
+  _isFullAuto: 0
   _shotSEID: 8
   _shotSEVolume: 0.5
   _setSEShotCount: 2
@@ -68775,6 +68794,7 @@ MonoBehaviour:
   _hitLayer:
     serializedVersion: 2
     m_Bits: 1
+  _damageType: 2
   _hitEffect: {fileID: 2973265136740629150, guid: 71cf720c9f8edce42a1e49924ad1bbd4, type: 3}
   _onEffect: {fileID: 0}
   _anSleepBlade: 1
@@ -69295,6 +69315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 6000
   _severelyDamage: 4500
+  _damageRateData: []
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls:
