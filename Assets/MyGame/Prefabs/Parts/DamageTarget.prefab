@@ -4851,6 +4851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHp: 200
   _severelyDamage: 100
+  _damageRateData: []
   _onDeadEvent:
     m_PersistentCalls:
       m_Calls:
@@ -4905,15 +4906,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  _onDamageEvent:
-    m_PersistentCalls:
-      m_Calls: []
   _deadEffect: {fileID: 6068882791912315188, guid: 0a45a63bea573c54bba398129f6b5c7d, type: 3}
   _deadShakeParam:
     Pos: {x: 0, y: 0, z: 0}
     Power: 50
     Time: 2
   _addCount: 1
+  _isMarkTarget: 0
+  _count: 1
+  _deadSEID: 8
+  _seVolume: 1
+  OnDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRecoveryEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3122205592581960001
 GameObject:
   m_ObjectHideFlags: 0
@@ -9731,7 +9739,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 2100000, guid: 103e38f16d197a443ba77e25087b17b6, type: 2}
+  - {fileID: 2100000, guid: 0b917f0295411b14fa4e8edcf1ba9b25, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24263,7 +24271,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 2100000, guid: 103e38f16d197a443ba77e25087b17b6, type: 2}
+  - {fileID: 2100000, guid: 0b917f0295411b14fa4e8edcf1ba9b25, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
