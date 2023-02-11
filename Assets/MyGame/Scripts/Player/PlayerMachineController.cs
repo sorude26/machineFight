@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class PlayerMachineController : MonoBehaviour
 {
-    const int VR_COLOR = 20;
-    private float MIN_ENERGY = 10f;
+    private static readonly int VR_COLOR = 20;
+    private static readonly float MIN_ENERGY = 50f;
     [SerializeField]
     private float _useEnergySpeed = 5f;
     [SerializeField]
@@ -146,11 +146,22 @@ public class PlayerMachineController : MonoBehaviour
     {
         if (_currentBooster < _maxBooster)
         {
-            _currentBooster += _boosterRecoverySpeed * Time.fixedDeltaTime;
+            if (_currentEnergy > 0)
+            {
+                _currentBooster += _boosterRecoverySpeed * Time.fixedDeltaTime;
+            }
+            else if (_currentBooster > 0)
+            {
+                _currentBooster -= Time.fixedDeltaTime;
+            }
             if (_currentBooster > _maxBooster)
             {
                 _currentBooster = _maxBooster;
             }
+            else if (_currentBooster < 0)
+            {
+                _currentBooster = 0;
+            } 
             _machineController.BodyController.IsBoosterStop = _currentBooster < _boosterConsumption;
             _stageUI.BoosterUpdate(_currentBooster, _maxBooster);
         }
@@ -172,6 +183,7 @@ public class PlayerMachineController : MonoBehaviour
             if (_currentEnergy <= 0)
             {
                 _machineController.IsPowerDown = true;
+                _currentEnergy = 0;
                 if (_machineController.IsFloat)
                 {
                     _machineController.TryGround();
