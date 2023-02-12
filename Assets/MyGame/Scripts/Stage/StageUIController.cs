@@ -51,6 +51,10 @@ public class StageUIController : MonoBehaviour
     private Color _hpLessColor = default;
     [SerializeField]
     private Animator _uiAnime = default;
+    [SerializeField]
+    private GameObject _hoverModeUI = default;
+    [SerializeField]
+    private GameObject _outOfEnergyUI = default;
     private string _damage = "Damage";
     private Color _startHpColor = default;
     private Color _startEnergyColor = default;
@@ -143,7 +147,11 @@ public class StageUIController : MonoBehaviour
     {
         _boosterGauge.fillAmount = currentBooster / maxBooster;
     }
-    public void EnergyUpdate(float currentEnergy, float maxEnergy)
+    public void ViewHoverMode(bool isHoverMode)
+    {
+        _hoverModeUI.SetActive(isHoverMode);
+    }
+    public void EnergyUpdate(float currentEnergy, float maxEnergy,bool outOfEnergy = false)
     {
         float level = currentEnergy / maxEnergy;
         _energyGauge.fillAmount = level;
@@ -152,6 +160,7 @@ public class StageUIController : MonoBehaviour
         {
             _energyText.text = string.Format("{0:000}", currentEnergy);
         }
+        _outOfEnergyUI.SetActive(outOfEnergy);
         if (level < LESS_LINE)
         {
             SetEnergyColor(_energyLessColor);
