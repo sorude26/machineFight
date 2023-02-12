@@ -3072,6 +3072,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1911197398441905388}
   - component: {fileID: 3483085691260838547}
+  - component: {fileID: 4076090988399169403}
   - component: {fileID: 4270661747309176368}
   m_Layer: 14
   m_Name: Right
@@ -3118,6 +3119,23 @@ MonoBehaviour:
   _audioClip: {fileID: 8300000, guid: e01907289384f014fbbbbda62fbb88e5, type: 3}
   _holdMoveOffsetX: 0.005
   _stickRotateBase: {fileID: 6156483703181887240}
+--- !u!114 &4076090988399169403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6576641937304300578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56170077b33f3ec4a9d8c24806488ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _switch: {fileID: 3483085691260838547}
+  _grabinSoundId: 62
+  _grabinVolume: 0.15
+  _graboutSoundId: 63
+  _graboutVolume: 0.15
 --- !u!82 &4270661747309176368
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4552,6 +4570,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1312338365622233960}
   - component: {fileID: 4892954811775669458}
+  - component: {fileID: 5636484367563207100}
   - component: {fileID: 3054855211074361518}
   m_Layer: 14
   m_Name: Left
@@ -4601,6 +4620,23 @@ MonoBehaviour:
   _minPosition: {fileID: 8068330964972903714}
   _maxPosition: {fileID: 3162239039409560100}
   _leverBody: {fileID: 3991125098669821559}
+--- !u!114 &5636484367563207100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8625643603759902737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56170077b33f3ec4a9d8c24806488ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _switch: {fileID: 4892954811775669458}
+  _grabinSoundId: 62
+  _grabinVolume: 0.15
+  _graboutSoundId: 63
+  _graboutVolume: 0.15
 --- !u!82 &3054855211074361518
 AudioSource:
   m_ObjectHideFlags: 0

@@ -92,6 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1650041803483031857}
   - component: {fileID: 1650041803483031856}
+  - component: {fileID: 5763646778447368839}
   - component: {fileID: 2267894136383940251}
   m_Layer: 0
   m_Name: ToggleSwitch
@@ -143,6 +144,23 @@ MonoBehaviour:
   _switchMovablePartObject: {fileID: 1650041804182453583}
   _thumbHandPose: {fileID: 11400000, guid: 767134958245e594393416189de32fa5, type: 2}
   _IndexHandPose: {fileID: 11400000, guid: 986e1540b1436ff4b9c4229cdf27a86a, type: 2}
+--- !u!114 &5763646778447368839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650041803483031859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56170077b33f3ec4a9d8c24806488ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _switch: {fileID: 1650041803483031856}
+  _grabinSoundId: 64
+  _grabinVolume: 0.1
+  _graboutSoundId: 65
+  _graboutVolume: 0.1
 --- !u!82 &2267894136383940251
 AudioSource:
   m_ObjectHideFlags: 0
