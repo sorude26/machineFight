@@ -56,6 +56,8 @@ public abstract class Switch : MonoBehaviour
     public event Action OnTurnOn;
     public event Action OnTurnOff;
     public event Action OnInit;
+    public event Action OnLockIn;
+    public event Action OnFree;
     public bool IsOn => _value > SWITCH_VALUE_MID;
     /// <summary>
     /// スイッチの状態、基本的には0～1
@@ -206,11 +208,17 @@ public abstract class Switch : MonoBehaviour
         _currentHandRotate = from.transform.rotation;
         //move
         _handMove = from.HoldPosition(HoldType) - this.transform.position;
+        OnLockIn?.Invoke();
     }
     protected virtual void Free()
     {
-        _lockinHand?.Free();
+        if (_lockinHand != null)
+        {
+            OnFree?.Invoke();
+            _lockinHand.Free();
+        }
         _lockinHand = null;
+        
     }
     protected virtual void TouchImple(SwitchCtrlHand from)
     {
