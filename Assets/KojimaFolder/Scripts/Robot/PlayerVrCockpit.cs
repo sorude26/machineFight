@@ -14,11 +14,11 @@ public class PlayerVrCockpit : MonoBehaviour
     const int SE_HOVER_ID = 57;
     const float SE_HOVER_VOLUME = 0.5f;
     const int SE_SUBMIT_ID = 25;
-    const float SE_SUBMIT_VOLUME = 0.25f;
+    const float SE_SUBMIT_VOLUME = 0.15f;
     const int SE_CANCEL_ID = 24;
-    const float SE_CANCEL_VOLUME = 0.25f;
+    const float SE_CANCEL_VOLUME = 0.15f;
     const int SE_BUTTON_ID = 61;
-    const float SE_BUTTON_VOLUME = 0.25f;
+    const float SE_BUTTON_VOLUME = 0.15f;
 
     const float DANGER_HP_RATIO = 0.25f;
     private static PlayerVrCockpit _instance;
