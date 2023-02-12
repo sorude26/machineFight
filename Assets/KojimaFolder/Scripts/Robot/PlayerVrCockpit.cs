@@ -254,6 +254,10 @@ public class PlayerVrCockpit : MonoBehaviour
 
     private void EnterZoneThrottle(int zone)
     {
+        if (!MannedOperationSystem.Instance.IsOnline)
+        {
+            return;
+        }
         if (zone == ZONE_HOVER)
         {
             //スロットルが上がった場合はホバーモードに移行
@@ -269,6 +273,10 @@ public class PlayerVrCockpit : MonoBehaviour
 
     private void ExitZoneThrottle(int zone)
     {
+        if (!MannedOperationSystem.Instance.IsOnline)
+        {
+            return;
+        }
         if (zone == ZONE_HOVER)
         {
             //スロットルが下がった場合は地上モードに移行
@@ -279,6 +287,10 @@ public class PlayerVrCockpit : MonoBehaviour
 
     private void ThrottleValueChanged(int zone)
     {
+        if (!MannedOperationSystem.Instance.IsOnline)
+        {
+            return;
+        }
         if (zone == ZONE_HOVER)
         {
             //ホバー時の速度を登録
