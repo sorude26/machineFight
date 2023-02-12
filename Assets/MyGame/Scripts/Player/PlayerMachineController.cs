@@ -189,8 +189,9 @@ public class PlayerMachineController : MonoBehaviour
                     _machineController.TryGround();
                 }
             }
-            _stageUI.EnergyUpdate(_currentEnergy, _maxEnergy);
+            _stageUI.EnergyUpdate(_currentEnergy, _maxEnergy, _currentEnergy <= 0);
         }
+        _stageUI.ViewHoverMode(_machineController.IsFloat);
     }
     private void ShowHpData()
     {
