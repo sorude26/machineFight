@@ -13,7 +13,7 @@ public class UICanvasReplacer : MonoBehaviour
         {
             var canvas = GetComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceCamera;
-            canvas.worldCamera = UICameraLocater.UICamera ?? MainCameraLocator.MainCamera;
+            canvas.worldCamera = MainCameraLocator.MainCamera;
         }
     }
 }

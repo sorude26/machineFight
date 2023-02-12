@@ -289,13 +289,13 @@ public class PlayerVrCockpit : MonoBehaviour
     private void OnSubmit()
     {
         //サウンド再生
-        SoundManager.Instance.PlaySE(SE_SUBMIT_ID, SE_SUBMIT_VOLUME);
+        SoundManager.Instance?.PlaySE(SE_SUBMIT_ID, SE_SUBMIT_VOLUME);
     }
 
     private void OnCancel()
     {
         //サウンド再生
-        SoundManager.Instance.PlaySE(SE_CANCEL_ID, SE_CANCEL_VOLUME);
+        SoundManager.Instance?.PlaySE(SE_CANCEL_ID, SE_CANCEL_VOLUME);
     }
 
     private void OnButton()
@@ -305,6 +305,6 @@ public class PlayerVrCockpit : MonoBehaviour
             return;
         }
         //サウンド再生
-        SoundManager.Instance.PlaySE(SE_BUTTON_ID, SE_BUTTON_VOLUME);
+        SoundManager.Instance?.PlaySE(SE_BUTTON_ID, SE_BUTTON_VOLUME);
     }
 }
