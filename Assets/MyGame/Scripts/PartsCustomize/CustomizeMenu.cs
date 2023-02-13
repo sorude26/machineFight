@@ -408,17 +408,17 @@ public class CustomizeMenu : MonoBehaviour
                 _selectedIndex -= 1;
                 if (_selectedIndex < 0)
                 {
-                    _content.transform.localPosition = new Vector3(_content.transform.localPosition.x, _content.transform.localPosition.y - 76.5f, _content.transform.localPosition.z);
+                    _content.transform.localPosition = new Vector3(_content.transform.localPosition.x, _content.transform.localPosition.y - 95f, _content.transform.localPosition.z);
                     _selectedIndex = 0;
                 }
             }
             else if (_currentButtonProperty.Value.transform.localPosition.y < _preButton.transform.localPosition.y)
             {
                 _selectedIndex += 1;
-                if (_selectedIndex > 9)
+                if (_selectedIndex > 11)
                 {
-                    _content.transform.localPosition = new Vector3(_content.transform.localPosition.x, _content.transform.localPosition.y + 76.5f, _content.transform.localPosition.z);
-                    _selectedIndex = 9;
+                    _content.transform.localPosition = new Vector3(_content.transform.localPosition.x, _content.transform.localPosition.y + 95f, _content.transform.localPosition.z);
+                    _selectedIndex = 11;
                 }
             }
         }
