@@ -1,3 +1,4 @@
+using MyGame;
 using Oculus.Interaction.Input;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,13 @@ public class PlayerVrCockpit : MonoBehaviour
     const int ZONE_HOVER = 1;
     const int SE_HOVER_ID = 57;
     const float SE_HOVER_VOLUME = 0.5f;
+    const int SE_SUBMIT_ID = 25;
+    const float SE_SUBMIT_VOLUME = 0.15f;
+    const int SE_CANCEL_ID = 24;
+    const float SE_CANCEL_VOLUME = 0.15f;
+    const int SE_BUTTON_ID = 61;
+    const float SE_BUTTON_VOLUME = 0.15f;
+
     const float DANGER_HP_RATIO = 0.25f;
     private static PlayerVrCockpit _instance;
     public static PlayerVrCockpit Instance => _instance;
@@ -182,6 +190,22 @@ public class PlayerVrCockpit : MonoBehaviour
         SetLayerToChildlen(layer, this.transform);
         StartCoroutine(CameraSetup());
         ThrottleLeverSetUp();
+        PlayerInput.SetEnterInput(InputMode.InGame, InputType.Submit, OnButton);
+        PlayerInput.SetEnterInput(InputMode.InGame, InputType.Jump, OnButton);
+        PlayerInput.SetEnterInput(InputMode.InGame, InputType.Booster, OnButton);
+
+        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Submit, OnSubmit);
+        PlayerInput.SetEnterInput(InputMode.Menu, InputType.Cancel, OnCancel);
+    }
+
+    private void OnDestroy()
+    {
+        PlayerInput.LiftEnterInput(InputMode.InGame, InputType.Submit, OnButton);
+        PlayerInput.LiftEnterInput(InputMode.InGame, InputType.Jump, OnButton);
+        PlayerInput.LiftEnterInput(InputMode.InGame, InputType.Booster, OnButton);
+
+        PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Submit, OnSubmit);
+        PlayerInput.LiftEnterInput(InputMode.Menu, InputType.Cancel, OnCancel);
     }
 
     private void SetLayerToChildlen(int layer, Transform t)
@@ -230,6 +254,10 @@ public class PlayerVrCockpit : MonoBehaviour
 
     private void EnterZoneThrottle(int zone)
     {
+        if (!MannedOperationSystem.Instance.IsOnline)
+        {
+            return;
+        }
         if (zone == ZONE_HOVER)
         {
             //スロットルが上がった場合はホバーモードに移行
@@ -245,6 +273,10 @@ public class PlayerVrCockpit : MonoBehaviour
 
     private void ExitZoneThrottle(int zone)
     {
+        if (!MannedOperationSystem.Instance.IsOnline)
+        {
+            return;
+        }
         if (zone == ZONE_HOVER)
         {
             //スロットルが下がった場合は地上モードに移行
@@ -255,10 +287,36 @@ public class PlayerVrCockpit : MonoBehaviour
 
     private void ThrottleValueChanged(int zone)
     {
+        if (!MannedOperationSystem.Instance.IsOnline)
+        {
+            return;
+        }
         if (zone == ZONE_HOVER)
         {
             //ホバー時の速度を登録
             _machine?.MachineController.BodyController.SetFloatSpeed(ZONE_HOVER);
         }
+    }
+
+    private void OnSubmit()
+    {
+        //サウンド再生
+        SoundManager.Instance?.PlaySE(SE_SUBMIT_ID, SE_SUBMIT_VOLUME);
+    }
+
+    private void OnCancel()
+    {
+        //サウンド再生
+        SoundManager.Instance?.PlaySE(SE_CANCEL_ID, SE_CANCEL_VOLUME);
+    }
+
+    private void OnButton()
+    {
+        if (!OVRManager.isHmdPresent && !_isDebagVR)
+        {
+            return;
+        }
+        //サウンド再生
+        SoundManager.Instance?.PlaySE(SE_BUTTON_ID, SE_BUTTON_VOLUME);
     }
 }

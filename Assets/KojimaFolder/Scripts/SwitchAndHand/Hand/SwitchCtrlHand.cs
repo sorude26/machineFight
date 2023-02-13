@@ -12,6 +12,11 @@ public class SwitchCtrlHand : MonoBehaviour
     }
     const float ROTATE_LERP_SPEED = 0.15f;
     const float MOVE_LERP_SPEED = 0.15f;
+    static SwitchCtrlHand _rightHand;
+    public static SwitchCtrlHand RightHand => _rightHand;
+    static SwitchCtrlHand _leftHand;
+    public static SwitchCtrlHand LeftHand => _leftHand;
+
 
     [SerializeField]
     OVRInput.Controller _controller;
@@ -62,6 +67,15 @@ public class SwitchCtrlHand : MonoBehaviour
     {
         _referencePosition = new GameObject().transform;
         _referencePosition.SetParent(this.transform.parent);
+        //外部から両手にアクセスできるようにstatic変数に保管
+        if (IsRightHand)
+        {
+            _rightHand = this;
+        }
+        else
+        {
+            _leftHand = this;
+        }
     }
     private void Update()
     {

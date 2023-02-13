@@ -8,7 +8,7 @@ public abstract class Switch : MonoBehaviour
 {
     const float VIBE_SPEED = 0.05f;
     const float VIBE_POWER = 0.5f;
-    const float VIBE_TIME = 0.05f;
+    const float VIBE_TIME = 0.1f;
     protected const float SWITCH_VALUE_MAX = 1;
     protected const float SWITCH_VALUE_MIN = 0;
     protected const float SWITCH_VALUE_MID = 0.5f;
@@ -56,6 +56,8 @@ public abstract class Switch : MonoBehaviour
     public event Action OnTurnOn;
     public event Action OnTurnOff;
     public event Action OnInit;
+    public event Action OnLockIn;
+    public event Action OnFree;
     public bool IsOn => _value > SWITCH_VALUE_MID;
     /// <summary>
     /// スイッチの状態、基本的には0～1
@@ -132,10 +134,19 @@ public abstract class Switch : MonoBehaviour
     {
         LockInUpdateImple();
     }
+    /// <summary>
+    /// 外部からつかみ状況を制御する
+    /// </summary>
+    /// <param name="hand"></param>
+    public void LockInFromOutside(SwitchCtrlHand hand)
+    {
+        LockIn(hand);
+    }
     public void Init()
     {
         TurnOff(true);
     }
+    [ContextMenu("TurnOn")]
     public virtual void TurnOn(bool isInit = false)
     {
         if (IsOn && !isInit) return;//すでにonの場合は何もしない;
@@ -143,6 +154,7 @@ public abstract class Switch : MonoBehaviour
         if (!isInit) OnTurnOn?.Invoke();
         else OnInit?.Invoke();
     }
+    [ContextMenu("TurnOff")]
     public virtual void TurnOff(bool isInit = false)
     {
         if (!IsOn && !isInit) return;//すでにoffの場合は何もしない;
@@ -196,11 +208,17 @@ public abstract class Switch : MonoBehaviour
         _currentHandRotate = from.transform.rotation;
         //move
         _handMove = from.HoldPosition(HoldType) - this.transform.position;
+        OnLockIn?.Invoke();
     }
     protected virtual void Free()
     {
-        _lockinHand?.Free();
+        if (_lockinHand != null)
+        {
+            OnFree?.Invoke();
+            _lockinHand.Free();
+        }
         _lockinHand = null;
+        
     }
     protected virtual void TouchImple(SwitchCtrlHand from)
     {
