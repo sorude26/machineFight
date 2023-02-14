@@ -12,7 +12,15 @@ public class TargetPositionViewer : MonoBehaviour
     [SerializeField]
     private GameObject _rightArrow = default;
     [SerializeField]
-    private GameObject _backArrow = default;
+    private GameObject _backArrow = default; 
+    [SerializeField]
+    private GameObject _frontBossArrow = default;
+    [SerializeField]
+    private GameObject _leftBossArrow = default;
+    [SerializeField]
+    private GameObject _rightBossArrow = default;
+    [SerializeField]
+    private GameObject _backBossArrow = default;
     [SerializeField]
     private float _updateInterval = 0.5f;
     private float _timer = 0;
@@ -36,81 +44,43 @@ public class TargetPositionViewer : MonoBehaviour
         _rightArrow.SetActive(false);
         _leftArrow.SetActive(false);
         _backArrow.SetActive(false);
-        CheckForward();
-        CheckLeft();
-        CheckRight();
-        CheckBack();
-    }
-    private void CheckForward()
-    {
+        _frontBossArrow.SetActive(false);
+        _rightBossArrow.SetActive(false);
+        _leftBossArrow.SetActive(false);
+        _backBossArrow.SetActive(false);
         foreach (var target in LockOnController.Instance.LockOnTargets)
         {
             if (target.DamageChecker.AddTarget == false || target.DamageChecker.gameObject.activeInHierarchy == false)
             {
                 continue;
             }
-            Vector3 dir = target.DamageChecker.transform.position - _player.position;
-            dir = dir.normalized;
-            dir.y = _player.position.y;
-            if (Vector3.Dot(dir,_player.forward) > ARROW_RANGE)
-            {
-                _frontArrow.SetActive(true);
-                return;
-            }
+            CheckDir(target.DamageChecker.transform.position, _player.forward, _frontArrow);
+            CheckDir(target.DamageChecker.transform.position, -_player.forward, _backArrow);
+            CheckDir(target.DamageChecker.transform.position, _player.right, _rightArrow);
+            CheckDir(target.DamageChecker.transform.position, -_player.right, _leftArrow);
         }
-    }
-    private void CheckBack()
-    {
         foreach (var target in LockOnController.Instance.LockOnTargets)
         {
-            if (target.DamageChecker.AddTarget == false || target.DamageChecker.gameObject.activeInHierarchy == false)
+            if (target.DamageChecker.BossTarget == false || target.DamageChecker.gameObject.activeInHierarchy == false)
             {
                 continue;
             }
-            Vector3 dir = target.DamageChecker.transform.position - _player.position;
-            dir = dir.normalized;
-            dir.y = _player.position.y;
-            if (Vector3.Dot(dir,-_player.forward) > ARROW_RANGE)
-            {
-                _backArrow.SetActive(true);
-                return;
-            }
+            CheckDir(target.DamageChecker.transform.position, _player.forward,_frontBossArrow);
+            CheckDir(target.DamageChecker.transform.position, -_player.forward, _backBossArrow);
+            CheckDir(target.DamageChecker.transform.position, _player.right, _rightBossArrow);
+            CheckDir(target.DamageChecker.transform.position, -_player.right, _leftBossArrow);
         }
     }
-    private void CheckRight()
+    private bool CheckDir(Vector3 target,Vector3 checkDir,in GameObject obj)
     {
-        foreach (var target in LockOnController.Instance.LockOnTargets)
+        Vector3 dir = target - _player.position;
+        dir = dir.normalized;
+        dir.y = _player.position.y;
+        if (Vector3.Dot(dir, checkDir) > ARROW_RANGE)
         {
-            if (target.DamageChecker.AddTarget == false || target.DamageChecker.gameObject.activeInHierarchy == false)
-            {
-                continue;
-            }
-            Vector3 dir = target.DamageChecker.transform.position - _player.position;
-            dir = dir.normalized;
-            dir.y = _player.position.y;
-            if (Vector3.Dot(dir, _player.right) > ARROW_RANGE)
-            {
-                _rightArrow.SetActive(true);
-                return;
-            }
+            obj.SetActive(true);
+            return true;
         }
-    }
-    private void CheckLeft()
-    {
-        foreach (var target in LockOnController.Instance.LockOnTargets)
-        {
-            if (target.DamageChecker.AddTarget == false || target.DamageChecker.gameObject.activeInHierarchy == false)
-            {
-                continue;
-            }
-            Vector3 dir = target.DamageChecker.transform.position - _player.position;
-            dir = dir.normalized;
-            dir.y = _player.position.y;
-            if (Vector3.Dot(dir, -_player.right) > ARROW_RANGE)
-            {
-                _leftArrow.SetActive(true);
-                return;
-            }
-        }
+        return false;
     }
 }
