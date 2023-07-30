@@ -6,7 +6,7 @@ using UnityEngine;
 public class ModelBuilder : MonoBehaviour
 {
     [SerializeField]
-    private MachineDataView _dataView = default;
+    private MachineDataView _dataView = default; 
     [SerializeField]
     private Transform _viewPoint = default;
     [SerializeField]
@@ -21,6 +21,8 @@ public class ModelBuilder : MonoBehaviour
     private float _inputThreshold = 0.3f;
     private GameObject _modelBase = default;
     private Quaternion _currentR = default;
+    private PartsBuildParam _currentBuildData;
+    private TotalParam _currentParam;
     private void FixedUpdate()
     {
         if (_modelBase != null)
@@ -59,7 +61,23 @@ public class ModelBuilder : MonoBehaviour
         {
             CreateModelBase();
         }
+        _currentBuildData = buildData;
         SetBuildPattern(buildData);
+    }
+    public void ViewChange(PartsBuildParam buildData)
+    {
+        transform.position = Vector3.zero;
+        if (_modelBase != null)
+        {
+            DeleteModelBase();
+            CreateModelBase();
+            _modelBase.transform.rotation = _currentR;
+        }
+        else
+        {
+            CreateModelBase();
+        }
+        SetBuildPattern(buildData,false);
     }
     private void CreateModelBase()
     {
@@ -79,7 +97,7 @@ public class ModelBuilder : MonoBehaviour
     /// ビルドのパターンからModelIDを取り出し組み立てを行う
     /// </summary>
     /// <param name="buildPattern"></param>
-    private void SetBuildPattern(PartsBuildParam buildPattern)
+    private void SetBuildPattern(PartsBuildParam buildPattern,bool set = true)
     {
         var modelID = new PartsBuildParam();
         modelID.Head = PartsManager.Instance.AllParamData.GetPartsHead(buildPattern.Head).ModelID;
@@ -103,7 +121,13 @@ public class ModelBuilder : MonoBehaviour
             var lWeapon = PartsManager.Instance.AllParamData.GetPartsWeapon(buildPattern.LWeapon);
             var rWeapon = PartsManager.Instance.AllParamData.GetPartsWeapon(buildPattern.RWeapon);
             TotalParam param = new TotalParam(bodyData, headData, handDataR, handDataL, legData, boosterData, rWeapon, lWeapon);
-            _dataView.ViewData(param);
+            if (set == true)
+            {
+                _currentParam = param;
+                _dataView.ViewData(param);
+                return;
+            }
+            _dataView.ViewData(param,_currentParam);
         }
     }
     /// <summary>

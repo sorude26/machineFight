@@ -4,24 +4,40 @@ using UnityEngine;
 
 public class UISoundPlay : MonoBehaviour
 {
-    
+    private float _seVol = 0.5f;
     public void OnMenuSubmit()
     {
-        SoundManager.Instance.PlaySE(25);
+        if (SoundManager.Instance == null)
+        {
+            return;
+        }
+        SoundManager.Instance.PlaySE(25, _seVol);
     }
 
     public void OnPartsSubmit()
     {
-        SoundManager.Instance.PlaySE(26);
+        if (SoundManager.Instance == null)
+        {
+            return;
+        }
+        SoundManager.Instance.PlaySE(26, _seVol);
     }
 
     public void OnSelected()
     {
-        SoundManager.Instance.PlaySE(27);
+        if (SoundManager.Instance == null)
+        {
+            return;
+        }
+        SoundManager.Instance.PlaySE(27, _seVol);
     }
 
     public void OnCancel()
     {
-        SoundManager.Instance.PlaySE(24);
+        if (SoundManager.Instance == null)
+        {
+            return;
+        }
+        SoundManager.Instance.PlaySE(24, _seVol);
     }
 }
