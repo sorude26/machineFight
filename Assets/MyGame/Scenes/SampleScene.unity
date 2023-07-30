@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 4066dd89b7f669948807a03a6720fd1c, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: b6121f1ede3dbe848a9c9de2ef369c28, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.32627, g: 0.39166754, b: 0.5682583, a: 1}
+  m_IndirectSpecularColor: {r: 0.21174768, g: 0.60281706, b: 1.1241385, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1273,9 +1273,13 @@ MonoBehaviour:
     Booster: 0
     LWeapon: 0
     RWeapon: 0
+    ColorId: 0
   _machineBase: {fileID: 1630088900}
   _lockTrans: {fileID: 616848981}
   _aimTrans: {fileID: 352799812}
+  _anBuildBody: {fileID: 0}
+  _anBuildLeg: {fileID: 0}
+  _anBuildBackPack: {fileID: 0}
 --- !u!114 &212420719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1329,6 +1333,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _defaultLayerName: MoveObj
+  _deadLayerName: AnHitMoveObj
 --- !u!54 &212420720
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1925,6 +1931,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _defaultLayerName: MoveObj
+  _deadLayerName: AnHitMoveObj
 --- !u!114 &354453838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1946,9 +1954,13 @@ MonoBehaviour:
     Booster: 1
     LWeapon: 0
     RWeapon: 2
+    ColorId: 0
   _machineBase: {fileID: 663503337}
   _lockTrans: {fileID: 118481626}
   _aimTrans: {fileID: 1831822271}
+  _anBuildBody: {fileID: 0}
+  _anBuildLeg: {fileID: 0}
+  _anBuildBackPack: {fileID: 0}
 --- !u!54 &354453839
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7615,8 +7627,10 @@ MonoBehaviour:
   _machineController: {fileID: 1028462367}
   _lockTrans: {fileID: 2146938990}
   _body: {fileID: 1028462365}
+  _lockbody: {fileID: 0}
   _naviPower: 0
   _transSpeed: 1
+  _lockSpeed: 5
   _naviInterval: 1
   _buildParam:
     Head: 0
@@ -7627,7 +7641,21 @@ MonoBehaviour:
     Booster: 0
     LWeapon: 0
     RWeapon: 2
+    ColorId: 0
+  _buildSet: []
+  _randamSet: 0
   _bodyTarget: {fileID: 1901519611}
+  _setBoss: 0
+  _deadEffct: {fileID: 0}
+  _deadSEID: 11
+  _seVolume: 1
+  _explosionTime: 3
+  _activeTime: 0.5
+  _exParam:
+    Pos: {x: 0, y: 0, z: 0}
+    Power: 0
+    Time: 0
+  _popControllers: []
 --- !u!114 &514584079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7649,6 +7677,7 @@ MonoBehaviour:
   LockOnRange: 500
   _attackMaxInterval: 5
   _attackIntervalDiffusivity: 2
+  _weapon: {fileID: 0}
   _onAttackEvent:
     m_PersistentCalls:
       m_Calls:
@@ -7688,10 +7717,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 2146938990}
   _playerLock: {fileID: 1404038007}
   _lockBody: {fileID: 87522609}
   _lockSpeed: 5
+  _cameraController: {fileID: 0}
 --- !u!1 &522982742
 GameObject:
   m_ObjectHideFlags: 0
@@ -8013,7 +8046,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &588769596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8026,7 +8059,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ab9c3174ad9014689d8e1ea796c59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CLEAR_COUNT: 5
+  _defaultBossCount: 0
+  _bgmIDNum: 29
+  _stageClearbgmIDNum: 41
+  _gameOverbgmIDNum: 42
+  _bgmVolume: 0.1
+  _changeBgmIDNum: 0
+  _changeBgmSpeed: 1
+  _alarmSEID: 47
+  _alarmVolume: 0.5
+  _moveTime: 10
+  _enemySet: []
 --- !u!4 &588769597
 Transform:
   m_ObjectHideFlags: 0
@@ -8194,9 +8237,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _current: {fileID: 273986264}
+  _currentBack: {fileID: 0}
+  _magazine: {fileID: 0}
+  _magazineBack: {fileID: 0}
   _total: {fileID: 1990924655}
+  _totalBack: {fileID: 0}
+  _max: {fileID: 0}
+  _maxBack: {fileID: 0}
   _countGauge: {fileID: 292892888}
   _totalGauge: {fileID: 1718865262}
+  _currentView: 0
+  _outOfAmmoColor: {r: 0, g: 0, b: 0, a: 0}
+  _arrowMark: {fileID: 0}
+  _bulletMark: {fileID: 0}
+  _outOfAmmo: {fileID: 0}
 --- !u!1 &612475679
 GameObject:
   m_ObjectHideFlags: 0
@@ -8335,7 +8389,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &640599981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8352,7 +8406,8 @@ MonoBehaviour:
   _wallLayer:
     serializedVersion: 2
     m_Bits: 768
-  LockOnTargets: []
+  _markCanvas: {fileID: 0}
+  _inRangeMarkPrefab: {fileID: 0}
 --- !u!4 &640599982
 Transform:
   m_ObjectHideFlags: 0
@@ -8488,7 +8543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &663503337
 Transform:
   m_ObjectHideFlags: 0
@@ -8516,6 +8571,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e94741cbd19654a940d7d50cf505f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _useEnergySpeed: 5
+  _useFlyEnergy: 0.5
+  _useFloatEnergy: 5
   _playerCamera: {fileID: 118481627}
   _machineController: {fileID: 354453837}
   _targetMark: {fileID: 996079449}
@@ -8528,14 +8586,11 @@ MonoBehaviour:
     Booster: 4
     LWeapon: 2
     RWeapon: 0
-  _leftWeapon: {fileID: 1102960719}
-  _rightWeapon: {fileID: 610640876}
-  _backPack: {fileID: 1655616156}
-  _boosterGauge: {fileID: 1851505636}
-  _energyGauge: {fileID: 81416550}
-  _hpText: {fileID: 1521125414}
-  _hpGauge: {fileID: 1278062470}
-  _uiAnime: {fileID: 1648517965}
+    ColorId: 0
+  _stageUI: {fileID: 0}
+  _headTrans: {fileID: 0}
+  _startWaitMode: 0
+  _machineRB: {fileID: 0}
 --- !u!1 &664228817
 GameObject:
   m_ObjectHideFlags: 0
@@ -8697,13 +8752,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.26134688, y: 0, z: 0, w: 0.96524495}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30.3, y: 0, z: 0}
 --- !u!1 &727041363
 GameObject:
   m_ObjectHideFlags: 0
@@ -9020,7 +9075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &768258645
 Transform:
   m_ObjectHideFlags: 0
@@ -9054,7 +9109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &772098756
 Transform:
   m_ObjectHideFlags: 0
@@ -14127,9 +14182,13 @@ MonoBehaviour:
     Booster: 0
     LWeapon: 0
     RWeapon: 0
+    ColorId: 0
   _machineBase: {fileID: 1246903693}
   _lockTrans: {fileID: 1295317484}
   _aimTrans: {fileID: 624472792}
+  _anBuildBody: {fileID: 0}
+  _anBuildLeg: {fileID: 0}
+  _anBuildBackPack: {fileID: 0}
 --- !u!114 &792831541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14183,6 +14242,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _defaultLayerName: MoveObj
+  _deadLayerName: AnHitMoveObj
 --- !u!54 &792831542
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14573,7 +14634,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864417388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -4.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1483894332}
@@ -14596,10 +14657,10 @@ MonoBehaviour:
   _rotationTarget: {fileID: 1831822271}
   _followSpeed: 0.7
   _rotationSpeed: 50
-  _noneLerp: 0
   _lookTarget: {fileID: 0}
   _lookRotationTarget: {fileID: 0}
   _camera: {fileID: 1483894332}
+  _cameraBase: {fileID: 0}
   _curveSpeed: 0.2
   _resetSpeed: 0.5
   _maxCurve: 15
@@ -15660,9 +15721,13 @@ MonoBehaviour:
     Booster: 0
     LWeapon: 0
     RWeapon: 0
+    ColorId: 0
   _machineBase: {fileID: 514584077}
   _lockTrans: {fileID: 87522609}
   _aimTrans: {fileID: 890531205}
+  _anBuildBody: {fileID: 0}
+  _anBuildLeg: {fileID: 0}
+  _anBuildBackPack: {fileID: 0}
 --- !u!114 &1028462367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15716,6 +15781,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _defaultLayerName: MoveObj
+  _deadLayerName: AnHitMoveObj
 --- !u!54 &1028462368
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15991,9 +16058,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _current: {fileID: 284570615}
+  _currentBack: {fileID: 0}
+  _magazine: {fileID: 0}
+  _magazineBack: {fileID: 0}
   _total: {fileID: 1905934647}
+  _totalBack: {fileID: 0}
+  _max: {fileID: 0}
+  _maxBack: {fileID: 0}
   _countGauge: {fileID: 1540365085}
   _totalGauge: {fileID: 1202847476}
+  _currentView: 0
+  _outOfAmmoColor: {r: 0, g: 0, b: 0, a: 0}
+  _arrowMark: {fileID: 0}
+  _bulletMark: {fileID: 0}
+  _outOfAmmo: {fileID: 0}
 --- !u!1 &1105126467
 GameObject:
   m_ObjectHideFlags: 0
@@ -16356,6 +16434,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _maxRayCount: 500
+  _rayRange: 5
+  _rayDir: {x: 0, y: 1, z: 0}
+  _rayStart: {x: 0, y: 0, z: 0}
 --- !u!4 &1142459455
 Transform:
   m_ObjectHideFlags: 0
@@ -16428,7 +16509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8523691758195057453, guid: 414e0d92f280d0c45ad19233332c6679, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 414e0d92f280d0c45ad19233332c6679, type: 3}
@@ -17077,8 +17158,10 @@ MonoBehaviour:
   _machineController: {fileID: 792831541}
   _lockTrans: {fileID: 2073142623}
   _body: {fileID: 792831539}
+  _lockbody: {fileID: 0}
   _naviPower: 0
   _transSpeed: 1
+  _lockSpeed: 5
   _naviInterval: 1
   _buildParam:
     Head: 0
@@ -17089,7 +17172,21 @@ MonoBehaviour:
     Booster: 2
     LWeapon: 0
     RWeapon: 2
+    ColorId: 0
+  _buildSet: []
+  _randamSet: 0
   _bodyTarget: {fileID: 960123715}
+  _setBoss: 0
+  _deadEffct: {fileID: 0}
+  _deadSEID: 11
+  _seVolume: 1
+  _explosionTime: 3
+  _activeTime: 0.5
+  _exParam:
+    Pos: {x: 0, y: 0, z: 0}
+    Power: 0
+    Time: 0
+  _popControllers: []
 --- !u!114 &1246903695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17111,6 +17208,7 @@ MonoBehaviour:
   LockOnRange: 500
   _attackMaxInterval: 5
   _attackIntervalDiffusivity: 2
+  _weapon: {fileID: 0}
   _onAttackEvent:
     m_PersistentCalls:
       m_Calls:
@@ -17150,10 +17248,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 2073142623}
   _playerLock: {fileID: 1789901854}
   _lockBody: {fileID: 1295317484}
   _lockSpeed: 5
+  _cameraController: {fileID: 0}
 --- !u!1 &1250471548
 GameObject:
   m_ObjectHideFlags: 0
@@ -17642,7 +17744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2048457729294978735, guid: 09ea45cee9c8534468409ddf06b31fd5, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.11927048
       objectReference: {fileID: 0}
     - target: {fileID: 2048457729294978735, guid: 09ea45cee9c8534468409ddf06b31fd5, type: 3}
       propertyPath: m_LocalRotation.x
@@ -17650,7 +17752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2048457729294978735, guid: 09ea45cee9c8534468409ddf06b31fd5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.9928618
       objectReference: {fileID: 0}
     - target: {fileID: 2048457729294978735, guid: 09ea45cee9c8534468409ddf06b31fd5, type: 3}
       propertyPath: m_LocalRotation.z
@@ -17662,7 +17764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2048457729294978735, guid: 09ea45cee9c8534468409ddf06b31fd5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -166.3
       objectReference: {fileID: 0}
     - target: {fileID: 2048457729294978735, guid: 09ea45cee9c8534468409ddf06b31fd5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -17884,7 +17986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1443197430
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18425,7 +18527,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1546868288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18673,8 +18775,10 @@ MonoBehaviour:
   _machineController: {fileID: 212420719}
   _lockTrans: {fileID: 1026723760}
   _body: {fileID: 212420717}
+  _lockbody: {fileID: 0}
   _naviPower: 0
   _transSpeed: 1
+  _lockSpeed: 5
   _naviInterval: 1
   _buildParam:
     Head: 0
@@ -18685,7 +18789,21 @@ MonoBehaviour:
     Booster: 0
     LWeapon: 0
     RWeapon: 2
+    ColorId: 0
+  _buildSet: []
+  _randamSet: 0
   _bodyTarget: {fileID: 1474327827}
+  _setBoss: 0
+  _deadEffct: {fileID: 0}
+  _deadSEID: 11
+  _seVolume: 1
+  _explosionTime: 3
+  _activeTime: 0.5
+  _exParam:
+    Pos: {x: 0, y: 0, z: 0}
+    Power: 0
+    Time: 0
+  _popControllers: []
 --- !u!114 &1630088902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18707,6 +18825,7 @@ MonoBehaviour:
   LockOnRange: 500
   _attackMaxInterval: 5
   _attackIntervalDiffusivity: 2
+  _weapon: {fileID: 0}
   _onAttackEvent:
     m_PersistentCalls:
       m_Calls:
@@ -18746,10 +18865,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 1026723760}
   _playerLock: {fileID: 803091240}
   _lockBody: {fileID: 616848981}
   _lockSpeed: 5
+  _cameraController: {fileID: 0}
 --- !u!1 &1648517963
 GameObject:
   m_ObjectHideFlags: 0
@@ -18999,9 +19122,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _current: {fileID: 1750244669}
+  _currentBack: {fileID: 0}
+  _magazine: {fileID: 0}
+  _magazineBack: {fileID: 0}
   _total: {fileID: 1020607592}
+  _totalBack: {fileID: 0}
+  _max: {fileID: 0}
+  _maxBack: {fileID: 0}
   _countGauge: {fileID: 503716285}
   _totalGauge: {fileID: 1470863709}
+  _currentView: 0
+  _outOfAmmoColor: {r: 0, g: 0, b: 0, a: 0}
+  _arrowMark: {fileID: 0}
+  _bulletMark: {fileID: 0}
+  _outOfAmmo: {fileID: 0}
 --- !u!1 &1660035495
 GameObject:
   m_ObjectHideFlags: 0
@@ -19409,6 +19543,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1719650259}
   m_CullTransparentMesh: 1
+--- !u!1001 &1740751090
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6164360964474195240, guid: 29cb4680db849ac4a8214ea2d0b74d1a, type: 3}
+      propertyPath: m_Name
+      value: EXMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164360964474195247, guid: 29cb4680db849ac4a8214ea2d0b74d1a, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164360964474195247, guid: 29cb4680db849ac4a8214ea2d0b74d1a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164360964474195247, guid: 29cb4680db849ac4a8214ea2d0b74d1a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -15.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164360964474195247, guid: 29cb4680db849ac4a8214ea2d0b74d1a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164360964474195247, guid: 29cb4680db849ac4a8214ea2d0b74d1a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.05905282
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164360964474195247, guid: 29cb4680db849ac4a8214ea2d0b74d1a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.0054781665
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164360964474195247, guid: 29cb4680db849ac4a8214ea2d0b74d1a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.99397206
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164360964474195247, guid: 29cb4680db849ac4a8214ea2d0b74d1a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.09220803
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164360964474195247, guid: 29cb4680db849ac4a8214ea2d0b74d1a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 10.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164360964474195247, guid: 29cb4680db849ac4a8214ea2d0b74d1a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 186.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164360964474195247, guid: 29cb4680db849ac4a8214ea2d0b74d1a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 29cb4680db849ac4a8214ea2d0b74d1a, type: 3}
 --- !u!1 &1750244667
 GameObject:
   m_ObjectHideFlags: 0
@@ -19642,9 +19833,13 @@ MonoBehaviour:
     Booster: 0
     LWeapon: 0
     RWeapon: 0
+    ColorId: 0
   _machineBase: {fileID: 1778404527}
   _lockTrans: {fileID: 1334612630}
   _aimTrans: {fileID: 845422686}
+  _anBuildBody: {fileID: 0}
+  _anBuildLeg: {fileID: 0}
+  _anBuildBackPack: {fileID: 0}
 --- !u!114 &1755112573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19698,6 +19893,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _defaultLayerName: MoveObj
+  _deadLayerName: AnHitMoveObj
 --- !u!54 &1755112574
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19972,6 +20169,7 @@ MonoBehaviour:
   LockOnRange: 500
   _attackMaxInterval: 5
   _attackIntervalDiffusivity: 2
+  _weapon: {fileID: 0}
   _onAttackEvent:
     m_PersistentCalls:
       m_Calls:
@@ -20011,10 +20209,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _initializeEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _attackerMoveBody: {fileID: 1266096497}
   _playerLock: {fileID: 138401937}
   _lockBody: {fileID: 1334612630}
   _lockSpeed: 5
+  _cameraController: {fileID: 0}
 --- !u!114 &1778404529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20030,8 +20232,10 @@ MonoBehaviour:
   _machineController: {fileID: 1755112573}
   _lockTrans: {fileID: 1266096497}
   _body: {fileID: 1755112571}
+  _lockbody: {fileID: 0}
   _naviPower: 0
   _transSpeed: 1
+  _lockSpeed: 5
   _naviInterval: 1
   _buildParam:
     Head: 0
@@ -20042,7 +20246,21 @@ MonoBehaviour:
     Booster: 3
     LWeapon: 0
     RWeapon: 2
+    ColorId: 0
+  _buildSet: []
+  _randamSet: 0
   _bodyTarget: {fileID: 1845774968}
+  _setBoss: 0
+  _deadEffct: {fileID: 0}
+  _deadSEID: 11
+  _seVolume: 1
+  _explosionTime: 3
+  _activeTime: 0.5
+  _exParam:
+    Pos: {x: 0, y: 0, z: 0}
+    Power: 0
+    Time: 0
+  _popControllers: []
 --- !u!1 &1780231476
 GameObject:
   m_ObjectHideFlags: 0
@@ -20749,7 +20967,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1865487122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20792,12 +21010,11 @@ MonoBehaviour:
   - {fileID: 6523338354323658597, guid: 12f81493b53c45e40b2e70035ba84fed, type: 3}
   - {fileID: -3338703610236240453, guid: 6aeecb76ac0f7e1419640a85965f1978, type: 3}
   - {fileID: 2984526895331830430, guid: e5ea6dce741c5cd418046d26fe2e798a, type: 3}
+  _spwanEffect: {fileID: 0}
   _defaultCount: 5
   _startSpwanCount: 2
   _minSpwanRange: 200
   _enemySpwanCount: 5
-  _enemySpwanTargetCount: 3
-  _isAutoSpwan: 1
 --- !u!4 &1865487123
 Transform:
   m_ObjectHideFlags: 0

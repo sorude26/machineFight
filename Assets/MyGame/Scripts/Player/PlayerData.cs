@@ -120,9 +120,15 @@ public class PlayerData : MonoBehaviour
             return;
         }
         HomeUIController.Instance.BuildModel();
-        //_modelBuilder.ViewModel(BuildPreset);
     }
-
+    public void ViewModel(PartsBuildParam buildParam)
+    {
+        if (HomeUIController.Instance == null)
+        {
+            return;
+        }
+        HomeUIController.Instance.BuildModel(buildParam);
+    }
     /// <summary>
     /// パーツを入手する　HandとWeaponはLHand、LWeaponのタグを使う
     /// </summary>
