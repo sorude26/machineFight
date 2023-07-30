@@ -11,7 +11,7 @@ public static class ButtonSelectController
     /// <param name="window">ボタンの親オブジェクト</param>
     public static void OnButtonFirstSelect(GameObject content)
     {
-        EventSystem.current.SetSelectedGameObject(content.transform.GetChild(0).gameObject);
+        EventSystem.current.SetSelectedGameObject(content.transform.GetChild(1).gameObject);
     }
 
 

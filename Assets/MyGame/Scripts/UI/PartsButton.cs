@@ -65,4 +65,41 @@ public class PartsButton : MonoBehaviour
         _playerData.BuildPreset = partsData;
         _playerData.Build();
     }
+    public void OnSelectButton()
+    {
+        _playerData = PlayerData.instance;
+        _playerData.PartsLog();
+        PartsBuildParam partsData = _playerData.BuildPreset;
+        switch (_partsCategory)
+        {
+            case PartsCategory.Head:
+                partsData.Head = _partsId;
+                break;
+            case PartsCategory.Body:
+                partsData.Body = _partsId;
+                break;
+            case PartsCategory.LHand:
+                partsData.LHand = _partsId;
+                break;
+            case PartsCategory.RHand:
+                partsData.RHand = _partsId;
+                break;
+            case PartsCategory.Leg:
+                partsData.Leg = _partsId;
+                break;
+            case PartsCategory.Booster:
+                partsData.Booster = _partsId;
+                break;
+            case PartsCategory.LWeapon:
+                partsData.LWeapon = _partsId;
+                break;
+            case PartsCategory.RWeapon:
+                partsData.RWeapon = _partsId;
+                break;
+            case PartsCategory.Color:
+                partsData.ColorId = _partsId;
+                break;
+        }
+        _playerData.ViewModel(partsData);
+    }
 }

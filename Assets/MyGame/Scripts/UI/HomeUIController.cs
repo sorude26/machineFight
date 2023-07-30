@@ -27,4 +27,8 @@ public class HomeUIController : MonoBehaviour
     {
         _modelBuilder.ViewModel(PlayerData.instance.BuildPreset);
     }
+    public void BuildModel(PartsBuildParam viewParam)
+    {
+        _modelBuilder.ViewChange(viewParam);
+    }
 }
