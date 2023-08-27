@@ -179,7 +179,7 @@ public class PlayerMachineController : MonoBehaviour
             {
                 useEnergy += useEnergy * _useFloatEnergy * _machineController.BodyController.FloatSpeed;
             }
-            _currentEnergy -= useEnergy;
+            //_currentEnergy -= useEnergy;
             if (_currentEnergy <= 0)
             {
                 _machineController.IsPowerDown = true;
