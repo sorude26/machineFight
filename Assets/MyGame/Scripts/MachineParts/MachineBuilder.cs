@@ -19,6 +19,7 @@ public class MachineBuilder : MonoBehaviour
     [SerializeField]
     private BackPackController _anBuildBackPack = default;
     private PartsBuildParam _buildParam = default;
+    private GameObject _buildBase = default;
     public BodyController Body { get; private set; }
     public LegController Leg { get; private set; }
     public PartsBuildParam BuildData { get => _buildParam; }
@@ -34,6 +35,14 @@ public class MachineBuilder : MonoBehaviour
             AnBuildSet();
             return;
         }
+        if (_buildBase != null)
+        {
+            Destroy(_buildBase);
+        }
+        _buildBase = new GameObject("Base");
+        _buildBase.transform.SetParent(transform);
+        _buildBase.transform.localPosition = Vector3.zero;
+        _buildBase.transform.rotation = Quaternion.identity;
         var modelID = new PartsBuildParam();
         modelID.Head = PartsManager.Instance.AllParamData.GetPartsHead(buildPattern.Head).ModelID;
         modelID.Body = PartsManager.Instance.AllParamData.GetPartsBody(buildPattern.Body).ModelID;
@@ -58,13 +67,13 @@ public class MachineBuilder : MonoBehaviour
     public void Build()
     {
         var leg = Instantiate(PartsManager.Instance.AllModelData.GetPartsLeg(_buildData.Leg));
-        leg.transform.SetParent(transform);
+        leg.transform.SetParent(_buildBase.transform);
         leg.transform.localPosition = transform.localPosition;
         leg.transform.localRotation = transform.localRotation;
         leg.SetIkTargetBase(_machineBase);
         leg.LockTrans = _lockTrans;
         var body = Instantiate(PartsManager.Instance.AllModelData.GetPartsBody(_buildData.Body));
-        body.transform.SetParent(transform);
+        body.transform.SetParent(_buildBase.transform);
         body.transform.position = leg.BodyJoint.position;
         body.transform.rotation = leg.BodyJoint.rotation;
         body.BodyBase = leg.BodyJoint;
@@ -97,6 +106,7 @@ public class MachineBuilder : MonoBehaviour
         Body = body;
         Leg = leg;
         SetParam();
+        _buildBase.transform.localRotation = Quaternion.identity;
     }
     private void SetParam()
     {
