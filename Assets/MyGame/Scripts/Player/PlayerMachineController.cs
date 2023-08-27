@@ -7,6 +7,14 @@ using UnityEngine.UI;
 
 public class PlayerMachineController : MonoBehaviour
 {
+    private enum State
+    {
+        Initialize,
+        Play,
+        Change,
+        Build,
+        Setup,
+    }
     private static readonly int VR_COLOR = 20;
     private static readonly float MIN_ENERGY = 50f;
     [SerializeField]
@@ -38,6 +46,7 @@ public class PlayerMachineController : MonoBehaviour
     private float _currentEnergy = default;
     private float _energyConsumption = default;
     private float _boosterConsumption = default;
+    private State _currentState = State.Initialize;
     public Transform HeadTrans { get => _headTrans; }
     public MachinePartsController MachineController => _machineController;
     private IEnumerator Start()
@@ -51,9 +60,7 @@ public class PlayerMachineController : MonoBehaviour
             //VRモードの場合は機体カラーを透明にする
             _buildParam.ColorId = VR_COLOR;
         }
-        _machineController.Initialize(_buildParam);
-        _machineController.DamageChecker.OnDamageEvent.AddListener(DamagePlayer);
-        _machineController.DamageChecker.OnRecoveryEvent.AddListener(ShowHpData);
+        BuildMachine();
         if (_startWaitMode == true)
         {
             _machineRB.isKinematic = true;
@@ -63,24 +70,34 @@ public class PlayerMachineController : MonoBehaviour
             SetInput();
         }
         yield return null;
-        _stageUI.StartSet(_machineController.BodyController.LeftHand.WeaponBase,
-            _machineController.BodyController.RightHand.WeaponBase, _machineController.BodyController.BackPack.BackPackWeapon);
-        ShowHpData();
-        LockOnController.Instance.LockOnRange = PartsManager.Instance.AllParamData.GetPartsHead(_buildParam.Head).LockOnRange;
-        LockOnController.Instance.LockOnSpeed = PartsManager.Instance.AllParamData.GetPartsHead(_buildParam.Head).LockOnSpeed;
-        SetParam();
-        _machineController.BodyController.UseBooster += UseBooster;
-        _machineController.BodyController.OnDirSet += _playerCamera.SetLockDir;
-        _machineController.DamageChecker.ChangeAnTarget();
+        SetupMachine();
         StageManager.Instance.OnGameEnd += SetTotalDamage;
-        _headTrans.SetParent(_machineController.BodyController.HeadJoint.transform);
-        if (_startWaitMode == true)
-        {
-            _machineController.BodyController.StartJetBoosters();
-        }
-        _currentBooster = _maxBooster;
     }
+   
+
     private void Update()
+    {
+        switch (_currentState)
+        {
+            case State.Initialize:
+                break;
+            case State.Play:
+                StatePlay();
+                break;
+            case State.Change:
+                _currentState = State.Build;
+                break;
+            case State.Build:
+                BuildMachine();
+                break;
+            case State.Setup:
+                SetupMachine();
+                break;
+            default:
+                break;
+        }
+    }
+    private void StatePlay()
     {
         if (_machineController.BodyController.LeftHand.WeaponBase.IsFire == true && PlayerInput.GetStayInput(InputType.Fire1) == false)
         {
@@ -90,8 +107,27 @@ public class PlayerMachineController : MonoBehaviour
         {
             StopShotRight();
         }
+        if (PlayerInput.GetStayInput(InputType.Fire4) == true)
+        {
+            for (int i = 0; i < PartsBuildParam.PARTS_TYPE_NUM; i++)
+            {
+                _buildParam[(PartsType)i] = PartsManager.Instance.AllParamData.GetRandamPartsId((PartsType)i);
+            }
+            _currentState = State.Build;
+        }
     }
     private void FixedUpdate()
+    {
+        switch (_currentState)
+        {
+            case State.Play:
+                StatePlayFixed();
+                break;
+            default:
+                break;
+        }
+    }
+    private void StatePlayFixed()
     {
         if (_machineController.IsInitalized == false || _startWaitMode == true) { return; }
         BoosterUpdate();
@@ -131,6 +167,33 @@ public class PlayerMachineController : MonoBehaviour
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.Booster, JetBoost);
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.ChangeTarget, ChangeTarget);
         PlayerInput.LiftEnterInput(InputMode.InGame, InputType.ChangeMode, ChangeFloatMode);
+    }
+    private void BuildMachine()
+    {
+        _headTrans.parent = null;
+        _machineController.Initialize(_buildParam);
+        _machineController.DamageChecker.OnDamageEvent.AddListener(DamagePlayer);
+        _machineController.DamageChecker.OnRecoveryEvent.AddListener(ShowHpData);
+        _currentState = State.Setup;
+    }
+    private void SetupMachine()
+    {
+        _stageUI.StartSet(_machineController.BodyController.LeftHand.WeaponBase,
+            _machineController.BodyController.RightHand.WeaponBase, _machineController.BodyController.BackPack.BackPackWeapon);
+        ShowHpData();
+        LockOnController.Instance.LockOnRange = PartsManager.Instance.AllParamData.GetPartsHead(_buildParam.Head).LockOnRange;
+        LockOnController.Instance.LockOnSpeed = PartsManager.Instance.AllParamData.GetPartsHead(_buildParam.Head).LockOnSpeed;
+        SetParam();
+        _machineController.BodyController.UseBooster += UseBooster;
+        _machineController.BodyController.OnDirSet += _playerCamera.SetLockDir;
+        _machineController.DamageChecker.ChangeAnTarget();
+        _headTrans.SetParent(_machineController.BodyController.HeadJoint.transform);
+        if (_startWaitMode == true)
+        {
+            _machineController.BodyController.StartJetBoosters();
+        }
+        _currentBooster = _maxBooster;
+        _currentState = State.Play;
     }
     private void SetParam()
     {

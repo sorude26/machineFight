@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -68,8 +69,8 @@ public class MachineBuilder : MonoBehaviour
     {
         var leg = Instantiate(PartsManager.Instance.AllModelData.GetPartsLeg(_buildData.Leg));
         leg.transform.SetParent(_buildBase.transform);
-        leg.transform.localPosition = transform.localPosition;
-        leg.transform.localRotation = transform.localRotation;
+        leg.transform.localPosition = _buildBase.transform.localPosition;
+        leg.transform.localRotation = _buildBase.transform.localRotation;
         leg.SetIkTargetBase(_machineBase);
         leg.LockTrans = _lockTrans;
         var body = Instantiate(PartsManager.Instance.AllModelData.GetPartsBody(_buildData.Body));
